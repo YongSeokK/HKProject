@@ -1,0 +1,553 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Get_DT_Market_Type" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Out_DT_Market_Type" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="In_Arr_City" Type="InArgument(s:String[])" />
+    <x:Property Name="In_Arr_Category" Type="InArgument(s:String[])" />
+    <x:Property Name="In_Str_ProjectPath" Type="InArgument(x:String)" />
+    <x:Property Name="In_Str_ResultPath" Type="InArgument(x:String)" />
+    <x:Property Name="In_Str_FileName" Type="InArgument(x:String)" />
+    <x:Property Name="Sort" Type="InOutArgument(x:String)" />
+    <x:Property Name="CityName" Type="InOutArgument(x:String)" />
+  </x:Members>
+  <this:Get_DT_Market_Type.In_Arr_City>
+    <InArgument x:TypeArguments="s:String[]" />
+  </this:Get_DT_Market_Type.In_Arr_City>
+  <this:Get_DT_Market_Type.In_Arr_Category>
+    <InArgument x:TypeArguments="s:String[]" />
+  </this:Get_DT_Market_Type.In_Arr_Category>
+  <this:Get_DT_Market_Type.In_Str_ProjectPath>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Get_DT_Market_Type.In_Str_ProjectPath>
+  <this:Get_DT_Market_Type.In_Str_ResultPath>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Get_DT_Market_Type.In_Str_ResultPath>
+  <this:Get_DT_Market_Type.In_Str_FileName>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Get_DT_Market_Type.In_Str_FileName>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>852,2660</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Get_DT_Market_Type_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="31">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Get_DT_Market_Type" sap:VirtualizedContainerService.HintSize="587.2,2595.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="s:String[]" Name="Arr_City" />
+      <Variable x:TypeArguments="s:String[]" Name="Arr_Category" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_Market_Type" />
+      <Variable x:TypeArguments="x:String" Name="Sort" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="545.6,2224" sap2010:WorkflowViewState.IdRef="ForEach`1_16" Values="[In_Arr_City]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="City" />
+          </ActivityAction.Argument>
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="510.4,2099.2" sap2010:WorkflowViewState.IdRef="ForEach`1_15" Values="[In_Arr_Category]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="Category" />
+                </ActivityAction.Argument>
+                <Sequence sap:VirtualizedContainerService.HintSize="475.2,1974.4" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="CityName" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe  농산물유통정보:::K...'" sap:VirtualizedContainerService.HintSize="433.6,300" sap2010:WorkflowViewState.IdRef="BrowserScope_13" InformativeScreenshot="b0511e1e18c83bd596d38d2b7aa32380" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;">
+                    <ui:BrowserScope.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="375.2,152.8" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="NavigateTo_6" Url="[&quot;https://www.kamis.or.kr/customer/price/bizcondition/catalogue.do?action=daily&amp;regday=&quot; + DateTime.Now.Tostring(&quot;yyyy-MM-dd&quot;) + &quot;&amp;countycode=&quot; + City + &quot;&amp;itemcategorycode=&quot; + Category + &quot;&amp;convert_kg_yn=N&quot;]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:BrowserScope.Body>
+                  </ui:BrowserScope>
+                  <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_13" />
+                  <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Image 'chrome.exe  농산물유통정보:::K...'" sap:VirtualizedContainerService.HintSize="433.6,156" sap2010:WorkflowViewState.IdRef="ClickImage_8" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:ClickImage.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:ClickImage.CursorPosition>
+                    <ui:ClickImage.Image>
+                      <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" InitialScalingFactor="1.25" Profile="Basic" TargetImageBase64="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" />
+                    </ui:ClickImage.Image>
+                    <ui:ClickImage.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9c0c247e-7f26-4043-bf9e-7334f1ea170c" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:ClickImage.Target>
+                  </ui:ClickImage>
+                  <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_14" />
+                  <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'H3'" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_6">
+                    <ui:GetValue.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8e9bbb43-9244-4964-9332-a255defbb018" InformativeScreenshot="69b190023a5f3625173dcca5cfda13da" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;h3' tag='H3' class='s_tit5 fl' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:GetValue.Target>
+                    <ui:GetValue.Value>
+                      <OutArgument x:TypeArguments="x:String">[Sort]</OutArgument>
+                    </ui:GetValue.Value>
+                  </ui:GetValue>
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="433.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[Sort.Trim()]" />
+                  <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'A'" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_7">
+                    <ui:GetValue.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5a3f1217-2198-4705-8844-de2e7e5a3a28" InformativeScreenshot="dbc9c80c760738c97c166e412e146925" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;&lt;webctrl aaname='*' parentid='ulcountycode' tag='A' parentclass='on' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:GetValue.Target>
+                    <ui:GetValue.Value>
+                      <OutArgument x:TypeArguments="x:String">[CityName]</OutArgument>
+                    </ui:GetValue.Value>
+                  </ui:GetValue>
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="433.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[CityName.trim()]" />
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A'" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7c2dfdaf-89a9-4336-bd85-f021994333cb" InformativeScreenshot="9ce6af7d8fa05a61ea00a3d49dabba41" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;&lt;webctrl aaname=' 데이터 저장' parentid='container' tag='A' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
+                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="지역별 폴더 추가하려고 함&#xA;20220713-11:34" DisplayName="Type Into 'Edit'" sap:VirtualizedContainerService.HintSize="433.6,179.2" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[In_Str_ProjectPath + In_Str_ResultPath + CityName.Trim() + &quot;_&quot; + Sort.Trim() + DateTime.now.ToString(&quot;_yyyyMMdd&quot;) + &quot;.xls&quot;]">
+                    <ui:TypeInto.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="145d5a25-2c6c-4910-a476-1e1137d90fe6" InformativeScreenshot="74dd94235ff6e48764a5a974f2b1a6c1" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='다른 이름으로 저장' /&gt;&lt;wnd aaname='탐색 창' cls='DirectUIHWND' /&gt;&lt;wnd aaname='파일 이름:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:TypeInto.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:TypeInto>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1a159dc8-c3dd-4474-9f2b-ce9073b9d1b8" InformativeScreenshot="1f51d32683fb752a80739845a5977718" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='다른 이름으로 저장' /&gt;&lt;wnd ctrlid='1' title='저장(&amp;amp;S)' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="475.2,400" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Data_Scrapping" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="BrowserScope_14" InformativeScreenshot="523333fe002a457e113dfa4268842590" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;">
+                          <ui:BrowserScope.Body>
+                            <ActivityAction x:TypeArguments="x:Object">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[DT_Market_Type]" DisplayName="Extract Structured Data 'TABLE  itemTable_1'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='구분' attr='text' /&gt;&lt;column name='구분' attr='text' /&gt;&lt;column name='구분' attr='text' /&gt;&lt;column name='당일 (07/12) 전통시장' attr='text' /&gt;&lt;column name='당일 (07/12) 대형유통' attr='text' /&gt;&lt;column name='1일전 (07/11) 전통시장' attr='text' /&gt;&lt;column name='1일전 (07/11) 대형유통' attr='text' /&gt;&lt;column name='1주일전 (07/05) 전통시장' attr='text' /&gt;&lt;column name='1주일전 (07/05) 대형유통' attr='text' /&gt;&lt;column name='2주일전 (06/28) 전통시장' attr='text' /&gt;&lt;column name='2주일전 (06/28) 대형유통' attr='text' /&gt;&lt;column name='1개월전 전통시장' attr='text' /&gt;&lt;column name='1개월전 대형유통' attr='text' /&gt;&lt;column name='1년전 전통시장' attr='text' /&gt;&lt;column name='1년전 대형유통' attr='text' /&gt;&lt;column name='일평년 전통시장' attr='text' /&gt;&lt;column name='일평년 대형유통' attr='text' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="ExtractData_9" MaxNumberOfResults="100" SimulateClick="True">
+                                  <ui:ExtractData.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ff94737c-be66-4a50-abb0-6b93e41b90ad" InformativeScreenshot="248fdaed9d7b27e52afc1f5ab92dadc8" Selector="&lt;webctrl id='itemTable_1' tag='TABLE' /&gt;" WaitForReady="COMPLETE">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                    </ui:Target>
+                                  </ui:ExtractData.Target>
+                                </ui:ExtractData>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:BrowserScope.Body>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:BrowserScope>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_10">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="375.2,180.8" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT_Market_Type]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_6" SheetName="[City + &quot;_&quot; + Category]" StartingCell="A1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:ExcelWriteRange>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                  <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_15" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEach>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="545.6,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_25">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:void(0);'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b77dddef-d358-4ab7-8443-e2a648a3bc01" InformativeScreenshot="753bed42f0c65856d0f4e2ce050da828" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;&lt;webctrl aaname='시장별' parentid='container' tag='A' /&gt;">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="545.6,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_26">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  /customer/price/bizc...'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c5f6308a-8171-4426-b744-fff4c90d3637" InformativeScreenshot="69df84b29c39c0d9be3808c698d11798" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;&lt;webctrl aaname='부류별' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;nav&amp;gt;ul&amp;gt;li&amp;gt;ul&amp;gt;li&amp;gt;ul&amp;gt;li&amp;gt;a' parentid='container' tag='A' /&gt;">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="545.6,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="593.6,875.2" sap2010:WorkflowViewState.IdRef="Sequence_19">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="552,782.4" sap2010:WorkflowViewState.IdRef="Sequence_18">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="510.4,689.6" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[In_Arr_City]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="City" />
+                  </ActivityAction.Argument>
+                  <Sequence sap:VirtualizedContainerService.HintSize="475.2,564.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A'" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9070270d-8430-4166-8b63-5d9be2dbdca8" InformativeScreenshot="a4525042b1c35a528ea1897891e3133a" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;&lt;webctrl parentid='ulcountycode' tag='A' aaname='전체' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="433.6,324.8" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[In_Arr_Category]">
+                      <ui:ForEach.Body>
+                        <ActivityAction x:TypeArguments="x:String">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="x:String" Name="Category" />
+                          </ActivityAction.Argument>
+                          <Sequence sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fe8a7909-d837-44b0-be7b-21c4bffb46ac" InformativeScreenshot="db9c3a345475cb48a10304213792fec1" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;&lt;webctrl parentid='ulitemcategorycode' tag='A' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEach.Body>
+                    </ui:ForEach>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+  </Sequence>
+</Activity>
