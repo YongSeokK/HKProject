@@ -174,8 +174,8 @@ cython_debug/
 #.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/flask
-!Code/.keep
-!Data/.keep
-!Image/.keep
-!Reference/.keep
-!Video/.keep
+!C:\HKProject\Code/.keep
+!C:\HKProject\Data/.keep
+!C:\HKProject\Image/.keep
+!C:\HKProject\Reference/.keep
+!C:\HKProject\Video/.keep
