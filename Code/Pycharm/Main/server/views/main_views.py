@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, url_for, request, session, g
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import redirect
-from chatbot.forms import UserCreateForm
-from chatbot.model import Members
-from chatbot import db
+from server.forms import UserCreateForm
+from server.model import Members
+from server import db
 
 bp = Blueprint('main', __name__, url_prefix='/')
 

@@ -1,5 +1,5 @@
 from datetime import datetime
-from chatbot import db
+from server import db
 
 
 class Members(db.Model):
