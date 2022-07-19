@@ -1,0 +1,786 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<title>가격정보 - 친환경농산물 - 품목별 엑셀 출력</title>
+	<meta http-equiv="Content-Type" content="application/vnd.ms-excel;charset=utf-8">
+	<style type="text/css">
+		table caption	{ text-align:left; }
+		table th		{ background-color:#eff2f9; }
+		table td		{ mso-number-format:\@; text-align:general; vertical-align:middle; text-align:center; white-space:nowrap; mso-rotate:0; mso-background-source:auto; mso-pattern:auto; color:black; font-size:11.0pt; font-style:normal; text-decoration:none; font-family:"맑은 고딕", monospace; mso-font-charset:129; border:1px; mso-protection:locked visible; mso-style-name:표준; mso-style-id:0; }
+		table td.c		{ text-align:center;}
+		table td.l		{ text-align:left; }
+		table td.r		{ text-align:right; }
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<td	class="data">
+				<table id="data" border="1px">
+					
+				<caption></caption>
+				<colgroup><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col>
+				</colgroup><tbody><tr>
+				
+					<th class="first" scope="col" colspan="3" rowspan="2">구분</th>
+					
+						<th scope="col" colspan="2">당일 (07/19)</th>
+					
+					
+						<th scope="col" colspan="2">1일전 (07/18)</th>
+					
+					
+					
+						<th scope="col" colspan="2">1주일전 (07/12)</th>
+					
+					
+						<th scope="col" colspan="2">2주일전 (07/05)</th>
+					
+					
+						<th scope="col" colspan="2">1개월전</th>
+					
+					
+						<th scope="col" colspan="2">1년전</th>
+					
+					<th class="last" scope="col" colspan="2">일평년</th>
+				
+				</tr>
+				<tr>
+				
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+						<th scope="col">전통시장</th>
+						<th class="last" scope="col">대형유통</th>
+				
+				</tr>
+
+				
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="3">고등어</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">생선(1마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>-</td>
+						<td>4,225</td>
+					
+					
+						<td>-</td>
+						<td>4,115</td>
+					
+					
+					
+						<td>-</td>
+						<td>4,307</td>
+					
+					
+						<td>-</td>
+						<td>4,650</td>
+					
+					
+						<td>-</td>
+						<td>5,123</td>
+					
+					
+						<td>-</td>
+						<td>3,980</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="1">냉동(1마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>-</td>
+						<td>3,490</td>
+					
+					
+						<td>-</td>
+						<td>-</td>
+					
+					
+					
+						<td>-</td>
+						<td>-</td>
+					
+					
+						<td>-</td>
+						<td>3,490</td>
+					
+					
+						<td>-</td>
+						<td>3,490</td>
+					
+					
+						<td>-</td>
+						<td>3,730</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="1">염장(2마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>3,500</td>
+						<td>3,990</td>
+					
+					
+						<td>3,500</td>
+						<td>3,990</td>
+					
+					
+					
+						<td>3,500</td>
+						<td>-</td>
+					
+					
+						<td>3,500</td>
+						<td>3,990</td>
+					
+					
+						<td>3,500</td>
+						<td>-</td>
+					
+					
+						<td>4,000</td>
+						<td>-</td>
+					
+					<td>3,443</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">꽁치</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">냉동(수입)(5마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>-</td>
+						<td>6,133</td>
+					
+					
+						<td>-</td>
+						<td>6,133</td>
+					
+					
+					
+						<td>-</td>
+						<td>5,996</td>
+					
+					
+						<td>-</td>
+						<td>6,196</td>
+					
+					
+						<td>-</td>
+						<td>6,161</td>
+					
+					
+						<td>-</td>
+						<td>6,533</td>
+					
+					<td>-</td>
+					<td class="last">4,223</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">갈치</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">생선(1마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>-</td>
+						<td>6,465</td>
+					
+					
+						<td>-</td>
+						<td>6,465</td>
+					
+					
+					
+						<td>-</td>
+						<td>6,973</td>
+					
+					
+						<td>-</td>
+						<td>6,465</td>
+					
+					
+						<td>-</td>
+						<td>7,153</td>
+					
+					
+						<td>-</td>
+						<td>5,480</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="1">냉동(1마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>-</td>
+						<td>5,350</td>
+					
+					
+						<td>-</td>
+						<td>5,350</td>
+					
+					
+					
+						<td>-</td>
+						<td>5,450</td>
+					
+					
+						<td>-</td>
+						<td>5,415</td>
+					
+					
+						<td>-</td>
+						<td>5,618</td>
+					
+					
+						<td>-</td>
+						<td>-</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">명태</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">냉동(1마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>2,000</td>
+						<td>3,990</td>
+					
+					
+						<td>2,000</td>
+						<td>-</td>
+					
+					
+					
+						<td>2,000</td>
+						<td>-</td>
+					
+					
+						<td>2,000</td>
+						<td>3,990</td>
+					
+					
+						<td>2,000</td>
+						<td>3,990</td>
+					
+					
+						<td>2,080</td>
+						<td>3,490</td>
+					
+					<td>2,000</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">물오징어</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">냉동(1마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>5,000</td>
+						<td>3,450</td>
+					
+					
+						<td>5,000</td>
+						<td>3,450</td>
+					
+					
+					
+						<td>5,000</td>
+						<td>3,450</td>
+					
+					
+						<td>5,000</td>
+						<td>3,450</td>
+					
+					
+						<td>5,000</td>
+						<td>3,450</td>
+					
+					
+						<td>5,000</td>
+						<td>-</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">건멸치</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">건멸치(100g)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>1,845</td>
+						<td>3,350</td>
+					
+					
+						<td>1,845</td>
+						<td>3,350</td>
+					
+					
+					
+						<td>1,845</td>
+						<td>3,690</td>
+					
+					
+						<td>1,845</td>
+						<td>3,690</td>
+					
+					
+						<td>1,845</td>
+						<td>2,815</td>
+					
+					
+						<td>1,845</td>
+						<td>3,577</td>
+					
+					<td>1,825</td>
+					<td class="last">3,232</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">건오징어</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">건오징어(10마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>52,450</td>
+						<td>77,150</td>
+					
+					
+						<td>52,450</td>
+						<td>77,150</td>
+					
+					
+					
+						<td>52,450</td>
+						<td>77,150</td>
+					
+					
+						<td>52,450</td>
+						<td>77,150</td>
+					
+					
+						<td>52,450</td>
+						<td>77,150</td>
+					
+					
+						<td>49,950</td>
+						<td>71,710</td>
+					
+					<td>45,467</td>
+					<td class="last">69,020</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">김</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">마른김(10장)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>790</td>
+						<td>1,260</td>
+					
+					
+						<td>790</td>
+						<td>1,260</td>
+					
+					
+					
+						<td>790</td>
+						<td>1,260</td>
+					
+					
+						<td>790</td>
+						<td>1,260</td>
+					
+					
+						<td>790</td>
+						<td>1,260</td>
+					
+					
+						<td>790</td>
+						<td>1,260</td>
+					
+					<td>802</td>
+					<td class="last">1,204</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="1">얼구운김(10장)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>910</td>
+						<td>1,914</td>
+					
+					
+						<td>910</td>
+						<td>1,914</td>
+					
+					
+					
+						<td>910</td>
+						<td>2,012</td>
+					
+					
+						<td>910</td>
+						<td>1,942</td>
+					
+					
+						<td>910</td>
+						<td>1,966</td>
+					
+					
+						<td>950</td>
+						<td>1,922</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">건미역</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">건미역(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,750</td>
+						<td>3,458</td>
+					
+					
+						<td>1,750</td>
+						<td>3,458</td>
+					
+					
+					
+						<td>1,750</td>
+						<td>3,458</td>
+					
+					
+						<td>1,750</td>
+						<td>3,458</td>
+					
+					
+						<td>1,750</td>
+						<td>3,458</td>
+					
+					
+						<td>1,750</td>
+						<td>3,113</td>
+					
+					<td>1,749</td>
+					<td class="last">3,068</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">수입조기</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">부세수입(냉동)(1마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>3,500</td>
+						<td>3,888</td>
+					
+					
+						<td>3,500</td>
+						<td>3,888</td>
+					
+					
+					
+						<td>3,500</td>
+						<td>3,888</td>
+					
+					
+						<td>3,500</td>
+						<td>3,888</td>
+					
+					
+						<td>3,500</td>
+						<td>3,718</td>
+					
+					
+						<td>3,500</td>
+						<td>4,140</td>
+					
+					<td>3,500</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">새우젓</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">새우젓(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>19,150</td>
+						<td>23,227</td>
+					
+					
+						<td>19,150</td>
+						<td>23,227</td>
+					
+					
+					
+						<td>19,150</td>
+						<td>23,227</td>
+					
+					
+						<td>19,150</td>
+						<td>23,227</td>
+					
+					
+						<td>19,150</td>
+						<td>24,060</td>
+					
+					
+						<td>20,000</td>
+						<td>26,890</td>
+					
+					<td>18,783</td>
+					<td class="last">23,595</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">멸치액젓</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">멸치액젓(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>4,810</td>
+						<td>5,114</td>
+					
+					
+						<td>4,810</td>
+						<td>5,114</td>
+					
+					
+					
+						<td>4,810</td>
+						<td>5,114</td>
+					
+					
+						<td>4,810</td>
+						<td>5,204</td>
+					
+					
+						<td>4,810</td>
+						<td>5,596</td>
+					
+					
+						<td>4,830</td>
+						<td>5,350</td>
+					
+					<td>4,752</td>
+					<td class="last">4,892</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">굵은소금</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">굵은소금(5kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>9,700</td>
+						<td>14,080</td>
+					
+					
+						<td>9,700</td>
+						<td>14,080</td>
+					
+					
+					
+						<td>9,700</td>
+						<td>14,080</td>
+					
+					
+						<td>9,700</td>
+						<td>14,080</td>
+					
+					
+						<td>9,700</td>
+						<td>14,080</td>
+					
+					
+						<td>7,970</td>
+						<td>11,071</td>
+					
+					<td>5,007</td>
+					<td class="last">9,030</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">전복</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">전복(5마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>12,800</td>
+						<td>15,418</td>
+					
+					
+						<td>12,800</td>
+						<td>15,418</td>
+					
+					
+					
+						<td>12,800</td>
+						<td>16,323</td>
+					
+					
+						<td>12,800</td>
+						<td>17,050</td>
+					
+					
+						<td>12,800</td>
+						<td>17,467</td>
+					
+					
+						<td>13,850</td>
+						<td>14,105</td>
+					
+					<td>13,600</td>
+					<td class="last">17,129</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">새우</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">흰다리(수입)(10마리)</td>
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>3,885</td>
+						<td>4,933</td>
+					
+					
+						<td>3,885</td>
+						<td>4,520</td>
+					
+					
+					
+						<td>3,885</td>
+						<td>4,933</td>
+					
+					
+						<td>3,885</td>
+						<td>4,933</td>
+					
+					
+						<td>3,885</td>
+						<td>4,604</td>
+					
+					
+						<td>4,225</td>
+						<td>3,436</td>
+					
+					<td>4,765</td>
+					<td class="last">3,918</td>
+				</tr>
+			
+			
+			</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
