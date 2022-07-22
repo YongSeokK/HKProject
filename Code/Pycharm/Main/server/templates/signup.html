@@ -2,36 +2,107 @@
 
 {% block content %}
 
-<div class="container">
-  <h5 class="my-3 border-bottom pb-2">계정생성</h5>
-  <form method="post">
-    {{ form.csrf_token }}
-    <div class="mb-3">
-      {{ form.userid.label }}
-      {{ form.userid() }}
-    </div>
-    <div class="mb-3">
-      {{ form.userpw1.label }}
-      {{ form.userpw1() }}
-    </div>
-    <div class="mb-3">
-      {{ form.userpw2.label }}
-      {{ form.userpw2() }}
-    </div>
-    <div class="mb-3">
-      {{ form.name.label }}
-      {{ form.name() }}
-    </div>
-    <div class="mb-3">
-      {{ form.email.label }}
-      {{ form.email() }}
-    </div>
-    <div class="mb-3">
-      {{ form.phone.label }}
-      {{ form.phone() }}
-    </div>
-      <button type="submit" class="btn btn-primary">회원가입</button>
-  </form>
-</div>
+    <div class="container pt-5" >
+        <form id="contactForm" method="post" action="/login">
 
-{% endblock %}
+            {{ form.hidden_tag() }}
+
+            <fieldset class="form-group pt-5 " >
+
+                <legend class="border-bottom mb-6 pt-5 ">가입하기</legend>
+
+                <div class="form-group pt-4" >
+                    {{ form.userid.label(class="form-control-label") }}
+
+                    {% if form.userid.errors %}
+                        {{ form.userid(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.userid.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.userid(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.name.label(class="form-control-label") }}
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.phone.label(class="form-control-label") }}
+                    {% if form.phone.errors %}
+                        {{ form.phone(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.phone(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+            </fieldset>
+
+            <div class="form-group pt-4">
+              <button type="submit" class="btn btn-primary">회원가입</button>
+            </div>
+
+        </form>
+    </div>
+
+{% endblock content %}
