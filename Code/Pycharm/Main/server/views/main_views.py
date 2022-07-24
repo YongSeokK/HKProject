@@ -36,7 +36,7 @@ def signup():
                            phone=form.phone.data)
             db.session.add(user)
             db.session.commit()
-            return redirect(url_for('main.index'))
+            return redirect(url_for('main.login'))
         else:
             print('이미 존재하는 유저')
     return render_template('signup.html', form=form)

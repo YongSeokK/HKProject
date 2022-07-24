@@ -1,11 +1,13 @@
-Main 폴더로 파이참 오픈 후 가상환경 만들라는 팝업 창 확인
+Main 폴더로 파이참 오픈 후 가상환경 생성하는 팝업 창 확인
 
 
 import 된 패키지를 모두 자동 설치 하기 위한 옵션
 터미널 창에 입력
-pip install -r requirements.txt  # 패키지 관리 
+# 패키지 관리
+pip install -r requirements.txt
 
 
 플라스크 옵션(FLASK_APP, FLASK_ENV) 설정과 동시에 flask run
 Main폴더로 경로 설정 필수
-play.bat  # 배치 파일 
+# 배치 파일
+play.bat
