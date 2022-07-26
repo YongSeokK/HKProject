@@ -1,0 +1,8 @@
+날짜 바꿀 부분
+1. Delete_Folder-> For Each
+2. Get_DT_Market_Type -> 제일 위 For Each
+3. Get_DT_Market_Type -> Navigate To
+4. Get_DT_Market_Type -> 파일명 저장하는 부분
+5. Merge_All -> For Each
+6. Merge_All -> For Each File -> 경로 부분
+7. Merge_All -> Copy Sheet -> DestinationPath
