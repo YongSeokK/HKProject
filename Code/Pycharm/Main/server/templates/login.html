@@ -1,42 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<link rel="stylesheet" href=" {{ url_for('static', filename='style.css')}} " >
+<link rel="stylesheet" href=" {{ url_for('static', filename='style.css')}} ">
 {% with messages = get_flashed_messages() %}
-  {% if messages %}
-<script>
-  alert("{{ messages[-1] }}")
-</script>
-  {% endif %}
+    {% if messages %}
+        <script>
+        alert("{{ messages[-1] }}")
+        </script>
+    {% endif %}
 {% endwith %}
 <body class="text-center pt-5">
-
-<main class="container pt-5">
-
-  <form id="contactForm" method="post" class="pt-5">
-
-    <img class="mb-4" src="static/img/id.png" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-    <div class="form-floating">
-      <input type="ID" class="form-control" id="floatingInput" placeholder="ID" name="id">
-      <label for="floatingInput">Userid</label>
-    </div>
-<br>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pw">
-      <label for="floatingPassword">Password</label>
-    </div>
-<br>
-    <button class="w-25 btn btn-lg btn-primary" type="submit" name="signin" value="signin">로그인</button>
-    <br><br>
-    <button class="w-25 btn btn-lg btn-primary" type="submit" name="signup" value="signup">회원 가입</button>
-    <p class="mt-5 mb-3 text-muted">© 2022</p>
-
-  </form>
-
-</main>
-
+    <main class="container pt-5">
+        <form id="contactForm" method="post" class="pt-5">
+            <img class="mb-4" src="static/img/id.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <div class="form-floating">
+                <input type="ID" class="form-control" id="floatingInput" placeholder="ID" name="id">
+                <label for="floatingInput">Userid</label>
+            </div>
+            <br>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pw">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <br>
+            <button class="w-25 btn btn-lg btn-primary" type="submit" name="signin" value="signin">로그인</button>
+            <br><br>
+            <button class="w-25 btn btn-lg btn-primary" type="submit" name="signup" value="signup">회원 가입</button>
+            <p class="mt-5 mb-3 text-muted">© 2022</p>
+        </form>
+    </main>
 </body>
 
 {% endblock %}

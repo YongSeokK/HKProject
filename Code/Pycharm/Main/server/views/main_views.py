@@ -18,11 +18,13 @@ def load_logged_in_user():
         g.user = user_id
 
 
+# 메인 홈
 @bp.route('/', methods=('GET', 'POST'))
 def index():
     return render_template('index.html')
 
 
+# 회원가입
 @bp.route('/signup', methods=('GET', 'POST'))
 def signup():
     form = UserCreateForm()
@@ -42,6 +44,7 @@ def signup():
     return render_template('signup.html', form=form)
 
 
+# 로그아웃
 @bp.route('/logout')
 def logout():
     session.clear()
@@ -49,6 +52,7 @@ def logout():
     return redirect(url_for('main.index'))
 
 
+# 로그인
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     print(request.form.get('id'))
@@ -72,6 +76,7 @@ def login():
     return render_template('login.html')
 
 
+# Dashboard
 @bp.route('/dash')
 def dash():
     dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()

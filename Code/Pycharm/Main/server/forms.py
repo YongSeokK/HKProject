@@ -3,6 +3,7 @@ from wtforms import StringField, TextAreaField, PasswordField, EmailField, Submi
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 
 
+# 회원가입 양식
 class UserCreateForm(FlaskForm):
     userid = StringField('ID', validators=[DataRequired(), Length(min=3, max=20)])
     password = PasswordField('비밀번호', validators=[DataRequired()])
