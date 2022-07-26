@@ -2,7 +2,7 @@ from flask import Flask, Blueprint, request, render_template, url_for, session, 
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import redirect
 from server.forms import UserCreateForm
-from server.model import Members
+from server.model import Members, Food_recipe, Wholesale_quantity
 from server import db
 
 bp = Blueprint('main', __name__, url_prefix='/')
@@ -74,4 +74,6 @@ def login():
 
 @bp.route('/dash')
 def dash():
-    return render_template('dash.html')
+    dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()
+    # <>
+    return render_template('dash.html', dt=dt)
