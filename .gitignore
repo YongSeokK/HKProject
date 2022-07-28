@@ -200,7 +200,6 @@ cython_debug/
 *.MOV
 *.avi
 *.data
-*.json
 *.cfg
 !setup.cfg
 !cfg/yolov3*.cfg

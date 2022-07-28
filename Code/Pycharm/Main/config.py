@@ -7,10 +7,10 @@ DB_PORT = '3306'
 SECRET_KEY = 'dev'
 
 ## 초기 DATA관련 init
-Retail_FolderPath = "C:\\G_Project\\Code\\Pycharm\\Main\\ProjectData\\Init\\retail_json\\"
-RecipeData_FilePath = "C:\\G_Project\\Code\\Pycharm\\Main\\ProjectData\\Init\\result.json"
-WholesaleVolume_FilePath = "C:\\G_Project\\Code\\Pycharm\\Main\\ProjectData\\Init\\220726_농산물거래량.json"
-WholesalePrice_FilePath = "C:\\G_Project\\Code\\Pycharm\\Main\\ProjectData\\Init\\220726_농산물가격.json"
+Retail_FolderPath = "C:\\G_Project\\Code\\Pycharm\\Main\\DB_source\\Init\\retail_json\\"
+RecipeData_FilePath = "C:\\G_Project\\Code\\Pycharm\\Main\\DB_source\\Init\\result.json"
+WholesaleVolume_FilePath = "C:\\G_Project\\Code\\Pycharm\\Main\\DB_source\\Init\\220726_농산물거래량.json"
+WholesalePrice_FilePath = "C:\\G_Project\\Code\\Pycharm\\Main\\DB_source\\Init\\220726_농산물가격.json"
 
 ## Daily DATA관련 init
-Daily_FolderPath = 'C:\\G_Project\\Code\\Pycharm\\Main\\ProjectData\\Daily\\'
+Daily_FolderPath = 'C:\\G_Project\\Code\\Pycharm\\Main\\DB_source\\Daily\\'
