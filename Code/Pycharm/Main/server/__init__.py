@@ -18,9 +18,11 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from . import model
+    from . import models
 
-    from .views import main_views
+    from .views import main_views, dash_views, chatbot_views
     app.register_blueprint(main_views.bp)
+    app.register_blueprint(dash_views.bp)
+    app.register_blueprint(chatbot_views.bp)
 
     return app
