@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, request, render_template, url_for, session, g, flash
+from flask_bcrypt import Bcrypt
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import redirect
 from server.forms import UserCreateForm
@@ -6,7 +7,10 @@ from server.model import Members, Food_recipe, Wholesale_quantity
 from server import db
 
 bp = Blueprint('main', __name__, url_prefix='/')
-app = Flask(__name__)
+bcrypt = Bcrypt(Flask(__name__))
+
+
+# app = Flask(__name__)
 
 
 @bp.before_app_request
@@ -31,8 +35,11 @@ def signup():
     if request.method == 'POST' and form.validate_on_submit():
         user = Members.query.filter_by(userid=form.userid.data).first()
         if not user:
+            pw_hash = form.password.data
+            pw_hash = bcrypt.generate_password_hash(pw_hash.encode('utf-8'))
+            pw_hash = pw_hash.decode('utf-8')
             user = Members(userid=form.userid.data,
-                           userpw=form.password.data,
+                           userpw=pw_hash,
                            name=form.name.data,
                            email=form.email.data,
                            phone=form.phone.data)
@@ -49,24 +56,28 @@ def signup():
 def logout():
     session.clear()
     flash("로그아웃 되었습니다.")
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.login'))
 
 
 # 로그인
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     print(request.form.get('id'))
-    print(request.form.get('pw'))
+    # print(request.form.get('pw'))
     if request.method == 'POST':
         if request.form.get('signup'):
             return redirect(url_for('main.signup'))
         else:
             user = Members.query.filter_by(userid=request.form.get('id')).first()
+            pw_hash = request.form.get('pw').encode('utf-8')
+            candidate = user.userpw.encode('utf-8')
             if not user:
                 flash('존재하지 않는 유저입니다')
-            elif user.userpw != request.form.get('pw'):
+            elif not bcrypt.check_password_hash(candidate, pw_hash):
+                # elif user.userpw != request.form.get('pw'):
                 flash('정확한 비밀번호를 입력해주세요.')
-            elif user.userpw == request.form.get('pw'):
+            elif bcrypt.check_password_hash(candidate, pw_hash):
+                # elif user.userpw == request.form.get('pw'):
                 session.clear()
                 session['user_id'] = user.userid
                 print('login success')
@@ -79,6 +90,10 @@ def login():
 # Dashboard
 @bp.route('/dash')
 def dash():
-    dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()
-    # <>
-    return render_template('dash.html', dt=dt)
+    user_id = session.get('user_id')
+    if user_id is None:
+        flash("로그인이 필요합니다.")
+        return redirect(url_for('main.login'))
+    else:
+        dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()
+        return render_template('dash.html', dt=dt)
