@@ -1,10 +1,16 @@
-from flask import Flask, Blueprint, request, render_template, url_for, session, g, flash
+from flask import Flask, Blueprint, request, render_template, url_for, session, g, flash, jsonify
 from flask_bcrypt import Bcrypt
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import redirect
 from server.forms import UserCreateForm
 from server.model import Members, Food_recipe, Wholesale_quantity
 from server import db
+import json
+import re
+from server.yolo5_def import YoloRun
+import urllib.request
+from glob import glob
+import os
 
 bp = Blueprint('main', __name__, url_prefix='/')
 bcrypt = Bcrypt(Flask(__name__))
@@ -97,3 +103,46 @@ def dash():
     else:
         dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()
         return render_template('dash.html', dt=dt)
+
+
+# Chatbot
+@bp.route('/hello', methods=['POST', 'GET'])
+def hello_pybo():
+    print('응답')
+    req_json = request.get_json()
+    print(req_json)
+    print('check1')
+    temp = req_json['action']['params']['secureimage']
+    temp_json = json.loads(temp)
+    img_tmp = temp_json['secureUrls']
+    URLList = re.sub('List\(|\)', "", img_tmp).split(',')
+    # URLList[0] 은 챗봇에서 사용자가 보낸 사진의 URL주소
+    cnt = 1
+    # print(URLList)
+    for i in URLList:
+        urllib.request.urlretrieve(i, "C:\\G_Project\\Code\\Pycharm\\Main\\server\\static\\upload_img\\" + "food" + str(cnt) + ".jpg")
+        cnt = cnt + 1
+    # a 는 URL주소를 이용하여 로컬피시에 저장
+    print('check2')
+    h = glob("C:\\G_Project\\Code\\Pycharm\\Main\\server\\static\\upload_img\\*.jpg")
+    j = []
+    for i in h:
+        j.append(i)
+    # j는 temp폴더에 있는 사진의 경로
+
+    xx = []
+    for i in j:
+        x = YoloRun(i)
+        xx.append(x)
+
+    # ret 은 챗봇이 사진을 받았을때의 응답
+    ret = {"version": "2.0", "template": {"outputs": [{"simpleText": {"text": str(xx)}}]}}
+    dir_path = ("C:\\G_Project\\Code\\Pycharm\\Main\\server\\static\\upload_img")
+    if os.path.exists(dir_path):
+        if len(glob(dir_path + '\\*')) != 0:
+            for file in glob(dir_path + '\\*'):
+                os.remove(file)
+        else:
+            print('자료 없음')
+    print('----------------------다음---------------------------------------------------------------------------------')
+    return jsonify(ret)

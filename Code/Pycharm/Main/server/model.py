@@ -81,6 +81,58 @@ class Wholesale_quantity(db.Model):
     mango = db.Column(db.Float, nullable=False)  # 망고
 
 
+## 전체 도매(가격)
+class Wholesale_price(db.Model):
+    date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
+    beans = db.Column(db.Float, nullable=False)  # 콩
+    sweet_potato = db.Column(db.Float, nullable=False)  # 고구마
+    potato = db.Column(db.Float, nullable=False)  # 감자
+    chinese_cabbage = db.Column(db.Float, nullable=False)  # 배추
+    cabbage = db.Column(db.Float, nullable=False)  # 양배추
+    spinach = db.Column(db.Float, nullable=False)  # 시금치
+    lettuce = db.Column(db.Float, nullable=False)  # 상추
+    korean_cabbage = db.Column(db.Float, nullable=False)  # 얼갈이 배추
+    watermelon = db.Column(db.Float, nullable=False)  # 수박
+    korean_melon = db.Column(db.Float, nullable=False)  # 참외
+    cucumber = db.Column(db.Float, nullable=False)  # 오이
+    pumpkin = db.Column(db.Float, nullable=False)  # 호박
+    tomato = db.Column(db.Float, nullable=False)  # 토마토
+    strawberry = db.Column(db.Float, nullable=False)  # 딸기
+    radish = db.Column(db.Float, nullable=False)  # 무
+    carrot = db.Column(db.Float, nullable=False)  # 당근
+    yeol_radish = db.Column(db.Float, nullable=False)  # 열무
+    dried_red_pepper = db.Column(db.Float, nullable=False)  # 건고추
+    pepper = db.Column(db.Float, nullable=False)  # 고추
+    onion = db.Column(db.Float, nullable=False)  # 양파
+    green_onion = db.Column(db.Float, nullable=False)  # 대파
+    chives = db.Column(db.Float, nullable=False)  # 쪽파
+    ginger = db.Column(db.Float, nullable=False)  # 생강
+    parsley = db.Column(db.Float, nullable=False)  # 미나리
+    sesame_leaf = db.Column(db.Float, nullable=False)  # 깻잎
+    pimento = db.Column(db.Float, nullable=False)  # 피망
+    paprika = db.Column(db.Float, nullable=False)  # 파프리카
+    cherry_tomato = db.Column(db.Float, nullable=False)  # 방울토마토
+    sesame = db.Column(db.Float, nullable=False)  # 참깨
+    peanut = db.Column(db.Float, nullable=False)  # 땅콩
+    oyster_mushroom = db.Column(db.Float, nullable=False)  # 느타리버섯
+    king_oyster_mushroom = db.Column(db.Float, nullable=False)  # 새송이 버섯
+    enoki_mushrooms = db.Column(db.Float, nullable=False)  # 팽이버섯
+    walnut = db.Column(db.Float, nullable=False)  # 호두
+    apple = db.Column(db.Float, nullable=False)  # 사과
+    pear = db.Column(db.Float, nullable=False)  # 배
+    peach = db.Column(db.Float, nullable=False)  # 복숭아
+    grape = db.Column(db.Float, nullable=False)  # 포도
+    citrus = db.Column(db.Float, nullable=False)  # 감귤
+    persimmon = db.Column(db.Float, nullable=False)  # 단감
+    banana = db.Column(db.Float, nullable=False)  # 바나나
+    kiwi = db.Column(db.Float, nullable=False)  # 키위
+    pineapple = db.Column(db.Float, nullable=False)  # 파인애플
+    orange = db.Column(db.Float, nullable=False)  # 오렌지
+    lemon = db.Column(db.Float, nullable=False)  # 레몬
+    cherry = db.Column(db.Float, nullable=False)  # 체리
+    mango = db.Column(db.Float, nullable=False)  # 망고
+
+
 ## 전체 소매
 class Total_retail(db.Model):
     date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
