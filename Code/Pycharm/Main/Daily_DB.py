@@ -1,122 +1,107 @@
 from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, Daily_FolderPath
+from datetime import datetime, timedelta
 from glob import glob
-from datetime import date, timedelta
-import datetime
 import json
 import pymysql
 
 #################### DB 초기 설정 ####################
-print('DB 초기 설정 시작')
 db = pymysql.Connect(host=DB_HOST,
                      user=DB_USERNAME,  # db 계정
                      password=DB_PASSWORD,  # db 비밀 번호
                      database=DB_NAME)  # 접속 하고자 하는 db 명
 cursor = db.cursor()
+
+Area_Dict = {'광주': 'gwangju', '대구': 'daegu', '대전': 'daejeon', '부산': 'busan',
+             '서울': 'seoul', '울산': 'ulsan', '인천': 'incheon', '전체': 'total'}
+Whole_List = ['농산물가격', '농산물거래량']
 #################### DB 초기 설정 ####################
 
 
-#################### 초기 설정 ####################
-today = datetime.datetime.now().strftime('%Y%m%d')
-yesterday = (date.today() - timedelta(1)).strftime('%Y%m%d')
-yesterday = int(yesterday)
-checkDict = {'광주': 'gwangju', '대구': 'daegu', '대전': 'daejeon', '부산': 'busan',
-             '서울': 'seoul', '울산': 'ulsan', '인천': 'incheon', '전체': 'total'}
-#################### 초기 설정 ####################
+#################### 데이터 처리 ####################
+for data in glob(Daily_FolderPath + "*.json"):
+    Table = data.split('_')[-1].split('.')[0]
+    day = data.split('_')[-2].split('\\')[-1]
 
+    if Table in Whole_List:
+        day = (datetime.strptime(day, '%y%m%d') - timedelta(days=1)).strftime('%Y%m%d')
 
-#################### 소매 데이터 처리 ####################
-print('소매 자료 처리 시작')
-print(today)
-print(yesterday)
-
-for area in glob(Daily_FolderPath + "Claim_" + str(today) + "\\" + "*.json"):
-    TotalList = []
-    TotalList.append(yesterday)
-    temp = area.split('.')[0][-2:]
-    print(temp + " : " + checkDict[temp])
-
-    with open(area, 'r', encoding='utf-8') as f:
-        json_data = json.load(f)
-
-    for datalist in json_data['Result']:
-        for price in datalist.values():
-            # print(str(price[0]), ",", str(price[1]))
-            TotalList.append(price[0])
-            TotalList.append(price[1])
-
-    cursor.execute("SHOW columns FROM {}_retail".format(checkDict[temp]))
-
-    colText = ''
-    for cnt, column in enumerate(cursor.fetchall()):
-        if cnt == 0:
-            colText += column[0]
+        if Table == '농산물거래량':
+            table = 'wholesale_quantity'
+            name = '거래량(kg)'
         else:
-            colText = colText + "," + column[0]
-    print(colText)
-    print(tuple(TotalList))
+            table = 'wholesale_price'
+            name = '가격(원/kg)'
 
-    query = "INSERT INTO {}_retail ({}) VALUES {}".format(checkDict[temp], colText, tuple(TotalList))
-    print(query)
-    cursor.execute(query)
-    db.commit()
-print('소매 자료 처리 끝')
-#################### 소매 데이터 처리 ####################
+        cursor.execute("SELECT * FROM {} WHERE date = {}".format(table, str(day)))
+        if not cursor.fetchall():
+            with open(data, 'r', encoding='utf-8') as f:
+                Data_Json = json.load(f)
+            cursor.execute("SHOW columns FROM {}".format(table))
 
-today1 = datetime.datetime.now().strftime('%y%m%d')
+            col_Text = ''
+            for cnt, column in enumerate(cursor.fetchall()):
+                if cnt == 0:
+                    col_Text += column[0]
+                else:
+                    col_Text = col_Text + "," + column[0]
 
-#################### 거래량 데이터 ####################
-print('도매 거래량 처리 시작')
-# 불러올 json 파일
-for name in ['_농산물가격', '_농산물거래량']:
-    data = Daily_FolderPath + str(today1) + name + ".json"
-    if name == '_농산물거래량':
-        Table = 'wholesale_quantity'
-        name = '거래량(kg)'
+            for num in Data_Json.keys():
+                Row_Dict = Data_Json[num]
+
+                # DB 쿼리문
+                query = """INSERT INTO {} ({}) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                                                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                    """.format(table, col_Text)
+                Result_Text = (Row_Dict['date'], Row_Dict['콩_' + name], Row_Dict['고구마_' + name], Row_Dict['감자_' + name],
+                               Row_Dict['배추_' + name], Row_Dict['양배추_' + name], Row_Dict['시금치_' + name],
+                               Row_Dict['상추_' + name],
+                               Row_Dict['얼갈이배추_' + name], Row_Dict['수박_' + name], Row_Dict['참외_' + name],
+                               Row_Dict['오이_' + name],
+                               Row_Dict['호박_' + name], Row_Dict['토마토_' + name], Row_Dict['딸기_' + name],
+                               Row_Dict['무_' + name],
+                               Row_Dict['당근_' + name], Row_Dict['열무_' + name], Row_Dict['건고추_' + name],
+                               Row_Dict['풋고추_' + name],
+                               Row_Dict['양파_' + name], Row_Dict['대파_' + name], Row_Dict['쪽파_' + name],
+                               Row_Dict['생강_' + name],
+                               Row_Dict['미나리_' + name], Row_Dict['깻잎_' + name], Row_Dict['피망(단고추)_' + name],
+                               Row_Dict['파프리카_' + name],
+                               Row_Dict['방울토마토_' + name], Row_Dict['참깨_' + name], Row_Dict['땅콩_' + name],
+                               Row_Dict['느타리버섯_' + name],
+                               Row_Dict['새송이_' + name], Row_Dict['팽이버섯_' + name], Row_Dict['호두_' + name],
+                               Row_Dict['사과_' + name],
+                               Row_Dict['배_' + name], Row_Dict['복숭아_' + name], Row_Dict['포도_' + name],
+                               Row_Dict['감귤_' + name],
+                               Row_Dict['단감_' + name], Row_Dict['바나나_' + name], Row_Dict['참다래(키위)_' + name],
+                               Row_Dict['파인애플_' + name],
+                               Row_Dict['오렌지_' + name], Row_Dict['레몬_' + name], Row_Dict['체리_' + name],
+                               Row_Dict['망고_' + name])
+                cursor.execute(query, Result_Text)
+                db.commit()
+
     else:
-        Table = 'wholesale_price'
-        name = '가격(원/kg)'
+        day = (datetime.strptime(day, '%Y%m%d') - timedelta(days=1)).strftime('%Y%m%d')
+        Total_List = []
+        Total_List.append(day)
 
-    print(Table)
-    print(data + '파일 처리 시작')
-    with open(data, 'r', encoding='UTF8') as f:
-        json_data = json.load(f)
+        cursor.execute("SELECT * FROM {}_retail WHERE date = {}".format(Area_Dict[Table], str(day)))
+        if not cursor.fetchall():
+            with open(data, 'r', encoding='utf-8') as f:
+                Data_Json = json.load(f)
+            for data_List in Data_Json['Result']:
+                for price in data_List.values():
+                    Total_List.append(price[0])
+                    Total_List.append(price[1])
+            cursor.execute("SHOW columns FROM {}_retail".format(Area_Dict[Table]))
 
-    cursor.execute("SHOW columns FROM {}".format(Table))
+            col_Text = ''
+            for cnt, column in enumerate(cursor.fetchall()):
+                if cnt == 0:
+                    col_Text += column[0]
+                else:
+                    col_Text = col_Text + "," + column[0]
 
-    colText = ''
-    for cnt, column in enumerate(cursor.fetchall()):
-        if cnt == 0:
-            colText += column[0]
-        else:
-            colText = colText + "," + column[0]
-    print(colText)
-
-    # for 문 사용하여 json 파일 하나씩 넣기
-    for num in json_data.keys():
-        tmp = json_data[num]
-        print(tmp)
-
-        # DB 쿼리문
-        query = """INSERT INTO {} ({}) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                """.format(Table, colText)
-        temp = (
-            tmp['date'], tmp['콩_' + name], tmp['고구마_' + name], tmp['감자_' + name], tmp['배추_' + name], tmp['양배추_' + name],
-            tmp['시금치_' + name], tmp['상추_' + name], tmp['얼갈이배추_' + name], tmp['수박_' + name], tmp['참외_' + name],
-            tmp['오이_' + name],
-            tmp['호박_' + name], tmp['토마토_' + name], tmp['딸기_' + name], tmp['무_' + name], tmp['당근_' + name],
-            tmp['열무_' + name],
-            tmp['건고추_' + name], tmp['풋고추_' + name], tmp['양파_' + name], tmp['대파_' + name], tmp['쪽파_' + name],
-            tmp['생강_' + name],
-            tmp['미나리_' + name], tmp['깻잎_' + name], tmp['피망(단고추)_' + name], tmp['파프리카_' + name], tmp['방울토마토_' + name],
-            tmp['참깨_' + name],
-            tmp['땅콩_' + name], tmp['느타리버섯_' + name], tmp['새송이_' + name], tmp['팽이버섯_' + name], tmp['호두_' + name],
-            tmp['사과_' + name],
-            tmp['배_' + name], tmp['복숭아_' + name], tmp['포도_' + name], tmp['감귤_' + name], tmp['단감_' + name],
-            tmp['바나나_' + name],
-            tmp['참다래(키위)_' + name], tmp['파인애플_' + name], tmp['오렌지_' + name], tmp['레몬_' + name], tmp['체리_' + name],
-            tmp['망고_' + name])
-        cursor.execute(query, temp)
-        db.commit()
-print('도매 거래량 처리 끝')
-#################### 거래량 데이터 ####################
+            # DB 쿼리문
+            query = "INSERT INTO {}_retail ({}) VALUES {}".format(Area_Dict[Table], col_Text, tuple(Total_List))
+            cursor.execute(query)
+            db.commit()
+#################### 데이터 처리 ####################

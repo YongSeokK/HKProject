@@ -1,22 +1,17 @@
 from flask import Flask, Blueprint, request, render_template, url_for, session, g, flash, jsonify
 from flask_bcrypt import Bcrypt
-from werkzeug.security import generate_password_hash
 from werkzeug.utils import redirect
 from server.forms import UserCreateForm
 from server.models import Members, Food_recipe, Wholesale_quantity
 from server import db
 import json
 import re
-from server.yolo5_def import YoloRun
 import urllib.request
 from glob import glob
 import os
 
 bp = Blueprint('main', __name__, url_prefix='/')
 bcrypt = Bcrypt(Flask(__name__))
-
-
-# app = Flask(__name__)
 
 
 # 로그인 상태 확인

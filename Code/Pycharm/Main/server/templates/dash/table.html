@@ -1,0 +1,68 @@
+{% extends 'base_dash.html' %}
+
+{% block content %}
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-5">
+                        <h1 class="mt-4 pt-5">Tables</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Tables</li>
+                        </ol>
+                        <!-- 데이터테이블 -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <svg class="svg-inline--fa fa-table me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="table" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 32C483.3 32 512 60.65 512 96V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H448zM224 256V160H64V256H224zM64 320V416H224V320H64zM288 416H448V320H288V416zM448 256V160H288V256H448z"></path></svg><!-- <i class="fas fa-table me-1"></i> Font Awesome fontawesome.com -->
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns"><div class="dataTable-top"><div class="dataTable-dropdown"><label></label></div> <!-- <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..." type="text"></div>--></div>
+                                <div class="dataTable-container">
+                                    <table id="data" class="dataTable-table">
+                                        <thead>
+                                            <tr>
+                                                <th data-sortable="" style="width: 6.0%;"><a href="#" class="dataTable-sorter">serial</a></th>
+                                                <th data-sortable="" style="width: 12.0%;"><a href="#" class="dataTable-sorter">dish</a></th>
+                                                <th data-sortable="" style="width: 8.0%;"><a href="#" class="dataTable-sorter">registrant</a></th>
+                                                <th data-sortable="" style="width: 5.0%;"><a href="#" class="dataTable-sorter">views</a></th>
+                                                <th data-sortable="" style="width: 5.0%;"><a href="#" class="dataTable-sorter">situation</a></th>
+                                                <th data-sortable="" style="width: 30.0%;"><a href="#" class="dataTable-sorter">intro</a></th>
+                                                <th data-sortable="" style="width: 34.0%;"><a href="#" class="dataTable-sorter">ingredients</a></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            {% for i in dt %}
+                                                <tr>
+                                                    <td>{{ i.serial }}</td>
+                                                    <td>{{ i.dish }}</td>
+                                                    <td>{{ i.registrant }}</td>
+                                                    <td>{{ i.views }}</td>
+                                                    <td>{{ i.situation }}</td>
+                                                    <td>{{ i.intro }}</td>
+                                                    <td>{{ i.ingredients }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div></div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright © Your Website 2022</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                ·
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
+{% endblock %}

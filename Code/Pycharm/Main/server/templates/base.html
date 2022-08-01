@@ -45,8 +45,10 @@
                         {% endif %}
                         <!-- <li class="nav-item"><a class="nav-link" href="#services">가격예측</a></li> -->
                         <!-- <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}#team">Team</a></li> -->
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('dash.forecast') }}">가격예측</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('dash.compare') }}">가격비교</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">기타서비스</a></li>
                         {% if g.user == None %}
                             <li class="nav-item"><a class="nav-link" href="{{ url_for('main.login') }}">Login</a></li>
                         {% else %}

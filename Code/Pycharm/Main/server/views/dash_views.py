@@ -1,26 +1,16 @@
 from flask import Flask, Blueprint, request, render_template, url_for, session, g, flash, jsonify
 from flask_bcrypt import Bcrypt
-from werkzeug.security import generate_password_hash
 from werkzeug.utils import redirect
-from server.forms import UserCreateForm
 from server.models import Members, Food_recipe, Wholesale_quantity
 from server import db
 import json
 import re
-from server.yolo5_def import YoloRun
 import urllib.request
 from glob import glob
 import os
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import and_
 
 bp = Blueprint('dash', __name__, url_prefix='/')
-
-
-# bcrypt = Bcrypt(Flask(__name__))
-
-
-# app = Flask(__name__)
 
 
 @bp.before_app_request
@@ -61,3 +51,13 @@ def compare():
     else:
         dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()
         return render_template('dash/compare.html', dt=dt)
+
+# chart
+@bp.route('/chart')
+def chart():
+    return render_template('dash/chart.html')
+# table
+@bp.route('/table')
+def table():
+    dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()
+    return render_template('dash/table.html', dt=dt)
