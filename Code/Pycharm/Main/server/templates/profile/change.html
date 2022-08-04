@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href=" {{ url_for('static', filename='style.css')}} ">
+
+<body class="text-center pt-5">
+    <main class="container pt-5">
+        <form id="contactForm" method="post" class="pt-5" action="{{ url_for('main.change')}}">
+            <img class="mb-4" src="static/img/id.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 fw-normal">입력해주세요.</h1>
+            <br>
+            <div class="form-floating" style="width: 35%; margin: auto;">
+                <input type="{{ value_key }}" class="form-control" id="floatingPassword" placeholder="{{ value_key }}" name="{{ value_key }}">
+                <label for="floatingPassword">{{ value_key }}</label>
+            </div>
+            <br>
+            <button class="w-25 btn btn-lg btn-primary" type="submit" name="{{ value_key }}" value="{{ value_key }}">변경</button>
+            <p class="mt-5 mb-3 text-muted">© 2022</p>
+        </form>
+    </main>
+</body>
+
+{% endblock %}

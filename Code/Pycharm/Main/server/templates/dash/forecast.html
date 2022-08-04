@@ -1,7 +1,14 @@
 {% extends 'base_dash.html' %}
 
 {% block content %}
+<script>
+    var currentValue = 0;
+    function handleClick(myRadio) {
 
+    alert('New value: ' + myRadio.value);
+    currentValue = myRadio.value;
+}
+</script>
             <!-- 본문 -->
             <div id="layoutSidenav_content">
                 <main>
@@ -14,7 +21,7 @@
                                             <p class="mb-4 pb-2">Design Tools</p>
                                         </div>
                                         <div class="col-12 pb-5">
-                                            <input class="checkbox-tools" type="radio" value="dash" name="tools" id="tool-1">
+                                            <!--<input class="checkbox-tools" type="radio" value="dash" name="tools" id="tool-1">
                                             <label class="for-checkbox-tools" for="tool-1">
                                                 <i class='uil uil-line-alt'></i>
                                                 dash
@@ -28,7 +35,15 @@
                                             <label class="for-checkbox-tools" for="tool-5">
                                                 <i class='uil uil-brush-alt'></i>
                                                 compare
-                                            </label>
+                                            </label>-->
+
+                                            <form  id="choice" method="post">
+                                            <input class="checkbox-tools" checked="checked" type="radio" name="myRadios" onclick="document.getElementById('choice').submit();" value="감자" id="tool-7">
+                                                <label class="for-checkbox-tools" for="tool-7">
+                                                <i class='uil uil-brush-alt'></i>감자</label>
+                                            <input class="checkbox-tools" type="radio" name="myRadios" onclick="document.getElementById('choice').submit();" value="고구마" id="tool-8">
+                                            <label class="for-checkbox-tools" for="tool-8">
+                                                <i class='uil uil-brush-alt'></i>고구마</label></form>
                                         </div>
                                     </div>
                                 </div>

@@ -30,7 +30,7 @@ def board():
 
 
 # Dashboard_가격예측
-@bp.route('/forecast')
+@bp.route('/forecast', methods=('GET', 'POST'))
 def forecast():
     user_id = session.get('user_id')
     if user_id is None:
@@ -38,7 +38,12 @@ def forecast():
         return redirect(url_for('main.login'))
     else:
         dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()
-        return render_template('dash/forecast.html', dt=dt)
+        if request.method == 'POST':
+            option = request.form.to_dict()['myRadios']
+
+            print(option)
+            return render_template('dash/forecast.html', dt=dt)
+    return render_template('dash/forecast.html', dt=dt)
 
 
 # Dashboard_가격비교
@@ -52,10 +57,13 @@ def compare():
         dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()
         return render_template('dash/compare.html', dt=dt)
 
+
 # chart
 @bp.route('/chart')
 def chart():
     return render_template('dash/chart.html')
+
+
 # table
 @bp.route('/table')
 def table():
