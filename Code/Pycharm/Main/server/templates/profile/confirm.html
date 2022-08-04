@@ -4,21 +4,21 @@
 <link rel="stylesheet" href=" {{ url_for('static', filename='style.css')}} ">
 
 <body class="text-center pt-5">
-    <main class="container pt-5">
-        <form id="contactForm" method="post" class="pt-5">
-            <img class="mb-4" src="static/img/id.png" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 fw-normal">비밀번호를 다시 한번 입력해주세요.</h1>
-            
-            <br>
-            <div class="form-floating" style="width: 35%; margin: auto;">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pw">
-                <label for="floatingPassword">Password</label>
-            </div>
-            <br>
-            <button class="w-25 btn btn-lg btn-primary" type="submit" name="check" value="check">확인</button>
-            <p class="mt-5 mb-3 text-muted">© 2022</p>
-        </form>
-    </main>
+<main class="container pt-5">
+    <form id="contactForm" method="post" class="pt-5">
+        <img class="mb-4" src="static/img/id.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 fw-normal">비밀번호를 다시 한번 입력해주세요.</h1>
+
+        <br>
+        <div class="form-floating" style="width: 35%; margin: auto;">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pw">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <br>
+        <button class="w-25 btn btn-lg btn-primary" type="submit" name="check" value="check">확인</button>
+        <p class="mt-5 mb-3 text-muted">© 2022</p>
+    </form>
+</main>
 </body>
 
 {% endblock %}

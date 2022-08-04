@@ -1,16 +1,12 @@
-from flask import Flask, Blueprint, request, render_template, url_for, session, g, flash, jsonify
+import pymysql
+from flask import Flask, Blueprint, request, render_template, url_for, session, g, flash
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import redirect
-from server.forms import UserCreateForm
-from server.models import Members, Food_recipe, Wholesale_quantity
-from server import db
-import json
-import re
-import urllib.request
-from glob import glob
-import os
-import pymysql
+
 from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME
+from server import db
+from server.forms import UserCreateForm
+from server.models import Members
 
 bp = Blueprint('main', __name__, url_prefix='/')
 bcrypt = Bcrypt(Flask(__name__))
@@ -19,14 +15,14 @@ bcrypt = Bcrypt(Flask(__name__))
 # 로그인 상태 확인
 @bp.before_app_request
 def load_logged_in_user():
-    user_id = session.get('user_id')  # 별명
-    user_id2 = session.get('user_id2')  # 아이디
-    if user_id is None:
+    user_nickname = session.get('user_nickname')  # 별명
+    user_id = session.get('user_id')  # 아이디
+    if user_nickname is None:
+        g.nickname = None
         g.user = None
-        g.user2 = None
     else:
+        g.nickname = user_nickname
         g.user = user_id
-        g.user2 = user_id2
 
 
 # 메인 홈
@@ -55,15 +51,16 @@ def signup():
             db.session.commit()
             return redirect(url_for('main.login'))
         else:
-            print('이미 존재하는 유저')
+            flash('이미 존재하는 아이디입니다.')
+            print('이미 존재하는 아이디입니다.')
+            return redirect(url_for('main.login'))
     return render_template('signup.html', form=form)
 
 
 # 로그 인
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
-    print(request.form.get('id'))
-    # print(request.form.get('pw'))
+    print('login: ', request.form.get('id'))
     if request.method == 'POST':
         if request.form.get('signup'):
             return redirect(url_for('main.signup'))
@@ -72,15 +69,14 @@ def login():
             pw_hash = request.form.get('pw').encode('utf-8')
             candidate = user.userpw.encode('utf-8')
             if not user:
-                flash('존재하지 않는 유저입니다')
+                flash('존재하지 않는 아이디입니다.')
             elif not bcrypt.check_password_hash(candidate, pw_hash):
-                # elif user.userpw != request.form.get('pw'):
                 flash('정확한 비밀번호를 입력해주세요.')
             elif bcrypt.check_password_hash(candidate, pw_hash):
                 # elif user.userpw == request.form.get('pw'):
                 session.clear()
-                session['user_id'] = user.nickname
-                session['user_id2'] = user.userid
+                session['user_nickname'] = user.nickname
+                session['user_id'] = user.userid
                 print('login success')
                 return redirect(url_for('main.index'))
             else:
@@ -105,44 +101,33 @@ cursor = mydb.cursor(pymysql.cursors.DictCursor)
 # 프로필
 @bp.route('/profile', methods=('GET', 'POST'))
 def profile():
-    user = Members.query.filter_by(nickname=g.user).first()
+    user = Members.query.filter_by(userid=g.user).first()
     if request.method == 'POST':
-        value_key = list(request.form.to_dict().keys())[0].split('.')[0]
-        print(value_key)
-        return render_template('profile/change.html', value_key=value_key)
+        return render_template('profile/change.html', user=user)
     return render_template('profile/profile.html', user=user)
 
 
 # 프로필 수정
 @bp.route('/change', methods=('GET', 'POST'))
 def change():
-    # print(request.form.get('id'))
+    user = Members.query.filter_by(userid=g.user).first()
     if request.method == 'POST':
-        value_key = list(request.form.to_dict().keys())[0].split('.')[0]
-        print(value_key)
-        x = value_key
-        # sql_table = 'SELECT * FROM members WHERE ' + x + ' LIKE "{}" ;'.format(g.user)
-        # cursor.execute(sql_table)
-        # row = cursor.fetchall()[0]
-        # print(row[x])
-        # print(request.form.get(x))
-        sql_table = 'UPDATE members SET ' + x + '="' + request.form.get(x) + '" WHERE ' + 'userid' + \
-                    ' LIKE "{}" ;'.format(g.user2)
-        print(str(sql_table))
+        sql_table = 'UPDATE members SET nickname="' + request.form.get('nickname') + '"' + \
+                    ', name="' + request.form.get('name') + '"' + \
+                    ', email="' + request.form.get('email') + '"' + \
+                    ', phone="' + request.form.get('phone') + '" WHERE ' + 'userid="' + g.user + '"'
         cursor.execute(sql_table)
         mydb.commit()
-        user = Members.query.filter_by(userid=g.user2).first()
-        session['user_id'] = user.nickname
+        session['user_nickname'] = request.form.get('nickname')
         return redirect(url_for('main.profile'))
-    return render_template('profile/change.html')
+    return render_template('profile/change.html', user=user)
 
 
 # 비밀 번호 확인
 @bp.route('/confirm', methods=('GET', 'POST'))
 def confirm():
-    # print(request.form.get('pw'))
     if request.method == 'POST':
-        user = Members.query.filter_by(nickname=g.user).first()
+        user = Members.query.filter_by(userid=g.user).first()
         pw_hash = request.form.get('pw').encode('utf-8')
         candidate = user.userpw.encode('utf-8')
         if not bcrypt.check_password_hash(candidate, pw_hash):
@@ -163,5 +148,6 @@ def initdel():
     for i in db_del:
         db.session.delete(i)
     db.session.commit()
+    print('Del')
     flash("로그아웃 되었습니다.")
     return redirect(url_for('main.login'))

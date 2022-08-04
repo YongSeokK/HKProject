@@ -1,6 +1,7 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+
 from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT, SECRET_KEY
 
 db = SQLAlchemy()
@@ -20,9 +21,9 @@ def create_app():
 
     from . import models
 
-    from .views import main_views, dash_views, chatbot_views
+    from .views import main_views, dash_views  # , chatbot_views
     app.register_blueprint(main_views.bp)
     app.register_blueprint(dash_views.bp)
-    app.register_blueprint(chatbot_views.bp)
+    # app.register_blueprint(chatbot_views.bp)
 
     return app

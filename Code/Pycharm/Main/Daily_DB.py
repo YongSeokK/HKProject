@@ -1,8 +1,10 @@
-from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, Daily_FolderPath
+import json
 from datetime import datetime, timedelta
 from glob import glob
-import json
+
 import pymysql
+
+from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, Daily_FolderPath
 
 #################### DB 초기 설정 ####################
 db = pymysql.Connect(host=DB_HOST,
