@@ -1,13 +1,25 @@
-Main 폴더로 파이참 오픈 후 가상환경 생성하는 팝업 창 확인
+## Main 폴더로 파이참 오픈 후 가상환경 생성하는 팝업 창 확인
 
 
-import 된 패키지를 모두 자동 설치 하기 위한 옵션
+## import 된 패키지를 모두 자동 설치 하기 위한 옵션
 터미널 창에 입력
 # 패키지 관리
 pip install -r requirements.txt
+(위에 파일만 설치해도 가능 나중에 안될 경우 실행) pip install -r requirements2.txt
 
 
-플라스크 옵션(FLASK_APP, FLASK_ENV) 설정과 동시에 flask run
-Main폴더로 경로 설정 필수
+## config.py 에서
+# 'DB_PASSWORD(MySQL 비밀번호)', 'DB_NAME(DB 이름)' 로컬에 맞게 수정
+# 열려있는 파이참 프로젝트 해당 Main 폴더 우클릭으로 절대경로 복사 후 'Root_Path' 수정
+
+
+## MySQL 에서 DB 생성한 후 터미널 창에 순차 실행
+flask db init
+flask db migrate
+flask db upgrade
+
+
+## Flask 옵션(FLASK_APP, FLASK_ENV) 설정과 동시에 flask run
+cmd 실행 주소 Main 폴더로 경로 설정 필수
 # 배치 파일
-play.bat
+play

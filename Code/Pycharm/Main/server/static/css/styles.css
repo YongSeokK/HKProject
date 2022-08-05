@@ -11850,9 +11850,10 @@ mark{
 .checkbox-tools:not(:checked) + label{
 	position: relative;
 	display: inline-block;
-	padding: 20px;
-	width: 110px;
+	padding: 8px;
+	width: 100px;
 	font-size: 14px;
+	font-weight: 1000;
 	line-height: 20px;
 	letter-spacing: 1px;
 	margin: 0 auto;
@@ -11893,10 +11894,10 @@ mark{
 }
 .checkbox-tools:checked + label .uil,
 .checkbox-tools:not(:checked) + label .uil{
-	font-size: 24px;
+	font-size: 20px;
 	line-height: 24px;
 	display: block;
-	padding-bottom: 10px;
+	padding-bottom: 2px;
 }
 
 .checkbox:checked ~ .section .container .row .col-12 .checkbox-tools:not(:checked) + label{

@@ -14,6 +14,7 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"> -->
     <link href="{{ url_for('static', filename='styles.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -22,9 +23,43 @@
     <style type="text/css">/* Chart.js */
             @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}
     </style>
+    <script>
+    // content, cate, index를 인수로 받아 form 태그로 전송하는 함수
+    function goPage1(category = 0) {
+      // name이 paging인 태그
+      var f = document.paging;
+
+      // form 태그의 하위 태그 값 매개 변수로 대입
+      f.category.value = category;
+
+      // input 태그의 값들을 전송하는 주소
+      f.action = "{{ url_for('dash.wholesale') }}"
+
+      // 전송 방식 : post
+      f.method = "post"
+      f.submit();
+    };
+    </script>
+    <script>
+    function goPage2(region,category = 0) {
+      var f = document.paging;
+
+      f.region.value = region;
+      f.category.value = category;
+
+      f.action = "{{ url_for('dash.compare') }}"
+
+      f.method = "post"
+      f.submit();
+    };
+    </script>
 </head>
 <!-- 내용 -->
 <body class="sb-nav-fixed">
+<form name="paging">
+    <input type="hidden" name="region"/>
+    <input type="hidden" name="category"/>
+</form>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
@@ -47,8 +82,8 @@
                 </li>
                 {% endif %}
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('dash.compare') }}">도매 가격정보</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('dash.compare') }}">소매 가격정보</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:goPage1('식량작물');">도매 가격정보</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:goPage2('서울','식량작물');">소매 가격정보</a></li>
                 <div class="dropdown">
                     <li class="nav-item" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                         <a class="nav-link" href="">기타서비스</a></li>
@@ -63,7 +98,6 @@
                         <li><a class="dropdown-item" href="http://pf.kakao.com/_uyZhxj">챗봇</a></li>
                     </ul>
                 </div>
-
                 {% if g.nickname == None %}
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('main.login') }}">Login</a></li>
                 {% else %}
@@ -147,10 +181,10 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                          data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="{{ url_for('dash.forecast') }}">식량작물</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">특용작물</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">채소류</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">과일류</a>
+                            <a class="nav-link" href="javascript:goPage1('식량작물');">식량작물</a>
+                            <a class="nav-link" href="javascript:goPage1('특용작물');">특용작물</a>
+                            <a class="nav-link" href="javascript:goPage1('채소류');">채소류</a>
+                            <a class="nav-link" href="javascript:goPage1('과일류');">과일류</a>
                         </nav>
                     </div>
 
@@ -190,10 +224,10 @@
                             <div class="collapse" id="pagesCollapseAuths" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">식량작물</a>
-                                    <a class="nav-link" href="register.html">특용작물</a>
-                                    <a class="nav-link" href="password.html">채소류</a>
-                                    <a class="nav-link" href="password.html">과일류</a>
+                                    <a class="nav-link" href="javascript:goPage2('서울','식량작물');">식량작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('서울','특용작물');">특용작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('서울','채소류');">채소류</a>
+                                    <a class="nav-link" href="javascript:goPage2('서울','과일류');">과일류</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -211,10 +245,10 @@
                             <div class="collapse" id="pagesincheon" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">식량작물</a>
-                                    <a class="nav-link" href="register.html">특용작물</a>
-                                    <a class="nav-link" href="password.html">채소류</a>
-                                    <a class="nav-link" href="password.html">과일류</a>
+                                    <a class="nav-link" href="javascript:goPage2('인천','식량작물');">식량작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('인천','특용작물');">특용작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('인천','채소류');">채소류</a>
+                                    <a class="nav-link" href="javascript:goPage2('인천','과일류');">과일류</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -232,10 +266,10 @@
                             <div class="collapse" id="pagesdaejeon" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">식량작물</a>
-                                    <a class="nav-link" href="register.html">특용작물</a>
-                                    <a class="nav-link" href="password.html">채소류</a>
-                                    <a class="nav-link" href="password.html">과일류</a>
+                                    <a class="nav-link" href="javascript:goPage2('대전','식량작물');">식량작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('대전','특용작물');">특용작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('대전','채소류');">채소류</a>
+                                    <a class="nav-link" href="javascript:goPage2('대전','과일류');">과일류</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -253,10 +287,10 @@
                             <div class="collapse" id="pagesgwangju" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">식량작물</a>
-                                    <a class="nav-link" href="register.html">특용작물</a>
-                                    <a class="nav-link" href="password.html">채소류</a>
-                                    <a class="nav-link" href="password.html">과일류</a>
+                                    <a class="nav-link" href="javascript:goPage2('광주','식량작물');">식량작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('광주','특용작물');">특용작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('광주','채소류');">채소류</a>
+                                    <a class="nav-link" href="javascript:goPage2('광주','과일류');">과일류</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -274,10 +308,10 @@
                             <div class="collapse" id="pagesdaegu" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">식량작물</a>
-                                    <a class="nav-link" href="register.html">특용작물</a>
-                                    <a class="nav-link" href="password.html">채소류</a>
-                                    <a class="nav-link" href="password.html">과일류</a>
+                                    <a class="nav-link" href="javascript:goPage2('대구','식량작물');">식량작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('대구','특용작물');">특용작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('대구','채소류');">채소류</a>
+                                    <a class="nav-link" href="javascript:goPage2('대구','과일류');">과일류</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -295,10 +329,10 @@
                             <div class="collapse" id="pagesulsan" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">식량작물</a>
-                                    <a class="nav-link" href="register.html">특용작물</a>
-                                    <a class="nav-link" href="password.html">채소류</a>
-                                    <a class="nav-link" href="password.html">과일류</a>
+                                    <a class="nav-link" href="javascript:goPage2('울산','식량작물');">식량작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('울산','특용작물');">특용작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('울산','채소류');">채소류</a>
+                                    <a class="nav-link" href="javascript:goPage2('울산','과일류');">과일류</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -316,10 +350,10 @@
                             <div class="collapse" id="pagesbusan" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">식량작물</a>
-                                    <a class="nav-link" href="register.html">특용작물</a>
-                                    <a class="nav-link" href="password.html">채소류</a>
-                                    <a class="nav-link" href="password.html">과일류</a>
+                                    <a class="nav-link" href="javascript:goPage2('부산','식량작물');">식량작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('부산','특용작물');">특용작물</a>
+                                    <a class="nav-link" href="javascript:goPage2('부산','채소류');">채소류</a>
+                                    <a class="nav-link" href="javascript:goPage2('부산','과일류');">과일류</a>
                                 </nav>
                             </div>
                         </nav>
@@ -373,5 +407,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-</body>
+    </body>
 </html>

@@ -35,12 +35,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap"
           rel="stylesheet">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='profile/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="  {{ url_for('static', filename='profile/css/style.css')}}">
+    <script>
+    // content, cate, index를 인수로 받아 form 태그로 전송하는 함수
+    function goPage1(category = 0) {
+      // name이 paging인 태그
+      var f = document.paging;
+      // form 태그의 하위 태그 값 매개 변수로 대입
+      f.category.value = category;
 
+      // input 태그의 값들을 전송하는 주소
+      f.action = "{{ url_for('dash.wholesale') }}"
+
+      // 전송 방식 : post
+      f.method = "post"
+      f.submit();
+    };
+    </script>
+    <script>
+    function goPage2(region,category = 0) {
+      var f = document.paging;
+
+      f.region.value = region;
+      f.category.value = category;
+
+      f.action = "{{ url_for('dash.compare') }}"
+
+      f.method = "post"
+      f.submit();
+    };
+    </script>
 </head>
+<!-- 내용 -->
 <body id="page-top" style="static\i7.jpg">
+<form name="paging">
+    <input type="hidden" name="region"/>
+    <input type="hidden" name="category"/>
+</form>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
@@ -64,8 +96,8 @@
                 <!-- <li class="nav-item"><a class="nav-link" href="#services">가격예측</a></li> -->
                 <!-- <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}#team">Team</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('dash.compare') }}">도매 가격정보</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('dash.compare') }}">소매 가격정보</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:goPage1('식량작물');">도매 가격정보</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:goPage2('서울','식량작물');">소매 가격정보</a></li>
                 <div class="dropdown">
                     <li class="nav-item" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                         <a class="nav-link" href="">기타서비스</a></li>

@@ -6,9 +6,9 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-5">
-            <h1 class="mt-4 pt-5">Compare</h1>
+            <h1 class="mt-4 pt-5">도매</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active">&nbsp{{ category }}</li>
             </ol>
             <div class="container-fluid px-5">
                 <div class="section ">
@@ -19,86 +19,22 @@
                                 </div>
                                 <div class="col-12">
                                     <form id="choice" method="post">
-                                        <input class="checkbox-tools" {{ check_list[0] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="감자"
-                                               id="tool-1">
-                                        <label class="for-checkbox-tools" for="tool-1">
-                                            <i class='uil uil-brush-alt'></i>감자</label>
-                                        <input class="checkbox-tools" {{ check_list[1] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="고구마"
-                                               id="tool-2">
-                                        <label class="for-checkbox-tools" for="tool-2">
-                                            <i class='uil uil-brush-alt'></i>고구마</label>
-                                        <input class="checkbox-tools" {{ check_list[2] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="감자"
-                                               id="tool-3">
-                                        <label class="for-checkbox-tools" for="tool-3">
-                                            <i class='uil uil-brush-alt'></i>감자</label>
-                                        <input class="checkbox-tools" {{ check_list[3] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="고구마"
-                                               id="tool-4">
-                                        <label class="for-checkbox-tools" for="tool-4">
-                                            <i class='uil uil-brush-alt'></i>고구마</label>
-                                        <input class="checkbox-tools" {{ check_list[4] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="감자"
-                                               id="tool-5">
-                                        <label class="for-checkbox-tools" for="tool-5">
-                                            <i class='uil uil-brush-alt'></i>감자</label>
-                                        <input class="checkbox-tools" {{ check_list[5] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="고구마"
-                                               id="tool-6">
-                                        <label class="for-checkbox-tools" for="tool-6">
-                                            <i class='uil uil-brush-alt'></i>고구마</label>
-                                        <input class="checkbox-tools" {{ check_list[6] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="감자"
-                                               id="tool-7">
-                                        <label class="for-checkbox-tools" for="tool-7">
-                                            <i class='uil uil-brush-alt'></i>감자</label>
-                                        <input class="checkbox-tools" {{ check_list[7] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="고구마"
-                                               id="tool-8">
-                                        <label class="for-checkbox-tools" for="tool-8">
-                                            <i class='uil uil-brush-alt'></i>고구마</label>
-                                        <input class="checkbox-tools" {{ check_list[8] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="감자"
-                                               id="tool-9">
-                                        <label class="for-checkbox-tools" for="tool-9">
-                                            <i class='uil uil-brush-alt'></i>감자</label>
-                                        <input class="checkbox-tools" {{ check_list[9] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="고구마"
-                                               id="tool-10">
-                                        <label class="for-checkbox-tools" for="tool-10">
-                                            <i class='uil uil-brush-alt'></i>고구마</label>
-                                        <input class="checkbox-tools" {{ check_list[10] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="감자"
-                                               id="tool-11">
-                                        <label class="for-checkbox-tools" for="tool-11">
-                                            <i class='uil uil-brush-alt'></i>감자</label>
-                                        <input class="checkbox-tools" {{ check_list[11] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="고구마"
-                                               id="tool-12">
-                                        <label class="for-checkbox-tools" for="tool-12">
-                                            <i class='uil uil-brush-alt'></i>고구마</label>
-                                        <input class="checkbox-tools" {{ check_list[12] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="감자"
-                                               id="tool-13">
-                                        <label class="for-checkbox-tools" for="tool-13">
-                                            <i class='uil uil-brush-alt'></i>감자</label>
-                                        <input class="checkbox-tools" {{ check_list[13] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="고구마"
-                                               id="tool-14">
-                                        <label class="for-checkbox-tools" for="tool-14">
-                                            <i class='uil uil-brush-alt'></i>고구마</label>
-                                        <input class="checkbox-tools" {{ check_list[14] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="감자"
-                                               id="tool-15">
-                                        <label class="for-checkbox-tools" for="tool-15">
-                                            <i class='uil uil-brush-alt'></i>감자</label>
-                                        <input class="checkbox-tools" {{ check_list[15] }} type="radio" name="myRadios"
-                                               onclick="document.getElementById('choice').submit();" value="고구마"
-                                               id="tool-16">
-                                        <label class="for-checkbox-tools" for="tool-16">
-                                            <i class='uil uil-brush-alt'></i>고구마</label>
+                                        {% for k,v in radio_check.items() %}
+                                        <input class="checkbox-tools" {{ v }} type="radio" name="myRadios"
+                                               onclick="document.getElementById('choice').submit();" value="{{ category }}_{{ k }}"
+                                               id="tool-{{ loop.index }}">
+                                        <label class="for-checkbox-tools" for="tool-{{ loop.index }}">
+                                            {% if 'checked' in v %}
+                                            <i class='uil uil-pricetag-alt'></i>{{ k }}</label>
+                                        {% else %}
+                                        <i class='uil uil-ellipsis-h'></i>{{ k }}</label>
+                                        {% endif %}
+                                        {% if (radio_check | length) > 10 %}
+                                        {% if loop.index == (radio_check | length)//2 %}
+                                        <br>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
                                     </form>
                                 </div>
                             </div>
@@ -280,6 +216,8 @@
 
 
 
+
+
 </script>
 <!-- 막대 그래프 -->
 <script>
@@ -320,6 +258,8 @@
                 }
               }
             });
+
+
 
 
 
