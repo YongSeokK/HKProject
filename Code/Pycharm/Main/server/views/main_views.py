@@ -11,6 +11,11 @@ from server.models import Members
 bp = Blueprint('main', __name__, url_prefix='/')
 bcrypt = Bcrypt(Flask(__name__))
 
+# DB 초기 설정
+mydb = pymysql.Connect(host=DB_HOST, user=DB_USERNAME,
+                       password=DB_PASSWORD, database=DB_NAME)
+cursor = mydb.cursor(pymysql.cursors.DictCursor)
+
 
 # 로그인 상태 확인
 @bp.before_app_request
@@ -38,6 +43,7 @@ def signup():
     if request.method == 'POST' and form.validate_on_submit():
         user = Members.query.filter_by(userid=form.userid.data).first()
         if not user:
+            print('signup: ', form.userid.data)
             pw_hash = form.password.data
             pw_hash = bcrypt.generate_password_hash(pw_hash.encode('utf-8'))
             pw_hash = pw_hash.decode('utf-8')
@@ -60,27 +66,28 @@ def signup():
 # 로그 인
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
-    print('login: ', request.form.get('id'))
     if request.method == 'POST':
         if request.form.get('signup'):
             return redirect(url_for('main.signup'))
         else:
+            print('login: ', request.form.get('id'))
             user = Members.query.filter_by(userid=request.form.get('id')).first()
             pw_hash = request.form.get('pw').encode('utf-8')
-            candidate = user.userpw.encode('utf-8')
             if not user:
                 flash('존재하지 않는 아이디입니다.')
-            elif not bcrypt.check_password_hash(candidate, pw_hash):
-                flash('정확한 비밀번호를 입력해주세요.')
-            elif bcrypt.check_password_hash(candidate, pw_hash):
-                # elif user.userpw == request.form.get('pw'):
-                session.clear()
-                session['user_nickname'] = user.nickname
-                session['user_id'] = user.userid
-                print('login success')
-                return redirect(url_for('main.index'))
             else:
-                return render_template('login.html')
+                candidate = user.userpw.encode('utf-8')
+                if not bcrypt.check_password_hash(candidate, pw_hash):
+                    flash('정확한 비밀번호를 입력해주세요.')
+                elif bcrypt.check_password_hash(candidate, pw_hash):
+                    # elif user.userpw == request.form.get('pw'):
+                    session.clear()
+                    session['user_nickname'] = user.nickname
+                    session['user_id'] = user.userid
+                    print('login success')
+                    return redirect(url_for('main.index'))
+                else:
+                    return render_template('login.html')
     return render_template('login.html')
 
 
@@ -90,12 +97,6 @@ def logout():
     session.clear()
     flash("로그아웃 되었습니다.")
     return redirect(url_for('main.login'))
-
-
-# DB 초기 설정
-mydb = pymysql.Connect(host=DB_HOST, user=DB_USERNAME,
-                       password=DB_PASSWORD, database=DB_NAME)
-cursor = mydb.cursor(pymysql.cursors.DictCursor)
 
 
 # 프로필

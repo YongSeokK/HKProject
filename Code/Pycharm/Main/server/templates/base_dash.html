@@ -26,31 +26,31 @@
     <script>
     // content, cate, index를 인수로 받아 form 태그로 전송하는 함수
     function goPage1(category = 0) {
-      // name이 paging인 태그
-      var f = document.paging;
+        // name이 paging인 태그
+        var f = document.paging;
 
-      // form 태그의 하위 태그 값 매개 변수로 대입
-      f.category.value = category;
+        // form 태그의 하위 태그 값 매개 변수로 대입
+        f.category.value = category;
 
-      // input 태그의 값들을 전송하는 주소
-      f.action = "{{ url_for('dash.wholesale') }}"
+        // input 태그의 값들을 전송하는 주소
+        f.action = "{{ url_for('dash.wholesale') }}"
 
-      // 전송 방식 : post
-      f.method = "post"
-      f.submit();
+        // 전송 방식 : post
+        f.method = "post"
+        f.submit();
     };
     </script>
     <script>
     function goPage2(region,category = 0) {
-      var f = document.paging;
+        var f = document.paging;
 
-      f.region.value = region;
-      f.category.value = category;
+        f.region.value = region;
+        f.category.value = category;
 
-      f.action = "{{ url_for('dash.compare') }}"
+        f.action = "{{ url_for('dash.compare') }}"
 
-      f.method = "post"
-      f.submit();
+        f.method = "post"
+        f.submit();
     };
     </script>
 </head>
