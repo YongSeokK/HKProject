@@ -18,18 +18,19 @@ class Members(db.Model):
 ## 만개의 레시피
 class Food_recipe(db.Model):
     no = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)  # 갯수 카운트
-    serial = db.Column(db.Integer, nullable=False)  # 레시피일련번호
+    serial = db.Column(db.Integer, nullable=False)  # 일련번호
     dish = db.Column(db.String(50, 'utf8mb4_unicode_ci'), nullable=False)  # 요리명
     registrant = db.Column(db.String(50, 'utf8mb4_unicode_ci'), nullable=False)  # 등록자
     views = db.Column(db.Integer, nullable=False)  # 조회수
     likes = db.Column(db.Integer, nullable=False)  # 추천수
-    situation = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)  # 요리상황별 명
+    situation = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)  # 요리상황
     intro = db.Column(db.String(2000, 'utf8mb4_unicode_ci'), nullable=False)  # 요리소개
-    ingredients = db.Column(db.String(1000, 'utf8mb4_unicode_ci'), nullable=False)  # 요리재료내용
-    servings = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)  # 요리인분 명
-    level = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)  # 요리난이도 명
-    time = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)  # 요리시간 명
-    url = db.Column(db.String(1000, 'utf8mb4_unicode_ci'), nullable=False)  # 이미지 url
+    total_ingredients = db.Column(db.String(1000, 'utf8mb4_unicode_ci'), nullable=False)  # 전체요리재료
+    servings = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)  # 요리인분
+    level = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)  # 난이도
+    time = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)  # 시간
+    url = db.Column(db.String(1000, 'utf8mb4_unicode_ci'), nullable=False)  # URL
+    ingredients = db.Column(db.String(1000, 'utf8mb4_unicode_ci'), nullable=False)  # 요리재료(_ 로 구분)
 
 
 ## 전체 도매(거래량)

@@ -8,14 +8,14 @@
         <div class="container-fluid px-5">
             <h1 class="mt-4 pt-5">Compare</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active">Dashboard-{{category}}_</li>
             </ol>
             <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body">Primary Card</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
+                            <a class="small text-white stretched-link" href="{{url_for('dash.compare2',category='과일류',produce='사과')}}">View Details</a>
                             <div class="small text-white">
                                 <svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
                                      data-prefix="fas" data-icon="angle-right" role="img"
@@ -30,7 +30,7 @@
                     <div class="card bg-warning text-white mb-4">
                         <div class="card-body">Warning Card</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
+                            <a class="small text-white stretched-link" href="{{url_for('dash.compare2',category='과일류',produce='배')}}">View Details</a>
                             <div class="small text-white">
                                 <svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
                                      data-prefix="fas" data-icon="angle-right" role="img"

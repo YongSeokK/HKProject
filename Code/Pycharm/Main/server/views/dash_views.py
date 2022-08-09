@@ -1,6 +1,7 @@
 import pandas as pd
 import pymysql
 from flask import Blueprint, request, render_template, url_for, session, flash
+from requests import request
 from werkzeug.utils import redirect
 
 from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, csv_FolderPath
@@ -201,14 +202,16 @@ def compare():
 
 
 # Dashboard_가격비교_소매
-@bp.route('/compare2', methods=('GET', 'POST'))
-def compare2():
+@bp.route('/compare2/<category>', methods=('GET', 'POST'))
+def compare2(category):
     user_nickname = session.get('user_nickname')
     if user_nickname is None:
         flash("로그인이 필요합니다.")
         return redirect(url_for('main.login'))
     else:
-        return render_template('dash/compare.html')
+        z=request.args
+        print(z)
+        return render_template('dash/compare2.html',category=category)
 
 
 # chart

@@ -152,3 +152,16 @@ def initdel():
     print('Del')
     flash("로그아웃 되었습니다.")
     return redirect(url_for('main.login'))
+
+
+@bp.route('/detail/<category>/<produce>/', methods=('GET', 'POST'))
+def detail(category,produce):
+    x=request.form.get('content')
+    print(x)
+    # question = Question.query.filter(Question.id==question_id)
+    # question = Members.query.get_or_404(question_id)
+    # question_id = request.args.get('question_id')
+    # print(question_id)
+    print(request.args)
+    print(category,produce)
+    return '<br><br><br><br><br><br><br><br><br><br><br><br><br>"ok"'
