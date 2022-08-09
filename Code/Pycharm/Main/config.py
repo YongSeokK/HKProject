@@ -22,5 +22,7 @@ RecipeData_FilePath = Root_Path + "\\DB_source\\Init\\recipe.json"
 WholesaleVolume_FilePath = Root_Path + "\\DB_source\\Init\\220726_농산물거래량.json"
 WholesalePrice_FilePath = Root_Path + "\\DB_source\\Init\\220726_농산물가격.json"
 
+## 참고 DATA
 Area_Dict = {'광주': 'gwangju', '대구': 'daegu', '대전': 'daejeon', '부산': 'busan',
              '서울': 'seoul', '울산': 'ulsan', '인천': 'incheon', '전체': 'total'}
+Whole_List = ['농산물가격', '농산물거래량']

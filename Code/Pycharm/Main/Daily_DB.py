@@ -3,8 +3,9 @@ from datetime import datetime, timedelta
 from glob import glob
 
 import pymysql
+from tqdm import tqdm
 
-from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, Daily_FolderPath
+from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, Area_Dict, Whole_List, Daily_FolderPath
 
 #################### DB 초기 설정 ####################
 db = pymysql.Connect(host=DB_HOST,
@@ -12,15 +13,11 @@ db = pymysql.Connect(host=DB_HOST,
                      password=DB_PASSWORD,  # db 비밀 번호
                      database=DB_NAME)  # 접속 하고자 하는 db 명
 cursor = db.cursor()
-
-Area_Dict = {'광주': 'gwangju', '대구': 'daegu', '대전': 'daejeon', '부산': 'busan',
-             '서울': 'seoul', '울산': 'ulsan', '인천': 'incheon', '전체': 'total'}
-Whole_List = ['농산물가격', '농산물거래량']
 #################### DB 초기 설정 ####################
 
 
 #################### 데이터 처리 ####################
-for data in glob(Daily_FolderPath + "*.json"):
+for data in tqdm(glob(Daily_FolderPath + "*.json"), desc='Daily DB INSERT'):
     Table = data.split('_')[-1].split('.')[0]
     day = data.split('_')[-2].split('\\')[-1]
 
