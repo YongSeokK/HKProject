@@ -89,12 +89,13 @@
                         <a class="nav-link" href="">기타서비스</a></li>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                         {% if g.nickname == None %}
+                        <li><a class="dropdown-item disabled" href="{{ url_for('main.confirm') }}" >내 정보</a></li>
                         {% else %}
-                        <li><a class="dropdown-item" href="{{ url_for('main.confirm') }}">내 정보</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('main.confirm') }}" >내 정보</a></li>
+                        {% endif %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        {% endif %}
                         <li><a class="dropdown-item" href="http://pf.kakao.com/_uyZhxj">챗봇</a></li>
                     </ul>
                 </div>
@@ -384,6 +385,7 @@
         </nav>
     </div>
 
+
     <!-- code -->
     {% block content %}
 
@@ -407,5 +409,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
     </body>
 </html>

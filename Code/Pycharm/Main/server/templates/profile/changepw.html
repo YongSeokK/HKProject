@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href=" {{ url_for('static', filename='style.css')}} ">
+
+<body class="text-center pt-5">
+<main class="container pt-5">
+    <form id="contactForm" method="post" class="pt-5" >
+        {{ form.csrf_token }}
+        <img class="mb-4" src="static/img/id.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 fw-normal">변경할 비밀번호를 입력해주세요.</h1>
+
+        <div class="form-group" style="width: 50%; margin: auto;">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group" style="width: 50%; margin: auto;">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+        <br>
+        <button class="w-25 btn btn-lg btn-primary" type="submit" name="profile" value="profile">변경</button>
+        <p class="mt-5 mb-3 text-muted">© 2022</p>
+    </form>
+</main>
+</body>
+
+{% endblock %}

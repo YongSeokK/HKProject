@@ -30,7 +30,7 @@ for cnt, column in enumerate(cursor.fetchall()):
     else:
         col_Text = col_Text + "," + column[0]
 
-for num in tqdm(Data_Json.keys(), desc='만개의 레시피 DB INSERT'):
+for num in tqdm(Data_Json.keys(), desc='만개의 레시피 DB INSERT', mininterval=0.05):
     Row_Dict = Data_Json[num]
 
     # DB 쿼리문
@@ -64,7 +64,7 @@ for file in [WholesaleVolume_FilePath, WholesalePrice_FilePath]:
         else:
             col_Text = col_Text + "," + column[0]
 
-    for num in Data_Json.keys():
+    for num in tqdm(Data_Json.keys(), desc='도매 DB INSERT', mininterval=0.05):
         Row_Dict = Data_Json[num]
 
         # DB 쿼리문
@@ -94,7 +94,7 @@ for file in [WholesaleVolume_FilePath, WholesalePrice_FilePath]:
 
 
 #################### 전체 소매 데이터 ####################
-for file in glob(Retail_FolderPath + '*.json'):
+for file in tqdm(glob(Retail_FolderPath + '*.json'), desc='소매 DB INSERT', mininterval=0.05):
     Total_List = []
     day = int(file.split('.')[0].split('\\')[-1].split('_')[0])
     area = file.split('.')[0].split('\\')[-1].split('_')[1]

@@ -96,12 +96,13 @@
                         <a class="nav-link" href="">기타서비스</a></li>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                         {% if g.nickname == None %}
+                        <li><a class="dropdown-item disabled" href="{{ url_for('main.profile') }}" >내 정보</a></li>
                         {% else %}
-                        <li><a class="dropdown-item" href="{{ url_for('main.confirm') }}">내 정보</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('main.profile') }}" >내 정보</a></li>
+                        {% endif %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        {% endif %}
                         <li><a class="dropdown-item" href="http://pf.kakao.com/_uyZhxj">챗봇</a></li>
                     </ul>
                 </div>

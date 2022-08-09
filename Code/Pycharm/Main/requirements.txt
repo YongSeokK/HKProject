@@ -1,6 +1,8 @@
 # Project requirements
 # Usage: pip install -r requirements.txt
 
+# pip install cryptography
+
 absl-py==1.2.0
 alembic==1.8.0
 argon2-cffi==21.3.0

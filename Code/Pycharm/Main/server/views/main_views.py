@@ -5,7 +5,7 @@ from werkzeug.utils import redirect
 
 from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME
 from server import db
-from server.forms import UserCreateForm
+from server.forms import UserCreateForm, UserPwForm
 from server.models import Members
 
 bp = Blueprint('main', __name__, url_prefix='/')
@@ -104,7 +104,9 @@ def logout():
 def profile():
     user = Members.query.filter_by(userid=g.user).first()
     if request.method == 'POST':
-        return render_template('profile/change.html', user=user)
+        choice = list(request.form.keys())[0].split('.')[0]
+        print('choice: ' + choice)
+        return render_template('profile/confirm.html', user=user, choice=choice)
     return render_template('profile/profile.html', user=user)
 
 
@@ -124,21 +126,41 @@ def change():
     return render_template('profile/change.html', user=user)
 
 
+# 비밀번호 수정
+@bp.route('/changepw', methods=('GET', 'POST'))
+def changepw():
+    form = UserPwForm()
+    user = Members.query.filter_by(userid=g.user).first()
+    if request.method == 'POST' and form.validate_on_submit():
+        pw_hash = form.password.data
+        pw_hash = bcrypt.generate_password_hash(pw_hash.encode('utf-8'))
+        pw_hash = pw_hash.decode('utf-8')
+        sql_table = 'UPDATE members SET userpw="' + pw_hash + '" WHERE userid="' + g.user + '"'
+        cursor.execute(sql_table)
+        mydb.commit()
+        return redirect(url_for('main.profile'))
+    return render_template('profile/changepw.html', user=user, form=form)
+
+
 # 비밀 번호 확인
 @bp.route('/confirm', methods=('GET', 'POST'))
 def confirm():
     if request.method == 'POST':
+        choice = request.form.to_dict()['check']
         user = Members.query.filter_by(userid=g.user).first()
         pw_hash = request.form.get('pw').encode('utf-8')
         candidate = user.userpw.encode('utf-8')
         if not bcrypt.check_password_hash(candidate, pw_hash):
             # elif user.userpw != request.form.get('pw'):
             flash('정확한 비밀번호를 입력해주세요.')
+            return render_template('profile/confirm.html', choice=choice)
         elif bcrypt.check_password_hash(candidate, pw_hash):
-            return redirect(url_for('main.profile'))
+            if choice == 'profile':
+                return redirect(url_for('main.change'))
+            else:
+                return redirect(url_for('main.changepw'))
         else:
             return render_template('profile/confirm.html')
-    return render_template('profile/confirm.html')
 
 
 # del
@@ -155,13 +177,13 @@ def initdel():
 
 
 @bp.route('/detail/<category>/<produce>/', methods=('GET', 'POST'))
-def detail(category,produce):
-    x=request.form.get('content')
+def detail(category, produce):
+    x = request.form.get('content')
     print(x)
     # question = Question.query.filter(Question.id==question_id)
     # question = Members.query.get_or_404(question_id)
     # question_id = request.args.get('question_id')
     # print(question_id)
     print(request.args)
-    print(category,produce)
+    print(category, produce)
     return '<br><br><br><br><br><br><br><br><br><br><br><br><br>"ok"'

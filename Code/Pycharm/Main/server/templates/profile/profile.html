@@ -103,12 +103,13 @@
                         <a class="nav-link" href="">기타서비스</a></li>
                     <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
                         {% if g.nickname == None %}
+                        <li><a class="dropdown-item disabled" href="{{ url_for('main.confirm') }}" >내 정보</a></li>
                         {% else %}
-                        <li><a class="dropdown-item" href="{{ url_for('main.confirm') }}">내 정보</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('main.confirm') }}" >내 정보</a></li>
+                        {% endif %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        {% endif %}
                         <li><a class="dropdown-item" href="http://pf.kakao.com/_uyZhxj">챗봇</a></li>
                     </ul>
                 </div>
@@ -218,7 +219,11 @@
                     </div> <!-- /.icon -->
                     <div class="service-contents">
                         <h3>전화번호</h3>
+                        {% if user.phone|length == 11 %}
+                        <p>{{ user.phone[0:3] }}-{{ user.phone[3:7] }}-{{ user.phone[7:11] }}</p>
+                        {% else %}
                         <p>{{ user.phone }}</p>
+                        {% endif %}
                     </div> <!-- /.service-contents-->
                 </div> <!-- /.service -->
             </div>
