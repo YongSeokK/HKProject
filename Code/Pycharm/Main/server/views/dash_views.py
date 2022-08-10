@@ -62,7 +62,7 @@ def wholesale():
                 radio_key = keys_list[0]
                 radio_check[radio_key] = ' checked="checked" '
                 date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
-                                                                                                          keys_list[0])
+                                                                                                          radio_key)
                 return render_template('dash/wholesale.html', category=category, radio_key=radio_key,
                                        radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
                                        yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,
@@ -104,7 +104,7 @@ def retail():
                 radio_key = keys_list[0]
                 radio_check[radio_key] = ' checked="checked" '
                 date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
-                                                                                                          keys_list[0])
+                                                                                                          radio_key)
                 return render_template('dash/retail.html', region=region, category=category, radio_key=radio_key,
                                        radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
                                        yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,

@@ -161,6 +161,7 @@ def confirm():
                 return redirect(url_for('main.changepw'))
         else:
             return render_template('profile/confirm.html')
+    return render_template('profile/confirm.html')
 
 
 # del

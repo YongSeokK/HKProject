@@ -1,6 +1,5 @@
 import itertools
 import os
-import sys
 import traceback
 from datetime import datetime
 
@@ -12,29 +11,19 @@ from prophet.diagnostics import cross_validation
 from prophet.diagnostics import performance_metrics
 from tqdm import tqdm
 
-os.chdir("../../")
-path = os.getcwd()
-sys.path.append(path)
-
-from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, Root_Path
-from parameter import W_Parameter_Dict, R_Parameter_Dict
-
-Wholesale_Path = Root_Path + '\\DB_source\\csv\\wholesale\\'
-Retail_Path = Root_Path + '\\DB_source\\csv\\retail\\'
-
 
 #####################################################
 
-class MyPorpht:
+class MyProphet:
     ### init 설정
-    def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                 Wholesale_Path, Retail_Path, W_Parameter_Dict, R_Parameter_Dict):
+    def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME, Root_Path, W_Parameter_Dict, R_Parameter_Dict):
         self.DB_USERNAME = DB_USERNAME
         self.DB_HOST = DB_HOST
         self.DB_PASSWORD = DB_PASSWORD
         self.DB_NAME = DB_NAME
-        self.Retail_Path = Retail_Path
-        self.Wholesale_Path = Wholesale_Path
+        self.Root_Path = Root_Path
+        self.Retail_Path = self.Root_Path + '\\DB_source\\csv\\retail\\'
+        self.Wholesale_Path = self.Root_Path + '\\DB_source\\csv\\wholesale\\'
         self.W_Parameter_Dict = W_Parameter_Dict
         self.R_Parameter_Dict = R_Parameter_Dict
 
@@ -91,7 +80,7 @@ class MyPorpht:
                     Price_DF['date'] = Price_DF['date'].apply(lambda x: datetime.strptime(x, '%Y%m%d'))
 
                     # 각 농산물 별로 ds, y 데이터 프레임 제작
-                    with tqdm(total=len(col_List[1:]), desc='도매 Prophet 예측: ') as pbar:
+                    with tqdm(total=len(col_List[1:]), desc='도매 Prophet 예측') as pbar:
                         for cnt, column in enumerate(col_List[1:]):
                             # print('----------------------' + column + '----------------------')
                             rmses = []  # Store the RMSEs for each params here
@@ -443,7 +432,7 @@ class MyPorpht:
                     Price_col_List = [col for col in Price_DF.columns]
 
                     # 각 농산물 별로 ds, y 데이터 프레임 제작
-                    with tqdm(total=len(Price_col_List[1:]), desc='소매 Prophet 예측: ') as pbar:
+                    with tqdm(total=len(Price_col_List[1:]), desc='소매 Prophet 예측') as pbar:
                         for cnt, column in enumerate(Price_col_List[1:]):
                             # print('----------------------' + column + '----------------------')
                             rmses = []  # Store the RMSEs for each params here
@@ -935,11 +924,3 @@ class MyPorpht:
         except Exception as e:
             message = traceback.format_exc()
         return message
-
-
-test = MyPorpht(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                Wholesale_Path, Retail_Path, W_Parameter_Dict, R_Parameter_Dict)
-MyWholesale = test.Wholesale()
-print(MyWholesale)
-MyRetail = test.Retail()
-print(MyRetail)
