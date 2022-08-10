@@ -69,9 +69,9 @@ def wholesale():
                                        price_quarter=price_quarter, deal_quarter=deal_quarter)
 
 
-# Dashboard_가격비교_소매
-@bp.route('/compare', methods=('GET', 'POST'))
-def compare():
+# Dashboard_소매
+@bp.route('/retail', methods=('GET', 'POST'))
+def retail():
     user_nickname = session.get('user_nickname')
     if user_nickname is None:
         flash("로그인이 필요합니다.")
@@ -85,19 +85,30 @@ def compare():
                 region = option[0]
                 category = option[1]
                 dic_set = Category_List2[Category_Kor.index(category)]
-                radio_check = dic_set.copy()
+                radio_check = copy.deepcopy(dic_set)
                 radio_key = option[2]
                 radio_check[radio_key] = ' checked="checked" '
-                return render_template('dash/compare.html', region=region, category=category, radio_check=radio_check)
+                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
+                                                                                                          radio_key)
+                return render_template('dash/retail.html', region=region, category=category, radio_key=radio_key,
+                                       radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
+                                       yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,
+                                       price_quarter=price_quarter, deal_quarter=deal_quarter)
             else:
                 region = request.form.get('region')
                 category = request.form.get('category')
                 print('소매: ' + region + '_' + category)
                 dic_set = Category_List2[Category_Kor.index(category)]
-                radio_check = dic_set.copy()
+                radio_check = copy.deepcopy(dic_set)
                 keys_list = list(radio_check.keys())
-                radio_check[keys_list[0]] = ' checked="checked" '
-                return render_template('dash/compare.html', region=region, category=category, radio_check=radio_check)
+                radio_key = keys_list[0]
+                radio_check[radio_key] = ' checked="checked" '
+                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
+                                                                                                          keys_list[0])
+                return render_template('dash/retail.html', region=region, category=category, radio_key=radio_key,
+                                       radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
+                                       yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,
+                                       price_quarter=price_quarter, deal_quarter=deal_quarter)
 
 
 # Dashboard_가격비교_소매

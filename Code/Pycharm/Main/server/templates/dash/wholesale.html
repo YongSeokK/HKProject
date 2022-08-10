@@ -64,7 +64,7 @@
                                         <div class=""></div>
                                     </div>
                                 </div>
-                                <canvas id="potato1" width="486" height="194"
+                                <canvas id="chart1" width="486" height="194"
                                         style="display: block; width: 486px; height: 194px;"
                                         class="chartjs-render-monitor"></canvas>
                             </div>
@@ -147,8 +147,8 @@
 
 <!-- 꺽은선 그래프 -->
 <script>
-    var ctx = document.getElementById("potato1");
-    var potato1 ={
+    var ctx = document.getElementById("chart1");
+    var a_chart ={
         type:'line ',
         labels: [{% for i in date%} '{{i}}', {% endfor %}],
         datasets :[{
@@ -170,7 +170,7 @@
     };
     var myChart = new Chart(ctx,{
         type: 'bar',
-        data: potato1,
+        data: a_chart,
         options: {
             legend: {
                 labels: {

@@ -2,12 +2,22 @@ DB_USERNAME = 'root'
 DB_HOST = 'localhost'
 DB_PORT = '3306'
 
+SECRET_KEY = 'dev'
+
+### 로컬별 수정할 항목 Start -----------------------Start
+#                                                    #
+#                                                    #
+#                                                    #
 DB_PASSWORD = 'test1234'  # MySQL Password
 DB_NAME = 'projectdb'  # MySQL Name
 
-SECRET_KEY = 'dev'
-
 ## Path
+Root_Path = 'C:\\G_Project\\Code\\Pycharm\\Main'
+#                                                    #
+#                                                    #
+#                                                    #
+### 로컬별 수정할 항목 End ---------------------------End
+
 
 ## Daily DATA관련 init
 Daily_FolderPath = Root_Path + '\\DB_source\\Daily\\'
@@ -39,6 +49,7 @@ Fruit_dic = {'감귤': 'citrus', '단감': 'persimmon', '딸기': 'strawberry', 
              '방울토마토': 'cherry_tomato', '배': 'pear', '복숭아': 'peach', '사과': 'apple', '수박': 'watermelon', '오렌지': 'orange',
              '참외': 'korean_melon', '체리': 'cherry', '키위': 'kiwi', '토마토': 'tomato', '파인애플': 'pineapple', '포도': 'grape'}
 
+# Radio button check 값을 주기 위한 value 값이 공란인 딕셔러니 생성
 Foodcrop_dic2 = dict.fromkeys(list(Foodcrop_dic.keys()), '')
 Cashcrop_dic2 = dict.fromkeys(list(Cashcrop_dic.keys()), '')
 Vegetable_dic2 = dict.fromkeys(list(Vegetable_dic.keys()), '')
@@ -47,10 +58,3 @@ Fruit_dic2 = dict.fromkeys(list(Fruit_dic.keys()), '')
 Category_Kor = ['식량작물', '특용작물', '채소류', '과일류']
 Category_List = [Foodcrop_dic, Cashcrop_dic, Vegetable_dic, Fruit_dic]
 Category_List2 = [Foodcrop_dic2, Cashcrop_dic2, Vegetable_dic2, Fruit_dic2]
-# Foodcrop_dic = {'감자': '', '고구마': '', '콩': ''}
-# Cashcrop_dic = {'느타리버섯': '', '땅콩': '', '새송이버섯': '', '참깨': '', '팽이버섯': '', '호두': ''}
-# Vegetable_dic = {'건고추': '', '고추': '', '깻잎': '', '당근': '', '대파': '', '무': '', '미나리': '', '배추': '', '상추': '', '생강': '',
-#                  '시금치': '', '양배추': '', '양파': '', '얼갈이배추': '', '열무': '', '오이': '', '쪽파': '', '피망': '', '파프리카': '',
-#                  '호박': ''}
-# Fruit_dic = {'감귤': '', '단감': '', '딸기': '', '레몬': '', '망고': '', '바나나': '', '방울토마토': '', '배': '', '복숭아': '', '사과': '',
-#              '수박': '', '오렌지': '', '참외': '', '체리': '', '키위': '', '토마토': '', '파인애플': '', '포도': ''}
