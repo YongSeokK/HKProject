@@ -4,8 +4,8 @@ import pymysql
 from flask import Blueprint, request, render_template, url_for, session, flash
 from werkzeug.utils import redirect
 
-from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, Category_Kor, Category_List2
-from server.define.chart import chart_data
+from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, csv_FolderPath, Category_Kor, Category_List, Category_List2
+from server.define.chart_data import ChartData
 from server.models import Food_recipe
 
 bp = Blueprint('dash', __name__, url_prefix='/')
@@ -47,8 +47,12 @@ def wholesale():
 
                 # def chart_data 리턴 값 순차대로 대입
                 # List: 날짜, 가격, 거래량, 미래 날짜, 예측 중간, 최소, 최대, 가격 분기, 거래량 분기
-                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
-                                                                                                          radio_key)
+                MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
+                                    csv_FolderPath, Category_Kor, Category_List, category, radio_key)
+                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = MyChart.Wholesale()
+
+                # date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
+                #                                                                                           radio_key)
                 return render_template('dash/wholesale.html', category=category, radio_key=radio_key,
                                        radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
                                        yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,
@@ -61,8 +65,10 @@ def wholesale():
                 keys_list = list(radio_check.keys())
                 radio_key = keys_list[0]
                 radio_check[radio_key] = ' checked="checked" '
-                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
-                                                                                                          radio_key)
+
+                MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
+                                    csv_FolderPath, Category_Kor, Category_List, category, radio_key)
+                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = MyChart.Wholesale()
                 return render_template('dash/wholesale.html', category=category, radio_key=radio_key,
                                        radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
                                        yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,
@@ -88,8 +94,10 @@ def retail():
                 radio_check = copy.deepcopy(dic_set)
                 radio_key = option[2]
                 radio_check[radio_key] = ' checked="checked" '
-                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
-                                                                                                          radio_key)
+
+                MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
+                                    csv_FolderPath, Category_Kor, Category_List, category, radio_key)
+                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = MyChart.Wholesale()
                 return render_template('dash/retail.html', region=region, category=category, radio_key=radio_key,
                                        radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
                                        yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,
@@ -103,8 +111,10 @@ def retail():
                 keys_list = list(radio_check.keys())
                 radio_key = keys_list[0]
                 radio_check[radio_key] = ' checked="checked" '
-                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
-                                                                                                          radio_key)
+
+                MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
+                                    csv_FolderPath, Category_Kor, Category_List, category, radio_key)
+                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = MyChart.Wholesale()
                 return render_template('dash/retail.html', region=region, category=category, radio_key=radio_key,
                                        radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
                                        yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,

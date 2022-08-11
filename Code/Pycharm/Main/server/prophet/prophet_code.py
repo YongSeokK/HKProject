@@ -12,20 +12,18 @@ from prophet.diagnostics import performance_metrics
 from tqdm import tqdm
 
 
-#####################################################
-
 class MyProphet:
     ### init 설정
-    def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME, Root_Path, W_Parameter_Dict, R_Parameter_Dict):
+    def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME, W_Parameter_Dict, R_Parameter_Dict, Root_Path):
         self.DB_USERNAME = DB_USERNAME
         self.DB_HOST = DB_HOST
         self.DB_PASSWORD = DB_PASSWORD
         self.DB_NAME = DB_NAME
+        self.W_Parameter_Dict = W_Parameter_Dict
+        self.R_Parameter_Dict = R_Parameter_Dict
         self.Root_Path = Root_Path
         self.Retail_Path = self.Root_Path + '\\DB_source\\csv\\retail\\'
         self.Wholesale_Path = self.Root_Path + '\\DB_source\\csv\\wholesale\\'
-        self.W_Parameter_Dict = W_Parameter_Dict
-        self.R_Parameter_Dict = R_Parameter_Dict
 
     ### 도매 데이터 처리
     def Wholesale(self):

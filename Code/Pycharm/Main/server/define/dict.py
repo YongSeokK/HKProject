@@ -4,16 +4,14 @@ from datetime import datetime, timedelta
 import pymysql
 from tqdm import tqdm
 
-#################### DB 초기 설정 ####################
-DB_USERNAME = 'root'
-DB_HOST = 'localhost'
+# #################### DB 초기 설정 ####################
+# DB_USERNAME = 'root'
+# DB_HOST = 'localhost'
+#
+# DB_PASSWORD = 'ghtjddl!4akfl'
+# DB_NAME = 'projectdb'
+# SECRET_KEY = 'dev'
 
-DB_PASSWORD = 'ghtjddl!4akfl'
-DB_NAME = 'projectdb'
-SECRET_KEY = 'dev'
-
-
-#####################################################
 
 class Retail_Dict:
     ### init 설정

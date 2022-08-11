@@ -19,7 +19,7 @@ class DailyDB:
         self.Whole_List = Whole_List
         self.Daily_FolderPath = Daily_FolderPath
 
-    def Daily_Data(self):
+    def DailyData(self):
         try:
 
             for data in tqdm(glob(self.Daily_FolderPath + "*.json"), desc='Daily DB INSERT'):
