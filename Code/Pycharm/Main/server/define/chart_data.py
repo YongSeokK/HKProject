@@ -1,4 +1,6 @@
+import math
 import traceback
+from datetime import datetime
 
 import pandas as pd
 import pymysql
@@ -7,7 +9,7 @@ import pymysql
 class ChartData:
     ### init 설정
     def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                 csv_FolderPath, Category_Kor, Category_List, category, radio_key):
+                 csv_FolderPath, Category_Kor, Category_List, category, key_produce):
         self.DB_USERNAME = DB_USERNAME
         self.DB_HOST = DB_HOST
         self.DB_PASSWORD = DB_PASSWORD
@@ -16,7 +18,7 @@ class ChartData:
         self.Category_Kor = Category_Kor
         self.Category_List = Category_List
         self.category = category
-        self.radio_key = radio_key
+        self.key_produce = key_produce
 
     def Wholesale(self):
         try:
@@ -27,8 +29,8 @@ class ChartData:
             ## DB 작업
             with db:
                 with db.cursor() as cur:
-                    button = self.Category_List[self.Category_Kor.index(self.category)][self.radio_key]
-                    # 리스트2 [리스트1인덱스 (리스트1의 값 = category)][리스트2의 해당 딕셔너리 키 값 = radio_key]
+                    button = self.Category_List[self.Category_Kor.index(self.category)][self.key_produce]
+                    # 리스트2 [리스트1인덱스 (리스트1의 값 = category)][리스트2의 해당 딕셔너리 키 값 = key_produce]
                     sql1 = 'SELECT date, ' + button + ' FROM Wholesale_price ORDER BY date DESC LIMIT 14;'  # 열 선택 & 열 내림차순 행 제한
                     cur.execute(sql1)
                     W_price = list(reversed(cur.fetchall()))  # 역순 리스트로 변환
@@ -37,19 +39,20 @@ class ChartData:
                     W_quantity = list(reversed(cur.fetchall()))
                     # print('W_price: ' + W_price)
                     # print('W_quantity: ' + W_quantity)
-                    date = [];
-                    price = [];
+                    date = []
+                    price = []
                     deal = []  # 최근 날짜, 가격, 거래량
                     for i, j in zip(W_price, W_quantity):
                         # print(i[0], i[1], j[0])\
                         date.append(str(i[0])[4:6] + '.' + str(i[0])[6:8])  # 날짜 형식
-                        price.append(round(i[1], -1))  # 1의 자리에서 반올림
+                        price.append(int(round(i[1], -1)))  # 1의 자리에서 반올림
                         deal.append(j[0] / 1000)  # 1000kg 순자 단위 조정
 
                     # Prophrt : DB_source 파일의 csv 가져오기
+                    today = datetime.today().strftime('%Y%m%d')
                     test_df = pd.read_csv(
-                        self.csv_FolderPath + 'wholesale\\' + '20220811_wholesale_' + button + '.csv')
-                    date_f = []  # 미래 날짜 f=future
+                        self.csv_FolderPath + 'wholesale\\' + '20220811' + '_wholesale_' + button + '.csv')
+                    date_f = []  # 예측 날짜 f=future
                     ds_val = test_df['ds'].values.tolist()
                     for i in ds_val:
                         date_f.append(str(i)[5:7] + '.' + str(i)[8:10])
@@ -127,4 +130,46 @@ class ChartData:
         except Exception as e:
             message = traceback.format_exc()
             return message
-        return date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter
+
+        ## chart 구성 요소
+        math.floor(1234 / 100) * 100  # 100의 자리에서 내림
+        math.ceil(1234 / 100) * 100  # 100의 자리에서 올림
+        # chart1
+        min_price = math.floor(min(price) / 100) * 100
+        max_price = math.ceil(max(price) / 100) * 100
+        stepSize_price = round(max(price), -2) / 5
+
+        min_deal = math.floor(min(deal) / 100) * 100
+        max_deal = math.ceil(max(deal) / 100) * 100
+        if min(deal) < 2:
+            stepSize_deal = round(round(max(deal), 2) / 5, 2)
+        else:
+            stepSize_deal = round(round(max(deal), -2) / 5, -2)
+        # chart2
+        min_yhat = round(min(yhat_l), -2)
+        max_yhat = round(max(yhat), -2)
+        stepSize_yhat = round(max(yhat_u), -2) / 5
+        # chart3
+        min_price_quarter = math.floor(min(price_quarter) / 1000) * 1000
+        max_price_quarter = math.ceil(max(price_quarter) / 1000) * 1000
+        stepSize_price_quarter = round(max(price_quarter), -3) / 5
+
+        min_deal_quarter = math.floor(min(deal_quarter) / 1000) * 1000
+        max_deal_quarter = math.ceil(max(deal_quarter) / 1000) * 1000
+        stepSize_deal_quarter = round(max(deal_quarter), -3) / 5
+        ##
+
+        # chart1: 날짜, 가격, 거래량, 최소 가격, 최대 가격, 가격 크기, 최소 거래량, 최대 거래량, 거래량 크기
+        chart1 = {'date': date, 'price': price, 'deal': deal,
+                  'min_price': min_price, 'max_price': max_price, 'stepSize_price': stepSize_price,
+                  'min_deal': min_deal, 'max_deal': max_deal, 'stepSize_deal': stepSize_deal}
+        # chart2: 예측 날짜, 예측 평균 가격, 최소 평균 예측값, 최대 평균 예측값, 예측 최솟값, 예측 최댓값, 예측 크기
+        chart2 = {'date_f': date_f, 'yhat': yhat, 'yhat_l': yhat_l, 'yhat_u': yhat_u,
+                  'min_yhat': min_yhat, 'max_yhat': max_yhat, 'stepSize_yhat': stepSize_yhat}
+        # chart3: 분기별 가격, 분기별 거래량, 최소 가격, 최대 가격, 가격 크기, 최소 거래량, 최대 거래량, 거래량 크기
+        chart3 = {'price_quarter': price_quarter, 'deal_quarter': deal_quarter,
+                  'min_price_quarter': min_price_quarter, 'max_price_quarter': max_price_quarter,
+                  'stepSize_price_quarter': stepSize_price_quarter,
+                  'min_deal_quarter': min_deal_quarter, 'max_deal_quarter': max_deal_quarter,
+                  'stepSize_deal_quarter': stepSize_deal_quarter}
+        return chart1, chart2, chart3

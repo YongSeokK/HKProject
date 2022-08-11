@@ -8,7 +8,7 @@
         <div class="container-fluid px-5">
             <h1 class="mt-4 pt-5">소매 _ {{ region }}</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">&nbsp;{{ category }} - {{ radio_key }}</li>
+                <li class="breadcrumb-item active">&nbsp;{{ category }} - {{ key_produce }}</li>
             </ol>
             <div class="container-fluid px-5">
                 <div class="section ">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 최근 2주간 동향 -->
+                <!-- 전통시장 -->
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="card mb-4">
@@ -53,7 +53,7 @@
                                     <path fill="currentColor"
                                           d="M64 400C64 408.8 71.16 416 80 416H480C497.7 416 512 430.3 512 448C512 465.7 497.7 480 480 480H80C35.82 480 0 444.2 0 400V64C0 46.33 14.33 32 32 32C49.67 32 64 46.33 64 64V400zM128 320V236C128 228.3 130.8 220.8 135.9 214.1L215.3 124.2C228.3 109.4 251.4 109.7 263.1 124.8L303.2 171.8C312.2 182.7 328.6 183.4 338.6 173.4L359.6 152.4C372.7 139.3 394.4 140.1 406.5 154.2L472.3 231C477.3 236.8 480 244.2 480 251.8V320C480 337.7 465.7 352 448 352H159.1C142.3 352 127.1 337.7 127.1 320L128 320z"></path>
                                 </svg><!-- <i class="fas fa-chart-area me-1"></i> Font Awesome fontawesome.com -->
-                                최근 2주간 동향
+                                전통시장 주간 가격 동향
                             </div>
                             <div class="card-body">
                                 <div class="chartjs-size-monitor">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 2주간 가격 예측 -->
+                    <!-- 대형마트 -->
                     <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
@@ -80,7 +80,7 @@
                                     <path fill="currentColor"
                                           d="M32 32C49.67 32 64 46.33 64 64V400C64 408.8 71.16 416 80 416H480C497.7 416 512 430.3 512 448C512 465.7 497.7 480 480 480H80C35.82 480 0 444.2 0 400V64C0 46.33 14.33 32 32 32zM128 128C128 110.3 142.3 96 160 96H352C369.7 96 384 110.3 384 128C384 145.7 369.7 160 352 160H160C142.3 160 128 145.7 128 128zM288 192C305.7 192 320 206.3 320 224C320 241.7 305.7 256 288 256H160C142.3 256 128 241.7 128 224C128 206.3 142.3 192 160 192H288zM416 288C433.7 288 448 302.3 448 320C448 337.7 433.7 352 416 352H160C142.3 352 128 337.7 128 320C128 302.3 142.3 288 160 288H416z"></path>
                                 </svg><!-- <i class="fas fa-chart-bar me-1"></i> Font Awesome fontawesome.com -->
-                                2주간 가격 예측
+                                대형마트 주간 가격 동향
                             </div>
                             <div class="card-body">
                                 <div class="chartjs-size-monitor">
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 분기별 감자 거래 정보 -->
+                <!-- 1년 소매 가격 정보 -->
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="card mb-3">
@@ -108,7 +108,7 @@
                                     <path fill="currentColor"
                                           d="M64 400C64 408.8 71.16 416 80 416H480C497.7 416 512 430.3 512 448C512 465.7 497.7 480 480 480H80C35.82 480 0 444.2 0 400V64C0 46.33 14.33 32 32 32C49.67 32 64 46.33 64 64V400zM128 320V236C128 228.3 130.8 220.8 135.9 214.1L215.3 124.2C228.3 109.4 251.4 109.7 263.1 124.8L303.2 171.8C312.2 182.7 328.6 183.4 338.6 173.4L359.6 152.4C372.7 139.3 394.4 140.1 406.5 154.2L472.3 231C477.3 236.8 480 244.2 480 251.8V320C480 337.7 465.7 352 448 352H159.1C142.3 352 127.1 337.7 127.1 320L128 320z"></path>
                                 </svg><!-- <i class="fas fa-chart-area me-1"></i> Font Awesome fontawesome.com -->
-                                최근 5년 가격&물량 변동
+                                최근 1년 가격&물량 변동
                             </div>
                             <div class="card-body">
                                 <div class="chartjs-size-monitor">
@@ -145,200 +145,174 @@
     </footer>
 </div>
 
-<!-- 꺽은선 그래프 -->
+<!-- chart1: 시장 -->
 <script>
-    var ctx = document.getElementById("chart1");
-    var a_chart ={
-        type:'line ',
-        labels: [{% for i in date%} '{{i}}', {% endfor %}],
-        datasets :[{
-            label: '거래 물량(톤)',
-            data : {{ deal }},
-            backgroundColor: 'rgba(9, 178, 14, 0.83)'
-            },
-            {
-            label: '거래 가격(원/kg)',
-            data: {{ price }},
-            backgroundColor: 'transparent',
-            borderColor: 'red',
-            pointBackgroundColor: 'red',
-            borderWidth: 1,
+    var data1 = {
+        labels: ['07.20','07.21','07.22','07.23','07.24','07.25','07.26','07.27','07.28','07.29','07.30','08.01','08.02','08.03','08.04'],
+        datasets: [{
             type: 'line',
-            fill: true,
-            tension: 0.5
+            label: '실제값',
+            yAxisID: 'A',
+            borderColor: '#ffbaa2',
+            backgroundColor: 'white',
+            data: [1200, 1400, 1300, 1400, 1100, 1200, 1300, 1000, 900, 800],
+            fill: false
+        }, {
+            label: '예측값(평균)',
+            borderColor: 'rgba(0,255,0,0.5)',
+            backgroundColor: 'white',
+            data: [1850, 1640, 1830, 1840, 1810, 1950, 1550, 1450, 1850, 1950,
+                    1850, 1750, 1800, 1600, 1700],
+            fill: false
+        }, {
+            label: '예측값(최소)',
+            borderColor: 'rgba(255,0,0,0.3)',
+            backgroundColor: 'white',
+            data: [, , , , , , , , , ,
+                    1650, 1550, 1600, 1400, 1500],
+            fill: false
+        }, {
+            label: '예측값(최대)',
+            borderColor: 'rgba(255,0,0,0.3)',
+            backgroundColor: 'white',
+            data: [, , , , , , , , , ,
+                    2050, 1950, 2000, 1800, 1900],
+            fill: false
         }]
     };
-    var myChart = new Chart(ctx,{
-        type: 'bar',
-        data: a_chart,
+    var chart = new Chart('chart1', {
+        type: 'line',
+        data: data1,
         options: {
-            legend: {
-                labels: {
-                    fillStyle: Color,
-                    fontColor: 'gray',
-                    fontSize: 12
-                }
-            },
             scales: {
-                xAxes: [{
-                    ticks:{
-                        fontSize : 12
-                    },
-                    gridLines:{
-                        lineWidth: 1
-                    }
-                }],
                 yAxes: [{
-                    ticks: {
-                        stepSize : 300,
-                        max : 1800,
-                        fontSize : 12
-                    },
-                    gridLines:{
-                        lineWidth: 1
-                    }
-                }]
-            }
-        }
-    });
-
-</script>
-<!-- 미래 가격 예측 -->
-<script>
-    var ctx = document.getElementById('chart2').getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [{% for i in date_f%} '{{i}}', {% endfor %}],
-        datasets: [{
-          label: '예측 평균 가격(원/kg)',
-          yAxisID: 'A',
-          borderColor: '#ffbaa2',
-          backgroundColor: 'white',
-          data: {{ yhat }},
-          tension: 0.5,
-          fill: false
-        }, {
-          label: '예측 최소 가격(원/kg)',
-          borderColor: '#29b6f6',
-          backgroundColor: 'white',
-          data: {{ yhat_l}},
-          tension: 0.5,
-          fill: false
-        }, {
-          label: '예측 최대 가격(원/kg)',
-          borderColor: '#29b6f6',
-          backgroundColor: 'white',
-          data: {{ yhat_u}},
-          tension: 0.5,
-          fill: false
-        }]
-      },
-      options: {
-        tooltips: {
-          mode: 'nearest'
-        },
-        scales: {
-          yAxes: [{
-            id: 'A',
-            type: 'linear',
-            position: 'left',
-            ticks: {
-              min: 1200,
-              max: 2000,
-              stepSize: 200,
-              callback: function(value, index, values) {
-                return value + ' 원';
-              }
-            }
-          },]
-        },
-        elements: {
-          line: {
-            tension: 0, // disables bezier curves
-          },
-          point: {
-            radius: 4,
-            borderWidth: 2,
-            pointStyle: 'circle'
-          }
-        }
-      }
-    });
-
-</script>
-<!--모든 품목 최근 5년 가격,물량 변동-->
-<script>
-    var ctx = document.getElementById('chart3').getContext('2d');
-            new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: ['18.Q1','Q2','Q3','Q4',
-                        '19.Q1','Q2','Q3','Q4',
-                        '20.Q1','Q2','Q3','Q4',
-                        '21.Q1','Q2','Q3','Q4',
-                        '22.Q1','Q2','Q3'],
-                datasets: [{
-                  label: '거래물량(톤)',
-                  yAxisID: 'A',
-                  borderColor: '#ffbaa2',
-                  backgroundColor: 'white',
-                  data: {{ deal_quarter }},
-                  fill: false
-                }, {
-                  label: '거래 평균 가격(원/kg)',
-                  yAxisID: 'B',
-                  borderColor: '#91cf96',
-                  backgroundColor: 'white',
-                  data: {{ price_quarter }},
-                  fill: false
-                }]
-              },
-              options: {
-                tooltips: {
-                  mode: 'nearest'
-                },
-                scales: {
-                  yAxes: [{
                     id: 'A',
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                      min: 10000,
-                      max: 100000,
-                      stepSize: 10000,
-                      fontColor: '#ffbaa2',
-                      callback: function(value, index, values) {
-                        return value + ' 톤';
-                      }
+                        suggestedMin: 400,
+                        max: 2600,
+                        stepSize: 200,
+                        callback: function(value, index, values) { return value + ' 원'; }
                     }
-                  }, {
-                    id: 'B',
-                    type: 'linear',
-                    position: 'right',
-                    ticks: {
-                      min: 300,
-                      max: 3000,
-                      stepSize: 300,
-                      fontColor: '#91cf96',
-                      callback: function(value, index, values) {
-                        return value + ' 원';
-                      }
-                    }
-                  }]
-                },
-                elements: {
-                  line: {
-                    tension: 0, // disables bezier curves
-                  },
-                  point: {
-                    radius: 4,
-                    borderWidth: 2,
-                    pointStyle: 'circle'
-                  }
+                }]
+            },
+            plugins: {
+                annotation: {
+                    annotations: [{
+                        type: 'line',
+                        mode: 'vertical',
+                        scaleID: 'A',
+                        value: 800,
+                        borderColor: 'red',
+                        borderWidth: 4,
+                        label: {
+                            content: 'TODAY',
+                            enabled: false,
+                            position: 'top'
+                        }
+                    }]
                 }
-              }
-            });
+            }
+        }
+    });
+
+</script>
+<!-- chart2: 마트 -->
+<script>
+    var data2 = {
+        labels: ['07.20','07.21','07.22','07.23','07.24','07.25','07.26','07.27','07.28','07.29','07.30','08.01','08.02','08.03','08.04'],
+        datasets: [{
+            type: 'line',
+            label: '실제값',
+            yAxisID: 'A',
+            borderColor: '#ffbaa2',
+            backgroundColor: 'white',
+            data: [1200, 1400, 1300, 1400, 1100, 1200, 1300, 1000, 900, 800],
+            fill: false
+        }, {
+            label: '예측값(평균)',
+            borderColor: 'rgba(0,255,0,0.5)',
+            backgroundColor: 'white',
+            data: [1850, 1640, 1830, 1840, 1810, 1950, 1550, 1450, 1850, 1950,
+                    1850, 1750, 1800, 1600, 1700],
+            fill: false
+        }, {
+            label: '예측값(최소)',
+            borderColor: 'rgba(255,0,0,0.3)',
+            backgroundColor: 'white',
+            data: [, , , , , , , , , ,
+                    1650, 1550, 1600, 1400, 1500],
+            fill: false
+        }, {
+            label: '예측값(최대)',
+            borderColor: 'rgba(255,0,0,0.3)',
+            backgroundColor: 'white',
+            data: [, , , , , , , , , ,
+                    2050, 1950, 2000, 1800, 1900],
+            fill: false
+        }]
+    }
+    var chart = new Chart('chart2', {
+        type: 'line',
+        data: data1,
+        options: {
+            scales: {
+                yAxes: [{
+                    id: 'A',
+                    type: 'linear',
+                    position: 'left',
+                    ticks: {
+                        suggestedMin: 400,
+                        max: 2600,
+                        stepSize: 200,
+                        callback: function(value, index, values) { return value + ' 원'; }
+                    }
+                }]
+            }
+        }
+    });
+
+</script>
+<!-- chart3: 1년 -->
+<script>
+    var data3 = {
+        labels: ['21.09', '21.10', '21.11', '21,12', '22.01', '22.02',
+                '22.03', '22.04', '22.05', '22.06', '22.07', '22.08'],
+        datasets: [{
+            label: '대형유통 가격(원)',
+            yAxisID: 'A',
+            borderColor: '#ffbaa2',
+            backgroundColor: 'white',
+            data: [1200, 1400, 1300, 1400, 1100, 1200, 1300, 1000, 900, 800, 800, 1230],
+            fill: false
+        }, {
+            label: '전통시장 가격(원)',
+            borderColor: '#91cf96',
+            backgroundColor: 'white',
+            data: [900, 1200, 1100, 1100, 950, 800, 950, 800, 700, 600, 600, 1030],
+            fill: false
+        }]
+    }
+    var chart = new Chart('chart3', {
+        type: 'line',
+        data: data3,
+        options: {
+            scales: {
+                yAxes: [{
+                    id: 'A',
+                    type: 'linear',
+                    position: 'left',
+                    ticks: {
+                        suggestedMin: 200,
+                        max: 2000,
+                        stepSize: 200,
+                        callback: function(value, index, values) { return value + ' 원'; }
+                    }
+                }]
+            }
+        }
+    });
 
 </script>
 
