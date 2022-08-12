@@ -30,11 +30,6 @@
                                         {% else %}
                                         <i class='uil uil-ellipsis-h'></i>{{ k }}</label>
                                         {% endif %}
-                                        {% if (radio_check | length) > 10 %}
-                                        {% if loop.index == (radio_check | length)//2 %}
-                                        <br>
-                                        {% endif %}
-                                        {% endif %}
                                         {% endfor %}
                                     </form>
                                 </div>
@@ -148,7 +143,7 @@
 <!-- chart1: 동향 -->
 <script>
     var data1 = {
-        labels: [{% for i in date%} '{{i}}', {% endfor %}],
+        labels: [ {% for i in date%} '{{i}}', {% endfor %} ],
         datasets: [{
             type: 'line',
             label: '거래 가격(원/kg)',

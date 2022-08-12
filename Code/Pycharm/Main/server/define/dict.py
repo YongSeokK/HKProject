@@ -21,16 +21,16 @@ class Retail_Dict:
         self.DB_PASSWORD = DB_PASSWORD
         self.DB_NAME = DB_NAME
 
-    def Make_Retail_Dict(self):
+    def RetailDict(self):
         ## 초기 딕셔너리 값
-        KeyDict = {"Foodcrops": {"T": '''rice_T, riceF_T, glutinous_rice_T, 
+        KeyDict = {"Foodcrop": {"T": '''rice_T, riceF_T, glutinous_rice_T, 
                                          bean_T, red_bean_T, green_beans_T, 
                                          sweet_potato_T, potato_T''',
                                  "M": '''rice_M, riceF_M, glutinous_rice_M, 
                                          bean_M, red_bean_M, green_beans_M, 
                                          sweet_potato_M, potato_M'''},
 
-                   "Vegetables": {"T": '''chinese_cabbageF_T, chinese_cabbageW_T, chinese_cabbageS_T, chinese_cabbageH_T,
+                   "Vegetable": {"T": '''chinese_cabbageF_T, chinese_cabbageW_T, chinese_cabbageS_T, chinese_cabbageH_T,
                                           cabbage_T, spinach_T, lettuceR_T, lettuceB_T, 
                                           korean_cabbage_T, leaf_mustard_T, watermelon_T, korean_melon_T, 
                                           cucumberS_T, cucumberD_T, cucumberW_T, 
@@ -55,7 +55,7 @@ class Retail_Dict:
                                           parsley_M, sesame_leaf_M, pimento_M, paprika_M, 
                                           melon_M, garlic_M, cherry_tomato_M, jujube_cherry_tomato_M '''},
 
-                   "Specialcrops": {"T": '''sesame_T, peanut_T, oyster_mushroom_T, oyster_mushroomA_T, 
+                   "Specialcrop": {"T": '''sesame_T, peanut_T, oyster_mushroom_T, oyster_mushroomA_T, 
                                             enoki_mushroom_T, king_oyster_mushroom_T, walnut_T, almond_T''',
                                     "M": '''sesame_M, peanut_M, oyster_mushroom_M, oyster_mushroomA_M, 
                                             enoki_mushroom_M, king_oyster_mushroom_M, walnut_M, almond_M'''},
@@ -72,10 +72,10 @@ class Retail_Dict:
                                      lemon_M, cherry_M, raisin_M, dried_blueberries_M, mango_M'''}}
         try:
             ## DB 연결
-            db = pymysql.Connect(host=DB_HOST,
-                                 user=DB_USERNAME,  # db 계정
-                                 password=DB_PASSWORD,  # db 비밀 번호
-                                 database=DB_NAME)  # 접속 하고자 하는 db 명
+            db = pymysql.Connect(host=self.DB_HOST,
+                                 user=self.DB_USERNAME,  # db 계정
+                                 password=self.DB_PASSWORD,  # db 비밀 번호
+                                 database=self.DB_NAME)  # 접속 하고자 하는 db 명
 
             ## DB 작업
             with db:
@@ -121,13 +121,13 @@ class Retail_Dict:
 
                                     ## 기준일이 되는 날부터 계산
                                     if date_diff < 1:
-                                        if category == 'Foodcrops':
+                                        if category == 'Foodcrop':
                                             price = [data[1], data[3], data[4], data[5], data[6], data[7], data[8]]
                                             price = tuple(price)
                                             DataDictTmp[date] = price
                                             DataDict.update(DataDictTmp)
 
-                                        elif category == 'Vegetables':
+                                        elif category == 'Vegetable':
                                             chinese_cabbage_tuple = data[1: 5]
                                             radish_tuple = data[20: 24]
                                             try:
@@ -151,7 +151,7 @@ class Retail_Dict:
                                             DataDictTmp[date] = price
                                             DataDict.update(DataDictTmp)
 
-                                        elif category == 'Specialcrops':
+                                        elif category == 'Specialcrop':
                                             price = [data[1], data[2], data[3], data[4], data[5], data[6], data[7],
                                                      data[8]]
                                             price = tuple(price)
@@ -203,12 +203,15 @@ class Retail_Dict:
                     cur.close()
         except Exception as e:
             Result = traceback.format_exc()
+        print('--------------------------------------------------')
+        print('--------------------------------------------------')
+        print('--------------------------------------------------')
         return Result
 
 
-retail_dict = Retail_Dict(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
-result_dict = retail_dict.Make_Retail_Dict()
-print(result_dict)
+# retail_dict = Retail_Dict(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
+# result_dict = retail_dict.Make_Retail_Dict()
+# print(result_dict)
 
 '''
 식량작물 : 

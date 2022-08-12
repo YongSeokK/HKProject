@@ -9,14 +9,14 @@ import pymysql
 class ChartData:
     ### init 설정
     def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                 csv_FolderPath, Category_Kor, Category_List, category, key_produce):
+                 csv_FolderPath, Category_Kor, Category_List_W, category, key_produce):
         self.DB_USERNAME = DB_USERNAME
         self.DB_HOST = DB_HOST
         self.DB_PASSWORD = DB_PASSWORD
         self.DB_NAME = DB_NAME
         self.csv_FolderPath = csv_FolderPath
         self.Category_Kor = Category_Kor
-        self.Category_List = Category_List
+        self.Category_List_W = Category_List_W
         self.category = category
         self.key_produce = key_produce
 
@@ -29,7 +29,7 @@ class ChartData:
             ## DB 작업
             with db:
                 with db.cursor() as cur:
-                    button = self.Category_List[self.Category_Kor.index(self.category)][self.key_produce]
+                    button = self.Category_List_W[self.Category_Kor.index(self.category)][self.key_produce]
                     # 리스트2 [리스트1인덱스 (리스트1의 값 = category)][리스트2의 해당 딕셔너리 키 값 = key_produce]
                     sql1 = 'SELECT date, ' + button + ' FROM Wholesale_price ORDER BY date DESC LIMIT 14;'  # 열 선택 & 열 내림차순 행 제한
                     cur.execute(sql1)
@@ -51,7 +51,7 @@ class ChartData:
                     # Prophrt : DB_source 파일의 csv 가져오기
                     today = datetime.today().strftime('%Y%m%d')
                     test_df = pd.read_csv(
-                        self.csv_FolderPath + 'wholesale\\' + '20220811' + '_wholesale_' + button + '.csv')
+                        self.csv_FolderPath + 'wholesale\\' + today+ '_wholesale_' + button + '.csv')
                     date_f = []  # 예측 날짜 f=future
                     ds_val = test_df['ds'].values.tolist()
                     for i in ds_val:

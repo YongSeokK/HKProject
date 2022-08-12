@@ -29,10 +29,10 @@ def load_logged_in_user():
         g.nickname = user_nickname
         g.user = user_id
 
-
 # 메인 홈
 @bp.route('/', methods=('GET', 'POST'))
 def index():
+
     return render_template('index.html')
 
 

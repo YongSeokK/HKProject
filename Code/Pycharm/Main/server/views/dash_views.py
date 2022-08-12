@@ -4,8 +4,8 @@ import pymysql
 from flask import Blueprint, request, render_template, url_for, session, flash
 from werkzeug.utils import redirect
 
-from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, csv_FolderPath, Category_Kor, Category_List, \
-    Category_List2
+from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict, \
+    Category_List_W, Category_radioList_W, Category_List_R, Category_radioList_R, Produce_Num
 from server.define.chart_data import ChartData
 from server.models import Food_recipe
 
@@ -40,7 +40,7 @@ def wholesale():
                 print('도매: ' + option)
                 option = option.split('_')
                 category = option[0]  # 카테고리
-                dic_set = Category_List2[Category_Kor.index(category)]
+                dic_set = Category_radioList_W[Category_Kor.index(category)]
                 radio_check = copy.deepcopy(dic_set)  # 딕셔너리 깊은 복사
                 key_produce = option[1]  # 농산물
                 radio_check[key_produce] = ' checked="checked" '
@@ -49,7 +49,7 @@ def wholesale():
                 # def chart_data 리턴 값 순차대로 대입
                 # List: 날짜, 가격, 거래량, 미래 날짜, 예측 중간, 최소, 최대, 가격 분기, 거래량 분기
                 MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                                    csv_FolderPath, Category_Kor, Category_List, category, key_produce)
+                                    csv_FolderPath, Category_Kor, Category_List_W, category, key_produce)
 
                 # date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
                 #                                                                                           key_produce)
@@ -90,14 +90,14 @@ def wholesale():
             else:
                 category = request.form.get('category')
                 print('도매: ' + category)
-                dic_set = Category_List2[Category_Kor.index(category)]
+                dic_set = Category_radioList_W[Category_Kor.index(category)]
                 radio_check = copy.deepcopy(dic_set)
                 keys_list = list(radio_check.keys())
                 key_produce = keys_list[0]
                 radio_check[key_produce] = ' checked="checked" '
 
                 MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                                    csv_FolderPath, Category_Kor, Category_List, category, key_produce)
+                                    csv_FolderPath, Category_Kor, Category_List_W, category, key_produce)
                 chart1, chart2, chart3 = MyChart.Wholesale()
 
                 print("chart1['price']          :" + str(chart1['price']))
@@ -146,6 +146,14 @@ def wholesale():
                                        stepSize_deal_quarter=chart3['stepSize_deal_quarter'])
 
 
+from server.define.dict import Retail_Dict
+
+retail_dict = Retail_Dict(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
+result_dict = retail_dict.RetailDict()
+
+# print(result_dict['seoul'])
+
+
 # Dashboard_소매
 @bp.route('/retail', methods=('GET', 'POST'))
 def retail():
@@ -161,35 +169,96 @@ def retail():
                 option = option.split('_')
                 region = option[0]
                 category = option[1]
-                dic_set = Category_List2[Category_Kor.index(category)]
+                dic_set = Category_radioList_R[Category_Kor.index(category)]
                 radio_check = copy.deepcopy(dic_set)
                 key_produce = option[2]
                 radio_check[key_produce] = ' checked="checked" '
 
-                MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                                    csv_FolderPath, Category_Kor, Category_List, category, key_produce)
-                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = MyChart.Wholesale()
-                return render_template('dash/retail.html', region=region, category=category, key_produce=key_produce,
-                                       radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
-                                       yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,
-                                       price_quarter=price_quarter, deal_quarter=deal_quarter)
+                # produce = '복숭아'
+                button = Category_List_R[Category_Kor.index(category)][key_produce]
+                num = Produce_Num[button]
+                date = []
+                result = []
+                region_Eng = Region_Dict[region]
+                print(Category_Eng[Category_Kor.index(category)])
+                for i in list(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['M'].keys()):
+                    date.append(str(i)[4:6] + '.' + str(i)[6:8])
+                    result.append(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['M'][i][num])
+                print(date, result)
+
+                return render_template('dash/retail.html',
+                                       region=region, category=category, key_produce=key_produce,
+                                       radio_check=radio_check)
             else:
                 region = request.form.get('region')
                 category = request.form.get('category')
                 print('소매: ' + region + '_' + category)
-                dic_set = Category_List2[Category_Kor.index(category)]
+                dic_set = Category_radioList_R[Category_Kor.index(category)]
                 radio_check = copy.deepcopy(dic_set)
                 keys_list = list(radio_check.keys())
                 key_produce = keys_list[0]
                 radio_check[key_produce] = ' checked="checked" '
 
-                MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                                    csv_FolderPath, Category_Kor, Category_List, category, key_produce)
-                date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = MyChart.Wholesale()
-                return render_template('dash/retail.html', region=region, category=category, key_produce=key_produce,
-                                       radio_check=radio_check, date=date, price=price, deal=deal, date_f=date_f,
-                                       yhat=yhat, yhat_l=yhat_l, yhat_u=yhat_u,
-                                       price_quarter=price_quarter, deal_quarter=deal_quarter)
+                # produce = '복숭아'
+                # print(list(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['M'].keys())[-10:])
+                button = Category_List_R[Category_Kor.index(category)][key_produce]
+                num = Produce_Num[button]
+                date = []
+                result_t = []
+                result_t_total = []
+                result_m = []
+                result_m_total = []
+                region_Eng=Region_Dict[region]
+                print(Category_Eng[Category_Kor.index(category)])
+                for i in list(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['T'].keys()):
+                    date.append(str(i)[4:6] + '.' + str(i)[6:8])
+                    result_t.append(int(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['T'][i][num]))
+                for i in list(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['T'].keys())[-10:]:
+                    # date.append(str(i)[4:6] + '.' + str(i)[6:8])
+                    result_t_total.append(int(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['T'][i][num]))
+                print(date)
+                print('T', result_t,result_t_total)
+                for i in list(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['M'].keys()):
+                    # date.append(str(i)[4:6] + '.' + str(i)[6:8])
+                    result_m.append(int(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['M'][i][num]))
+                for i in list(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['M'].keys())[-10:]:
+                    # date.append(str(i)[4:6] + '.' + str(i)[6:8])
+                    result_m_total.append(int(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['M'][i][num]))
+                print('M',result_m, result_m_total)
+                # Prophrt : DB_source 파일의 csv 가져오기
+                from datetime import datetime
+                import pandas as pd
+                today = datetime.today().strftime('%Y%m%d')
+                test_df_T = pd.read_csv(
+                    csv_FolderPath + 'retail\\' + today + '_retail_' + button + '_T.csv')
+                test_df_M = pd.read_csv(
+                    csv_FolderPath + 'retail\\' + today + '_retail_' + button + '_M.csv')
+                # date_f = []  # 예측 날짜 f=future
+                ds_val = test_df_T['ds'].values.tolist()
+                for i in ds_val[0:5]:
+                    date.append(str(i)[5:7] + '.' + str(i)[8:10])
+                yhat_T = list(map(int,round(test_df_T['yhat'], -1).values.tolist()[0:5]))  # 중간값 1의 자리에서 반올림
+                yhat_l_T = list(map(int,round(test_df_T['yhat_lower'], -1).values.tolist()[0:5]))  # 최솟값
+                yhat_u_T = list(map(int,round(test_df_T['yhat_upper'], -1).values.tolist()[0:5]))  # 최댓값
+                yhat_M = list(map(int,round(test_df_M['yhat'], -1).values.tolist()[0:5]))  # 중간값 1의 자리에서 반올림
+                yhat_l_M = list(map(int,round(test_df_M['yhat_lower'], -1).values.tolist()[0:5]))  # 최솟값
+                yhat_u_M = list(map(int,round(test_df_M['yhat_upper'], -1).values.tolist()[0:5]))  # 최댓값
+                print(date)
+                print('평균: ',yhat_T)
+                result_t_total.extend(yhat_T)
+                # yhat_l_T = olist + yhat_l_T
+                # yhat_u_T = olist + yhat_u_T
+                print('최소: ',yhat_l_T)
+                print('최대: ',yhat_u_T)
+                print('평균: ', yhat_M)
+                print('최소: ', yhat_l_M)
+                print('최대: ', yhat_u_M)
+
+                return render_template('dash/retail.html',
+                                       region=region, category=category, key_produce=key_produce,
+                                       radio_check=radio_check,
+                                       date=date,result_t=result_t,result_t_total=result_t_total,
+                                       yhat_l_T=yhat_l_T,yhat_u_T=yhat_u_T)
 
 
 # Dashboard_가격비교_소매
