@@ -178,41 +178,58 @@ class ChartData:
 
 def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict, Category_List_R, Produce_Num,
            region, category, key_produce):
-    button = Category_List_R[Category_Kor.index(category)][key_produce]
-    num = Produce_Num[button]
-    date = []
-    result_t = []
-    result_t_total = []
-    result_m = []
-    result_m_total = []
-    region_Eng = Region_Dict[region]
-    print(Category_Eng[Category_Kor.index(category)], '_', region_Eng, '_', key_produce)
+    # 소매가격 딕셔너리, csv 폴더경로, 분류 한국어, 분류 영어, 지역 딕셔너리, 농산물 딕셔너리, 소매가격 딕셔너리 농산물 순서,
+    #   지역, 분류, 선택 농산물
+
+    category_index = Category_Kor.index(category)  # 한글로 입력된 분류 카테고리 순서 인덱스로 추출
+    category_D = Category_List_R[category_index]  # 선택 농산물 분류 딕셔너리 불러오기
+    button = category_D[key_produce]  # 한글로 입력된 농산물 영어로 번역
+    produce_index = Produce_Num[button]  # 소매 딕셔너리에서 농산물 순서 넘버 딕셔너리에서 불러오기
+    date = []  # 날짜
+    result_t = []  # 선택 지역 시장 가격
+    result_t_total = []  # 전체 지역 시장 가격
+    result_m = []  # 선택 지역 마트 가격
+    result_m_total = []  # 전체 지역 마트 가격
+    region_Eng = Region_Dict[region]  # 한글로 입력된 지역, 지역 딕셔너리에서 영어로 번역
+    print(Category_Eng[category_index], '_', region_Eng, '_', key_produce)
     print('----------')
-    for i in list(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['T'].keys())[-10:]:
+
+    category_E = Category_Eng[category_index]  # 선택 분류 영어로 불러오기
+    # 소매 딕셔너리에서 지역, 분류, 시장&마트 순차적으로 키 입력하여 날짜 키 값 불러오기
+    # list(result_dict[region_Eng][category_E]['T'].keys())
+
+    # 시장 data
+    for i in list(result_dict[region_Eng][category_E]['T'].keys())[-10:]:
         date.append(str(i)[4:6] + '.' + str(i)[6:8])
         result_t.append(
-            int(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['T'][i][num]))
-    for i in list(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['T'].keys())[-10:]:
+            int(result_dict[region_Eng][category_E]['T'][i][produce_index]))
+    for i in list(result_dict['total'][category_E]['T'].keys())[-10:]:
         result_t_total.append(
-            int(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['T'][i][num]))
+            int(result_dict['total'][category_E]['T'][i][produce_index]))
     print(date)
     print('T_', '시장 지역: ', result_t, ', 시장 전체: ', result_t_total)
-    for i in list(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['M'].keys())[-10:]:
+
+    # 마트 data
+    for i in list(result_dict[region_Eng][category_E]['M'].keys())[-10:]:
         result_m.append(
-            int(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['M'][i][num]))
-    for i in list(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['M'].keys())[-10:]:
+            int(result_dict[region_Eng][category_E]['M'][i][produce_index]))
+    for i in list(result_dict['total'][category_E]['M'].keys())[-10:]:
         result_m_total.append(
-            int(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['M'][i][num]))
+            int(result_dict['total'][category_E]['M'][i][produce_index]))
     print('M_', '마트 지역:', result_m, ', 마트 전체: ', result_m_total)
+
     # Prophrt : DB_source 파일의 csv 가져오기
     filePath = glob(csv_FolderPath + 'retail\\' + '*_retail_' + button + '*.csv')
+
+    # 파일 이름 확인 용도 5줄 주석 처리 가능
     filename = []
     for i in filePath:
         re = i.split('retail\\')[1]
         filename.append(re)
     print('csv file: ', filename)
-    test_df_T = pd.read_csv(filePath[1])
-    test_df_M = pd.read_csv(filePath[0])
+
+    test_df_T = pd.read_csv(filePath[1])  # 시장 csv
+    test_df_M = pd.read_csv(filePath[0])  # 마트 csv
     ds_val = test_df_T['ds'].values.tolist()
     for i in ds_val[0:5]:
         date.append(str(i)[5:7] + '.' + str(i)[8:10])
@@ -224,17 +241,20 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     yhat_u_M = list(map(int, round(test_df_M['yhat_upper']).values.tolist()[0:5]))  # 최댓값
     print('차트 날짜: ', date)
     print('----------')
+
     print('시장 평균: ', yhat_T)
-    result_t_total.extend(yhat_T)
+    result_t_total.extend(yhat_T)  # 전체 지역 과거 값에 예측값 합치기
     print('시장 전체 값: ', result_t_total)
     print('시장 예측 최소: ', yhat_l_T)
     print('시장 예측 최대: ', yhat_u_T)
     print('----------')
+
     print('마트 평균: ', yhat_M)
-    result_m_total.extend(yhat_M)
+    result_m_total.extend(yhat_M)  # 전체 지역 과거 값에 예측값 합치기
     print('마트 전체 값: ', result_m_total)
     print('마트 예측 최소: ', yhat_l_M)
     print('마트 예측 최대: ', yhat_u_M)
+
     # chart1: <시장> 날짜, 선택 지역 과거값, 전체 지역 과거+예측 평균값, 예측 최솟값, 예측 최댓값
     chart1 = {'date': date,
               'result_t': result_t, 'result_t_total': result_t_total, 'yhat_l_T': yhat_l_T, 'yhat_u_T': yhat_u_T}

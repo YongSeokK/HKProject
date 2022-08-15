@@ -115,10 +115,11 @@ def find_img():
     temp_json = json.loads(temp)
     img_tmp = temp_json['secureUrls']
 
-    URLList = re.sub('List\(|\)', "", img_tmp).split(',')  # URLList은 챗봇에서 사용자가 보낸 사진의 URL주소
+    URLList = re.sub('List\\(|\\)', "", img_tmp).split(',')  # URLList은 챗봇에서 사용자가 보낸 사진의 URL주소
     UserInfo = req_json['userRequest']['user']['id']  # UserInfo 는 유저의 아이디값
 
     dir_path = ("C:\\Users\\hk_edu\\Desktop\\project2\\Code\\Pycharm\\Main\\server\\static\\upload_img\\")
+    print('dir_path: ', glob(dir_path))
     if os.path.exists(dir_path):
         if len(glob(dir_path + '\\*')) != 0:
             for file in glob(dir_path + '\\*'):
@@ -128,12 +129,11 @@ def find_img():
         urllib.request.urlretrieve(i,
                                    "C:\\Users\\hk_edu\\Desktop\\project2\\Code\\Pycharm\\Main\\server\\static\\upload_img\\" + str(
                                        UserInfo) + "food" + str(cnt) + ".jpg")
-        cnt = cnt + 1
+        cnt += 1
 
     # 위의 코드는 URL주소를 이용하여 로컬피시에 저장
-
     Folder_List = glob("C:\\Users\\hk_edu\\Desktop\\project2\\Code\\Pycharm\\Main\\server\\static\\upload_img\\*.jpg")
-    print(Folder_List)
+    print('Folder_List: ', Folder_List)
     #  Folder_List 는 폴더에 저장된 이미지주소를 리스트로 받아옴
     #  ex) ['1.jpg','2.jpg', '3.jpg']
 
@@ -354,7 +354,6 @@ def find_ingredients():
         }
     }
     return jsonify(rets)
-    print('완료')
 
 
 ## 텍스트로 검색
