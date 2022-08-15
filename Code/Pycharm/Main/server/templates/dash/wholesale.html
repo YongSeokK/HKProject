@@ -171,7 +171,7 @@
                     position: 'left',
                     ticks: {
                         min: 0,
-                        max: {{ (max_deal + stepSize_deal)|round(2) }},
+                        max: {{ stepSize_deal * 6 }},
                         stepSize: {{ stepSize_deal }},
                         fontColor: '#ffbaa2',
                         callback: function(value, index, values) { return value + ' kg'; }
@@ -181,7 +181,7 @@
                     position: 'right',
                     ticks: {
                         min: 0,
-                        max: {{ max_price + stepSize_price * 3 }},
+                        max: {{ stepSize_price * 6 }},
                         stepSize: {{ stepSize_price }},
                         fontColor: '#91cf96',
                         callback: function(value, index, values) { return value + ' 원'; }
@@ -227,9 +227,9 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        suggestedMin: 0,
-                        max: {{ max_yhat + stepSize_yhat*2 }},
-                        stepSize: {{ stepSize_yhat }},
+                        min: 0,
+                        max: {{ stepSize_yhat * 7 }},
+                        stepSize: {{ stepSize_yhat * 1 }},
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
                 }]
@@ -273,9 +273,9 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        suggestedMin: {{ min_deal_quarter }},
-                        max: {{ max_deal_quarter + stepSize_deal_quarter * 3 }},
-                        stepSize: {{ stepSize_deal_quarter }},
+                        suggestedMin: 0,
+                        max: {{ stepSize_deal_quarter * 8 }},
+                        stepSize: {{ stepSize_deal_quarter * 2 }},
                         fontColor: '#ffbaa2',
                         callback: function(value, index, values) { return value + ' 톤'; }
                     }
@@ -284,8 +284,8 @@
                     type: 'linear',
                     position: 'right',
                     ticks: {
-                        suggestedMin: {{ min_price_quarter }},
-                        max: {{ max_price_quarter + stepSize_price_quarter * 3 }},
+                        suggestedMin: 0,
+                        max: {{ stepSize_price_quarter * 8 }},
                         stepSize: {{ stepSize_price_quarter }},
                         fontColor: '#91cf96',
                         callback: function(value, index, values) { return value + ' 원'; }

@@ -5,7 +5,7 @@ import pymysql
 from tqdm import tqdm
 
 from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, \
-    Area_Dict, Retail_FolderPath, RecipeData_FilePath, WholesaleVolume_FilePath, WholesalePrice_FilePath
+    Region_Dict, Retail_FolderPath, RecipeData_FilePath, WholesaleVolume_FilePath, WholesalePrice_FilePath
 
 #################### DB 초기 설정 ####################
 db = pymysql.Connect(host=DB_HOST,
@@ -106,7 +106,7 @@ for file in tqdm(glob(Retail_FolderPath + '*.json'), desc='소매 DB INSERT', mi
         for price in data_List.values():
             Total_List.append(price[0])
             Total_List.append(price[1])
-    cursor.execute("SHOW columns FROM {}_retail".format(Area_Dict[area]))
+    cursor.execute("SHOW columns FROM {}_retail".format(Region_Dict[area]))
 
     col_Text = ''
     for cnt, column in enumerate(cursor.fetchall()):
@@ -116,7 +116,7 @@ for file in tqdm(glob(Retail_FolderPath + '*.json'), desc='소매 DB INSERT', mi
             col_Text = col_Text + "," + column[0]
 
     # DB 쿼리문
-    query = "INSERT INTO {}_retail ({}) VALUES {}".format(Area_Dict[area], col_Text, tuple(Total_List))
+    query = "INSERT INTO {}_retail ({}) VALUES {}".format(Region_Dict[area], col_Text, tuple(Total_List))
     cursor.execute(query)
     db.commit()
 #################### 전체 소매 데이터 ####################

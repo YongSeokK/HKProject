@@ -4,7 +4,7 @@ import pymysql
 from tqdm import tqdm
 
 
-class Chatbot_Iprice:
+class Chatbot_iprice:
     ### init 설정
     def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME):
         self.DB_USERNAME = DB_USERNAME
@@ -448,7 +448,6 @@ class Chatbot_Iprice:
         except Exception as e:
             Result = traceback.format_exc()
         return Result
-
 
 # retail_dict = Chatbot_Iprice(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
 # result_dict = retail_dict.Price_Dict()

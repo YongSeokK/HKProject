@@ -1,6 +1,6 @@
 import math
 import traceback
-from datetime import datetime
+from glob import glob
 
 import pandas as pd
 import pymysql
@@ -49,9 +49,8 @@ class ChartData:
                         deal.append(j[0] / 1000)  # 1000kg 순자 단위 조정
 
                     # Prophrt : DB_source 파일의 csv 가져오기
-                    today = datetime.today().strftime('%Y%m%d')
-                    test_df = pd.read_csv(
-                        self.csv_FolderPath + 'wholesale\\' + today+ '_wholesale_' + button + '.csv')
+                    filename = glob(self.csv_FolderPath + 'wholesale\\' + '*_wholesale_' + button + '.csv')[0]
+                    test_df = pd.read_csv(filename)
                     date_f = []  # 예측 날짜 f=future
                     ds_val = test_df['ds'].values.tolist()
                     for i in ds_val:
@@ -132,31 +131,33 @@ class ChartData:
             return message
 
         ## chart 구성 요소
-        math.floor(1234 / 100) * 100  # 100의 자리에서 내림
-        math.ceil(1234 / 100) * 100  # 100의 자리에서 올림
         # chart1
         min_price = math.floor(min(price) / 100) * 100
         max_price = math.ceil(max(price) / 100) * 100
-        stepSize_price = round(max(price), -2) / 5
+        stepSize_price = round(max_price / 5, -2)  # 10의 자리에서 반올림
 
-        min_deal = math.floor(min(deal) / 100) * 100
-        max_deal = math.ceil(max(deal) / 100) * 100
-        if min(deal) < 2:
-            stepSize_deal = round(round(max(deal), 2) / 5, 2)
+        if max(deal) < 10:
+            min_deal = math.floor(min(deal))
+            max_deal = math.ceil(max(deal))
+        elif max(deal) < 1:
+            min_deal = round(math.floor(min(deal)), 1)
+            max_deal = round(math.ceil(max(deal)), 1)
         else:
-            stepSize_deal = round(round(max(deal), -2) / 5, -2)
+            min_deal = math.floor(min(deal) / 100) * 100
+            max_deal = math.ceil(max(deal) / 100) * 100
+        stepSize_deal = math.ceil(max_deal / 5)
         # chart2
         min_yhat = round(min(yhat_l), -2)
-        max_yhat = round(max(yhat), -2)
-        stepSize_yhat = round(max(yhat_u), -2) / 5
+        max_yhat = round(max(yhat_u), -2)
+        stepSize_yhat = round(max_yhat / 5, -2)
         # chart3
         min_price_quarter = math.floor(min(price_quarter) / 1000) * 1000
         max_price_quarter = math.ceil(max(price_quarter) / 1000) * 1000
-        stepSize_price_quarter = round(max(price_quarter), -3) / 5
+        stepSize_price_quarter = round(max(price_quarter) / 5, -1)
 
         min_deal_quarter = math.floor(min(deal_quarter) / 1000) * 1000
         max_deal_quarter = math.ceil(max(deal_quarter) / 1000) * 1000
-        stepSize_deal_quarter = round(max(deal_quarter), -3) / 5
+        stepSize_deal_quarter = round(max(deal_quarter) / 5, -1)
         ##
 
         # chart1: 날짜, 가격, 거래량, 최소 가격, 최대 가격, 가격 크기, 최소 거래량, 최대 거래량, 거래량 크기
@@ -173,3 +174,71 @@ class ChartData:
                   'min_deal_quarter': min_deal_quarter, 'max_deal_quarter': max_deal_quarter,
                   'stepSize_deal_quarter': stepSize_deal_quarter}
         return chart1, chart2, chart3
+
+
+def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict, Category_List_R, Produce_Num,
+           region, category, key_produce):
+    button = Category_List_R[Category_Kor.index(category)][key_produce]
+    num = Produce_Num[button]
+    date = []
+    result_t = []
+    result_t_total = []
+    result_m = []
+    result_m_total = []
+    region_Eng = Region_Dict[region]
+    print(Category_Eng[Category_Kor.index(category)], '_', region_Eng, '_', key_produce)
+    print('----------')
+    for i in list(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['T'].keys())[-10:]:
+        date.append(str(i)[4:6] + '.' + str(i)[6:8])
+        result_t.append(
+            int(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['T'][i][num]))
+    for i in list(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['T'].keys())[-10:]:
+        result_t_total.append(
+            int(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['T'][i][num]))
+    print(date)
+    print('T_', '시장 지역: ', result_t, ', 시장 전체: ', result_t_total)
+    for i in list(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['M'].keys())[-10:]:
+        result_m.append(
+            int(result_dict[region_Eng][Category_Eng[Category_Kor.index(category)]]['M'][i][num]))
+    for i in list(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['M'].keys())[-10:]:
+        result_m_total.append(
+            int(result_dict['total'][Category_Eng[Category_Kor.index(category)]]['M'][i][num]))
+    print('M_', '마트 지역:', result_m, ', 마트 전체: ', result_m_total)
+    # Prophrt : DB_source 파일의 csv 가져오기
+    filePath = glob(csv_FolderPath + 'retail\\' + '*_retail_' + button + '*.csv')
+    filename = []
+    for i in filePath:
+        re = i.split('retail\\')[1]
+        filename.append(re)
+    print('csv file: ', filename)
+    test_df_T = pd.read_csv(filePath[1])
+    test_df_M = pd.read_csv(filePath[0])
+    ds_val = test_df_T['ds'].values.tolist()
+    for i in ds_val[0:5]:
+        date.append(str(i)[5:7] + '.' + str(i)[8:10])
+    yhat_T = list(map(int, round(test_df_T['yhat'], 1).values.tolist()[0:5]))  # 중간값 반올림
+    yhat_l_T = list(map(int, round(test_df_T['yhat_lower'], 1).values.tolist()[0:5]))  # 최솟값
+    yhat_u_T = list(map(int, round(test_df_T['yhat_upper'], 1).values.tolist()[0:5]))  # 최댓값
+    yhat_M = list(map(int, round(test_df_M['yhat']).values.tolist()[0:5]))  # 중간값 반올림
+    yhat_l_M = list(map(int, round(test_df_M['yhat_lower']).values.tolist()[0:5]))  # 최솟값
+    yhat_u_M = list(map(int, round(test_df_M['yhat_upper']).values.tolist()[0:5]))  # 최댓값
+    print('차트 날짜: ', date)
+    print('----------')
+    print('시장 평균: ', yhat_T)
+    result_t_total.extend(yhat_T)
+    print('시장 전체 값: ', result_t_total)
+    print('시장 예측 최소: ', yhat_l_T)
+    print('시장 예측 최대: ', yhat_u_T)
+    print('----------')
+    print('마트 평균: ', yhat_M)
+    result_m_total.extend(yhat_M)
+    print('마트 전체 값: ', result_m_total)
+    print('마트 예측 최소: ', yhat_l_M)
+    print('마트 예측 최대: ', yhat_u_M)
+    # chart1: <시장> 날짜, 선택 지역 과거값, 전체 지역 과거+예측 평균값, 예측 최솟값, 예측 최댓값
+    chart1 = {'date': date,
+              'result_t': result_t, 'result_t_total': result_t_total, 'yhat_l_T': yhat_l_T, 'yhat_u_T': yhat_u_T}
+    # chart2: <마트> 선택 지역 과거값, 전체 지역 과거+예측 평균값, 예측 최솟값, 예측 최댓값
+    chart2 = {'result_m': result_m, 'result_m_total': result_m_total, 'yhat_l_M': yhat_l_M, 'yhat_u_M': yhat_u_M}
+
+    return chart1, chart2  # , chart3

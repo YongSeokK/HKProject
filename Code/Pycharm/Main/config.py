@@ -13,7 +13,7 @@ DB_PASSWORD = 'test1234'  # MySQL Password
 DB_NAME = 'projectdb'  # MySQL Name
 
 ## Path - 파이참 프로젝트 가장 상위 폴더 = Main 절대 경로
-Root_Path = 'C:\\G_Project\\Code\\Pycharm\\Main'
+Root_Path = r'C:\Users\sonmj\G_Project\Code\Pycharm\Main'
 #                                                                 #
 #                                                                 #
 #                                                                 #
@@ -34,15 +34,13 @@ WholesalePrice_FilePath = Root_Path + "\\DB_source\\Init\\220726_농산물가격
 
 ## 참고 DATA
 # Source
-Area_Dict = {'광주': 'gwangju', '대구': 'daegu', '대전': 'daejeon', '부산': 'busan',
-             '서울': 'seoul', '울산': 'ulsan', '인천': 'incheon', '전체': 'total'}
 Whole_List = ['농산물가격', '농산물거래량']
 
 # 한글 변환
 Category_Kor = ['식량작물', '특용작물', '채소류', '과일류']
 Category_Eng = ['Foodcrop', 'Specialcrop', 'Vegetable', 'Fruit']
-Region_Dict = {'서울': 'seoul', '인천': 'incheon', '대전': 'daejeon', '광주': 'gwangju', '대구': 'daegu', '울산': 'ulsan',
-               '부산': 'busan'}
+Region_Dict = {'서울': 'seoul', '인천': 'incheon', '대전': 'daejeon', '광주': 'gwangju',
+               '대구': 'daegu', '울산': 'ulsan', '부산': 'busan', '전체': 'total'}
 
 # 도매 식량작물, 특용작물, 채소류, 과일류
 Foodcrop_Dict_W = {'감자': 'potato', '고구마': 'sweet_potato', '콩': 'beans'}

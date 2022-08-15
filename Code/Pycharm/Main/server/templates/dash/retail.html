@@ -146,29 +146,29 @@
         labels: [ {% for i in date%} '{{i}}', {% endfor %} ],
         datasets: [{
             type: 'line',
-            label: '실제값',
+            label: '{{ region }}',
             yAxisID: 'A',
             borderColor: '#ffbaa2',
             backgroundColor: 'white',
             data: {{ result_t }},
             fill: false
         }, {
-            label: '예측값(평균)',
+            label: '전체(평균)',
             borderColor: 'rgba(0,255,0,0.5)',
             backgroundColor: 'white',
-            data: [,,,,,,,,, {% for i in yhat_l_T%} '{{i}}', {% endfor %} ],
+            data: {{ result_t_total }},
             fill: false
         }, {
             label: '예측값(최소)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
-            data: {{ yhat_l_T }},
+            data: [,,,,,,,,,, {% for i in yhat_l_T%} '{{i}}', {% endfor %} ],
             fill: false
         }, {
             label: '예측값(최대)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
-            data: [,,,,,,,,, {% for i in yhat_u_T%} '{{i}}', {% endfor %} ],
+            data: [,,,,,,,,,, {% for i in yhat_u_T%} '{{i}}', {% endfor %} ],
             fill: false
         }]
     };
@@ -212,35 +212,32 @@
 <!-- chart2: 마트 -->
 <script>
     var data2 = {
-        labels: ['07.20','07.21','07.22','07.23','07.24','07.25','07.26','07.27','07.28','07.29','07.30','08.01','08.02','08.03','08.04'],
+        labels: [ {% for i in date%} '{{i}}', {% endfor %} ],
         datasets: [{
             type: 'line',
-            label: '실제값',
+            label: '{{ region }}',
             yAxisID: 'A',
             borderColor: '#ffbaa2',
             backgroundColor: 'white',
-            data: [1200, 1400, 1300, 1400, 1100, 1200, 1300, 1000, 900, 800],
+            data: {{ result_m }},
             fill: false
         }, {
-            label: '예측값(평균)',
+            label: '전체(평균)',
             borderColor: 'rgba(0,255,0,0.5)',
             backgroundColor: 'white',
-            data: [1850, 1640, 1830, 1840, 1810, 1950, 1550, 1450, 1850, 1950,
-                    1850, 1750, 1800, 1600, 1700],
+            data: {{ result_m_total }},
             fill: false
         }, {
             label: '예측값(최소)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
-            data: [, , , , , , , , , ,
-                    1650, 1550, 1600, 1400, 1500],
+            data: [,,,,,,,,,, {% for i in yhat_l_M%} '{{i}}', {% endfor %} ],
             fill: false
         }, {
             label: '예측값(최대)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
-            data: [, , , , , , , , , ,
-                    2050, 1950, 2000, 1800, 1900],
+            data: [,,,,,,,,,, {% for i in yhat_u_M%} '{{i}}', {% endfor %} ],
             fill: false
         }]
     }
@@ -255,8 +252,6 @@
                     position: 'left',
                     ticks: {
                         suggestedMin: 400,
-                        max: 2600,
-                        stepSize: 200,
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
                 }]

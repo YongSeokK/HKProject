@@ -115,7 +115,7 @@ class Retail_Dict:
                                     if table[0] == 'total_retail':
                                         required = (datetime.today() - timedelta(days=365))
                                     else:
-                                        required = (datetime.today() - timedelta(days=14))
+                                        required = (datetime.today() - timedelta(days=20))
 
                                     date_diff = (required - df_date).days
 
@@ -203,8 +203,6 @@ class Retail_Dict:
                     cur.close()
         except Exception as e:
             Result = traceback.format_exc()
-        print('--------------------------------------------------')
-        print('--------------------------------------------------')
         print('--------------------------------------------------')
         return Result
 
