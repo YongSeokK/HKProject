@@ -81,7 +81,29 @@
             <th>사과</th>
             <th>배</th>
         </tr>
+        {% for i,j in df.iterrows() %}
         <tr>
+            <td>
+                {{ i }}
+            </td>
+            <td>
+                {{ j['ds'] }}
+            </td>
+            <td>
+                {{ j['yhat'] }}
+            </td>
+            <td>
+                {{ j['yhat'] }}
+            </td>
+            <td>
+                {{ j['yhat_lower'] }}
+            </td>
+            <td>
+                {{ j['yhat_upper'] }}
+            </td>
+        </tr>
+        {% endfor %}
+        <!--<tr>
             <td data-th="Supplier Code">
                 UPS5005
             </td>
@@ -140,7 +162,7 @@
             <td data-th="Net Amount">
                 $45,255.49
             </td>
-        </tr>
+        </tr>-->
 
         </tbody>
     </table>

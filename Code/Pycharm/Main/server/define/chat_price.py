@@ -3,6 +3,17 @@ import traceback
 import pymysql
 from tqdm import tqdm
 
+#################### DB 초기 설정 ####################
+# DB_USERNAME = 'root'
+# DB_HOST = 'localhost'
+#
+# DB_PASSWORD = 'rkqrhf487'
+# DB_NAME = 'projectdb'
+# SECRET_KEY = 'dev'
+
+
+#####################################################
+
 
 class Chatbot_iprice:
     ### init 설정
@@ -15,23 +26,24 @@ class Chatbot_iprice:
     def Price_Dict(self):
         try:
             ## DB 연결
-            db = pymysql.Connect(host=DB_HOST,
-                                 user=DB_USERNAME,  # db 계정
-                                 password=DB_PASSWORD,  # db 비밀 번호
-                                 database=DB_NAME)  # 접속 하고자 하는 db 명
+            db = pymysql.Connect(host=self.DB_HOST,
+                                 user=self.DB_USERNAME,  # db 계정
+                                 password=self.DB_PASSWORD,  # db 비밀 번호
+                                 database=self.DB_NAME)  # 접속 하고자 하는 db 명
 
             ## DB 작업
             with db:
                 ## 초기 값
-                Result = {}
+                Total_Result = {}
                 Table_List = []
 
                 with db.cursor() as cur:
                     # 쿼리문
-                    sql_retail_table = 'SELECT * FROM total_retail ORDER BY date DESC LIMIT 1;'
+                    sql_retail_table = 'SELECT * FROM total_retail ORDER BY date DESC LIMIT 2;'
                     cur.execute(sql_retail_table)
 
                     for data in tqdm(cur.fetchall()):
+                        Result = {}
                         # print(data)
 
                         try:
@@ -442,13 +454,14 @@ class Chatbot_iprice:
                         Result['소금'] = salt
                         Result['전복'] = abalone
                         Result['흰다리새우'] = shrimp
-
+                        Total_Result[data[0]] = Result
                     cur.close()
 
         except Exception as e:
-            Result = traceback.format_exc()
-        return Result
+            Total_Result = traceback.format_exc()
+        return Total_Result
 
-# retail_dict = Chatbot_Iprice(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
-# result_dict = retail_dict.Price_Dict()
-# print(result_dict)
+
+# tmp = Chatbot_iprice(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
+# tmp2 = tmp.Price_Dict()
+# print(tmp2)

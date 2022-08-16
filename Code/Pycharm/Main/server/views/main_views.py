@@ -29,11 +29,14 @@ def load_logged_in_user():
         g.nickname = user_nickname
         g.user = user_id
 
+
 # 메인 홈
 @bp.route('/', methods=('GET', 'POST'))
 def index():
-
-    return render_template('index.html')
+    import pandas as pd
+    df = pd.read_csv(r'C:\Users\sonmj\G_Project\Code\Pycharm\Main\DB_source\csv\wholesale\20220816_wholesale_apple.csv')
+    print(df)
+    return render_template('index.html', df=df)
 
 
 # 회원 가입
