@@ -143,7 +143,7 @@
 <!-- chart1: 시장 -->
 <script>
     var data1 = {
-        labels: [ {% for i in date%} '{{i}}', {% endfor %} ],
+        labels: [ {% for i in date %} '{{ i }}', {% endfor %} ],
         datasets: [{
             type: 'line',
             label: '{{ region }}',
@@ -162,13 +162,13 @@
             label: '예측값(최소)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
-            data: [,,,,,,,,,, {% for i in yhat_l_T%} '{{i}}', {% endfor %} ],
+            data: [,,,,,,,,,, {% for i in yhat_l_T %} '{{ i }}', {% endfor %} ],
             fill: false
         }, {
             label: '예측값(최대)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
-            data: [,,,,,,,,,, {% for i in yhat_u_T%} '{{i}}', {% endfor %} ],
+            data: [,,,,,,,,,, {% for i in yhat_u_T %} '{{ i }}', {% endfor %} ],
             fill: false
         }]
     };
@@ -212,7 +212,7 @@
 <!-- chart2: 마트 -->
 <script>
     var data2 = {
-        labels: [ {% for i in date%} '{{i}}', {% endfor %} ],
+        labels: [ {% for i in date %} '{{ i }}', {% endfor %} ],
         datasets: [{
             type: 'line',
             label: '{{ region }}',
@@ -231,13 +231,13 @@
             label: '예측값(최소)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
-            data: [,,,,,,,,,, {% for i in yhat_l_M%} '{{i}}', {% endfor %} ],
+            data: [,,,,,,,,,, {% for i in yhat_l_M %} '{{ i }}', {% endfor %} ],
             fill: false
         }, {
             label: '예측값(최대)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
-            data: [,,,,,,,,,, {% for i in yhat_u_M%} '{{i}}', {% endfor %} ],
+            data: [,,,,,,,,,, {% for i in yhat_u_M %} '{{ i }}', {% endfor %} ],
             fill: false
         }]
     }
@@ -263,20 +263,19 @@
 <!-- chart3: 1년 -->
 <script>
     var data3 = {
-        labels: ['21.09', '21.10', '21.11', '21,12', '22.01', '22.02',
-                '22.03', '22.04', '22.05', '22.06', '22.07', '22.08'],
+        labels: [ {% for i in month_List %} '{{ i }}', {% endfor %} ],
         datasets: [{
             label: '대형유통 가격(원)',
             yAxisID: 'A',
             borderColor: '#ffbaa2',
             backgroundColor: 'white',
-            data: [1200, 1400, 1300, 1400, 1100, 1200, 1300, 1000, 900, 800, 800, 1230],
+            data: {{ month_price_T }},
             fill: false
         }, {
             label: '전통시장 가격(원)',
             borderColor: '#91cf96',
             backgroundColor: 'white',
-            data: [900, 1200, 1100, 1100, 950, 800, 950, 800, 700, 600, 600, 1030],
+            data: {{ month_price_M }},
             fill: false
         }]
     }
@@ -291,8 +290,7 @@
                     position: 'left',
                     ticks: {
                         suggestedMin: 200,
-                        max: 2000,
-                        stepSize: 200,
+
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
                 }]

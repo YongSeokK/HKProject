@@ -69,6 +69,23 @@ def wholesale():
                 #           'min_deal_quarter': min_deal_quarter, 'max_deal_quarter': max_deal_quarter,
                 #           'stepSize_deal_quarter': stepSize_deal_quarter}
 
+                print("chart1['price']          :" + str(chart1['price']))
+                print("chart1['min_price']      :" + str(chart1['min_price']))
+                print("chart1['max_price']      :" + str(chart1['max_price']))
+                print("chart1['stepSize_price'] :" + str(chart1['stepSize_price']))
+                print("chart1['deal']           :" + str(chart1['deal']))
+                print("chart1['min_deal']       :" + str(chart1['min_deal']))
+                print("chart1['max_deal']       :" + str(chart1['max_deal']))
+                print("chart1['stepSize_deal']  :" + str(chart1['stepSize_deal']))
+                #print('price_quarter', chart3['price_quarter'])
+                print('deal_quarter', chart3['deal_quarter'])
+                #print('min_price_quarter', chart3['min_price_quarter'])
+                #print('max_price_quarter', chart3['max_price_quarter'])
+                #print('stepSize_price_quarter', chart3['stepSize_price_quarter'])
+                print('min_deal_quarter', chart3['min_deal_quarter'])
+                print('max_deal_quarter', chart3['max_deal_quarter'])
+                print('stepSize_deal_quarter', chart3['stepSize_deal_quarter'])
+
                 return render_template('dash/wholesale.html',
                                        category=category, key_produce=key_produce, radio_check=radio_check,
                                        date=chart1['date'], price=chart1['price'], deal=chart1['deal'],
@@ -152,7 +169,7 @@ retail_dict = Retail_Dict(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
 result_dict = retail_dict.RetailDict()
 
 
-# print(result_dict['seoul'])
+# print(result_dict['total']['Fruit']['M'].keys())
 
 
 # Dashboard_소매
@@ -175,9 +192,9 @@ def retail():
                 key_produce = option[2]
                 radio_check[key_produce] = ' checked="checked" '
 
-                chart1, chart2 = Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng,
-                                        Region_Dict, Category_List_R, Produce_Num,
-                                        region, category, key_produce)
+                chart1, chart2, chart3 = Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng,
+                                                Region_Dict, Category_List_R, Produce_Num,
+                                                region, category, key_produce)
 
                 return render_template('dash/retail.html',
                                        region=region, category=category, key_produce=key_produce,
@@ -185,7 +202,8 @@ def retail():
                                        result_t=chart1['result_t'], result_t_total=chart1['result_t_total'],
                                        yhat_l_T=chart1['yhat_l_T'], yhat_u_T=chart1['yhat_u_T'],
                                        result_m=chart2['result_m'], result_m_total=chart2['result_m_total'],
-                                       yhat_l_M=chart2['yhat_l_M'], yhat_u_M=chart2['yhat_u_M'])
+                                       yhat_l_M=chart2['yhat_l_M'], yhat_u_M=chart2['yhat_u_M'],
+                                       month_price_T=chart3['month_price_T'], month_price_M=chart3['month_price_M'])
             else:
                 region = request.form.get('region')
                 category = request.form.get('category')
@@ -196,9 +214,9 @@ def retail():
                 key_produce = keys_list[0]
                 radio_check[key_produce] = ' checked="checked" '
 
-                chart1, chart2 = Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng,
-                                        Region_Dict, Category_List_R, Produce_Num,
-                                        region, category, key_produce)
+                chart1, chart2, chart3 = Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng,
+                                                Region_Dict, Category_List_R, Produce_Num,
+                                                region, category, key_produce)
 
                 return render_template('dash/retail.html',
                                        region=region, category=category, key_produce=key_produce,
@@ -206,7 +224,9 @@ def retail():
                                        result_t=chart1['result_t'], result_t_total=chart1['result_t_total'],
                                        yhat_l_T=chart1['yhat_l_T'], yhat_u_T=chart1['yhat_u_T'],
                                        result_m=chart2['result_m'], result_m_total=chart2['result_m_total'],
-                                       yhat_l_M=chart2['yhat_l_M'], yhat_u_M=chart2['yhat_u_M'])
+                                       yhat_l_M=chart2['yhat_l_M'], yhat_u_M=chart2['yhat_u_M'],
+                                       month_List=chart3['month_List'],
+                                       month_price_T=chart3['month_price_T'], month_price_M=chart3['month_price_M'])
 
 
 # Dashboard_가격비교_소매

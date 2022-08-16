@@ -1,9 +1,11 @@
 import math
 import traceback
+from datetime import datetime
 from glob import glob
 
 import pandas as pd
 import pymysql
+from dateutil.relativedelta import relativedelta
 
 
 class ChartData:
@@ -46,7 +48,7 @@ class ChartData:
                         # print(i[0], i[1], j[0])\
                         date.append(str(i[0])[4:6] + '.' + str(i[0])[6:8])  # 날짜 형식
                         price.append(int(round(i[1], -1)))  # 1의 자리에서 반올림
-                        deal.append(j[0] / 1000)  # 1000kg 순자 단위 조정
+                        deal.append(round(j[0] / 1000, 2))  # 1000kg 순자 단위 조정
 
                     # Prophrt : DB_source 파일의 csv 가져오기
                     filename = glob(self.csv_FolderPath + 'wholesale\\' + '*_wholesale_' + button + '.csv')[0]
@@ -131,11 +133,23 @@ class ChartData:
             return message
 
         ## chart 구성 요소
+        def a_cipher_math(num):
+            x = '10000'
+            multiplier = len(str(int(num)))
+            re_num = int(x[0:multiplier])
+            return re_num
+
+        def a_cipher_round(num):
+            multiplier = len(str(int(num)))
+            return multiplier
+
         # chart1
         min_price = math.floor(min(price) / 100) * 100
         max_price = math.ceil(max(price) / 100) * 100
-        stepSize_price = round(max_price / 5, -2)  # 10의 자리에서 반올림
-
+        if max(price) < 1:
+            stepSize_price = 400
+        else:
+            stepSize_price = round(max_price / 5, -2)  # 10의 자리에서 반올림
         if max(deal) < 10:
             min_deal = math.floor(min(deal))
             max_deal = math.ceil(max(deal))
@@ -144,12 +158,18 @@ class ChartData:
             max_deal = round(math.ceil(max(deal)), 1)
         else:
             min_deal = math.floor(min(deal) / 100) * 100
-            max_deal = math.ceil(max(deal) / 100) * 100
-        stepSize_deal = math.ceil(max_deal / 5)
+            x = a_cipher_math(max(deal))
+            max_deal = math.ceil(max(deal) / x) * x
+        if max(deal) < 1:
+            stepSize_deal = 0.2
+        else:
+            stepSize_deal = math.ceil(max_deal / 5)
+
         # chart2
         min_yhat = round(min(yhat_l), -2)
         max_yhat = round(max(yhat_u), -2)
         stepSize_yhat = round(max_yhat / 5, -2)
+
         # chart3
         min_price_quarter = math.floor(min(price_quarter) / 1000) * 1000
         max_price_quarter = math.ceil(max(price_quarter) / 1000) * 1000
@@ -157,8 +177,10 @@ class ChartData:
 
         min_deal_quarter = math.floor(min(deal_quarter) / 1000) * 1000
         max_deal_quarter = math.ceil(max(deal_quarter) / 1000) * 1000
-        stepSize_deal_quarter = round(max(deal_quarter) / 5, -1)
-        ##
+        if a_cipher_round(max(deal_quarter)) < 3:
+            stepSize_deal_quarter = round(max(deal_quarter) / 5, 0)
+        else:
+            stepSize_deal_quarter = round(max(deal_quarter) / 5, -1)
 
         # chart1: 날짜, 가격, 거래량, 최소 가격, 최대 가격, 가격 크기, 최소 거래량, 최대 거래량, 거래량 크기
         chart1 = {'date': date, 'price': price, 'deal': deal,
@@ -181,6 +203,7 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     # 소매가격 딕셔너리, csv 폴더경로, 분류 한국어, 분류 영어, 지역 딕셔너리, 농산물 딕셔너리, 소매가격 딕셔너리 농산물 순서,
     #   지역, 분류, 선택 농산물
 
+    # chart1,2
     category_index = Category_Kor.index(category)  # 한글로 입력된 분류 카테고리 순서 인덱스로 추출
     category_D = Category_List_R[category_index]  # 선택 농산물 분류 딕셔너리 불러오기
     button = category_D[key_produce]  # 한글로 입력된 농산물 영어로 번역
@@ -255,10 +278,44 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     print('마트 예측 최소: ', yhat_l_M)
     print('마트 예측 최대: ', yhat_u_M)
 
+    # chart3
+    month_List = []
+    now = datetime.now()  # 오늘 날짜
+    shops = ['T', 'M']
+    price_T, price_M = [], []
+    result = [price_T, price_M]
+    for month in range(11, -1, -1):  # 11개월 전부터 이번 달까지
+        calculation = now - relativedelta(months=month)
+        y_m = calculation.strftime("%y%m")
+        month_List.append((y_m[0:2] + '.' + y_m[2:]))
+        # print(month, y_m)
+        for i, shop in enumerate(shops):
+            date_List = list(result_dict['total'][category_E][shop].keys())
+            month_key_List = [date for date in date_List if str(y_m) in str(date)]
+            cnt = 0
+            price_sum = 0
+            for j in month_key_List:
+                produce_price = result_dict['total'][category_E][shop][j][produce_index]
+                if produce_price == 0:
+                    pass
+                else:
+                    price_sum = price_sum + produce_price
+                    cnt += 1
+            if produce_price == 0:
+                result[i].append(0)
+            else:
+                # print(price_sum, cnt)
+                result[i].append(int(price_sum / cnt))
+    print('월: ', month_List)
+    print('월 평균값(t,m): ', result)
+    month_price_T = price_T
+    month_price_M = price_M
+
     # chart1: <시장> 날짜, 선택 지역 과거값, 전체 지역 과거+예측 평균값, 예측 최솟값, 예측 최댓값
     chart1 = {'date': date,
               'result_t': result_t, 'result_t_total': result_t_total, 'yhat_l_T': yhat_l_T, 'yhat_u_T': yhat_u_T}
     # chart2: <마트> 선택 지역 과거값, 전체 지역 과거+예측 평균값, 예측 최솟값, 예측 최댓값
     chart2 = {'result_m': result_m, 'result_m_total': result_m_total, 'yhat_l_M': yhat_l_M, 'yhat_u_M': yhat_u_M}
-
-    return chart1, chart2  # , chart3
+    # chart3
+    chart3 = {'month_List': month_List, 'month_price_T': month_price_T, 'month_price_M': month_price_M}
+    return chart1, chart2, chart3
