@@ -185,12 +185,9 @@ def retail():
                                        radio_check=radio_check, date=chart1['date'],
                                        result_t=chart1['result_t'], result_t_total=chart1['result_t_total'],
                                        yhat_l_T=chart1['yhat_l_T'], yhat_u_T=chart1['yhat_u_T'],
-                                       stepSize_chart1=chart1['stepSize_chart1'],
-                                       min_x1=chart1['min_x1'], max_x1=chart1['max_x1'],
                                        result_m=chart2['result_m'], result_m_total=chart2['result_m_total'],
                                        yhat_l_M=chart2['yhat_l_M'], yhat_u_M=chart2['yhat_u_M'],
-                                       stepSize_chart2=chart2['stepSize_chart2'],
-                                       month_List=chart3['month_List'], stepSize_chart3=chart3['stepSize_chart3'],
+                                       month_List=chart3['month_List'],
                                        month_price_T=chart3['month_price_T'], month_price_M=chart3['month_price_M'])
             else:
                 region = request.form.get('region')
@@ -211,12 +208,9 @@ def retail():
                                        radio_check=radio_check, date=chart1['date'],
                                        result_t=chart1['result_t'], result_t_total=chart1['result_t_total'],
                                        yhat_l_T=chart1['yhat_l_T'], yhat_u_T=chart1['yhat_u_T'],
-                                       stepSize_chart1=chart1['stepSize_chart1'],
-                                       min_x1=chart1['min_x1'], max_x1=chart1['max_x1'],
                                        result_m=chart2['result_m'], result_m_total=chart2['result_m_total'],
                                        yhat_l_M=chart2['yhat_l_M'], yhat_u_M=chart2['yhat_u_M'],
-                                       stepSize_chart2=chart2['stepSize_chart2'],
-                                       month_List=chart3['month_List'], stepSize_chart3=chart3['stepSize_chart3'],
+                                       month_List=chart3['month_List'],
                                        month_price_T=chart3['month_price_T'], month_price_M=chart3['month_price_M'])
 
 

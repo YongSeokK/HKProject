@@ -230,8 +230,8 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     result_m = []  # 선택 지역 마트 가격
     result_m_total = []  # 전체 지역 마트 가격
     region_Eng = Region_Dict[region]  # 한글로 입력된 지역, 지역 딕셔너리에서 영어로 번역
-    print(Category_Eng[category_index], '_', region_Eng, '_', key_produce)
-    print('----------')
+    # print(Category_Eng[category_index], '_', region_Eng, '_', key_produce)
+    # print('----------')
 
     category_E = Category_Eng[category_index]  # 선택 분류 영어로 불러오기
     # 소매 딕셔너리에서 지역, 분류, 시장&마트 순차적으로 키 입력하여 날짜 키 값 불러오기
@@ -265,7 +265,7 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     for i in filePath:
         re = i.split('retail\\')[1]
         filename.append(re)
-    print('csv file: ', filename)
+    # print('csv file: ', filename)
 
     test_df_T = pd.read_csv(filePath[1])  # 시장 csv
     test_df_M = pd.read_csv(filePath[0])  # 마트 csv
@@ -278,8 +278,8 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     yhat_M = list(map(int, round(test_df_M['yhat']).values.tolist()[0:5]))  # 중간값 반올림
     yhat_l_M = list(map(int, round(test_df_M['yhat_lower']).values.tolist()[0:5]))  # 최솟값
     yhat_u_M = list(map(int, round(test_df_M['yhat_upper']).values.tolist()[0:5]))  # 최댓값
-    print('차트 날짜: ', date)
-    print('----------')
+    # print('차트 날짜: ', date)
+    # print('----------')
 
     print('시장 평균: ', yhat_T)
     result_t_total.extend(yhat_T)  # 전체 지역 과거 값에 예측값 합치기
@@ -327,54 +327,51 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     month_price_T = price_T
     month_price_M = price_M
 
-    # chart1
-    min_chart1 = [min(result_t), min(result_t_total), min(yhat_l_T)]
-    max_chart1 = [max(result_t), max(result_t_total), max(yhat_u_T)]
-    min_price = math.floor(min(min_chart1) / 100) * 100
-    max_price = math.ceil(max(max_chart1) / 100) * 100
-    # max_price = round(max(max_chart1), -2)
-    stepSize_chart1 = round(max_price / 50, -2)
-    if stepSize_chart1 >= 500:
-        stepSize_chart1 = (stepSize_chart1 // 500) * 500
-        if stepSize_chart1 * 7 < max_price:
-            stepSize_chart1 = round(max_price / 50, -2)
-    # print(stepSize_chart1)
-    min_x1 = min_price // stepSize_chart1
-    max_x1 = (max_price // stepSize_chart1) + 1
-    print('-----')
-    print(min_price,max_price,stepSize_chart1)
-    print('-----')
-
-    # chart2
-    min_chart2 = [min(result_m), min(result_m_total), min(yhat_l_M)]
-    max_chart2 = [max(result_m), max(result_m_total), max(yhat_u_M)]
-    max_price = round(max(max_chart2), -2)
-    stepSize_chart2 = round(max_price / 5, -2)
-    if stepSize_chart2 >= 500:
-        stepSize_chart2 = (stepSize_chart2 // 500) * 500
-        if stepSize_chart2 * 7 < max_price:
-            stepSize_chart2 = round(max_price / 5, -2)
-    # print(stepSize_chart2)
-
-    # chart3
-    min_chart3 = [min(month_price_T), min(month_price_M)]
-    max_chart3 = [max(month_price_T), max(month_price_M)]
-    max_price = round(max(max_chart3), -2)
-    stepSize_chart3 = round(max_price / 5, -2)
-    if stepSize_chart3 >= 500:
-        stepSize_chart3 = (stepSize_chart3 // 500) * 500
-        if stepSize_chart3 * 7 < max_price:
-            stepSize_chart3 = round(max_price / 5, -2)
-    # print(stepSize_chart3)
+    # # chart1
+    # min_chart1 = [min(result_t), min(result_t_total), min(yhat_l_T)]
+    # max_chart1 = [max(result_t), max(result_t_total), max(yhat_u_T)]
+    # min_price = math.floor(min(min_chart1) / 100) * 100
+    # max_price = math.ceil(max(max_chart1) / 100) * 100
+    # # max_price = round(max(max_chart1), -2)
+    # stepSize_chart1 = round(max_price / 50, -2)
+    # if stepSize_chart1 >= 500:
+    #     stepSize_chart1 = (stepSize_chart1 // 500) * 500
+    #     if stepSize_chart1 * 7 < max_price:
+    #         stepSize_chart1 = round(max_price / 50, -2)
+    # # print(stepSize_chart1)
+    # min_x1 = min_price // stepSize_chart1
+    # max_x1 = (max_price // stepSize_chart1) + 1
+    # print('-----')
+    # print(min_price,max_price,stepSize_chart1)
+    # print('-----')
+    #
+    # # chart2
+    # min_chart2 = [min(result_m), min(result_m_total), min(yhat_l_M)]
+    # max_chart2 = [max(result_m), max(result_m_total), max(yhat_u_M)]
+    # max_price = round(max(max_chart2), -2)
+    # stepSize_chart2 = round(max_price / 5, -2)
+    # if stepSize_chart2 >= 500:
+    #     stepSize_chart2 = (stepSize_chart2 // 500) * 500
+    #     if stepSize_chart2 * 7 < max_price:
+    #         stepSize_chart2 = round(max_price / 5, -2)
+    # # print(stepSize_chart2)
+    #
+    # # chart3
+    # min_chart3 = [min(month_price_T), min(month_price_M)]
+    # max_chart3 = [max(month_price_T), max(month_price_M)]
+    # max_price = round(max(max_chart3), -2)
+    # stepSize_chart3 = round(max_price / 5, -2)
+    # if stepSize_chart3 >= 500:
+    #     stepSize_chart3 = (stepSize_chart3 // 500) * 500
+    #     if stepSize_chart3 * 7 < max_price:
+    #         stepSize_chart3 = round(max_price / 5, -2)
+    # # print(stepSize_chart3)
 
     # chart1: <시장> 날짜, 선택 지역 과거값, 전체 지역 과거+예측 평균값, 예측 최솟값, 예측 최댓값
     chart1 = {'date': date,
-              'result_t': result_t, 'result_t_total': result_t_total, 'yhat_l_T': yhat_l_T, 'yhat_u_T': yhat_u_T,
-              'stepSize_chart1': stepSize_chart1, 'min_x1': min_x1, 'max_x1': max_x1}
+              'result_t': result_t, 'result_t_total': result_t_total, 'yhat_l_T': yhat_l_T, 'yhat_u_T': yhat_u_T}
     # chart2: <마트> 선택 지역 과거값, 전체 지역 과거+예측 평균값, 예측 최솟값, 예측 최댓값
-    chart2 = {'result_m': result_m, 'result_m_total': result_m_total, 'yhat_l_M': yhat_l_M, 'yhat_u_M': yhat_u_M,
-              'stepSize_chart2': stepSize_chart2}
+    chart2 = {'result_m': result_m, 'result_m_total': result_m_total, 'yhat_l_M': yhat_l_M, 'yhat_u_M': yhat_u_M}
     # chart3
-    chart3 = {'month_List': month_List, 'month_price_T': month_price_T, 'month_price_M': month_price_M,
-              'stepSize_chart3': stepSize_chart3}
+    chart3 = {'month_List': month_List, 'month_price_T': month_price_T, 'month_price_M': month_price_M}
     return chart1, chart2, chart3

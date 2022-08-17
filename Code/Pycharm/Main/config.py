@@ -94,7 +94,7 @@ Category_radioList_R = [Foodcrop_radioDict_R, Specialcrop_radioDict_R, Vegetable
 
 # 소매 딕셔너리 농산물 순서
 Produce_Num = {'rice': 0, 'glutinous_rice': 1, 'bean': 2, 'red_bean': 3, 'green_beans': 4, 'sweet_potato': 5,
-               'potato': 6, 'chinese_cabbage': 0, 'cabbage': 1, 'spinach': 2, 'lettuceR': 3, 'lettuceB_T': 4,
+               'potato': 6, 'chinese_cabbage': 0, 'cabbage': 1, 'spinach': 2, 'lettuceR': 3, 'lettuceB': 4,
                'korean_cabbage': 5, 'leaf_mustard': 6, 'watermelon': 7, 'korean_melon': 8, 'cucumberS': 9,
                'cucumberD': 10, 'cucumberW': 11, 'squash': 12, 'zucchini': 13, 'tomato': 14, 'strawberry': 15,
                'radish': 16, 'carrot': 17, 'yeol_radish': 18, 'dried_red_pepperD': 19, 'dried_red_pepperS': 20,

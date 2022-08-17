@@ -194,8 +194,6 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        min: {{ stepSize_chart1 * min_x1 }},
-                        max: {{ stepSize_chart1 * max_x1 }},
                         fontColor: '#ffbaa2',
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
@@ -277,9 +275,6 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        min: {{ stepSize_chart2 * 2 }},
-                        max: {{ stepSize_chart2 * 7 }},
-                        stepSize: {{ stepSize_chart2 }},
                         fontColor: '#ffbaa2',
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
@@ -325,9 +320,6 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        min: {{ stepSize_chart3 * 2 }},
-                        max: {{ stepSize_chart3 * 7 }},
-                        stepSize: {{ stepSize_chart3 }},
                         fontColor: '#ffbaa2',
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
