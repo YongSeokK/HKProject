@@ -156,21 +156,21 @@ class MyProphet:
                    'orangeU_T', 'orangeA_T', 'orangeU_M', 'orangeA_M']
 
         ## 차후 데이터 프레임에 쌓을 리스트 생성
-        chinese_cabbage_T_data_List = [];
+        chinese_cabbage_T_data_List = []
         chinese_cabbage_M_data_List = []
-        radish_T_data_List = [];
+        radish_T_data_List = []
         radish_M_data_List = []
-        apple_T_data_List = [];
+        apple_T_data_List = []
         apple_M_data_List = []
-        pear_T_data_List = [];
+        pear_T_data_List = []
         pear_M_data_List = []
-        grape_T_data_List = [];
+        grape_T_data_List = []
         grape_M_data_List = []
-        citrus_T_data_List = [];
+        citrus_T_data_List = []
         citrus_M_data_List = []
-        kiwi_T_data_List = [];
+        kiwi_T_data_List = []
         kiwi_M_data_List = []
-        orange_T_data_List = [];
+        orange_T_data_List = []
         orange_M_data_List = []
 
         try:
