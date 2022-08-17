@@ -34,7 +34,7 @@ def load_logged_in_user():
 @bp.route('/', methods=('GET', 'POST'))
 def index():
     import pandas as pd
-    df = pd.read_csv(r'C:\Users\sonmj\G_Project\Code\Pycharm\Main\DB_source\csv\wholesale\20220816_wholesale_apple.csv')
+    df = pd.read_csv(r'C:\G_Project\Code\Pycharm\Main\DB_source\csv\wholesale\20220817_wholesale_apple.csv')
     print(df)
     return render_template('index.html', df=df)
 

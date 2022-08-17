@@ -13,7 +13,7 @@ DB_PASSWORD = 'test1234'  # MySQL Password
 DB_NAME = 'projectdb'  # MySQL Name
 
 ## Path - 파이참 프로젝트 가장 상위 폴더 = Main 절대 경로
-Root_Path = r'C:\Users\sonmj\G_Project\Code\Pycharm\Main'
+Root_Path = r'C:\G_Project\Code\Pycharm\Main'
 #                                                                 #
 #                                                                 #
 #                                                                 #

@@ -140,24 +140,28 @@ class ChartData:
             return re_num
 
         def a_cipher_round(num):
-            multiplier = len(str(int(num)))
+            multiplier = len(str(int(num))) - 1
             return multiplier
 
         # chart1
-        min_price = math.floor(min(price) / 100) * 100
+        # min_price = math.floor(min(price) / 100) * 100
         max_price = math.ceil(max(price) / 100) * 100
-        if max(price) < 1:
-            stepSize_price = 400
-        else:
-            stepSize_price = round(max_price / 5, -2)  # 10의 자리에서 반올림
+        stepSize_price = round(max_price / 5, -2)  # 10의 자리에서 반올림
+        print('stepSize_price', stepSize_price)
+        if stepSize_price >= 500:
+            stepSize_price = (stepSize_price // 500) * 500
+            print('stepSize_price', stepSize_price)
+            if stepSize_price * 7 < max_price:
+                stepSize_price = round(max_price / 5, -2)
+
         if max(deal) < 10:
-            min_deal = math.floor(min(deal))
+            # min_deal = math.floor(min(deal))
             max_deal = math.ceil(max(deal))
         elif max(deal) < 1:
-            min_deal = round(math.floor(min(deal)), 1)
+            # min_deal = round(math.floor(min(deal)), 1)
             max_deal = round(math.ceil(max(deal)), 1)
         else:
-            min_deal = math.floor(min(deal) / 100) * 100
+            # min_deal = math.floor(min(deal) / 100) * 100
             x = a_cipher_math(max(deal))
             max_deal = math.ceil(max(deal) / x) * x
         if max(deal) < 1:
@@ -166,34 +170,46 @@ class ChartData:
             stepSize_deal = math.ceil(max_deal / 5)
 
         # chart2
-        min_yhat = round(min(yhat_l), -2)
+        # min_yhat = round(min(yhat_l), -2)
         max_yhat = round(max(yhat_u), -2)
         stepSize_yhat = round(max_yhat / 5, -2)
+        if stepSize_yhat >= 500:
+            stepSize_yhat = (stepSize_yhat // 500) * 500
+            if stepSize_yhat * 7 < max_yhat:
+                stepSize_yhat = round(max_yhat / 5, -2)
 
         # chart3
-        min_price_quarter = math.floor(min(price_quarter) / 1000) * 1000
+        # min_price_quarter = math.floor(min(price_quarter) / 1000) * 1000
         max_price_quarter = math.ceil(max(price_quarter) / 1000) * 1000
-        stepSize_price_quarter = round(max(price_quarter) / 5, -1)
+        stepSize_price_quarter = round(max(price_quarter) / 5, -2)
+        if stepSize_price_quarter >= 500:
+            stepSize_price_quarter = (stepSize_price_quarter // 500) * 500
 
-        min_deal_quarter = math.floor(min(deal_quarter) / 1000) * 1000
+        # min_deal_quarter = math.floor(min(deal_quarter) / 1000) * 1000
         max_deal_quarter = math.ceil(max(deal_quarter) / 1000) * 1000
-        if a_cipher_round(max(deal_quarter)) < 3:
+        if a_cipher_round(max(deal_quarter)) < 2:
             stepSize_deal_quarter = round(max(deal_quarter) / 5, 0)
-        else:
+        elif a_cipher_round(max(deal_quarter)) < 3:
             stepSize_deal_quarter = round(max(deal_quarter) / 5, -1)
+        elif a_cipher_round(max(deal_quarter)) < 4:
+            stepSize_deal_quarter = round(max(deal_quarter) / 5, -2)
+        elif a_cipher_round(max(deal_quarter)) < 5:
+            stepSize_deal_quarter = round(max(deal_quarter) / 5, -3)
+        else:
+            stepSize_deal_quarter = round(max(deal_quarter) / 5, -4)
 
         # chart1: 날짜, 가격, 거래량, 최소 가격, 최대 가격, 가격 크기, 최소 거래량, 최대 거래량, 거래량 크기
         chart1 = {'date': date, 'price': price, 'deal': deal,
-                  'min_price': min_price, 'max_price': max_price, 'stepSize_price': stepSize_price,
-                  'min_deal': min_deal, 'max_deal': max_deal, 'stepSize_deal': stepSize_deal}
+                  'max_price': max_price, 'stepSize_price': stepSize_price,
+                  'max_deal': max_deal, 'stepSize_deal': stepSize_deal}
         # chart2: 예측 날짜, 예측 평균 가격, 최소 평균 예측값, 최대 평균 예측값, 예측 최솟값, 예측 최댓값, 예측 크기
         chart2 = {'date_f': date_f, 'yhat': yhat, 'yhat_l': yhat_l, 'yhat_u': yhat_u,
-                  'min_yhat': min_yhat, 'max_yhat': max_yhat, 'stepSize_yhat': stepSize_yhat}
+                  'max_yhat': max_yhat, 'stepSize_yhat': stepSize_yhat}
         # chart3: 분기별 가격, 분기별 거래량, 최소 가격, 최대 가격, 가격 크기, 최소 거래량, 최대 거래량, 거래량 크기
         chart3 = {'price_quarter': price_quarter, 'deal_quarter': deal_quarter,
-                  'min_price_quarter': min_price_quarter, 'max_price_quarter': max_price_quarter,
+                  'max_price_quarter': max_price_quarter,
                   'stepSize_price_quarter': stepSize_price_quarter,
-                  'min_deal_quarter': min_deal_quarter, 'max_deal_quarter': max_deal_quarter,
+                  'max_deal_quarter': max_deal_quarter,
                   'stepSize_deal_quarter': stepSize_deal_quarter}
         return chart1, chart2, chart3
 
@@ -311,11 +327,54 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     month_price_T = price_T
     month_price_M = price_M
 
+    # chart1
+    min_chart1 = [min(result_t), min(result_t_total), min(yhat_l_T)]
+    max_chart1 = [max(result_t), max(result_t_total), max(yhat_u_T)]
+    min_price = math.floor(min(min_chart1) / 100) * 100
+    max_price = math.ceil(max(max_chart1) / 100) * 100
+    # max_price = round(max(max_chart1), -2)
+    stepSize_chart1 = round(max_price / 50, -2)
+    if stepSize_chart1 >= 500:
+        stepSize_chart1 = (stepSize_chart1 // 500) * 500
+        if stepSize_chart1 * 7 < max_price:
+            stepSize_chart1 = round(max_price / 50, -2)
+    # print(stepSize_chart1)
+    min_x1 = min_price // stepSize_chart1
+    max_x1 = (max_price // stepSize_chart1) + 1
+    print('-----')
+    print(min_price,max_price,stepSize_chart1)
+    print('-----')
+
+    # chart2
+    min_chart2 = [min(result_m), min(result_m_total), min(yhat_l_M)]
+    max_chart2 = [max(result_m), max(result_m_total), max(yhat_u_M)]
+    max_price = round(max(max_chart2), -2)
+    stepSize_chart2 = round(max_price / 5, -2)
+    if stepSize_chart2 >= 500:
+        stepSize_chart2 = (stepSize_chart2 // 500) * 500
+        if stepSize_chart2 * 7 < max_price:
+            stepSize_chart2 = round(max_price / 5, -2)
+    # print(stepSize_chart2)
+
+    # chart3
+    min_chart3 = [min(month_price_T), min(month_price_M)]
+    max_chart3 = [max(month_price_T), max(month_price_M)]
+    max_price = round(max(max_chart3), -2)
+    stepSize_chart3 = round(max_price / 5, -2)
+    if stepSize_chart3 >= 500:
+        stepSize_chart3 = (stepSize_chart3 // 500) * 500
+        if stepSize_chart3 * 7 < max_price:
+            stepSize_chart3 = round(max_price / 5, -2)
+    # print(stepSize_chart3)
+
     # chart1: <시장> 날짜, 선택 지역 과거값, 전체 지역 과거+예측 평균값, 예측 최솟값, 예측 최댓값
     chart1 = {'date': date,
-              'result_t': result_t, 'result_t_total': result_t_total, 'yhat_l_T': yhat_l_T, 'yhat_u_T': yhat_u_T}
+              'result_t': result_t, 'result_t_total': result_t_total, 'yhat_l_T': yhat_l_T, 'yhat_u_T': yhat_u_T,
+              'stepSize_chart1': stepSize_chart1, 'min_x1': min_x1, 'max_x1': max_x1}
     # chart2: <마트> 선택 지역 과거값, 전체 지역 과거+예측 평균값, 예측 최솟값, 예측 최댓값
-    chart2 = {'result_m': result_m, 'result_m_total': result_m_total, 'yhat_l_M': yhat_l_M, 'yhat_u_M': yhat_u_M}
+    chart2 = {'result_m': result_m, 'result_m_total': result_m_total, 'yhat_l_M': yhat_l_M, 'yhat_u_M': yhat_u_M,
+              'stepSize_chart2': stepSize_chart2}
     # chart3
-    chart3 = {'month_List': month_List, 'month_price_T': month_price_T, 'month_price_M': month_price_M}
+    chart3 = {'month_List': month_List, 'month_price_T': month_price_T, 'month_price_M': month_price_M,
+              'stepSize_chart3': stepSize_chart3}
     return chart1, chart2, chart3

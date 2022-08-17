@@ -150,24 +150,36 @@
             yAxisID: 'A',
             borderColor: '#ffbaa2',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: {{ result_t }},
             fill: false
         }, {
             label: '전체(평균)',
             borderColor: 'rgba(0,255,0,0.5)',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: {{ result_t_total }},
             fill: false
         }, {
             label: '예측값(최소)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: [,,,,,,,,,, {% for i in yhat_l_T %} '{{ i }}', {% endfor %} ],
             fill: false
         }, {
             label: '예측값(최대)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: [,,,,,,,,,, {% for i in yhat_u_T %} '{{ i }}', {% endfor %} ],
             fill: false
         }]
@@ -182,8 +194,9 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        suggestedMin: 400,
-
+                        min: {{ stepSize_chart1 * min_x1 }},
+                        max: {{ stepSize_chart1 * max_x1 }},
+                        fontColor: '#ffbaa2',
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
                 }]
@@ -209,6 +222,7 @@
     });
 
 </script>
+
 <!-- chart2: 마트 -->
 <script>
     var data2 = {
@@ -219,24 +233,36 @@
             yAxisID: 'A',
             borderColor: '#ffbaa2',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: {{ result_m }},
             fill: false
         }, {
             label: '전체(평균)',
             borderColor: 'rgba(0,255,0,0.5)',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: {{ result_m_total }},
             fill: false
         }, {
             label: '예측값(최소)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: [,,,,,,,,,, {% for i in yhat_l_M %} '{{ i }}', {% endfor %} ],
             fill: false
         }, {
             label: '예측값(최대)',
             borderColor: 'rgba(255,0,0,0.3)',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: [,,,,,,,,,, {% for i in yhat_u_M %} '{{ i }}', {% endfor %} ],
             fill: false
         }]
@@ -251,7 +277,10 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        suggestedMin: 400,
+                        min: {{ stepSize_chart2 * 2 }},
+                        max: {{ stepSize_chart2 * 7 }},
+                        stepSize: {{ stepSize_chart2 }},
+                        fontColor: '#ffbaa2',
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
                 }]
@@ -260,6 +289,7 @@
     });
 
 </script>
+
 <!-- chart3: 1년 -->
 <script>
     var data3 = {
@@ -269,12 +299,18 @@
             yAxisID: 'A',
             borderColor: '#ffbaa2',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: {{ month_price_T }},
             fill: false
         }, {
             label: '전통시장 가격(원)',
             borderColor: '#91cf96',
             backgroundColor: 'white',
+            pointStyle: 'rectRot',
+            pointRadius: 6,
+            pointHoverRadius: 8,
             data: {{ month_price_M }},
             fill: false
         }]
@@ -289,8 +325,10 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        suggestedMin: 200,
-
+                        min: {{ stepSize_chart3 * 2 }},
+                        max: {{ stepSize_chart3 * 7 }},
+                        stepSize: {{ stepSize_chart3 }},
+                        fontColor: '#ffbaa2',
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
                 }]
