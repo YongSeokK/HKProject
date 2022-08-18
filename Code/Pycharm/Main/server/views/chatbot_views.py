@@ -7,24 +7,16 @@ from glob import glob
 import pymysql
 from flask import Blueprint, request, jsonify
 
-from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME
+from config import DB_NAME, DB_HOST, DB_USERNAME, DB_PASSWORD, client_id, client_secret, yolo_imgfolder, pt_path, \
+    FoodList
 from ..define.chat_price import Chatbot_iprice
-from ..define.naver_api import Navershop
-from ..define.yolo5 import Yolorun
-
-#################### DB 초기 설정 ####################
-# DB_USERNAME = 'root'
-# DB_HOST = 'localhost'
-# DB_PORT = '3306'
-# DB_PASSWORD = 'rladydtjr1!'
-# DB_NAME = 'projectdb'
-# SECRET_KEY = 'dev'
-#####################################################
+from ..define.naver_api import Naverapi
+from ..yolo.yolo_v5 import Yolo
 
 bp = Blueprint('kakao_chatbot', __name__, url_prefix='/kakao_chatbot')
 
 
-## init (사용법)
+### init (사용법)
 @bp.route('/init', methods=['POST', 'GET'])
 def init():
     ret = {
@@ -33,28 +25,32 @@ def init():
             "outputs": [{
                 "simpleText": {
                     "text": """
-    내일 뭐 먹지 사용법이에요.😀
+내일 뭐 먹지 사용법이에요.😀
 
-1. 하단의 '레시피 검색' 클릭
+
+1. '레시피 검색'
 
     1-1. 이미지로 찾기 ❗모바일❗
     👉 '이미지' 클릭
     👉 '이미지 업로드' 클릭
     👉 찾고 싶은 음식 사진 전송
+
     1-2. 텍스트로 찾기
     👉 '텍스트' 클릭
     👉 채팅창에 음식명 입력
+
     1-3. '재료 확인'
     👉 음식의 재료와 가격 출력
+
     1-4. '레시피 보기'
     👉 레시피 링크 접속
-    
-    
-    
+
+
+
 2. '농수산물 가격 정보'
     👉 찾고 싶은 농수산물 입력
-    
-    
+
+
 맛있게 요리해드세요. 😃 """
                 }
             }],
@@ -72,7 +68,7 @@ def init():
     return jsonify(ret)
 
 
-## find_img (레시피 검색 > 이미지)
+### find_img (레시피 검색 > 이미지)
 @bp.route('/find_img', methods=['POST', 'GET'])
 def find_img():
     req_json = request.get_json()
@@ -83,21 +79,18 @@ def find_img():
     URLList = re.sub('List\\(|\\)', "", img_tmp).split(',')  # URLList은 챗봇에서 사용자가 보낸 사진의 URL주소
     UserInfo = req_json['userRequest']['user']['id']  # UserInfo 는 유저의 아이디값
 
-    dir_path = ("C:\\Users\\hkedu\\HKProject\\Code\\Pycharm\\Main\\server\\static\\upload_img\\")
+    dir_path = (yolo_imgfolder)
     if os.path.exists(dir_path):
         if len(glob(dir_path + '\\*')) != 0:
             for file in glob(dir_path + '\\*'):
                 os.remove(file)
     cnt = 1
     for i in URLList:
-        urllib.request.urlretrieve(i,
-                                   "C:\\Users\\hkedu\\HKProject\\Code\\Pycharm\\Main\\server\\static\\upload_img\\" +
-                                   str(UserInfo) + "food" + str(cnt) + ".jpg")
+        urllib.request.urlretrieve(i, yolo_imgfolder + str(UserInfo) + "food" + str(cnt) + ".jpg")
         cnt += 1
 
     # 위의 코드는 URL주소를 이용하여 로컬피시에 저장
-    Folder_List = glob("C:\\Users\\hkedu\\HKProject\\Code\\Pycharm\\Main\\server\\static\\upload_img\\*.jpg")
-    print('Folder_List: ', Folder_List)
+    Folder_List = glob(yolo_imgfolder + "*.jpg")
     #  Folder_List 는 폴더에 저장된 이미지주소를 리스트로 받아옴
     #  ex) ['1.jpg','2.jpg', '3.jpg']
 
@@ -122,7 +115,8 @@ def find_img():
             }
         }
     else:
-        Yolorun_return = Yolorun(Folder_List[0])
+        Myyolo = Yolo(pt_path, FoodList, Folder_List[0])
+        Yolorun_return = Myyolo.Yolorun()
         #  Yolorun_return 는 Yolorun 함수를 실행시킨 return값을 받아줌
         if len(Yolorun_return) >= 2:
             ret = {
@@ -170,8 +164,7 @@ def find_img():
                 with db.cursor() as cur:
                     sql_table = 'SELECT * FROM food_recipe WHERE dish LIKE "%{}%" ORDER BY views DESC LIMIT 3;'.format(
                         Yolorun_return[0])
-                    # SELECT 선택 = food_recipe 테이블, WHERE = dish컬럼, LIKE = .format(x[0])과 같은 형태로, DESC = 내림차순, LIMIT = 제한 3개
-
+                    # SELECT 선택 = food_recipe 테이블 ,WHERE = dish컬럼, LIKE = .format(x[0])과 같은 형태로, DESC=내림차순, LIMIT =제한 3개
                     cur.execute(sql_table)
                     # 가상의공간에 sql_table를 실행
                     SQLFOOD_list = list(cur.fetchall())
@@ -189,23 +182,18 @@ def find_img():
                             "thumbnail": {
                                 "imageUrl": SQLFOOD_list[cnt][12],
                                 "width": 800,
-                                "height": 800},
-                            "itemList": [{
-                                "title": "요리 난이도",
-                                "description": SQLFOOD_list[cnt][10]
-                            }, {
-                                "title": "테마",
-                                "description": SQLFOOD_list[cnt][6]
-                            }, {
-                                "title": "요리 양",
-                                "description": SQLFOOD_list[cnt][9]
-                            }, {
-                                "title": "조리시간",
-                                "description": SQLFOOD_list[cnt][11]
-                            }, {
-                                "title": "조회수",
-                                "description": SQLFOOD_list[cnt][4]
-                            }, ],
+                                "height": 800
+                            },
+                            "itemList": [{"title": "요리 난이도",
+                                          "description": SQLFOOD_list[cnt][10]},
+                                         {"title": "테마",
+                                          "description": SQLFOOD_list[cnt][6]},
+                                         {"title": "요리 양",
+                                          "description": SQLFOOD_list[cnt][9]},
+                                         {"title": "조리 시간",
+                                          "description": SQLFOOD_list[cnt][11]},
+                                         {"title": "조회수",
+                                          "description": SQLFOOD_list[cnt][4]}, ],
                             "itemListAlignment": "right",
                             "buttons": [{
                                 "label": "재료 확인",
@@ -225,6 +213,7 @@ def find_img():
                         }
                         yolochat_List.append(yolochat)
                     cur.close()
+
             # ret은 카톡챗봇의 응답
             ret = {
                 "version": "2.0",
@@ -254,23 +243,28 @@ def find_img():
     return jsonify(ret)
 
 
-## find_ingredients (재료 확인)
+### find_ingredients (재료 확인)
 @bp.route('/find_ingredients', methods=['POST', 'GET'])
 def find_ingredients():
     ret = request.get_json()
     ingredient_txt = ret['action']['clientExtra']['Food_Recipe1']
     ingredient_list = ingredient_txt.split(',')
+
     tmp = '🍽 레시피 재료 🍽 \n'
     for cnt, data in enumerate(ingredient_list):
         # print(data)
         ingredients = data.split('_')[0]
+
         quantity = data.split('_')[1]
         quantity = quantity.strip()
+
         if len(quantity) != 0:
             quantity = '(' + data.split('_')[1].strip("("")") + ')'
         else:
             quantity = ''
+
         tmp = tmp + '\n' + ingredients + quantity + '\n'
+
     rets = {
         "version": "2.0",
         "template": {
@@ -341,9 +335,10 @@ def find_txt():
                         },
                         "title": "간단 소개",
                         "description": SQLFOOD_list[cnt][7],
-                        "thumbnail": {"imageUrl": SQLFOOD_list[cnt][12],
-                                      "width": 800,
-                                      "height": 800},
+                        "thumbnail": {
+                            "imageUrl": SQLFOOD_list[cnt][12],
+                            "width": 800,
+                            "height": 800},
                         "itemList": [{"title": "요리 난이도",
                                       "description": SQLFOOD_list[cnt][10]},
                                      {"title": "테마",
@@ -407,8 +402,9 @@ def find_txt():
 @bp.route('/naver_shop', methods=['POST', 'GET'])
 def naver_shop():
     req_json = request.get_json()
-    temp = req_json['action']['params']['naver_shop']
-    dataList = Navershop(temp)
+    pname = req_json['action']['params']['naver_shop']
+    Naver = Naverapi(pname, client_id, client_secret)
+    dataList = Naver.Navershop()
 
     if len(dataList) == 0:
         ret = {
@@ -439,7 +435,6 @@ def naver_shop():
                 "imageUrl": data['이미지'],
                 "link": {"web": data['url']}
             }
-
             Result_Lsit.append(data_dict)
 
         ret = {
@@ -448,13 +443,13 @@ def naver_shop():
                 "outputs": [{
                     "listCard": {
                         "header": {
-                            "title": "네이버 쇼핑 " + temp + " 상위 3개"
+                            "title": "네이버 쇼핑 " + pname + " 상위 3개"
                         },
                         "items": Result_Lsit,
                         "buttons": [{
                             "label": "더 많은 판매자 보기",
                             "action": "webLink",
-                            "webLinkUrl": "https://search.shopping.naver.com/search/all?query=" + temp,
+                            "webLinkUrl": "https://search.shopping.naver.com/search/all?query=" + pname,
                         }]
                     }
                 }],
@@ -477,6 +472,9 @@ def naver_shop():
 def retail_price():
     req_json = request.get_json()
     temp = req_json['action']['params']['retail_price']
+
+    if temp == "호박":
+        temp = "애호박"
 
     PyFile = Chatbot_iprice(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
     Price_Dict = PyFile.Price_Dict()

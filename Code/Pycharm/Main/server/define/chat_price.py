@@ -3,17 +3,6 @@ import traceback
 import pymysql
 from tqdm import tqdm
 
-#################### DB 초기 설정 ####################
-# DB_USERNAME = 'root'
-# DB_HOST = 'localhost'
-#
-# DB_PASSWORD = 'rkqrhf487'
-# DB_NAME = 'projectdb'
-# SECRET_KEY = 'dev'
-
-
-#####################################################
-
 
 class Chatbot_iprice:
     ### init 설정
@@ -456,12 +445,8 @@ class Chatbot_iprice:
                         Result['흰다리새우'] = shrimp
                         Total_Result[data[0]] = Result
                     cur.close()
+            return Total_Result
 
         except Exception as e:
-            Total_Result = traceback.format_exc()
-        return Total_Result
-
-
-# tmp = Chatbot_iprice(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
-# tmp2 = tmp.Price_Dict()
-# print(tmp2)
+            message = traceback.format_exc()
+            return message

@@ -141,7 +141,7 @@ class Wholesale_price(db.Model):
 class Total_retail(db.Model):
     date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
 
-    ## 식량작물
+    # 식량작물
     rice_T = db.Column(db.Float, nullable=False)  # 쌀 시장
     rice_M = db.Column(db.Float, nullable=False)  # 쌀 대형마트
     riceF_T = db.Column(db.Float, nullable=False)  # 햇쌀 시장
@@ -159,7 +159,7 @@ class Total_retail(db.Model):
     potato_T = db.Column(db.Float, nullable=False)  # 감자 시장
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
-    ## 채소류
+    # 채소류
     chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
     chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
     chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
@@ -249,7 +249,7 @@ class Total_retail(db.Model):
     jujube_cherry_tomato_T = db.Column(db.Float, nullable=False)  # 대추방울토마토 시장
     jujube_cherry_tomato_M = db.Column(db.Float, nullable=False)  # 대추방울토마토 대형마트
 
-    ## 특용작물
+    # 특용작물
     sesame_T = db.Column(db.Float, nullable=False)  # 참깨 시장
     sesame_M = db.Column(db.Float, nullable=False)  # 참깨 대형마트
     peanut_T = db.Column(db.Float, nullable=False)  # 땅콩 시장
@@ -267,7 +267,7 @@ class Total_retail(db.Model):
     almond_T = db.Column(db.Float, nullable=False)  # 아몬드 시장
     almond_M = db.Column(db.Float, nullable=False)  # 아몬드 대형마트
 
-    ## 과일류
+    # 과일류
     appleF_T = db.Column(db.Float, nullable=False)  # 사과(후지) 시장
     appleF_M = db.Column(db.Float, nullable=False)  # 사과(후지) 대형마트
     appleT_T = db.Column(db.Float, nullable=False)  # 사과(쓰가루) 시장
@@ -319,7 +319,7 @@ class Total_retail(db.Model):
     mango_T = db.Column(db.Float, nullable=False)  # 망고 시장
     mango_M = db.Column(db.Float, nullable=False)  # 망고 대형마트
 
-    ## 수산물
+    # 수산물
     mackerelL_T = db.Column(db.Float, nullable=False)  # 고등어(생물) 시장
     mackerelL_M = db.Column(db.Float, nullable=False)  # 고등어(생물) 대형마트
     mackerelF_T = db.Column(db.Float, nullable=False)  # 고등어(냉동) 시장
@@ -368,7 +368,7 @@ class Total_retail(db.Model):
 class Seoul_retail(db.Model):
     date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
 
-    ## 식량작물
+    # 식량작물
     rice_T = db.Column(db.Float, nullable=False)  # 쌀 시장
     rice_M = db.Column(db.Float, nullable=False)  # 쌀 대형마트
     riceF_T = db.Column(db.Float, nullable=False)  # 햇쌀 시장
@@ -386,7 +386,7 @@ class Seoul_retail(db.Model):
     potato_T = db.Column(db.Float, nullable=False)  # 감자 시장
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
-    ## 채소류
+    # 채소류
     chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
     chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
     chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
@@ -476,7 +476,7 @@ class Seoul_retail(db.Model):
     jujube_cherry_tomato_T = db.Column(db.Float, nullable=False)  # 대추방울토마토 시장
     jujube_cherry_tomato_M = db.Column(db.Float, nullable=False)  # 대추방울토마토 대형마트
 
-    ## 특용작물
+    # 특용작물
     sesame_T = db.Column(db.Float, nullable=False)  # 참깨 시장
     sesame_M = db.Column(db.Float, nullable=False)  # 참깨 대형마트
     peanut_T = db.Column(db.Float, nullable=False)  # 땅콩 시장
@@ -494,7 +494,7 @@ class Seoul_retail(db.Model):
     almond_T = db.Column(db.Float, nullable=False)  # 아몬드 시장
     almond_M = db.Column(db.Float, nullable=False)  # 아몬드 대형마트
 
-    ## 과일류
+    # 과일류
     appleF_T = db.Column(db.Float, nullable=False)  # 사과(후지) 시장
     appleF_M = db.Column(db.Float, nullable=False)  # 사과(후지) 대형마트
     appleT_T = db.Column(db.Float, nullable=False)  # 사과(쓰가루) 시장
@@ -546,7 +546,7 @@ class Seoul_retail(db.Model):
     mango_T = db.Column(db.Float, nullable=False)  # 망고 시장
     mango_M = db.Column(db.Float, nullable=False)  # 망고 대형마트
 
-    ## 수산물
+    # 수산물
     mackerelL_T = db.Column(db.Float, nullable=False)  # 고등어(생물) 시장
     mackerelL_M = db.Column(db.Float, nullable=False)  # 고등어(생물) 대형마트
     mackerelF_T = db.Column(db.Float, nullable=False)  # 고등어(냉동) 시장
@@ -595,7 +595,7 @@ class Seoul_retail(db.Model):
 class Incheon_retail(db.Model):
     date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
 
-    ## 식량작물
+    # 식량작물
     rice_T = db.Column(db.Float, nullable=False)  # 쌀 시장
     rice_M = db.Column(db.Float, nullable=False)  # 쌀 대형마트
     riceF_T = db.Column(db.Float, nullable=False)  # 햇쌀 시장
@@ -613,7 +613,7 @@ class Incheon_retail(db.Model):
     potato_T = db.Column(db.Float, nullable=False)  # 감자 시장
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
-    ## 채소류
+    # 채소류
     chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
     chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
     chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
@@ -703,7 +703,7 @@ class Incheon_retail(db.Model):
     jujube_cherry_tomato_T = db.Column(db.Float, nullable=False)  # 대추방울토마토 시장
     jujube_cherry_tomato_M = db.Column(db.Float, nullable=False)  # 대추방울토마토 대형마트
 
-    ## 특용작물
+    # 특용작물
     sesame_T = db.Column(db.Float, nullable=False)  # 참깨 시장
     sesame_M = db.Column(db.Float, nullable=False)  # 참깨 대형마트
     peanut_T = db.Column(db.Float, nullable=False)  # 땅콩 시장
@@ -721,7 +721,7 @@ class Incheon_retail(db.Model):
     almond_T = db.Column(db.Float, nullable=False)  # 아몬드 시장
     almond_M = db.Column(db.Float, nullable=False)  # 아몬드 대형마트
 
-    ## 과일류
+    # 과일류
     appleF_T = db.Column(db.Float, nullable=False)  # 사과(후지) 시장
     appleF_M = db.Column(db.Float, nullable=False)  # 사과(후지) 대형마트
     appleT_T = db.Column(db.Float, nullable=False)  # 사과(쓰가루) 시장
@@ -773,7 +773,7 @@ class Incheon_retail(db.Model):
     mango_T = db.Column(db.Float, nullable=False)  # 망고 시장
     mango_M = db.Column(db.Float, nullable=False)  # 망고 대형마트
 
-    ## 수산물
+    # 수산물
     mackerelL_T = db.Column(db.Float, nullable=False)  # 고등어(생물) 시장
     mackerelL_M = db.Column(db.Float, nullable=False)  # 고등어(생물) 대형마트
     mackerelF_T = db.Column(db.Float, nullable=False)  # 고등어(냉동) 시장
@@ -822,7 +822,7 @@ class Incheon_retail(db.Model):
 class Daejeon_retail(db.Model):
     date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
 
-    ## 식량작물
+    # 식량작물
     rice_T = db.Column(db.Float, nullable=False)  # 쌀 시장
     rice_M = db.Column(db.Float, nullable=False)  # 쌀 대형마트
     riceF_T = db.Column(db.Float, nullable=False)  # 햇쌀 시장
@@ -840,7 +840,7 @@ class Daejeon_retail(db.Model):
     potato_T = db.Column(db.Float, nullable=False)  # 감자 시장
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
-    ## 채소류
+    # 채소류
     chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
     chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
     chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
@@ -930,7 +930,7 @@ class Daejeon_retail(db.Model):
     jujube_cherry_tomato_T = db.Column(db.Float, nullable=False)  # 대추방울토마토 시장
     jujube_cherry_tomato_M = db.Column(db.Float, nullable=False)  # 대추방울토마토 대형마트
 
-    ## 특용작물
+    # 특용작물
     sesame_T = db.Column(db.Float, nullable=False)  # 참깨 시장
     sesame_M = db.Column(db.Float, nullable=False)  # 참깨 대형마트
     peanut_T = db.Column(db.Float, nullable=False)  # 땅콩 시장
@@ -948,7 +948,7 @@ class Daejeon_retail(db.Model):
     almond_T = db.Column(db.Float, nullable=False)  # 아몬드 시장
     almond_M = db.Column(db.Float, nullable=False)  # 아몬드 대형마트
 
-    ## 과일류
+    # 과일류
     appleF_T = db.Column(db.Float, nullable=False)  # 사과(후지) 시장
     appleF_M = db.Column(db.Float, nullable=False)  # 사과(후지) 대형마트
     appleT_T = db.Column(db.Float, nullable=False)  # 사과(쓰가루) 시장
@@ -1000,7 +1000,7 @@ class Daejeon_retail(db.Model):
     mango_T = db.Column(db.Float, nullable=False)  # 망고 시장
     mango_M = db.Column(db.Float, nullable=False)  # 망고 대형마트
 
-    ## 수산물
+    # 수산물
     mackerelL_T = db.Column(db.Float, nullable=False)  # 고등어(생물) 시장
     mackerelL_M = db.Column(db.Float, nullable=False)  # 고등어(생물) 대형마트
     mackerelF_T = db.Column(db.Float, nullable=False)  # 고등어(냉동) 시장
@@ -1049,7 +1049,7 @@ class Daejeon_retail(db.Model):
 class Daegu_retail(db.Model):
     date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
 
-    ## 식량작물
+    # 식량작물
     rice_T = db.Column(db.Float, nullable=False)  # 쌀 시장
     rice_M = db.Column(db.Float, nullable=False)  # 쌀 대형마트
     riceF_T = db.Column(db.Float, nullable=False)  # 햇쌀 시장
@@ -1067,7 +1067,7 @@ class Daegu_retail(db.Model):
     potato_T = db.Column(db.Float, nullable=False)  # 감자 시장
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
-    ## 채소류
+    # 채소류
     chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
     chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
     chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
@@ -1157,7 +1157,7 @@ class Daegu_retail(db.Model):
     jujube_cherry_tomato_T = db.Column(db.Float, nullable=False)  # 대추방울토마토 시장
     jujube_cherry_tomato_M = db.Column(db.Float, nullable=False)  # 대추방울토마토 대형마트
 
-    ## 특용작물
+    # 특용작물
     sesame_T = db.Column(db.Float, nullable=False)  # 참깨 시장
     sesame_M = db.Column(db.Float, nullable=False)  # 참깨 대형마트
     peanut_T = db.Column(db.Float, nullable=False)  # 땅콩 시장
@@ -1175,7 +1175,7 @@ class Daegu_retail(db.Model):
     almond_T = db.Column(db.Float, nullable=False)  # 아몬드 시장
     almond_M = db.Column(db.Float, nullable=False)  # 아몬드 대형마트
 
-    ## 과일류
+    # 과일류
     appleF_T = db.Column(db.Float, nullable=False)  # 사과(후지) 시장
     appleF_M = db.Column(db.Float, nullable=False)  # 사과(후지) 대형마트
     appleT_T = db.Column(db.Float, nullable=False)  # 사과(쓰가루) 시장
@@ -1227,7 +1227,7 @@ class Daegu_retail(db.Model):
     mango_T = db.Column(db.Float, nullable=False)  # 망고 시장
     mango_M = db.Column(db.Float, nullable=False)  # 망고 대형마트
 
-    ## 수산물
+    # 수산물
     mackerelL_T = db.Column(db.Float, nullable=False)  # 고등어(생물) 시장
     mackerelL_M = db.Column(db.Float, nullable=False)  # 고등어(생물) 대형마트
     mackerelF_T = db.Column(db.Float, nullable=False)  # 고등어(냉동) 시장
@@ -1276,7 +1276,7 @@ class Daegu_retail(db.Model):
 class Gwangju_retail(db.Model):
     date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
 
-    ## 식량작물
+    # 식량작물
     rice_T = db.Column(db.Float, nullable=False)  # 쌀 시장
     rice_M = db.Column(db.Float, nullable=False)  # 쌀 대형마트
     riceF_T = db.Column(db.Float, nullable=False)  # 햇쌀 시장
@@ -1294,7 +1294,7 @@ class Gwangju_retail(db.Model):
     potato_T = db.Column(db.Float, nullable=False)  # 감자 시장
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
-    ## 채소류
+    # 채소류
     chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
     chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
     chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
@@ -1384,7 +1384,7 @@ class Gwangju_retail(db.Model):
     jujube_cherry_tomato_T = db.Column(db.Float, nullable=False)  # 대추방울토마토 시장
     jujube_cherry_tomato_M = db.Column(db.Float, nullable=False)  # 대추방울토마토 대형마트
 
-    ## 특용작물
+    # 특용작물
     sesame_T = db.Column(db.Float, nullable=False)  # 참깨 시장
     sesame_M = db.Column(db.Float, nullable=False)  # 참깨 대형마트
     peanut_T = db.Column(db.Float, nullable=False)  # 땅콩 시장
@@ -1402,7 +1402,7 @@ class Gwangju_retail(db.Model):
     almond_T = db.Column(db.Float, nullable=False)  # 아몬드 시장
     almond_M = db.Column(db.Float, nullable=False)  # 아몬드 대형마트
 
-    ## 과일류
+    # 과일류
     appleF_T = db.Column(db.Float, nullable=False)  # 사과(후지) 시장
     appleF_M = db.Column(db.Float, nullable=False)  # 사과(후지) 대형마트
     appleT_T = db.Column(db.Float, nullable=False)  # 사과(쓰가루) 시장
@@ -1454,7 +1454,7 @@ class Gwangju_retail(db.Model):
     mango_T = db.Column(db.Float, nullable=False)  # 망고 시장
     mango_M = db.Column(db.Float, nullable=False)  # 망고 대형마트
 
-    ## 수산물
+    # 수산물
     mackerelL_T = db.Column(db.Float, nullable=False)  # 고등어(생물) 시장
     mackerelL_M = db.Column(db.Float, nullable=False)  # 고등어(생물) 대형마트
     mackerelF_T = db.Column(db.Float, nullable=False)  # 고등어(냉동) 시장
@@ -1503,7 +1503,7 @@ class Gwangju_retail(db.Model):
 class Ulsan_retail(db.Model):
     date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
 
-    ## 식량작물
+    # 식량작물
     rice_T = db.Column(db.Float, nullable=False)  # 쌀 시장
     rice_M = db.Column(db.Float, nullable=False)  # 쌀 대형마트
     riceF_T = db.Column(db.Float, nullable=False)  # 햇쌀 시장
@@ -1521,7 +1521,7 @@ class Ulsan_retail(db.Model):
     potato_T = db.Column(db.Float, nullable=False)  # 감자 시장
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
-    ## 채소류
+    # 채소류
     chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
     chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
     chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
@@ -1611,7 +1611,7 @@ class Ulsan_retail(db.Model):
     jujube_cherry_tomato_T = db.Column(db.Float, nullable=False)  # 대추방울토마토 시장
     jujube_cherry_tomato_M = db.Column(db.Float, nullable=False)  # 대추방울토마토 대형마트
 
-    ## 특용작물
+    # 특용작물
     sesame_T = db.Column(db.Float, nullable=False)  # 참깨 시장
     sesame_M = db.Column(db.Float, nullable=False)  # 참깨 대형마트
     peanut_T = db.Column(db.Float, nullable=False)  # 땅콩 시장
@@ -1629,7 +1629,7 @@ class Ulsan_retail(db.Model):
     almond_T = db.Column(db.Float, nullable=False)  # 아몬드 시장
     almond_M = db.Column(db.Float, nullable=False)  # 아몬드 대형마트
 
-    ## 과일류
+    # 과일류
     appleF_T = db.Column(db.Float, nullable=False)  # 사과(후지) 시장
     appleF_M = db.Column(db.Float, nullable=False)  # 사과(후지) 대형마트
     appleT_T = db.Column(db.Float, nullable=False)  # 사과(쓰가루) 시장
@@ -1681,7 +1681,7 @@ class Ulsan_retail(db.Model):
     mango_T = db.Column(db.Float, nullable=False)  # 망고 시장
     mango_M = db.Column(db.Float, nullable=False)  # 망고 대형마트
 
-    ## 수산물
+    # 수산물
     mackerelL_T = db.Column(db.Float, nullable=False)  # 고등어(생물) 시장
     mackerelL_M = db.Column(db.Float, nullable=False)  # 고등어(생물) 대형마트
     mackerelF_T = db.Column(db.Float, nullable=False)  # 고등어(냉동) 시장
@@ -1730,7 +1730,7 @@ class Ulsan_retail(db.Model):
 class Busan_retail(db.Model):
     date = db.Column(db.Integer, primary_key=True, nullable=False)  # 일자
 
-    ## 식량작물
+    # 식량작물
     rice_T = db.Column(db.Float, nullable=False)  # 쌀 시장
     rice_M = db.Column(db.Float, nullable=False)  # 쌀 대형마트
     riceF_T = db.Column(db.Float, nullable=False)  # 햇쌀 시장
@@ -1748,7 +1748,7 @@ class Busan_retail(db.Model):
     potato_T = db.Column(db.Float, nullable=False)  # 감자 시장
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
-    ## 채소류
+    # 채소류
     chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
     chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
     chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
@@ -1838,7 +1838,7 @@ class Busan_retail(db.Model):
     jujube_cherry_tomato_T = db.Column(db.Float, nullable=False)  # 대추방울토마토 시장
     jujube_cherry_tomato_M = db.Column(db.Float, nullable=False)  # 대추방울토마토 대형마트
 
-    ## 특용작물
+    # 특용작물
     sesame_T = db.Column(db.Float, nullable=False)  # 참깨 시장
     sesame_M = db.Column(db.Float, nullable=False)  # 참깨 대형마트
     peanut_T = db.Column(db.Float, nullable=False)  # 땅콩 시장
@@ -1856,7 +1856,7 @@ class Busan_retail(db.Model):
     almond_T = db.Column(db.Float, nullable=False)  # 아몬드 시장
     almond_M = db.Column(db.Float, nullable=False)  # 아몬드 대형마트
 
-    ## 과일류
+    # 과일류
     appleF_T = db.Column(db.Float, nullable=False)  # 사과(후지) 시장
     appleF_M = db.Column(db.Float, nullable=False)  # 사과(후지) 대형마트
     appleT_T = db.Column(db.Float, nullable=False)  # 사과(쓰가루) 시장
@@ -1908,7 +1908,7 @@ class Busan_retail(db.Model):
     mango_T = db.Column(db.Float, nullable=False)  # 망고 시장
     mango_M = db.Column(db.Float, nullable=False)  # 망고 대형마트
 
-    ## 수산물
+    # 수산물
     mackerelL_T = db.Column(db.Float, nullable=False)  # 고등어(생물) 시장
     mackerelL_M = db.Column(db.Float, nullable=False)  # 고등어(생물) 대형마트
     mackerelF_T = db.Column(db.Float, nullable=False)  # 고등어(냉동) 시장
@@ -1951,3 +1951,12 @@ class Busan_retail(db.Model):
     abalone_M = db.Column(db.Float, nullable=False)  # 전복 대형마트
     shrimp_T = db.Column(db.Float, nullable=False)  # 흰다리새우 시장
     shrimp_M = db.Column(db.Float, nullable=False)  # 흰다리새우 대형마트
+
+
+## 제철 정보
+class Seasonal_Food(db.Model):
+    no = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)  # 갯수 카운트
+    Month = db.Column(db.String(3, 'utf8mb4_unicode_ci'), nullable=False)
+    Name = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)
+    Period = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)
+    URL = db.Column(db.String(200, 'utf8mb4_unicode_ci'), nullable=False)

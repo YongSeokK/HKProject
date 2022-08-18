@@ -20,8 +20,8 @@ class DailyDB:
         self.Daily_FolderPath = Daily_FolderPath
 
     def DailyData(self):
-        try:
 
+        try:
             for data in tqdm(glob(self.Daily_FolderPath + "*.json"), desc='Daily DB INSERT'):
                 Table = data.split('_')[-1].split('.')[0]
                 day = data.split('_')[-2].split('\\')[-1]
@@ -121,7 +121,8 @@ class DailyDB:
                                 cur.execute(query)
                                 db.commit()
                             cur.close()
-            message = 'Daily_DB Finish'
+            return 'Daily_DB Finish'
+
         except Exception as e:
             message = traceback.format_exc()
-        return message
+            return message

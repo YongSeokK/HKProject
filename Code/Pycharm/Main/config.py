@@ -106,3 +106,14 @@ Produce_Num = {'rice': 0, 'glutinous_rice': 1, 'bean': 2, 'red_bean': 3, 'green_
                'grapeG': 4, 'grapeM': 5, 'grapeS': 6, 'citrus': 7, 'persimmon': 8, 'banana': 9, 'kiwi': 10,
                'pineapple': 11, 'orange': 12, 'lemon': 13, 'cherry': 14, 'raisin': 15, 'dried_blueberries': 16,
                'mango': 17}
+
+## YOLO
+yolo_imgfolder = Root_Path + '\\server\\yolo\\img\\'
+pt_path = Root_Path + '\\server\\yolo\\best.pt'
+FoodList = ['.', '닭볶음탕', '된장찌개', '갈치구이', '감자조림', '김밥',
+            '김치전', '계란찜', '깻잎장아찌', '메추리알장조림', '떡볶이',
+            '떡국', '파전', '미역국', '소불고기', '잡채']
+
+## NAVER API KEY
+client_id = "MiUA1cOwkgZ7FPIPBawa"
+client_secret = "sdSR7YXRu8"
