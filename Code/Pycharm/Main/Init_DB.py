@@ -26,7 +26,7 @@ sql = 'insert into seasonal_food (Month, Name, Period) values(%s, %s, %s)'
 for idx in tqdm(range(len(data)), desc='제철 음식 자료', mininterval=0.05):
     cursor.execute(sql, tuple(data.values[idx][:3]))
 db.commit()
-#################### 재철 농수산물 자료 처리 ####################
+#################### 제철 음식 자료 처리 ####################
 
 
 #################### 만개의 레시피 자료 처리 ####################

@@ -71,8 +71,8 @@
 <!-- 표 -->
 <section class="page-section">
     <div class="container text-center">
-        <h2 class="section-heading text-uppercase">오늘의 정보</h2>
-        <h3 class="section-subheading text-muted">Today DATA</h3>
+        <h2 class="section-heading text-uppercase">변동표</h2>
+        <h3 class="section-subheading text-muted">Today Variation</h3>
         <table class="rwd-table">
             <tbody>
             <tr>
@@ -118,8 +118,8 @@
 <section class="page-section bg-light" id="portfolio">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">오늘의 뉴스</h2>
-            <h3 class="section-subheading text-muted">Today NEWS</h3>
+            <h2 class="section-heading text-uppercase">관련 정보</h2>
+            <h3 class="section-subheading text-muted">Today Information</h3>
         </div>
         <div class="row">
             <div class="col-lg-4 col-sm-6 mb-4">
@@ -140,7 +140,7 @@
                              alt="...">
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">농산물 물가</div>
+                        <div class="portfolio-caption-heading">물가 관련 기사</div>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@
                         <img class="img-fluid" src="static/img/portfolio/2.jpg" alt="...">
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">물가</div>
+                        <div class="portfolio-caption-heading">기상</div>
                     </div>
                 </div>
             </div>
@@ -177,10 +177,12 @@
                                           d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"></path>
                                 </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com --></div>
                         </div>
-                        <img class="img-fluid" src="static/img/portfolio/3.jpg" alt="...">
+                        <img class="img-fluid"
+                             src="https://mblogthumb-phinf.pstatic.net/20160404_296/rak1561_14597812504393u5Tk_JPEG/fru126854.jpg?type=w2"
+                             alt="...">
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">날씨</div>
+                        <div class="portfolio-caption-heading">제철 재료</div>
                     </div>
                 </div>
             </div>
@@ -515,23 +517,26 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="static/img/portfolio/3.jpg" alt="...">
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                nostrum, reiciendis facere nemo!</p>
-                            <ul class="list-inline">
-                                <li>
-                                    <strong>Client:</strong>
-                                    Finish
-                                </li>
-                                <li>
-                                    <strong>Category:</strong>
-                                    Identity
-                                </li>
-                            </ul>
+                            <div class="container px-4 py-5" id="featured-3">
+                                <h2 class="pb-2 border-bottom"> {{ monthly_food[0]['Month'] }}월 제철 농수산물</h2>
+                                <div class="row g-4 py-5 row-cols-1 row-cols-lg-5">
+                                    {% for i in monthly_food %}
+                                    <div class="feature col">
+                                        <div class="feature-icon bg-primary bg-gradient">
+                                            <svg class="bi" width="1em" height="1em">
+                                                <use xlink:href="#collection"></use>
+                                            </svg>
+                                        </div>
+                                        <br>
+                                        <h3> {{ i['Name'] }} </h3>
+                                        <br>
+                                        <img src=" {{ url_for('static', filename='img/seasonal/'+i['Name']+'.png') }} "/></img>
+                                        <br>
+                                        <h5> {{ i['Period'] }} </h5>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
                             <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                 <svg class="svg-inline--fa fa-xmark me-1" aria-hidden="true" focusable="false"
                                      data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -539,7 +544,7 @@
                                     <path fill="currentColor"
                                           d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
                                 </svg><!-- <i class="fas fa-xmark me-1"></i> Font Awesome fontawesome.com -->
-                                Close Project
+                                Close
                             </button>
                         </div>
                     </div>

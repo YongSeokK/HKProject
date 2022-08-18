@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import pymysql
 from flask import Flask, Blueprint, request, render_template, url_for, session, g, flash
 from flask_bcrypt import Bcrypt
@@ -11,6 +13,8 @@ from ..define.naver_api import Naverapi
 
 bp = Blueprint('main', __name__, url_prefix='/')
 bcrypt = Bcrypt(Flask(__name__))
+
+now = datetime.now()
 
 # DB 초기 설정
 mydb = pymysql.Connect(host=DB_HOST, user=DB_USERNAME,
@@ -82,17 +86,23 @@ def index():
             Price_dif = int(abs(BefYesterday_price - Yesterday_price))
             # print(int(Price_dif))
             # print('==========================================')
-            tmp3 = {"품목명": produce,
-                    "그제_거래량": BefYesterday_quantity, "어제_거래량": Yesterday_quantity,
-                    "거래량_변동폭": Quantity_dif,
-                    "그제_가격": BefYesterday_price, "어제_가격": Yesterday_price,
-                    "가격_변동폭": Price_dif}
-            data_table.append(tmp3)
+            dt_Dict = {"품목명": produce,
+                       "그제_거래량": BefYesterday_quantity, "어제_거래량": Yesterday_quantity,
+                       "거래량_변동폭": Quantity_dif,
+                       "그제_가격": BefYesterday_price, "어제_가격": Yesterday_price,
+                       "가격_변동폭": Price_dif}
+            data_table.append(dt_Dict)
     # 변동폭 기준 내림차순 정렬, 상위 5개
     data_table = sorted(data_table, key=(lambda x: x["가격_변동폭"]), reverse=True)[0:5]
-    # print(ALL_Item_list)
+
+    # popup3_제철 음식
+    this_month = now.strftime('%m')
+    sql_seasonal = 'SELECT * FROM seasonal_food WHERE Month = {}'.format(this_month)
+    cursor.execute(sql_seasonal)
+    monthly_food = cursor.fetchall()
+
     return render_template('index.html',
-                           data_table=data_table, article_List=article_List)
+                           data_table=data_table, article_List=article_List, monthly_food=monthly_food)
 
 
 # 회원 가입
