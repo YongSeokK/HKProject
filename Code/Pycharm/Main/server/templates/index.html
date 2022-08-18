@@ -435,13 +435,13 @@
                             <img class="img-fluid d-block mx-auto"
                                  src="https://post-phinf.pstatic.net/MjAyMjA2MDVfMTU3/MDAxNjU0NDM3NzcwNTg3.HY6zf17z_lIvCJ87w2LVtkaQCeZbosDF6vpge2uoNqMg.vZWC_aCDOdcBrhOgGx6JLgHwXF9cyz0YjyB2lzEc9o8g.JPEG/m.jpg?type=w1200"
                                  alt="...">
-                            <p>목록</p>
                             <ul class="list-inline">
                                 {% for i in article_List %}
                                 <li>
-                                    <strong>Title:</strong>
+                                    <strong>Title {{ loop.index }}:&nbsp;</strong>
                                     <a href=" {{ i['링크'] }} "> {{ i['제목'] }} </a>
                                 </li>
+                                <br>
                                 {% endfor %}
                             </ul>
                             <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">

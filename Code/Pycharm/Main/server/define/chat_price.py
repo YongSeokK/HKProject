@@ -5,6 +5,7 @@ from tqdm import tqdm
 
 
 class Chatbot_iprice:
+
     ### init 설정
     def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME):
         self.DB_USERNAME = DB_USERNAME

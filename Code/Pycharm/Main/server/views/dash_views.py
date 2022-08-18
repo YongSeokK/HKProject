@@ -4,7 +4,7 @@ import pymysql
 from flask import Blueprint, request, render_template, url_for, session, flash
 from werkzeug.utils import redirect
 
-from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict, \
+from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, csv_Folder_Path, Category_Kor, Category_Eng, Region_Dict, \
     Category_List_W, Category_radioList_W, Category_List_R, Category_radioList_R, Produce_Num
 from server.define.chart_data import ChartData, Retail
 from server.models import Food_recipe
@@ -49,7 +49,7 @@ def wholesale():
                 # def chart_data 리턴 값 순차대로 대입
                 # List: 날짜, 가격, 거래량, 미래 날짜, 예측 중간, 최소, 최대, 가격 분기, 거래량 분기
                 MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                                    csv_FolderPath, Category_Kor, Category_List_W, category, key_produce)
+                                    csv_Folder_Path, Category_Kor, Category_List_W, category, key_produce)
 
                 # date, price, deal, date_f, yhat, yhat_l, yhat_u, price_quarter, deal_quarter = chart_data(category,
                 #                                                                                           key_produce)
@@ -105,7 +105,7 @@ def wholesale():
                 radio_check[key_produce] = ' checked="checked" '
 
                 MyChart = ChartData(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
-                                    csv_FolderPath, Category_Kor, Category_List_W, category, key_produce)
+                                    csv_Folder_Path, Category_Kor, Category_List_W, category, key_produce)
                 chart1, chart2, chart3 = MyChart.Wholesale()
 
                 print("chart1['price']          :" + str(chart1['price']))
@@ -176,7 +176,7 @@ def retail():
                 key_produce = option[2]
                 radio_check[key_produce] = ' checked="checked" '
 
-                chart1, chart2, chart3 = Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng,
+                chart1, chart2, chart3 = Retail(result_dict, csv_Folder_Path, Category_Kor, Category_Eng,
                                                 Region_Dict, Category_List_R, Produce_Num,
                                                 region, category, key_produce)
 
@@ -199,7 +199,7 @@ def retail():
                 key_produce = keys_list[0]
                 radio_check[key_produce] = ' checked="checked" '
 
-                chart1, chart2, chart3 = Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng,
+                chart1, chart2, chart3 = Retail(result_dict, csv_Folder_Path, Category_Kor, Category_Eng,
                                                 Region_Dict, Category_List_R, Produce_Num,
                                                 region, category, key_produce)
 

@@ -7,8 +7,8 @@ from glob import glob
 import pymysql
 from flask import Blueprint, request, jsonify
 
-from config import DB_NAME, DB_HOST, DB_USERNAME, DB_PASSWORD, client_id, client_secret, yolo_imgfolder, pt_path, \
-    FoodList
+from config import DB_NAME, DB_HOST, DB_USERNAME, DB_PASSWORD, \
+    Client_id, Client_secret, Yolo_imgFolder_Path, pt_Path, Food_List
 from ..define.chat_price import Chatbot_iprice
 from ..define.naver_api import Naverapi
 from ..yolo.yolo_v5 import Yolo
@@ -79,18 +79,18 @@ def find_img():
     URLList = re.sub('List\\(|\\)', "", img_tmp).split(',')  # URLList은 챗봇에서 사용자가 보낸 사진의 URL주소
     UserInfo = req_json['userRequest']['user']['id']  # UserInfo 는 유저의 아이디값
 
-    dir_path = (yolo_imgfolder)
+    dir_path = Yolo_imgFolder_Path
     if os.path.exists(dir_path):
         if len(glob(dir_path + '\\*')) != 0:
             for file in glob(dir_path + '\\*'):
                 os.remove(file)
     cnt = 1
     for i in URLList:
-        urllib.request.urlretrieve(i, yolo_imgfolder + str(UserInfo) + "food" + str(cnt) + ".jpg")
+        urllib.request.urlretrieve(i, Yolo_imgFolder_Path + str(UserInfo) + "food" + str(cnt) + ".jpg")
         cnt += 1
 
     # 위의 코드는 URL주소를 이용하여 로컬피시에 저장
-    Folder_List = glob(yolo_imgfolder + "*.jpg")
+    Folder_List = glob(Yolo_imgFolder_Path + "*.jpg")
     #  Folder_List 는 폴더에 저장된 이미지주소를 리스트로 받아옴
     #  ex) ['1.jpg','2.jpg', '3.jpg']
 
@@ -115,7 +115,7 @@ def find_img():
             }
         }
     else:
-        Myyolo = Yolo(pt_path, FoodList, Folder_List[0])
+        Myyolo = Yolo(pt_Path, Food_List, Folder_List[0])
         Yolorun_return = Myyolo.Yolorun()
         #  Yolorun_return 는 Yolorun 함수를 실행시킨 return값을 받아줌
         if len(Yolorun_return) >= 2:
@@ -403,7 +403,7 @@ def find_txt():
 def naver_shop():
     req_json = request.get_json()
     pname = req_json['action']['params']['naver_shop']
-    Naver = Naverapi(pname, client_id, client_secret)
+    Naver = Naverapi(pname, Client_id, Client_secret)
     dataList = Naver.Navershop()
 
     if len(dataList) == 0:

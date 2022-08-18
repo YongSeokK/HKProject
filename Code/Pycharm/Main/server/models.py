@@ -1954,9 +1954,8 @@ class Busan_retail(db.Model):
 
 
 ## 제철 정보
-class Seasonal_Food(db.Model):
+class Seasonal_food(db.Model):
     no = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)  # 갯수 카운트
     Month = db.Column(db.String(3, 'utf8mb4_unicode_ci'), nullable=False)
     Name = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)
     Period = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)
-    URL = db.Column(db.String(200, 'utf8mb4_unicode_ci'), nullable=False)

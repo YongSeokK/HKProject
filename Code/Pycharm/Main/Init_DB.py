@@ -1,11 +1,13 @@
 import json
 from glob import glob
 
+import pandas as pd
 import pymysql
 from tqdm import tqdm
 
 from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, \
-    Region_Dict, Retail_FolderPath, RecipeData_FilePath, WholesaleVolume_FilePath, WholesalePrice_FilePath
+    Region_Dict, Retail_Folder_Path, RecipeData_File_Path, \
+    WholesaleVolume_File_Path, WholesalePrice_File_Path, Excel_Path
 
 #################### DB 초기 설정 ####################
 db = pymysql.Connect(host=DB_HOST,
@@ -16,8 +18,19 @@ cursor = db.cursor()
 #################### DB 초기 설정 ####################
 
 
+#################### 제철 음식 자료 처리 ####################
+data = pd.read_excel(Excel_Path)
+data['Month'] = data['Month'].apply(lambda x: str(x))
+data['Month'] = data['Month'].apply(lambda x: '0' + x if len(x) == 1 else x)
+sql = 'insert into seasonal_food (Month, Name, Period) values(%s, %s, %s)'
+for idx in tqdm(range(len(data)), desc='제철 음식 자료', mininterval=0.05):
+    cursor.execute(sql, tuple(data.values[idx][:3]))
+db.commit()
+#################### 재철 농수산물 자료 처리 ####################
+
+
 #################### 만개의 레시피 자료 처리 ####################
-with open(RecipeData_FilePath, 'r', encoding='UTF8') as f:
+with open(RecipeData_File_Path, 'r', encoding='UTF8') as f:
     Data_Json = json.load(f)
 cursor.execute("SHOW columns FROM food_recipe")
 
@@ -45,8 +58,8 @@ for num in tqdm(Data_Json.keys(), desc='만개의 레시피 DB INSERT', mininter
 
 
 #################### 거래량 데이터 ####################
-for file in [WholesaleVolume_FilePath, WholesalePrice_FilePath]:
-    if file == WholesaleVolume_FilePath:
+for file in [WholesaleVolume_File_Path, WholesalePrice_File_Path]:
+    if file == WholesaleVolume_File_Path:
         table = 'wholesale_quantity'
         name = '거래량(kg)'
     else:
@@ -94,7 +107,7 @@ for file in [WholesaleVolume_FilePath, WholesalePrice_FilePath]:
 
 
 #################### 전체 소매 데이터 ####################
-for file in tqdm(glob(Retail_FolderPath + '*.json'), desc='소매 DB INSERT', mininterval=0.05):
+for file in tqdm(glob(Retail_Folder_Path + '*.json'), desc='소매 DB INSERT', mininterval=0.05):
     Total_List = []
     day = int(file.split('.')[0].split('\\')[-1].split('_')[0])
     area = file.split('.')[0].split('\\')[-1].split('_')[1]
@@ -120,3 +133,5 @@ for file in tqdm(glob(Retail_FolderPath + '*.json'), desc='소매 DB INSERT', mi
     cursor.execute(query)
     db.commit()
 #################### 전체 소매 데이터 ####################
+
+cursor.close()

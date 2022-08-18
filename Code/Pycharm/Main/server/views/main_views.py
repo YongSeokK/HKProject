@@ -3,11 +3,11 @@ from flask import Flask, Blueprint, request, render_template, url_for, session, 
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import redirect
 
-from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, Category_List_W
+from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, Category_List_W, Client_id, Client_secret
 from server import db
 from server.forms import UserCreateForm, UserPwForm
 from server.models import Members
-from ..define.naver_api import Navernews
+from ..define.naver_api import Naverapi
 
 bp = Blueprint('main', __name__, url_prefix='/')
 bcrypt = Bcrypt(Flask(__name__))
@@ -34,7 +34,10 @@ def load_logged_in_user():
 # 메인 홈
 @bp.route('/', methods=('GET', 'POST'))
 def index():
-    article_List = Navernews('농산물 물가')
+    pname = '농산물 물가'
+    MyNaver = Naverapi(pname, Client_id, Client_secret)
+    article_List = MyNaver.Navernews()
+
     data_table = []
     for dictionary in Category_List_W:
         produce_List = list(dictionary.values())  # 품목의 밸류값만 가져와 list로 변경

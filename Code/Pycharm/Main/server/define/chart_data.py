@@ -9,6 +9,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class ChartData:
+
     ### init 설정
     def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME,
                  csv_FolderPath, Category_Kor, Category_List_W, category, key_produce):
@@ -241,20 +242,20 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     for i in list(result_dict[region_Eng][category_E]['T'].keys())[-10:]:
         date.append(str(i)[4:6] + '.' + str(i)[6:8])
         result_t.append(
-            int(result_dict[region_Eng][category_E]['T'][i][produce_index]))
+            round(int(result_dict[region_Eng][category_E]['T'][i][produce_index]), -1))
     for i in list(result_dict['total'][category_E]['T'].keys())[-10:]:
         result_t_total.append(
-            int(result_dict['total'][category_E]['T'][i][produce_index]))
+            round(int(result_dict['total'][category_E]['T'][i][produce_index]), -1))
     print(date)
     print('T_', '시장 지역: ', result_t, ', 시장 전체: ', result_t_total)
 
     # 마트 data
     for i in list(result_dict[region_Eng][category_E]['M'].keys())[-10:]:
         result_m.append(
-            int(result_dict[region_Eng][category_E]['M'][i][produce_index]))
+            round(int(result_dict[region_Eng][category_E]['M'][i][produce_index]), -1))
     for i in list(result_dict['total'][category_E]['M'].keys())[-10:]:
         result_m_total.append(
-            int(result_dict['total'][category_E]['M'][i][produce_index]))
+            round(int(result_dict['total'][category_E]['M'][i][produce_index]), -1))
     print('M_', '마트 지역:', result_m, ', 마트 전체: ', result_m_total)
 
     # Prophrt : DB_source 파일의 csv 가져오기
@@ -272,12 +273,12 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     ds_val = test_df_T['ds'].values.tolist()
     for i in ds_val[0:5]:
         date.append(str(i)[5:7] + '.' + str(i)[8:10])
-    yhat_T = list(map(int, round(test_df_T['yhat'], 1).values.tolist()[0:5]))  # 중간값 반올림
-    yhat_l_T = list(map(int, round(test_df_T['yhat_lower'], 1).values.tolist()[0:5]))  # 최솟값
-    yhat_u_T = list(map(int, round(test_df_T['yhat_upper'], 1).values.tolist()[0:5]))  # 최댓값
-    yhat_M = list(map(int, round(test_df_M['yhat']).values.tolist()[0:5]))  # 중간값 반올림
-    yhat_l_M = list(map(int, round(test_df_M['yhat_lower']).values.tolist()[0:5]))  # 최솟값
-    yhat_u_M = list(map(int, round(test_df_M['yhat_upper']).values.tolist()[0:5]))  # 최댓값
+    yhat_T = list(map(int, [i if i > 0 else 0 for i in round(test_df_T['yhat']).values.tolist()[0:5]]))  # 중간값 반올림
+    yhat_l_T = list(map(int, [i if i > 0 else 0 for i in round(test_df_T['yhat_lower']).values.tolist()[0:5]]))  # 최솟값
+    yhat_u_T = list(map(int, [i if i > 0 else 0 for i in round(test_df_T['yhat_upper']).values.tolist()[0:5]]))  # 최댓값
+    yhat_M = list(map(int, [i if i > 0 else 0 for i in round(test_df_M['yhat']).values.tolist()[0:5]]))  # 중간값 반올림
+    yhat_l_M = list(map(int, [i if i > 0 else 0 for i in round(test_df_M['yhat_lower']).values.tolist()[0:5]]))  # 최솟값
+    yhat_u_M = list(map(int, [i if i > 0 else 0 for i in round(test_df_M['yhat_upper']).values.tolist()[0:5]]))  # 최댓값
     # print('차트 날짜: ', date)
     # print('----------')
 
