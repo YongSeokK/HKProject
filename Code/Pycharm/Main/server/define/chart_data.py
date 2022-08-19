@@ -185,6 +185,8 @@ class ChartData:
         stepSize_price_quarter = round(max(price_quarter) / 5, -2)
         if stepSize_price_quarter >= 500:
             stepSize_price_quarter = (stepSize_price_quarter // 500) * 500
+            if stepSize_price_quarter * 8 < max_price_quarter:
+                stepSize_price_quarter = stepSize_price_quarter * 2
 
         # min_deal_quarter = math.floor(min(deal_quarter) / 1000) * 1000
         max_deal_quarter = math.ceil(max(deal_quarter) / 1000) * 1000
@@ -273,12 +275,26 @@ def Retail(result_dict, csv_FolderPath, Category_Kor, Category_Eng, Region_Dict,
     ds_val = test_df_T['ds'].values.tolist()
     for i in ds_val[0:5]:
         date.append(str(i)[5:7] + '.' + str(i)[8:10])
-    yhat_T = list(map(int, [i if i > 0 else 0 for i in round(test_df_T['yhat']).values.tolist()[0:5]]))  # 중간값 반올림
-    yhat_l_T = list(map(int, [i if i > 0 else 0 for i in round(test_df_T['yhat_lower']).values.tolist()[0:5]]))  # 최솟값
-    yhat_u_T = list(map(int, [i if i > 0 else 0 for i in round(test_df_T['yhat_upper']).values.tolist()[0:5]]))  # 최댓값
-    yhat_M = list(map(int, [i if i > 0 else 0 for i in round(test_df_M['yhat']).values.tolist()[0:5]]))  # 중간값 반올림
-    yhat_l_M = list(map(int, [i if i > 0 else 0 for i in round(test_df_M['yhat_lower']).values.tolist()[0:5]]))  # 최솟값
-    yhat_u_M = list(map(int, [i if i > 0 else 0 for i in round(test_df_M['yhat_upper']).values.tolist()[0:5]]))  # 최댓값
+    yhat_T = list(map(int, [i if i > 10 else 0 for i in round(test_df_T['yhat']).values.tolist()[0:5]]))  # 중간값 반올림
+    yhat_l_T = list(map(int, [i if i > 10 else 0 for i in round(test_df_T['yhat_lower']).values.tolist()[0:5]]))  # 최솟값
+    yhat_u_T = list(map(int, [i if i > 10 else 0 for i in round(test_df_T['yhat_upper']).values.tolist()[0:5]]))  # 최댓값
+    cnt_0 = 0
+    for data in yhat_T:
+        if data == 0:
+            cnt_0 += 1
+    if cnt_0 >= 3:
+        yhat_u_T = [0] * len(yhat_u_T)
+
+    yhat_M = list(map(int, [i if i > 10 else 0 for i in round(test_df_M['yhat']).values.tolist()[0:5]]))  # 중간값 반올림
+    yhat_l_M = list(map(int, [i if i > 10 else 0 for i in round(test_df_M['yhat_lower']).values.tolist()[0:5]]))  # 최솟값
+    yhat_u_M = list(map(int, [i if i > 10 else 0 for i in round(test_df_M['yhat_upper']).values.tolist()[0:5]]))  # 최댓값
+    cnt_0 = 0
+    for data in yhat_M:
+        if data == 0:
+            cnt_0 += 1
+    if cnt_0 >= 3:
+        yhat_u_M = [0] * len(yhat_u_M)
+
     # print('차트 날짜: ', date)
     # print('----------')
 

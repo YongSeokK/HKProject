@@ -86,12 +86,12 @@ class MyProphet:
                             Each_DF = Each_DF.rename(columns={'date': 'ds', column: 'y'})[['ds', 'y']]
 
                             # 이상치 값 제거
-                            q1 = Each_DF['y'].quantile(0.25)
-                            q3 = Each_DF['y'].quantile(0.75)
-                            iqr = q3 - q1
-                            condition = Each_DF['y'] > q3 + 1.5 * iqr
-                            a = Each_DF[condition].index
-                            Each_DF.drop(a, inplace=True)
+                            # q1 = Each_DF['y'].quantile(0.25)
+                            # q3 = Each_DF['y'].quantile(0.75)
+                            # iqr = q3 - q1
+                            # condition = Each_DF['y'] > q3 + 1.5 * iqr
+                            # a = Each_DF[condition].index
+                            # Each_DF.drop(a, inplace=True)
 
                             # 각각의 파라미터 설정
                             param_grid = self.W_Parameter_Dict[column]
@@ -105,8 +105,15 @@ class MyProphet:
                             future = m.make_future_dataframe(periods=25)
                             forecast = m.predict(future)
 
-                            sundayList = forecast.query('ds.dt.dayofweek == 6')
-                            n_forecast = forecast.drop(sundayList.index)
+                            # sundayList = forecast.query('ds.dt.dayofweek == 6')
+                            # n_forecast = forecast.drop(sundayList.index)
+                            # 주말 제거
+                            sunday = forecast.query('ds.dt.dayofweek == 6')
+                            satday = forecast.query('ds.dt.dayofweek == 5')
+                            sundayList = [day for day in sunday.index.to_list()]
+                            satdayList = [day for day in satday.index.to_list()]
+                            holiList = sundayList + satdayList
+                            n_forecast = forecast.drop(index=holiList, axis=0)
 
                             # 오늘 날짜를 기준으로 같거나 큰 날짜만 출력
                             filtered_df = n_forecast.query("ds >= {} ".format(today))
@@ -438,12 +445,12 @@ class MyProphet:
                             Each_DF = Each_DF.rename(columns={'date': 'ds', column: 'y'})[['ds', 'y']]
 
                             # 이상치 값 제거
-                            q1 = Each_DF['y'].quantile(0.25)
-                            q3 = Each_DF['y'].quantile(0.75)
-                            iqr = q3 - q1
-                            condition = Each_DF['y'] > q3 + 1.5 * iqr
-                            a = Each_DF[condition].index
-                            Each_DF.drop(a, inplace=True)
+                            # q1 = Each_DF['y'].quantile(0.25)
+                            # q3 = Each_DF['y'].quantile(0.75)
+                            # iqr = q3 - q1
+                            # condition = Each_DF['y'] > q3 + 1.5 * iqr
+                            # a = Each_DF[condition].index
+                            # Each_DF.drop(a, inplace=True)
 
                             # 각각의 파라미터 설정
                             param_grid = self.R_Parameter_Dict[column]
@@ -457,10 +464,17 @@ class MyProphet:
                             future = m.make_future_dataframe(periods=15)
                             forecast = m.predict(future)
 
-                            sundayList = forecast.query('ds.dt.dayofweek == 6')
-                            n_forecast = forecast.drop(sundayList.index)
-                            satdayList = forecast.query('ds.dt.dayofweek == 5')
-                            n_forecast = forecast.drop(satdayList.index)
+                            # sundayList = forecast.query('ds.dt.dayofweek == 6')
+                            # n_forecast = forecast.drop(sundayList.index)
+                            # satdayList = forecast.query('ds.dt.dayofweek == 5')
+                            # n_forecast = forecast.drop(satdayList.index)
+                            # 주말 제거
+                            sunday = forecast.query('ds.dt.dayofweek == 6')
+                            satday = forecast.query('ds.dt.dayofweek == 5')
+                            sundayList = [day for day in sunday.index.to_list()]
+                            satdayList = [day for day in satday.index.to_list()]
+                            holiList = sundayList + satdayList
+                            n_forecast = forecast.drop(index=holiList, axis=0)
 
                             # 오늘 날짜를 기준으로 같거나 큰 날짜만 출력
                             filtered_df = n_forecast.query("ds >= {} ".format(today))

@@ -13,7 +13,7 @@ DB_PASSWORD = 'test1234'  # MySQL Password
 DB_NAME = 'projectdb'  # MySQL Name
 
 ## Path - 파이참 프로젝트 가장 상위 폴더 = Main 절대 경로
-Root_Path = r'C:\Users\sonmj\G_Project\Code\Pycharm\Main'
+Root_Path = r'C:\G_Project\Code\Pycharm\Main'
 #                                                                 #
 #                                                                 #
 #                                                                 #
@@ -71,11 +71,11 @@ Specialcrop_Dict_R = {'느타리버섯': 'oyster_mushroom', '땅콩': 'peanut', 
                       '애느타리버섯': 'oyster_mushroomA', '참깨': 'sesame', '팽이버섯': 'enoki_mushroom', '호두': 'walnut'}
 Vegetable_Dict_R = {'갓': 'leaf_mustard', '건고추(양건)': 'dried_red_pepperS', '건고추(화건)': 'dried_red_pepperD',
                     '고추가루': 'chili_powder', '깐마늘': 'garlic', '깻잎': 'sesame_leaf', '꽈리고추': 'chilli_pepper',
-                    '당근': 'carrot', '대추방울토마토': 'jujube_cherry_tomato', '대파': 'green_onion', '딸기': 'strawberry',
+                    '당근': 'carrot', '대추토마토': 'jujube_cherry_tomato', '대파': 'green_onion', '딸기': 'strawberry',
                     '멜론': 'melon', '무': 'radish', '미나리': 'parsley', '방울토마토': 'cherry_tomato', '배추': 'chinese_cabbage',
                     '붉은고추': 'red_pepper', '상추(적)': 'lettuceR', '상추(청)': 'lettuceB', '생강': 'ginger', '수박': 'watermelon',
                     '시금치': 'spinach', '애호박': 'squash', '양배추': 'cabbage', '양파': 'onion', '얼갈이배추': 'korean_cabbage',
-                    '열무': 'yeol_radish', '오이(가시계통)': 'cucumberS', '오이(다다기계통)': 'cucumberD', '오이(취청)': 'cucumberW',
+                    '열무': 'yeol_radish', '오이(가시)': 'cucumberS', '오이(다다기)': 'cucumberD', '오이(취청)': 'cucumberW',
                     '주키니': 'zucchini', '쪽파': 'chives', '참외': 'korean_melon', '청양고추': 'cheongyang_pepper',
                     '토마토': 'tomato', '파프리카': 'paprika', '풋고추': 'pepper', '피망': 'pimento'}
 Fruit_Dict_R = {'감귤': 'citrus', '건블루베리': 'dried_blueberries', '건포도': 'raisin', '단감': 'persimmon', '레몬': 'lemon',
@@ -119,4 +119,4 @@ Client_id = "MiUA1cOwkgZ7FPIPBawa"
 Client_secret = "sdSR7YXRu8"
 
 ## 제철 음식
-Excel_Path = Root_Path + "\\DB_source\\월별_제철요리_통합.xlsx"
+Excel_Path = Root_Path + "\\DB_source\\Init\\월별_제철재료_통합.xlsx"

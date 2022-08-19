@@ -7,6 +7,7 @@ from werkzeug.utils import redirect
 from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, csv_Folder_Path, Category_Kor, Category_Eng, Region_Dict, \
     Category_List_W, Category_radioList_W, Category_List_R, Category_radioList_R, Produce_Num
 from server.define.chart_data import ChartData, Retail
+from server.define.dict import Retail_Dict
 from server.models import Food_recipe
 
 bp = Blueprint('dash', __name__, url_prefix='/')
@@ -15,6 +16,9 @@ bp = Blueprint('dash', __name__, url_prefix='/')
 mydb = pymysql.Connect(host=DB_HOST, user=DB_USERNAME,
                        password=DB_PASSWORD, database=DB_NAME)
 cursor = mydb.cursor()
+
+retail_dict = Retail_Dict(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
+result_dict = retail_dict.RetailDict()
 
 
 # Dashboard
@@ -77,10 +81,10 @@ def wholesale():
                 print("chart1['stepSize_deal']  :" + str(chart1['stepSize_deal']))
                 # print('price_quarter', chart3['price_quarter'])
                 print('deal_quarter', chart3['deal_quarter'])
-                # print('max_price_quarter', chart3['max_price_quarter'])
-                # print('stepSize_price_quarter', chart3['stepSize_price_quarter'])
-                print('max_deal_quarter', chart3['max_deal_quarter'])
-                print('stepSize_deal_quarter', chart3['stepSize_deal_quarter'])
+                print('max_price_quarter', chart3['max_price_quarter'])
+                print('stepSize_price_quarter', chart3['stepSize_price_quarter'])
+                # print('max_deal_quarter', chart3['max_deal_quarter'])
+                # print('stepSize_deal_quarter', chart3['stepSize_deal_quarter'])
 
                 return render_template('dash/wholesale.html',
                                        category=category, key_produce=key_produce, radio_check=radio_check,
@@ -147,14 +151,7 @@ def wholesale():
                                        stepSize_deal_quarter=chart3['stepSize_deal_quarter'])
 
 
-from server.define.dict import Retail_Dict
-
-retail_dict = Retail_Dict(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME)
-result_dict = retail_dict.RetailDict()
-
-
-# print(result_dict['total']['Fruit']['M'].keys())
-
+# print(result_dict['total']['Vegetable']['M'][20211013])
 
 # Dashboard_소매
 @bp.route('/retail', methods=('GET', 'POST'))
@@ -223,7 +220,8 @@ def compare2(category):
         return redirect(url_for('main.login'))
     else:
         z = request.args
-        print(z)
+        print(category)
+        dt = Food_recipe.query.filter(Food_recipe.dish == category).all()
         return render_template('dash/compare2.html', category=category)
 
 

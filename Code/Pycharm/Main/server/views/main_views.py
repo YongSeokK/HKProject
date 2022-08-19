@@ -47,51 +47,31 @@ def index():
         produce_List = list(dictionary.values())  # 품목의 밸류값만 가져와 list로 변경
         translation_Dict = {v: k for k, v in dictionary.items()}  # 영어이름을 대체하기 위해 딕셔너리 키:밸류 도치
         for item in produce_List:
-            # 품목명
-            # item_List[cnt]  # 영어 품목명
-            produce = translation_Dict.get(item)  # 영어 품목명의 한글 이름 매칭
-            # print('==========================================')
-            # 그저께 거래량
-            sql1 = 'SELECT date, ' + item + ' FROM Wholesale_quantity ORDER BY date DESC LIMIT 14;'  # 열 선택 & 열 내림차순 행 제한
-            cursor.execute(sql1)
-            tmp1 = cursor.fetchall()
-            BefYesterday_quantity = int(tmp1[1][item])  # tmp1[1]= 데이터베이스 기준 그저께
-            # print(Item + ": 그저께 거래량 " + str(BefYesterday_quantity))
-            # print('==========================================')
-            # 그저께 가격
-            sql2 = 'SELECT date, ' + item + ' FROM Wholesale_price ORDER BY date DESC LIMIT 14;'  # 열 선택 & 열 내림차순 행 제한
-            cursor.execute(sql2)
-            tmp2 = cursor.fetchall()
-            BefYesterday_price = int(tmp2[1][item])
-            # print(Item + ": 그저께 가격 " + str(BefYesterday_price))
-            # print('==========================================')
-            # 어제 거래량
-            sql3 = 'SELECT date, ' + item + ' FROM Wholesale_quantity ORDER BY date DESC LIMIT 14;'  # 열 선택 & 열 내림차순 행 제한
-            cursor.execute(sql3)
-            tmp2 = cursor.fetchall()
-            Yesterday_quantity = int(tmp2[0][item])
-            # print(Item + ": 어제 거래량 " + str(Yesterday_quantity))
-            # print('==========================================')
-            # 어제 가격
-            sql4 = 'SELECT date, ' + item + ' FROM Wholesale_price ORDER BY date DESC LIMIT 14;'  # 열 선택 & 열 내림차순 행 제한
-            cursor.execute(sql4)
-            tmp1 = cursor.fetchall()
-            # print(tmp[0][Item_list[cnt]])  # DB의 제일 마지막에 있는 날짜 (오늘-1일)
-            Yesterday_price = int(tmp1[0][item])
-            # print(Item + ": 어제 거래량 " + str(Yesterday_price))
-            # print('==========================================')
-            # 거래량 차이
-            Quantity_dif = int(abs(BefYesterday_quantity - Yesterday_quantity))
-            # 가격 차이
-            Price_dif = int(abs(BefYesterday_price - Yesterday_price))
-            # print(int(Price_dif))
-            # print('==========================================')
-            dt_Dict = {"품목명": produce,
-                       "그제_거래량": BefYesterday_quantity, "어제_거래량": Yesterday_quantity,
-                       "거래량_변동폭": Quantity_dif,
-                       "그제_가격": BefYesterday_price, "어제_가격": Yesterday_price,
-                       "가격_변동폭": Price_dif}
-            data_table.append(dt_Dict)
+            produce = translation_Dict.get(item)  # item = 품목명 영어, 한글 이름 매칭
+            # 거래량
+            sql_q = 'SELECT date, ' + item + ' FROM Wholesale_quantity ORDER BY date DESC LIMIT 2;'  # 열 선택 & 열 내림차순 행 제한
+            cursor.execute(sql_q)
+            dt_quantity = cursor.fetchall()
+            before_quantity = int(dt_quantity[1][item])  # 그제
+            yesterday_quantity = int(dt_quantity[0][item])  # 어제
+            # 가격
+            sql_p = 'SELECT date, ' + item + ' FROM Wholesale_price ORDER BY date DESC LIMIT 2;'
+            cursor.execute(sql_p)
+            dt_price = cursor.fetchall()
+            before_price = int(dt_price[1][item])
+            yesterday_price = int(dt_price[0][item])
+            if before_price == 0 or yesterday_price == 0:
+                pass
+            else:
+                # 차이
+                quantity_dif = int(abs(before_quantity - yesterday_quantity))
+                price_dif = int(abs(before_price - yesterday_price))
+                dt_Dict = {"품목명": produce,
+                           "그제_거래량": before_quantity, "어제_거래량": yesterday_quantity,
+                           "거래량_변동폭": quantity_dif,
+                           "그제_가격": before_price, "어제_가격": yesterday_price,
+                           "가격_변동폭": price_dif}
+                data_table.append(dt_Dict)
     # 변동폭 기준 내림차순 정렬, 상위 5개
     data_table = sorted(data_table, key=(lambda x: x["가격_변동폭"]), reverse=True)[0:5]
 

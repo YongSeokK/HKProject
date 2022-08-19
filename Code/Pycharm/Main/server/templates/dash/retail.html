@@ -26,10 +26,10 @@
                                                id="tool-{{ loop.index }}">
                                         <label class="for-checkbox-tools" for="tool-{{ loop.index }}">
                                             {% if 'checked' in v %}
-                                            <i class='uil uil-pricetag-alt'></i>{{ k }}</label>
-                                        {% else %}
-                                        <i class='uil uil-ellipsis-h'></i>{{ k }}</label>
-                                        {% endif %}
+                                                {{ k }}</label>
+                                            {% else %}
+                                                {{ k }}</label>
+                                            {% endif %}
                                         {% endfor %}
                                     </form>
                                 </div>

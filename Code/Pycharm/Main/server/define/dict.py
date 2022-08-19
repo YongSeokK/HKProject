@@ -6,6 +6,7 @@ from tqdm import tqdm
 
 
 class Retail_Dict:
+
     ### init 설정
     def __init__(self, DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME):
         self.DB_USERNAME = DB_USERNAME
@@ -136,7 +137,7 @@ class Retail_Dict:
                                                      data[27], data[28], data[29], data[30], data[31],
                                                      data[32], data[33], data[34], data[35], data[36],
                                                      data[37], data[38], data[39], data[40], data[41],
-                                                     data[42], data[43]]
+                                                     data[42], data[43], data[44]]
                                             price = tuple(price)
                                             DataDictTmp[date] = price
                                             DataDict.update(DataDictTmp)
@@ -213,7 +214,7 @@ class Retail_Dict:
 		cabbage             # 양배추
 		spinach             # 시금치
 		lettuceR            # 상추(적)
-		lettuceB_T          # 상추(청) 
+		lettuceB            # 상추(청) 
 		korean_cabbage      # 얼갈이배추
 		leaf_mustard        # 갓
 		watermelon          # 수박 

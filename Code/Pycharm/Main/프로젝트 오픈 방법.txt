@@ -2,10 +2,10 @@
 
 
 ## import 된 패키지를 모두 자동 설치 하기 위한 옵션
-터미널 창에 입력
+# 터미널 창에 입력
 # 패키지 관리
 pip install -r requirements.txt
-(위에 파일만 설치해도 가능 나중에 안될 경우 실행) pip install -r requirements2.txt
+(위에 파일만 설치해도 가능 나중에 안될 경우 실행) pip install cryptography
 
 
 ## config.py 에서
@@ -14,12 +14,16 @@ pip install -r requirements.txt
 
 
 ## MySQL 에서 DB 생성한 후 터미널 창에 순차 실행
-flask db init
-flask db migrate
+set FLASK_APP=server
+flask db init  # 첫 DB 생성 시에만
+flask db migrate  # 이후 DB table 추가되었을 시
 flask db upgrade
 
+## DB 쌓기
+Init_DB 실행  # 첫 DB 쌓을 시에만
+daily_DB 실행  # 매일 업데이트하는 자료
 
 ## Flask 옵션(FLASK_APP, FLASK_ENV) 설정과 동시에 flask run
-cmd 실행 주소 Main 폴더로 경로 설정 필수
+# cmd 실행 주소 Main 폴더로 경로 설정 필수
 # 배치 파일
 play
