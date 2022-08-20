@@ -31,19 +31,19 @@
                             <table id="data" class="dataTable-table">
                                 <thead>
                                 <tr>
-                                    <th data-sortable="" style="width: 6.0%;"><a href="#" class="dataTable-sorter">serial</a>
+                                    <th data-sortable="" style="width: 12.0%;">
+                                        <a href="#" class="dataTable-sorter">dish</a></th>
+                                    <th data-sortable="" style="width: 8.0%;">
+                                        <a href="#" class="dataTable-sorter">registrant</a>
                                     </th>
-                                    <th data-sortable="" style="width: 12.0%;"><a href="#"
-                                                                                  class="dataTable-sorter">dish</a></th>
-                                    <th data-sortable="" style="width: 8.0%;"><a href="#" class="dataTable-sorter">registrant</a>
+                                    <th data-sortable="" style="width: 5.0%;">
+                                        <a href="#" class="dataTable-sorter">views</a></th>
                                     </th>
-                                    <th data-sortable="" style="width: 5.0%;"><a href="#"
-                                                                                 class="dataTable-sorter">views</a></th>
-                                    <th data-sortable="" style="width: 5.0%;"><a href="#" class="dataTable-sorter">situation</a>
+                                    <th data-sortable="" style="width: 30.0%;">
+                                        <a href="#" class="dataTable-sorter">intro</a>
                                     </th>
-                                    <th data-sortable="" style="width: 30.0%;"><a href="#" class="dataTable-sorter">intro</a>
-                                    </th>
-                                    <th data-sortable="" style="width: 34.0%;"><a href="#" class="dataTable-sorter">ingredients</a>
+                                    <th data-sortable="" style="width: 34.0%;">
+                                        <a href="#" class="dataTable-sorter">ingredients</a>
                                     </th>
                                 </tr>
                                 </thead>
@@ -51,13 +51,11 @@
                                 <tbody>
                                 {% for i in dt %}
                                 <tr>
-                                    <td>{{ i.serial }}</td>
-                                    <td>{{ i.dish }}</td>
-                                    <td>{{ i.registrant }}</td>
-                                    <td>{{ i.views }}</td>
-                                    <td>{{ i.situation }}</td>
-                                    <td>{{ i.intro }}</td>
-                                    <td>{{ i.ingredients }}</td>
+                                    <td>{{ i[2] }}</td>
+                                    <td>{{ i[3] }}</td>
+                                    <td>{{ i[4] }}</td>
+                                    <td>{{ i[7] }}</td>
+                                    <td>{{ i[8] }}</td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>

@@ -17,7 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{ url_for('static', filename='styles.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='dash/css/carousel.css') }}" rel="stylesheet">
     <style>.d-none {
             display: none;
             }
@@ -29,7 +30,6 @@
                 opacity: 0.65;
             }
     </style>
-    <link href="{{ url_for('static', filename='css/carousel.css')}}" rel="stylesheet">
     <script>
     // content, cate, index를 인수로 받아 form 태그로 전송하는 함수
     function goPage1(category = 0) {
@@ -89,8 +89,9 @@
                 <!-- <li class="nav-item"><a class="nav-link" href="#services">가격예측</a></li> -->
                 <!-- <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}#team">Team</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:goPage1('식량작물');">도매 가격정보</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:goPage2('서울','식량작물');">소매 가격정보</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:goPage1('식량작물');">도매정보</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:goPage2('서울','식량작물');">소매정보</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.shop') }}">직거래쇼핑</a></li>
                 <div class="dropdown">
                     <li class="nav-item" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                         <a class="nav-link" href="">기타서비스</a></li>

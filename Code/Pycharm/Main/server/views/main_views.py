@@ -38,10 +38,7 @@ def load_logged_in_user():
 # 메인 홈
 @bp.route('/', methods=('GET', 'POST'))
 def index():
-    pname = '농산물 물가'
-    MyNaver = Naverapi(pname, Client_id, Client_secret)
-    article_List = MyNaver.Navernews()
-
+    # 변동표
     data_table = []
     for dictionary in Category_List_W:
         produce_List = list(dictionary.values())  # 품목의 밸류값만 가져와 list로 변경
@@ -73,9 +70,14 @@ def index():
                            "가격_변동폭": price_dif}
                 data_table.append(dt_Dict)
     # 변동폭 기준 내림차순 정렬, 상위 5개
-    data_table = sorted(data_table, key=(lambda x: x["가격_변동폭"]), reverse=True)[0:5]
+    data_table = sorted(data_table, key=(lambda x: x["가격_변동폭"]), reverse=True)[0:10]
 
-    # popup3_제철 음식
+    # popup 1
+    pname = '농산물 물가'
+    MyNaver = Naverapi(pname, Client_id, Client_secret)
+    article_List = MyNaver.Navernews()
+
+    # popup 3
     this_month = now.strftime('%m')
     sql_seasonal = 'SELECT * FROM seasonal_food WHERE Month = {}'.format(this_month)
     cursor.execute(sql_seasonal)
@@ -211,6 +213,18 @@ def confirm():
         else:
             return render_template('profile/confirm.html')
     return render_template('profile/confirm.html')
+
+
+# 직거래쇼핑
+@bp.route('/shop', methods=('GET', 'POST'))
+def shop():
+    return render_template('shop.html')
+
+
+# 팀 _ 숨겨진 페이지
+@bp.route('/team', methods=('GET', 'POST'))
+def team():
+    return render_template('profile/team.html')
 
 
 # del

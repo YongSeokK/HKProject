@@ -232,7 +232,10 @@ def chart():
 
 
 # table
-@bp.route('/table')
-def table():
-    dt = Food_recipe.query.filter(Food_recipe.dish == '김치찌개').all()
+@bp.route('/table/<ingredient>', methods=('GET', 'POST'))
+def table(ingredient):
+    # dt = Food_recipe.query.filter(Food_recipe.dish == keyword).all()
+    sql_t = 'SELECT * FROM food_recipe WHERE dish LIKE "%{}%" ORDER BY views DESC LIMIT 10;'.format(ingredient)
+    cursor.execute(sql_t)
+    dt = cursor.fetchall()
     return render_template('dash/table.html', dt=dt)
