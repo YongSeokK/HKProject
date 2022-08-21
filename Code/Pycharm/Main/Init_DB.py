@@ -1,8 +1,11 @@
 import json
+from datetime import datetime
 from glob import glob
 
 import pandas as pd
 import pymysql
+from flask import Flask
+from flask_bcrypt import Bcrypt
 from tqdm import tqdm
 
 from config import DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME, \
@@ -27,6 +30,44 @@ for idx in tqdm(range(len(data)), desc='제철 음식 자료', mininterval=0.05)
     cursor.execute(sql, tuple(data.values[idx][:3]))
 db.commit()
 #################### 제철 음식 자료 처리 ####################
+## 추가된 부분
+# img_dict = {}
+# for img in glob(Image_Path + "*"):
+#     img_name = img.split('\\')[-1].split('.')[0]
+#     with open(img, "rb") as image_file:
+#         binary_image = image_file.read()
+#         # Base64로 인코딩
+#         binary_image = base64.b64encode(binary_image)
+#         # UTF-8로 인코딩
+#         binary_image = binary_image.decode('UTF-8')
+#         img_dict[img_name] = binary_image
+#     image_file.close()
+# data = pd.read_excel(Excel_Path)
+# data['Month'] = data['Month'].apply(lambda x: str(x))
+# data['Month'] = data['Month'].apply(lambda x: '0' + x if len(x) == 1 else x)
+# del data['URL']
+# data['img'] = data['Name'].apply(lambda x: img_dict[x])
+# sql = 'insert into seasonal_food (Month, Name, Period, image) values(%s, %s, %s, %s)'
+# for idx in tqdm(range(len(data)), desc='제철 음식 자료', mininterval=0.05):
+#     cursor.execute(sql, tuple(data.values[idx][:]))
+# db.commit()
+## 추가된 부분
+
+
+#################### 관리자 등록 ####################
+bcrypt = Bcrypt(Flask(__name__))
+member = [['admin', '관리자', 'test1234', '관리자', 'sonmj2026@naver.com', '01012345678', 0, datetime.utcnow()],
+          ['manager', '매니저', 'test1234', 'manager', 'sonmj2026@naver.com', '01012345678', 2, datetime.utcnow()]]
+member_columns = 'userid, nickname, userpw, name, email, phone, grade, start'
+for i in member:
+    password = i[2]
+    pw_hash = bcrypt.generate_password_hash(password.encode('utf-8'))
+    pw_hash = pw_hash.decode('utf-8')
+    sql_table = 'INSERT INTO members ({}) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'.format(member_columns)
+    user = (i[0], i[1], pw_hash, i[3], i[4], i[5], i[6], i[7])
+    cursor.execute(sql_table, user)
+db.commit()
+#################### 관리자 등록 ####################
 
 
 #################### 만개의 레시피 자료 처리 ####################
@@ -84,23 +125,22 @@ for file in [WholesaleVolume_File_Path, WholesalePrice_File_Path]:
         query = """INSERT INTO {} ({}) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """.format(table, col_Text)
-        Result_Text = (Row_Dict['date'], Row_Dict['콩_' + name], Row_Dict['고구마_' + name], Row_Dict['감자_' + name],
-                       Row_Dict['배추_' + name], Row_Dict['양배추_' + name], Row_Dict['시금치_' + name], Row_Dict['상추_' + name],
-                       Row_Dict['얼갈이배추_' + name], Row_Dict['수박_' + name], Row_Dict['참외_' + name],
-                       Row_Dict['오이_' + name],
-                       Row_Dict['호박_' + name], Row_Dict['토마토_' + name], Row_Dict['딸기_' + name], Row_Dict['무_' + name],
-                       Row_Dict['당근_' + name], Row_Dict['열무_' + name], Row_Dict['건고추_' + name], Row_Dict['풋고추_' + name],
-                       Row_Dict['양파_' + name], Row_Dict['대파_' + name], Row_Dict['쪽파_' + name], Row_Dict['생강_' + name],
+        Result_Text = (Row_Dict['date'], Row_Dict['콩_' + name], Row_Dict['고구마_' + name],
+                       Row_Dict['감자_' + name], Row_Dict['배추_' + name], Row_Dict['양배추_' + name],
+                       Row_Dict['시금치_' + name], Row_Dict['상추_' + name], Row_Dict['얼갈이배추_' + name],
+                       Row_Dict['수박_' + name], Row_Dict['참외_' + name], Row_Dict['오이_' + name],
+                       Row_Dict['호박_' + name], Row_Dict['토마토_' + name], Row_Dict['딸기_' + name],
+                       Row_Dict['무_' + name], Row_Dict['당근_' + name], Row_Dict['열무_' + name],
+                       Row_Dict['건고추_' + name], Row_Dict['풋고추_' + name], Row_Dict['양파_' + name],
+                       Row_Dict['대파_' + name], Row_Dict['쪽파_' + name], Row_Dict['생강_' + name],
                        Row_Dict['미나리_' + name], Row_Dict['깻잎_' + name], Row_Dict['피망(단고추)_' + name],
-                       Row_Dict['파프리카_' + name],
-                       Row_Dict['방울토마토_' + name], Row_Dict['참깨_' + name], Row_Dict['땅콩_' + name],
-                       Row_Dict['느타리버섯_' + name],
-                       Row_Dict['새송이_' + name], Row_Dict['팽이버섯_' + name], Row_Dict['호두_' + name],
-                       Row_Dict['사과_' + name],
-                       Row_Dict['배_' + name], Row_Dict['복숭아_' + name], Row_Dict['포도_' + name], Row_Dict['감귤_' + name],
-                       Row_Dict['단감_' + name], Row_Dict['바나나_' + name], Row_Dict['참다래(키위)_' + name],
-                       Row_Dict['파인애플_' + name],
-                       Row_Dict['오렌지_' + name], Row_Dict['레몬_' + name], Row_Dict['체리_' + name], Row_Dict['망고_' + name])
+                       Row_Dict['파프리카_' + name], Row_Dict['방울토마토_' + name], Row_Dict['참깨_' + name],
+                       Row_Dict['땅콩_' + name], Row_Dict['느타리버섯_' + name], Row_Dict['새송이_' + name],
+                       Row_Dict['팽이버섯_' + name], Row_Dict['호두_' + name], Row_Dict['사과_' + name],
+                       Row_Dict['배_' + name], Row_Dict['복숭아_' + name], Row_Dict['포도_' + name],
+                       Row_Dict['감귤_' + name], Row_Dict['단감_' + name], Row_Dict['바나나_' + name],
+                       Row_Dict['참다래(키위)_' + name], Row_Dict['파인애플_' + name], Row_Dict['오렌지_' + name],
+                       Row_Dict['레몬_' + name], Row_Dict['체리_' + name], Row_Dict['망고_' + name])
         cursor.execute(query, Result_Text)
         db.commit()
 #################### 거래량 데이터 ####################

@@ -133,8 +133,8 @@ class MyProphet:
     ### 소매 데이터 처리
     def Retail(self):
         ## 데이터 전처리에 필요한 초기 값들
-        chinese_cabbage_T = 'chinese_cabbageF_T, chinese_cabbageW_T, chinese_cabbageS_T, chinese_cabbageH_T'
-        chinese_cabbage_M = 'chinese_cabbageF_M, chinese_cabbageW_M, chinese_cabbageS_M, chinese_cabbageH_M'
+        napa_cabbage_T = 'napa_cabbageF_T, napa_cabbageW_T, napa_cabbageS_T, napa_cabbageH_T'
+        napa_cabbage_M = 'napa_cabbageF_M, napa_cabbageW_M, napa_cabbageS_M, napa_cabbageH_M'
         radish_T = 'radishF_T, radishW_T, radishS_T, radishH_T'
         radish_M = 'radishF_M, radishW_M, radishS_M, radishH_M'
         apple_T = 'appleF_T, appleT_T, appleR_T'
@@ -151,8 +151,8 @@ class MyProphet:
         orange_M = 'orangeU_M, orangeA_M'
 
         banList = ['riceF_T', 'riceF_M',
-                   'chinese_cabbageF_T', 'chinese_cabbageW_T', 'chinese_cabbageS_T', 'chinese_cabbageH_T',
-                   'chinese_cabbageF_M', 'chinese_cabbageW_M', 'chinese_cabbageS_M', 'chinese_cabbageH_M',
+                   'napa_cabbageF_T', 'napa_cabbageW_T', 'napa_cabbageS_T', 'napa_cabbageH_T',
+                   'napa_cabbageF_M', 'napa_cabbageW_M', 'napa_cabbageS_M', 'napa_cabbageH_M',
                    'radishF_T', 'radishW_T', 'radishS_T', 'radishH_T',
                    'radishF_M', 'radishW_M', 'radishS_M', 'radishH_M',
                    'appleF_T', 'appleT_T', 'appleR_T', 'appleF_M', 'appleT_M', 'appleR_M',
@@ -163,8 +163,8 @@ class MyProphet:
                    'orangeU_T', 'orangeA_T', 'orangeU_M', 'orangeA_M']
 
         ## 차후 데이터 프레임에 쌓을 리스트 생성
-        chinese_cabbage_T_data_List = []
-        chinese_cabbage_M_data_List = []
+        napa_cabbage_T_data_List = []
+        napa_cabbage_M_data_List = []
         radish_T_data_List = []
         radish_M_data_List = []
         apple_T_data_List = []
@@ -233,24 +233,24 @@ class MyProphet:
                     ## banList 에 있는 데이터 전처리 각 각 특징에 맞게 작업 해야 하므로 각 각 예외처리 진행
                     # 배추(시장) 전처리 작업
                     sql_retaildata = "SELECT {} FROM total_retail ORDER BY date"
-                    sql_retaildata = (sql_retaildata.format(chinese_cabbage_T))
+                    sql_retaildata = (sql_retaildata.format(napa_cabbage_T))
                     cur.execute(sql_retaildata)
                     for data in cur.fetchall():
                         try:
-                            chinese_cabbage = sum(data[0: 4]) / (len(data[0: 4]) - data[0: 4].count(0))
+                            napa_cabbage = sum(data[0: 4]) / (len(data[0: 4]) - data[0: 4].count(0))
                         except:
-                            chinese_cabbage = 0
-                        chinese_cabbage_T_data_List.append(chinese_cabbage)
+                            napa_cabbage = 0
+                        napa_cabbage_T_data_List.append(napa_cabbage)
                     # 배추(마트) 전처리 작업
                     sql_retaildata = "SELECT {} FROM total_retail ORDER BY date"
-                    sql_retaildata = (sql_retaildata.format(chinese_cabbage_M))
+                    sql_retaildata = (sql_retaildata.format(napa_cabbage_M))
                     cur.execute(sql_retaildata)
                     for data in cur.fetchall():
                         try:
-                            chinese_cabbage = sum(data[0: 4]) / (len(data[0: 4]) - data[0: 4].count(0))
+                            napa_cabbage = sum(data[0: 4]) / (len(data[0: 4]) - data[0: 4].count(0))
                         except:
-                            chinese_cabbage = 0
-                        chinese_cabbage_M_data_List.append(chinese_cabbage)
+                            napa_cabbage = 0
+                        napa_cabbage_M_data_List.append(napa_cabbage)
 
                     # 무(시장) 전처리 작업
                     sql_retaildata = "SELECT {} FROM total_retail ORDER BY date"
@@ -413,8 +413,8 @@ class MyProphet:
                     Price_DF = pd.DataFrame(Price_List[1:], columns=Price_List[0])
 
                     # 쿼리문으로 실행한 데이터와 위에서 예외 처리한 데이터 병합합
-                    Price_DF = Price_DF.assign(chinese_cabbage_T=chinese_cabbage_T_data_List,  # 배추(시장)
-                                               chinese_cabbage_M=chinese_cabbage_M_data_List,  # 배추(마트)
+                    Price_DF = Price_DF.assign(napa_cabbage_T=napa_cabbage_T_data_List,  # 배추(시장)
+                                               napa_cabbage_M=napa_cabbage_M_data_List,  # 배추(마트)
                                                radish_T=radish_T_data_List,  # 무(시장)
                                                radish_M=radish_M_data_List,  # 무(마트)
                                                apple_T=apple_T_data_List,  # 사과(시장)
@@ -598,8 +598,8 @@ class MyProphet:
         ##### 파라미터 다시 설정 해줘야할 때 사용할 것 ######
 
         ## 데이터 전처리에 필요한 초기 값들
-        chinese_cabbage_T = 'chinese_cabbageF_T, chinese_cabbageW_T, chinese_cabbageS_T, chinese_cabbageH_T'
-        chinese_cabbage_M = 'chinese_cabbageF_M, chinese_cabbageW_M, chinese_cabbageS_M, chinese_cabbageH_M'
+        napa_cabbage_T = 'napa_cabbageF_T, napa_cabbageW_T, napa_cabbageS_T, napa_cabbageH_T'
+        napa_cabbage_M = 'napa_cabbageF_M, napa_cabbageW_M, napa_cabbageS_M, napa_cabbageH_M'
         radish_T = 'radishF_T, radishW_T, radishS_T, radishH_T'
         radish_M = 'radishF_M, radishW_M, radishS_M, radishH_M'
         apple_T = 'appleF_T, appleT_T, appleR_T'
@@ -616,8 +616,8 @@ class MyProphet:
         orange_M = 'orangeU_M, orangeA_M'
 
         banList = ['riceF_T', 'riceF_M',
-                   'chinese_cabbageF_T', 'chinese_cabbageW_T', 'chinese_cabbageS_T', 'chinese_cabbageH_T',
-                   'chinese_cabbageF_M', 'chinese_cabbageW_M', 'chinese_cabbageS_M', 'chinese_cabbageH_M',
+                   'napa_cabbageF_T', 'napa_cabbageW_T', 'napa_cabbageS_T', 'napa_cabbageH_T',
+                   'napa_cabbageF_M', 'napa_cabbageW_M', 'napa_cabbageS_M', 'napa_cabbageH_M',
                    'radishF_T', 'radishW_T', 'radishS_T', 'radishH_T',
                    'radishF_M', 'radishW_M', 'radishS_M', 'radishH_M',
                    'appleF_T', 'appleT_T', 'appleR_T', 'appleF_M', 'appleT_M', 'appleR_M',
@@ -628,8 +628,8 @@ class MyProphet:
                    'orangeU_T', 'orangeA_T', 'orangeU_M', 'orangeA_M']
 
         ## 차후 데이터 프레임에 쌓을 리스트 생성
-        chinese_cabbage_T_data_List = [];
-        chinese_cabbage_M_data_List = []
+        napa_cabbage_T_data_List = [];
+        napa_cabbage_M_data_List = []
         radish_T_data_List = [];
         radish_M_data_List = []
         apple_T_data_List = [];
@@ -691,24 +691,24 @@ class MyProphet:
                     ## banList 에 있는 데이터 전처리 각 각 특징에 맞게 작업 해야 하므로 각 각 예외처리 진행
                     # 배추(시장) 전처리 작업
                     sql_retaildata = "SELECT {} FROM total_retail ORDER BY date"
-                    sql_retaildata = (sql_retaildata.format(chinese_cabbage_T))
+                    sql_retaildata = (sql_retaildata.format(napa_cabbage_T))
                     cur.execute(sql_retaildata)
                     for data in cur.fetchall():
                         try:
-                            chinese_cabbage = sum(data[0: 4]) / (len(data[0: 4]) - data[0: 4].count(0))
+                            napa_cabbage = sum(data[0: 4]) / (len(data[0: 4]) - data[0: 4].count(0))
                         except:
-                            chinese_cabbage = 0
-                        chinese_cabbage_T_data_List.append(chinese_cabbage)
+                            napa_cabbage = 0
+                        napa_cabbage_T_data_List.append(napa_cabbage)
                     # 배추(마트) 전처리 작업
                     sql_retaildata = "SELECT {} FROM total_retail ORDER BY date"
-                    sql_retaildata = (sql_retaildata.format(chinese_cabbage_M))
+                    sql_retaildata = (sql_retaildata.format(napa_cabbage_M))
                     cur.execute(sql_retaildata)
                     for data in cur.fetchall():
                         try:
-                            chinese_cabbage = sum(data[0: 4]) / (len(data[0: 4]) - data[0: 4].count(0))
+                            napa_cabbage = sum(data[0: 4]) / (len(data[0: 4]) - data[0: 4].count(0))
                         except:
-                            chinese_cabbage = 0
-                        chinese_cabbage_M_data_List.append(chinese_cabbage)
+                            napa_cabbage = 0
+                        napa_cabbage_M_data_List.append(napa_cabbage)
 
                     # 무(시장) 전처리 작업
                     sql_retaildata = "SELECT {} FROM total_retail ORDER BY date"
@@ -871,8 +871,8 @@ class MyProphet:
                     Price_DF = pd.DataFrame(Price_List[1:], columns=Price_List[0])
 
                     # 쿼리문으로 실행한 데이터와 위에서 예외 처리한 데이터 병합합
-                    Price_DF = Price_DF.assign(chinese_cabbage_T=chinese_cabbage_T_data_List,  # 배추(시장)
-                                               chinese_cabbage_M=chinese_cabbage_M_data_List,  # 배추(마트)
+                    Price_DF = Price_DF.assign(napa_cabbage_T=napa_cabbage_T_data_List,  # 배추(시장)
+                                               napa_cabbage_M=napa_cabbage_M_data_List,  # 배추(마트)
                                                radish_T=radish_T_data_List,  # 무(시장)
                                                radish_M=radish_M_data_List,  # 무(마트)
                                                apple_T=apple_T_data_List,  # 사과(시장)

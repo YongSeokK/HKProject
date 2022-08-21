@@ -10,10 +10,10 @@ SECRET_KEY = 'dev'
 #                                                                 #
 #                                                                 #
 DB_PASSWORD = 'test1234'  # MySQL Password
-DB_NAME = 'projectdb'  # MySQL Name
+DB_NAME = 'project_db'  # MySQL Name
 
 ## Path - 파이참 프로젝트 가장 상위 폴더 = Main 절대 경로
-Root_Path = r'C:\G_Project\Code\Pycharm\Main'
+Root_Path = r'C:\Users\sonmj\G_Project\Code\Pycharm\Main'
 #                                                                 #
 #                                                                 #
 #                                                                 #
@@ -61,13 +61,14 @@ Foodcrop_Dict_W = {'감자': 'potato', '고구마': 'sweet_potato', '콩': 'bean
 Specialcrop_Dict_W = {'느타리버섯': 'oyster_mushroom', '땅콩': 'peanut', '새송이버섯': 'king_oyster_mushroom', '참깨': 'sesame',
                       '팽이버섯': 'enoki_mushrooms', '호두': 'walnut'}
 Vegetable_Dict_W = {'건고추': 'dried_red_pepper', '고추': 'pepper', '깻잎': 'sesame_leaf', '당근': 'carrot', '대파': 'green_onion',
-                    '무': 'radish', '미나리': 'parsley', '배추': 'chinese_cabbage', '상추': 'lettuce', '생강': 'ginger',
-                    '시금치': 'spinach', '양배추': 'cabbage', '양파': 'onion', '얼갈이배추': 'korean_cabbage', '열무': 'yeol_radish',
-                    '오이': 'cucumber', '쪽파': 'chives', '피망': 'pimento', '파프리카': 'paprika', '호박': 'pumpkin'}
-Fruit_Dict_W = {'감귤': 'citrus', '단감': 'persimmon', '딸기': 'strawberry', '레몬': 'lemon', '망고': 'mango', '바나나': 'banana',
-                '방울토마토': 'cherry_tomato', '배': 'pear', '복숭아': 'peach', '사과': 'apple', '수박': 'watermelon',
-                '오렌지': 'orange',
-                '참외': 'korean_melon', '체리': 'cherry', '키위': 'kiwi', '토마토': 'tomato', '파인애플': 'pineapple', '포도': 'grape'}
+                    '딸기': 'strawberry', '무': 'radish', '미나리': 'parsley', '방울토마토': 'cherry_tomato',
+                    '배추': 'napa_cabbage', '상추': 'lettuce', '생강': 'ginger', '수박': 'watermelon', '시금치': 'spinach',
+                    '양배추': 'cabbage', '양파': 'onion', '얼갈이배추': 'winter_cabbage', '열무': 'yeol_radish', '오이': 'cucumber',
+                    '쪽파': 'chives', '참외': 'korean_melon', '토마토': 'tomato', '파프리카': 'paprika', '피망': 'pimento',
+                    '호박': 'pumpkin'}
+Fruit_Dict_W = {'감귤': 'citrus', '단감': 'persimmon', '레몬': 'lemon', '망고': 'mango', '바나나': 'banana', '배': 'pear',
+                '복숭아': 'peach', '사과': 'apple', '오렌지': 'orange', '체리': 'cherry', '키위': 'kiwi', '파인애플': 'pineapple',
+                '포도': 'grape'}
 
 # Radio button check 값을 주기 위한 value 값이 공란인 딕셔러니 생성
 Foodcrop_radioDict_W = dict.fromkeys(list(Foodcrop_Dict_W.keys()), '')
@@ -86,9 +87,9 @@ Specialcrop_Dict_R = {'느타리버섯': 'oyster_mushroom', '땅콩': 'peanut', 
 Vegetable_Dict_R = {'갓': 'leaf_mustard', '건고추(양건)': 'dried_red_pepperS', '건고추(화건)': 'dried_red_pepperD',
                     '고추가루': 'chili_powder', '깐마늘': 'garlic', '깻잎': 'sesame_leaf', '꽈리고추': 'chilli_pepper',
                     '당근': 'carrot', '대추토마토': 'jujube_cherry_tomato', '대파': 'green_onion', '딸기': 'strawberry',
-                    '멜론': 'melon', '무': 'radish', '미나리': 'parsley', '방울토마토': 'cherry_tomato', '배추': 'chinese_cabbage',
+                    '멜론': 'melon', '무': 'radish', '미나리': 'parsley', '방울토마토': 'cherry_tomato', '배추': 'napa_cabbage',
                     '붉은고추': 'red_pepper', '상추(적)': 'lettuceR', '상추(청)': 'lettuceB', '생강': 'ginger', '수박': 'watermelon',
-                    '시금치': 'spinach', '애호박': 'squash', '양배추': 'cabbage', '양파': 'onion', '얼갈이배추': 'korean_cabbage',
+                    '시금치': 'spinach', '애호박': 'squash', '양배추': 'cabbage', '양파': 'onion', '얼갈이배추': 'winter_cabbage',
                     '열무': 'yeol_radish', '오이(가시)': 'cucumberS', '오이(다다기)': 'cucumberD', '오이(취청)': 'cucumberW',
                     '주키니': 'zucchini', '쪽파': 'chives', '참외': 'korean_melon', '청양고추': 'cheongyang_pepper',
                     '토마토': 'tomato', '파프리카': 'paprika', '풋고추': 'pepper', '피망': 'pimento'}
@@ -108,8 +109,8 @@ Category_radioList_R = [Foodcrop_radioDict_R, Specialcrop_radioDict_R, Vegetable
 
 # 소매 딕셔너리 농산물 순서
 Produce_Num = {'rice': 0, 'glutinous_rice': 1, 'bean': 2, 'red_bean': 3, 'green_beans': 4, 'sweet_potato': 5,
-               'potato': 6, 'chinese_cabbage': 0, 'cabbage': 1, 'spinach': 2, 'lettuceR': 3, 'lettuceB': 4,
-               'korean_cabbage': 5, 'leaf_mustard': 6, 'watermelon': 7, 'korean_melon': 8, 'cucumberS': 9,
+               'potato': 6, 'napa_cabbage': 0, 'cabbage': 1, 'spinach': 2, 'lettuceR': 3, 'lettuceB': 4,
+               'winter_cabbage': 5, 'leaf_mustard': 6, 'watermelon': 7, 'korean_melon': 8, 'cucumberS': 9,
                'cucumberD': 10, 'cucumberW': 11, 'squash': 12, 'zucchini': 13, 'tomato': 14, 'strawberry': 15,
                'radish': 16, 'carrot': 17, 'yeol_radish': 18, 'dried_red_pepperD': 19, 'dried_red_pepperS': 20,
                'pepper': 21, 'chilli_pepper': 22, 'cheongyang_pepper': 23, 'red_pepper': 24, 'onion': 25,

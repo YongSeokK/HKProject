@@ -12,6 +12,7 @@ class Members(db.Model):
     name = db.Column(db.String(20, 'utf8mb4_unicode_ci'), nullable=False)
     email = db.Column(db.String(20, 'utf8mb4_unicode_ci'), nullable=False)
     phone = db.Column(db.String(20, 'utf8mb4_unicode_ci'), nullable=False)
+    grade = db.Column(db.Integer(), nullable=False)
     start = db.Column(db.DateTime, default=datetime.utcnow())
 
 
@@ -39,11 +40,11 @@ class Wholesale_quantity(db.Model):
     beans = db.Column(db.Float, nullable=False)  # 콩
     sweet_potato = db.Column(db.Float, nullable=False)  # 고구마
     potato = db.Column(db.Float, nullable=False)  # 감자
-    chinese_cabbage = db.Column(db.Float, nullable=False)  # 배추
+    napa_cabbage = db.Column(db.Float, nullable=False)  # 배추
     cabbage = db.Column(db.Float, nullable=False)  # 양배추
     spinach = db.Column(db.Float, nullable=False)  # 시금치
     lettuce = db.Column(db.Float, nullable=False)  # 상추
-    korean_cabbage = db.Column(db.Float, nullable=False)  # 얼갈이 배추
+    winter_cabbage = db.Column(db.Float, nullable=False)  # 얼갈이 배추
     watermelon = db.Column(db.Float, nullable=False)  # 수박
     korean_melon = db.Column(db.Float, nullable=False)  # 참외
     cucumber = db.Column(db.Float, nullable=False)  # 오이
@@ -91,11 +92,11 @@ class Wholesale_price(db.Model):
     beans = db.Column(db.Float, nullable=False)  # 콩
     sweet_potato = db.Column(db.Float, nullable=False)  # 고구마
     potato = db.Column(db.Float, nullable=False)  # 감자
-    chinese_cabbage = db.Column(db.Float, nullable=False)  # 배추
+    napa_cabbage = db.Column(db.Float, nullable=False)  # 배추
     cabbage = db.Column(db.Float, nullable=False)  # 양배추
     spinach = db.Column(db.Float, nullable=False)  # 시금치
     lettuce = db.Column(db.Float, nullable=False)  # 상추
-    korean_cabbage = db.Column(db.Float, nullable=False)  # 얼갈이 배추
+    winter_cabbage = db.Column(db.Float, nullable=False)  # 얼갈이 배추
     watermelon = db.Column(db.Float, nullable=False)  # 수박
     korean_melon = db.Column(db.Float, nullable=False)  # 참외
     cucumber = db.Column(db.Float, nullable=False)  # 오이
@@ -160,14 +161,14 @@ class Total_retail(db.Model):
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
     # 채소류
-    chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
-    chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
-    chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
-    chinese_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
-    chinese_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
-    chinese_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
-    chinese_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
-    chinese_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
+    napa_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
+    napa_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
+    napa_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
+    napa_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
+    napa_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
+    napa_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
+    napa_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
+    napa_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
     cabbage_T = db.Column(db.Float, nullable=False)  # 양배추 시장
     cabbage_M = db.Column(db.Float, nullable=False)  # 양배추 대형마트
     spinach_T = db.Column(db.Float, nullable=False)  # 시금치 시장
@@ -176,8 +177,8 @@ class Total_retail(db.Model):
     lettuceR_M = db.Column(db.Float, nullable=False)  # 상추(적) 대형마트
     lettuceB_T = db.Column(db.Float, nullable=False)  # 상추(청) 시장
     lettuceB_M = db.Column(db.Float, nullable=False)  # 상추(청) 대형마트
-    korean_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
-    korean_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
+    winter_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
+    winter_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
     leaf_mustard_T = db.Column(db.Float, nullable=False)  # 갓 시장
     leaf_mustard_M = db.Column(db.Float, nullable=False)  # 갓 대형마트
     watermelon_T = db.Column(db.Float, nullable=False)  # 수박 시장
@@ -387,14 +388,14 @@ class Seoul_retail(db.Model):
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
     # 채소류
-    chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
-    chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
-    chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
-    chinese_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
-    chinese_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
-    chinese_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
-    chinese_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
-    chinese_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
+    napa_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
+    napa_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
+    napa_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
+    napa_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
+    napa_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
+    napa_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
+    napa_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
+    napa_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
     cabbage_T = db.Column(db.Float, nullable=False)  # 양배추 시장
     cabbage_M = db.Column(db.Float, nullable=False)  # 양배추 대형마트
     spinach_T = db.Column(db.Float, nullable=False)  # 시금치 시장
@@ -403,8 +404,8 @@ class Seoul_retail(db.Model):
     lettuceR_M = db.Column(db.Float, nullable=False)  # 상추(적) 대형마트
     lettuceB_T = db.Column(db.Float, nullable=False)  # 상추(청) 시장
     lettuceB_M = db.Column(db.Float, nullable=False)  # 상추(청) 대형마트
-    korean_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
-    korean_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
+    winter_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
+    winter_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
     leaf_mustard_T = db.Column(db.Float, nullable=False)  # 갓 시장
     leaf_mustard_M = db.Column(db.Float, nullable=False)  # 갓 대형마트
     watermelon_T = db.Column(db.Float, nullable=False)  # 수박 시장
@@ -614,14 +615,14 @@ class Incheon_retail(db.Model):
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
     # 채소류
-    chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
-    chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
-    chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
-    chinese_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
-    chinese_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
-    chinese_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
-    chinese_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
-    chinese_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
+    napa_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
+    napa_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
+    napa_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
+    napa_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
+    napa_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
+    napa_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
+    napa_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
+    napa_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
     cabbage_T = db.Column(db.Float, nullable=False)  # 양배추 시장
     cabbage_M = db.Column(db.Float, nullable=False)  # 양배추 대형마트
     spinach_T = db.Column(db.Float, nullable=False)  # 시금치 시장
@@ -630,8 +631,8 @@ class Incheon_retail(db.Model):
     lettuceR_M = db.Column(db.Float, nullable=False)  # 상추(적) 대형마트
     lettuceB_T = db.Column(db.Float, nullable=False)  # 상추(청) 시장
     lettuceB_M = db.Column(db.Float, nullable=False)  # 상추(청) 대형마트
-    korean_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
-    korean_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
+    winter_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
+    winter_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
     leaf_mustard_T = db.Column(db.Float, nullable=False)  # 갓 시장
     leaf_mustard_M = db.Column(db.Float, nullable=False)  # 갓 대형마트
     watermelon_T = db.Column(db.Float, nullable=False)  # 수박 시장
@@ -841,14 +842,14 @@ class Daejeon_retail(db.Model):
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
     # 채소류
-    chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
-    chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
-    chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
-    chinese_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
-    chinese_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
-    chinese_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
-    chinese_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
-    chinese_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
+    napa_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
+    napa_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
+    napa_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
+    napa_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
+    napa_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
+    napa_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
+    napa_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
+    napa_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
     cabbage_T = db.Column(db.Float, nullable=False)  # 양배추 시장
     cabbage_M = db.Column(db.Float, nullable=False)  # 양배추 대형마트
     spinach_T = db.Column(db.Float, nullable=False)  # 시금치 시장
@@ -857,8 +858,8 @@ class Daejeon_retail(db.Model):
     lettuceR_M = db.Column(db.Float, nullable=False)  # 상추(적) 대형마트
     lettuceB_T = db.Column(db.Float, nullable=False)  # 상추(청) 시장
     lettuceB_M = db.Column(db.Float, nullable=False)  # 상추(청) 대형마트
-    korean_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
-    korean_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
+    winter_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
+    winter_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
     leaf_mustard_T = db.Column(db.Float, nullable=False)  # 갓 시장
     leaf_mustard_M = db.Column(db.Float, nullable=False)  # 갓 대형마트
     watermelon_T = db.Column(db.Float, nullable=False)  # 수박 시장
@@ -1068,14 +1069,14 @@ class Daegu_retail(db.Model):
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
     # 채소류
-    chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
-    chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
-    chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
-    chinese_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
-    chinese_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
-    chinese_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
-    chinese_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
-    chinese_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
+    napa_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
+    napa_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
+    napa_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
+    napa_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
+    napa_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
+    napa_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
+    napa_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
+    napa_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
     cabbage_T = db.Column(db.Float, nullable=False)  # 양배추 시장
     cabbage_M = db.Column(db.Float, nullable=False)  # 양배추 대형마트
     spinach_T = db.Column(db.Float, nullable=False)  # 시금치 시장
@@ -1084,8 +1085,8 @@ class Daegu_retail(db.Model):
     lettuceR_M = db.Column(db.Float, nullable=False)  # 상추(적) 대형마트
     lettuceB_T = db.Column(db.Float, nullable=False)  # 상추(청) 시장
     lettuceB_M = db.Column(db.Float, nullable=False)  # 상추(청) 대형마트
-    korean_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
-    korean_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
+    winter_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
+    winter_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
     leaf_mustard_T = db.Column(db.Float, nullable=False)  # 갓 시장
     leaf_mustard_M = db.Column(db.Float, nullable=False)  # 갓 대형마트
     watermelon_T = db.Column(db.Float, nullable=False)  # 수박 시장
@@ -1295,14 +1296,14 @@ class Gwangju_retail(db.Model):
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
     # 채소류
-    chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
-    chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
-    chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
-    chinese_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
-    chinese_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
-    chinese_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
-    chinese_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
-    chinese_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
+    napa_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
+    napa_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
+    napa_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
+    napa_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
+    napa_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
+    napa_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
+    napa_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
+    napa_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
     cabbage_T = db.Column(db.Float, nullable=False)  # 양배추 시장
     cabbage_M = db.Column(db.Float, nullable=False)  # 양배추 대형마트
     spinach_T = db.Column(db.Float, nullable=False)  # 시금치 시장
@@ -1311,8 +1312,8 @@ class Gwangju_retail(db.Model):
     lettuceR_M = db.Column(db.Float, nullable=False)  # 상추(적) 대형마트
     lettuceB_T = db.Column(db.Float, nullable=False)  # 상추(청) 시장
     lettuceB_M = db.Column(db.Float, nullable=False)  # 상추(청) 대형마트
-    korean_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
-    korean_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
+    winter_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
+    winter_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
     leaf_mustard_T = db.Column(db.Float, nullable=False)  # 갓 시장
     leaf_mustard_M = db.Column(db.Float, nullable=False)  # 갓 대형마트
     watermelon_T = db.Column(db.Float, nullable=False)  # 수박 시장
@@ -1522,14 +1523,14 @@ class Ulsan_retail(db.Model):
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
     # 채소류
-    chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
-    chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
-    chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
-    chinese_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
-    chinese_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
-    chinese_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
-    chinese_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
-    chinese_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
+    napa_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
+    napa_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
+    napa_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
+    napa_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
+    napa_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
+    napa_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
+    napa_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
+    napa_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
     cabbage_T = db.Column(db.Float, nullable=False)  # 양배추 시장
     cabbage_M = db.Column(db.Float, nullable=False)  # 양배추 대형마트
     spinach_T = db.Column(db.Float, nullable=False)  # 시금치 시장
@@ -1538,8 +1539,8 @@ class Ulsan_retail(db.Model):
     lettuceR_M = db.Column(db.Float, nullable=False)  # 상추(적) 대형마트
     lettuceB_T = db.Column(db.Float, nullable=False)  # 상추(청) 시장
     lettuceB_M = db.Column(db.Float, nullable=False)  # 상추(청) 대형마트
-    korean_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
-    korean_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
+    winter_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
+    winter_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
     leaf_mustard_T = db.Column(db.Float, nullable=False)  # 갓 시장
     leaf_mustard_M = db.Column(db.Float, nullable=False)  # 갓 대형마트
     watermelon_T = db.Column(db.Float, nullable=False)  # 수박 시장
@@ -1749,14 +1750,14 @@ class Busan_retail(db.Model):
     potato_M = db.Column(db.Float, nullable=False)  # 감자 대형마트
 
     # 채소류
-    chinese_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
-    chinese_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
-    chinese_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
-    chinese_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
-    chinese_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
-    chinese_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
-    chinese_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
-    chinese_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
+    napa_cabbageF_T = db.Column(db.Float, nullable=False)  # 배추(가을) 시장
+    napa_cabbageF_M = db.Column(db.Float, nullable=False)  # 배추(가을) 대형마트
+    napa_cabbageW_T = db.Column(db.Float, nullable=False)  # 배추(월동) 시장
+    napa_cabbageW_M = db.Column(db.Float, nullable=False)  # 배추(월동) 대형마트
+    napa_cabbageS_T = db.Column(db.Float, nullable=False)  # 배추(봄) 시장
+    napa_cabbageS_M = db.Column(db.Float, nullable=False)  # 배추(봄) 대형마트
+    napa_cabbageH_T = db.Column(db.Float, nullable=False)  # 배추(고랭지) 시장
+    napa_cabbageH_M = db.Column(db.Float, nullable=False)  # 배추(고랭지) 대형마트
     cabbage_T = db.Column(db.Float, nullable=False)  # 양배추 시장
     cabbage_M = db.Column(db.Float, nullable=False)  # 양배추 대형마트
     spinach_T = db.Column(db.Float, nullable=False)  # 시금치 시장
@@ -1765,8 +1766,8 @@ class Busan_retail(db.Model):
     lettuceR_M = db.Column(db.Float, nullable=False)  # 상추(적) 대형마트
     lettuceB_T = db.Column(db.Float, nullable=False)  # 상추(청) 시장
     lettuceB_M = db.Column(db.Float, nullable=False)  # 상추(청) 대형마트
-    korean_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
-    korean_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
+    winter_cabbage_T = db.Column(db.Float, nullable=False)  # 얼갈이배추 시장
+    winter_cabbage_M = db.Column(db.Float, nullable=False)  # 얼갈이배추 대형마트
     leaf_mustard_T = db.Column(db.Float, nullable=False)  # 갓 시장
     leaf_mustard_M = db.Column(db.Float, nullable=False)  # 갓 대형마트
     watermelon_T = db.Column(db.Float, nullable=False)  # 수박 시장

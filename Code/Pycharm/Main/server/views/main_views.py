@@ -14,8 +14,6 @@ from ..define.naver_api import Naverapi
 bp = Blueprint('main', __name__, url_prefix='/')
 bcrypt = Bcrypt(Flask(__name__))
 
-now = datetime.now()
-
 # DB 초기 설정
 mydb = pymysql.Connect(host=DB_HOST, user=DB_USERNAME,
                        password=DB_PASSWORD, database=DB_NAME)
@@ -50,7 +48,6 @@ def index():
             sql_q = 'SELECT date, ' + item + ' FROM Wholesale_quantity ORDER BY date DESC LIMIT 2;'  # 열 선택 & 열 내림차순 행 제한
             cursor.execute(sql_q)
             dt_quantity = cursor.fetchall()
-            # print(dt_quantity[1]['date'][4:],dt_quantity[0]['date'][4:])
             before_quantity = int(dt_quantity[1][item])  # 그제
             yesterday_quantity = int(dt_quantity[0][item])  # 어제
             # 가격
@@ -84,6 +81,7 @@ def index():
     article_List = MyNaver.Navernews()
 
     # popup 3
+    now = datetime.now()
     this_month = now.strftime('%m')
     sql_seasonal = 'SELECT * FROM seasonal_food WHERE Month = {}'.format(this_month)
     cursor.execute(sql_seasonal)
@@ -110,7 +108,8 @@ def signup():
                            userpw=pw_hash,
                            name=form.name.data,
                            email=form.email.data,
-                           phone=form.phone.data)
+                           phone=form.phone.data,
+                           grade=1)
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('main.login'))

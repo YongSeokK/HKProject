@@ -20,9 +20,13 @@ class Retail_Dict:
                                      "M": '''rice_M, riceF_M, glutinous_rice_M, 
                                              bean_M, red_bean_M, green_beans_M, 
                                              sweet_potato_M, potato_M'''},
-                        "Vegetable": {"T": '''chinese_cabbageF_T, chinese_cabbageW_T, chinese_cabbageS_T, chinese_cabbageH_T,
+                        "Specialcrop": {"T": '''sesame_T, peanut_T, oyster_mushroom_T, oyster_mushroomA_T, 
+                                                enoki_mushroom_T, king_oyster_mushroom_T, walnut_T, almond_T''',
+                                        "M": '''sesame_M, peanut_M, oyster_mushroom_M, oyster_mushroomA_M,
+                                                enoki_mushroom_M, king_oyster_mushroom_M, walnut_M, almond_M'''},
+                        "Vegetable": {"T": '''napa_cabbageF_T, napa_cabbageW_T, napa_cabbageS_T, napa_cabbageH_T,
                                               cabbage_T, spinach_T, lettuceR_T, lettuceB_T, 
-                                              korean_cabbage_T, leaf_mustard_T, watermelon_T, korean_melon_T, 
+                                              winter_cabbage_T, leaf_mustard_T, watermelon_T, korean_melon_T, 
                                               cucumberS_T, cucumberD_T, cucumberW_T, 
                                               squash_T, zucchini_T, tomato_T, strawberry_T, 
                                               radishF_T, radishW_T, radishS_T, radishH_T, 
@@ -32,9 +36,9 @@ class Retail_Dict:
                                               onion_T, green_onion_T, chives_T, ginger_T, chili_powder_T, 
                                               parsley_T, sesame_leaf_T, pimento_T, paprika_T, 
                                               melon_T, garlic_T, cherry_tomato_T, jujube_cherry_tomato_T''',
-                                      "M": '''chinese_cabbageF_M, chinese_cabbageW_M, chinese_cabbageS_M, chinese_cabbageH_M, 
+                                      "M": '''napa_cabbageF_M, napa_cabbageW_M, napa_cabbageS_M, napa_cabbageH_M, 
                                               cabbage_M, spinach_M, lettuceR_M, lettuceB_M, 
-                                              korean_cabbage_M, leaf_mustard_M, watermelon_M, korean_melon_M, 
+                                              winter_cabbage_M, leaf_mustard_M, watermelon_M, korean_melon_M, 
                                               cucumberS_M, cucumberD_M, cucumberW_M, 
                                               squash_M, zucchini_M, tomato_M, strawberry_M, 
                                               radishF_M, radishW_M, radishS_M, radishH_M, 
@@ -44,10 +48,6 @@ class Retail_Dict:
                                               onion_M, green_onion_M, chives_M, ginger_M, chili_powder_M, 
                                               parsley_M, sesame_leaf_M, pimento_M, paprika_M, 
                                               melon_M, garlic_M, cherry_tomato_M, jujube_cherry_tomato_M '''},
-                        "Specialcrop": {"T": '''sesame_T, peanut_T, oyster_mushroom_T, oyster_mushroomA_T, 
-                                                enoki_mushroom_T, king_oyster_mushroom_T, walnut_T, almond_T''',
-                                        "M": '''sesame_M, peanut_M, oyster_mushroom_M, oyster_mushroomA_M, 
-                                                enoki_mushroom_M, king_oyster_mushroom_M, walnut_M, almond_M'''},
                         "Fruit": {"T": '''appleF_T, appleT_T, appleR_T, pearS_T, pearW_T, 
                                           peach_T, grapeC_T, grapeG_T, grapeM_T, grapeS_T, 
                                           grapeR_T, citrusR_T, citrusH_T, persimmon_T, banana_T, 
@@ -119,18 +119,18 @@ class Retail_Dict:
                                             DataDict.update(DataDictTmp)
 
                                         elif category == 'Vegetable':
-                                            chinese_cabbage_tuple = data[1: 5]
+                                            napa_cabbage_tuple = data[1: 5]
                                             radish_tuple = data[20: 24]
                                             try:
-                                                chinese_cabbage = sum(data[1: 5]) / (
+                                                napa_cabbage = sum(data[1: 5]) / (
                                                         len(data[1: 5]) - data[1: 5].count(0))
                                             except:
-                                                chinese_cabbage = 0
+                                                napa_cabbage = 0
                                             try:
                                                 radish = sum(data[20: 24]) / (len(data[20: 24]) - data[20: 24].count(0))
                                             except:
                                                 radish = 0
-                                            price = [chinese_cabbage, data[5], data[6], data[7], data[8],
+                                            price = [napa_cabbage, data[5], data[6], data[7], data[8],
                                                      data[9], data[10], data[11], data[12], data[13],
                                                      data[14], data[15], data[16], data[17], data[18],
                                                      data[19], radish, data[24], data[25], data[26],
@@ -210,12 +210,12 @@ class Retail_Dict:
 		potato           # 감자
 
 채소류 :
-		chinese_cabbage     # 배추
+		napa_cabbage        # 배추
 		cabbage             # 양배추
 		spinach             # 시금치
 		lettuceR            # 상추(적)
 		lettuceB            # 상추(청) 
-		korean_cabbage      # 얼갈이배추
+		winter_cabbage      # 얼갈이배추
 		leaf_mustard        # 갓
 		watermelon          # 수박 
 		korean_melon        # 참외
