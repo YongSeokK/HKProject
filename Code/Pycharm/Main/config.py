@@ -13,7 +13,7 @@ DB_PASSWORD = 'test1234'  # MySQL Password
 DB_NAME = 'projectdb'  # MySQL Name
 
 ## Path - 파이참 프로젝트 가장 상위 폴더 = Main 절대 경로
-Root_Path = r'C:\Users\sonmj\G_Project\Code\Pycharm\Main'
+Root_Path = r'C:\G_Project\Code\Pycharm\Main'
 #                                                                 #
 #                                                                 #
 #                                                                 #
@@ -32,11 +32,25 @@ RecipeData_File_Path = Root_Path + "\\DB_source\\Init\\recipe.json"
 WholesaleVolume_File_Path = Root_Path + "\\DB_source\\Init\\220726_농산물거래량.json"
 WholesalePrice_File_Path = Root_Path + "\\DB_source\\Init\\220726_농산물가격.json"
 
+## YOLO
+Yolo_imgFolder_Path = Root_Path + '\\server\\yolo\\img\\'
+pt_Path = Root_Path + '\\server\\yolo\\best.pt'
+Food_List = ['.', '닭볶음탕', '된장찌개', '갈치구이', '감자조림', '김밥',
+             '김치전', '계란찜', '깻잎장아찌', '메추리알장조림', '떡볶이',
+             '떡국', '파전', '미역국', '소불고기', '잡채']
+## 제철 음식
+Excel_Path = Root_Path + "\\DB_source\\Init\\월별_제철재료_통합.xlsx"
+
+## NAVER API KEY
+Client_id = "MiUA1cOwkgZ7FPIPBawa"
+Client_secret = "sdSR7YXRu8"
+
 ## 참고 DATA
 # Source
 Whole_List = ['농산물가격', '농산물거래량']
 
-# 한글 변환
+# 변환
+Days = ['월', '화', '수', '목', '금', '토', '일']
 Category_Kor = ['식량작물', '특용작물', '채소류', '과일류']
 Category_Eng = ['Foodcrop', 'Specialcrop', 'Vegetable', 'Fruit']
 Region_Dict = {'서울': 'seoul', '인천': 'incheon', '대전': 'daejeon', '광주': 'gwangju',
@@ -106,17 +120,3 @@ Produce_Num = {'rice': 0, 'glutinous_rice': 1, 'bean': 2, 'red_bean': 3, 'green_
                'grapeG': 4, 'grapeM': 5, 'grapeS': 6, 'citrus': 7, 'persimmon': 8, 'banana': 9, 'kiwi': 10,
                'pineapple': 11, 'orange': 12, 'lemon': 13, 'cherry': 14, 'raisin': 15, 'dried_blueberries': 16,
                'mango': 17}
-
-## YOLO
-Yolo_imgFolder_Path = Root_Path + '\\server\\yolo\\img\\'
-pt_Path = Root_Path + '\\server\\yolo\\best.pt'
-Food_List = ['.', '닭볶음탕', '된장찌개', '갈치구이', '감자조림', '김밥',
-             '김치전', '계란찜', '깻잎장아찌', '메추리알장조림', '떡볶이',
-             '떡국', '파전', '미역국', '소불고기', '잡채']
-
-## NAVER API KEY
-Client_id = "MiUA1cOwkgZ7FPIPBawa"
-Client_secret = "sdSR7YXRu8"
-
-## 제철 음식
-Excel_Path = Root_Path + "\\DB_source\\Init\\월별_제철재료_통합.xlsx"

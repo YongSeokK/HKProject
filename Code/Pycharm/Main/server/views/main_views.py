@@ -5,7 +5,7 @@ from flask import Flask, Blueprint, request, render_template, url_for, session, 
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import redirect
 
-from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, Category_List_W, Client_id, Client_secret
+from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, Client_id, Client_secret, Days, Category_List_W
 from server import db
 from server.forms import UserCreateForm, UserPwForm
 from server.models import Members
@@ -39,6 +39,7 @@ def load_logged_in_user():
 @bp.route('/', methods=('GET', 'POST'))
 def index():
     # 변동표
+    date = []
     data_table = []
     for dictionary in Category_List_W:
         produce_List = list(dictionary.values())  # 품목의 밸류값만 가져와 list로 변경
@@ -49,6 +50,7 @@ def index():
             sql_q = 'SELECT date, ' + item + ' FROM Wholesale_quantity ORDER BY date DESC LIMIT 2;'  # 열 선택 & 열 내림차순 행 제한
             cursor.execute(sql_q)
             dt_quantity = cursor.fetchall()
+            # print(dt_quantity[1]['date'][4:],dt_quantity[0]['date'][4:])
             before_quantity = int(dt_quantity[1][item])  # 그제
             yesterday_quantity = int(dt_quantity[0][item])  # 어제
             # 가격
@@ -69,6 +71,10 @@ def index():
                            "그제_가격": before_price, "어제_가격": yesterday_price,
                            "가격_변동폭": price_dif}
                 data_table.append(dt_Dict)
+    for d in [dt_quantity[1]['date'], dt_quantity[0]['date']]:
+        time = datetime.strptime(str(d), "%Y%m%d")
+        day = str(time.month) + '.' + str(time.day) + '(' + Days[time.weekday()] + ')'
+        date.append(day)
     # 변동폭 기준 내림차순 정렬, 상위 5개
     data_table = sorted(data_table, key=(lambda x: x["가격_변동폭"]), reverse=True)[0:10]
 
@@ -84,7 +90,8 @@ def index():
     monthly_food = cursor.fetchall()
 
     return render_template('index.html',
-                           data_table=data_table, article_List=article_List, monthly_food=monthly_food)
+                           date=date, data_table=data_table,
+                           article_List=article_List, monthly_food=monthly_food)
 
 
 # 회원 가입
