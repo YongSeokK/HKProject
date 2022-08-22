@@ -303,13 +303,16 @@ def pay(nickname, id):
 # @bp.route('/recipe', methods=('GET', 'POST'))
 # def recipe():
 #     return render_template('base/recipe.html')
-@bp.route('/recipe/<ingredient>', methods=('GET', 'POST'))
-def recipe(ingredient):
+@bp.route('/recipe/', methods=('GET', 'POST'))
+def recipe():
     # dt = Food_recipe.query.filter(Food_recipe.dish == keyword).all()
-    temp = request.args.get('search')
-    if temp != None:
-        ingredient = temp
-    sql_t = 'SELECT * FROM food_recipe WHERE dish LIKE "%{}%" ORDER BY views DESC LIMIT 9;'.format(ingredient)
+    temp = request.args
+    temp1 = request.form.keys()
+    print(temp)
+    print(temp1)
+    # if temp != None:
+    #     ingredient = temp
+    sql_t = 'SELECT * FROM food_recipe WHERE dish LIKE "%{}%" ORDER BY views DESC LIMIT 9;'.format(temp)
     cursor.execute(sql_t)
     dt_dish = cursor.fetchall()
     # 여기는 db에서 딕셔너리 형식으로 불러오기 때문에 html에 jinja2로 적용할 때도 딕셔너리 형식으로 활용해야 함.

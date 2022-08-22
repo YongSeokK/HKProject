@@ -419,9 +419,14 @@
                                         <br>
                                         <h3> {{ i['Name'] }} </h3>
                                         <br>
-                                        <a href="{{ url_for('main.recipe',ingredient=i['Name']) }}">
+                                        <!--<a href="{{ url_for('main.recipe',ingredient=i['Name']) }}">
                                             <img src="{{ url_for('static', filename='img/seasonal/'+i['Name']+'.png') }}"/></img>
-                                        </a>
+                                        </a>-->
+                                        <form class="service-contents" action="{{ url_for('main.recipe') }}" method="get">
+                                            <input type="image" src="{{ url_for('static', filename='img/seasonal/'+i['Name']+'.png') }}"
+                                                   name="{{i['Name']}}" value="{{i['Name']}}" alt="Submit">
+                                        </form>
+
                                         <h5> {{ i['Period'] }} </h5>
                                     </div>
                                     {% endfor %}
