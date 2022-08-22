@@ -1960,3 +1960,15 @@ class Seasonal_food(db.Model):
     Month = db.Column(db.String(3, 'utf8mb4_unicode_ci'), nullable=False)
     Name = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)
     Period = db.Column(db.String(10, 'utf8mb4_unicode_ci'), nullable=False)
+
+
+## 직거래 정보
+class Direct_dealing(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
+    userid = db.Column(db.String(20, 'utf8mb4_unicode_ci'), nullable=False)
+    nickname = db.Column(db.String(20, 'utf8mb4_unicode_ci'), nullable=False)
+    product = db.Column(db.String(100, 'utf8mb4_unicode_ci'), nullable=False)
+    infoshort = db.Column(db.String(100, 'utf8mb4_unicode_ci'), nullable=False)
+    info = db.Column(db.String(3000, 'utf8mb4_unicode_ci'), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    image = db.Column(db.String(100, 'utf8mb4_unicode_ci'), nullable=False)

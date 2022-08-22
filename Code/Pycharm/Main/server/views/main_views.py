@@ -3,9 +3,10 @@ from datetime import datetime
 import pymysql
 from flask import Flask, Blueprint, request, render_template, url_for, session, g, flash
 from flask_bcrypt import Bcrypt
-from werkzeug.utils import redirect
+from werkzeug.utils import redirect, secure_filename
 
-from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, Client_id, Client_secret, Days, Category_List_W
+from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, Shop_imgFolder_Path, \
+    Client_id, Client_secret, Days, Category_List_W
 from server import db
 from server.forms import UserCreateForm, UserPwForm
 from server.models import Members
@@ -25,12 +26,15 @@ cursor = mydb.cursor(pymysql.cursors.DictCursor)
 def load_logged_in_user():
     user_nickname = session.get('user_nickname')  # 별명
     user_id = session.get('user_id')  # 아이디
+    user_grade = session.get('user_grade')  # 아이디
     if user_nickname is None:
         g.nickname = None
         g.user = None
+        g.grade = None
     else:
         g.nickname = user_nickname
         g.user = user_id
+        g.grade = user_grade
 
 
 # 메인 홈
@@ -87,7 +91,7 @@ def index():
     cursor.execute(sql_seasonal)
     monthly_food = cursor.fetchall()
 
-    return render_template('index.html',
+    return render_template('base/index.html',
                            date=date, data_table=data_table,
                            article_List=article_List, monthly_food=monthly_food)
 
@@ -117,7 +121,7 @@ def signup():
             flash('이미 존재하는 아이디입니다.')
             print('이미 존재하는 아이디입니다.')
             return redirect(url_for('main.login'))
-    return render_template('signup.html', form=form)
+    return render_template('base/signup.html', form=form)
 
 
 # 로그 인
@@ -141,11 +145,12 @@ def login():
                     session.clear()
                     session['user_nickname'] = user.nickname
                     session['user_id'] = user.userid
+                    session['user_grade'] = user.grade
                     print('login success')
                     return redirect(url_for('main.index'))
                 else:
-                    return render_template('login.html')
-    return render_template('login.html')
+                    return render_template('base/login.html')
+    return render_template('base/login.html')
 
 
 # 로그 아웃
@@ -192,7 +197,8 @@ def changepw():
         pw_hash = form.password.data
         pw_hash = bcrypt.generate_password_hash(pw_hash.encode('utf-8'))
         pw_hash = pw_hash.decode('utf-8')
-        sql_table = 'UPDATE members SET userpw="' + pw_hash + '" WHERE userid="' + g.user + '"'
+        text = pw_hash + ',' + g.user
+        sql_table = 'UPDATE members SET userpw="{}" WHERE userid="{}"'.format(text)
         cursor.execute(sql_table)
         mydb.commit()
         return redirect(url_for('main.profile'))
@@ -221,23 +227,110 @@ def confirm():
     return render_template('profile/confirm.html')
 
 
-# 직거래쇼핑
-@bp.route('/shop', methods=('GET', 'POST'))
-def shop():
-    return render_template('shop.html')
-
-
 # 팀 _ 숨겨진 페이지
 @bp.route('/team', methods=('GET', 'POST'))
 def team():
     return render_template('profile/team.html')
 
 
+# 직거래쇼핑
+@bp.route('/shop', methods=('GET', 'POST'))
+def shop():
+    if request.method == 'POST':
+        return redirect(url_for('main.write'))
+    else:
+        sql_table = "SELECT * FROM direct_dealing ORDER BY id DESC LIMIT 12;"
+        cursor.execute(sql_table)
+        db = cursor.fetchall()
+        for data in db:
+            data['pricecomma'] = format(data['price'], ',')
+            data['image']
+        return render_template('shopping/shop.html', db=db)
+
+
+# 글쓰기
+@bp.route('/shop/write', methods=('GET', 'POST'))
+def write():
+    user_userid = session.get('user_id')
+    user_nickname = session.get('user_nickname')
+    user_grade = session.get('user_grade')
+    if user_nickname is None:
+        flash("로그인이 필요합니다.")
+        return redirect(url_for('main.login'))
+    else:
+        if user_grade == 1:
+            flash("판매자 권한이 없습니다.")
+            return redirect(url_for('main.shop'))
+        else:
+            if request.method == 'POST' and request.form.get('write'):
+                userid = user_userid
+                nickname = user_nickname
+                product = request.form.get('product')
+                infoshort = request.form.get('infoshort')
+                info = request.form.get('info')
+                price = request.form.get('price')
+                now = datetime.now()
+                time = now.strftime("%y%m%d_%H%M%S")
+                img_file = userid + '-' + time
+                img = request.files['image']
+                filename = secure_filename(img.filename)
+                # print(filename)
+                extension = '.' + filename.split('.')[-1]
+                # print(extension)
+                img.save(Shop_imgFolder_Path + img_file + extension)
+                sql_text = 'userid, nickname, product, infoshort, info, price, image'
+                result_text = (userid, nickname, product, infoshort, info, price, img_file + extension)
+                sql_table = 'INSERT INTO direct_dealing ({}) VALUES (%s, %s, %s, %s, %s, %s, %s)'.format(sql_text)
+                cursor.execute(sql_table, result_text)
+                mydb.commit()
+                return redirect(url_for('main.shop'))
+            else:
+                return render_template('shopping/write.html')
+
+
+@bp.route('/shop/pay/<nickname>/<int:id>', methods=('GET', 'POST'))
+def pay(nickname, id):
+    sql_table = "SELECT * FROM direct_dealing WHERE nickname='{}' AND id='{}';".format(nickname, id)
+    cursor.execute(sql_table)
+    trade_db = cursor.fetchall()
+    for data in trade_db:
+        data['pricecomma'] = format(data['price'], ',')
+    print(trade_db)
+    return render_template('shopping/pay.html', trade_db=trade_db)
+
+
+# 레시피
+# @bp.route('/recipe', methods=('GET', 'POST'))
+# def recipe():
+#     return render_template('base/recipe.html')
+@bp.route('/recipe/<ingredient>', methods=('GET', 'POST'))
+def recipe(ingredient):
+    # dt = Food_recipe.query.filter(Food_recipe.dish == keyword).all()
+    temp = request.args.get('search')
+    if temp != None:
+        ingredient = temp
+    sql_t = 'SELECT * FROM food_recipe WHERE dish LIKE "%{}%" ORDER BY views DESC LIMIT 9;'.format(ingredient)
+    cursor.execute(sql_t)
+    dt_dish = cursor.fetchall()
+    # 여기는 db에서 딕셔너리 형식으로 불러오기 때문에 html에 jinja2로 적용할 때도 딕셔너리 형식으로 활용해야 함.
+    return render_template('base/recipe.html', dt_dish=dt_dish)
+
+
+# 관리자 페이지
+@bp.route('/admin', methods=('GET', 'POST'))
+def admin():
+    sql_table = "SELECT * FROM members;"
+    cursor.execute(sql_table)
+    members = cursor.fetchall()
+    return render_template('base/admin.html', members=members)
+
+
 # del
 @bp.route('/initdel')
 def initdel():
     session.clear()
-    db_del = Members.query.all()
+    from server.models import Direct_dealing
+    db_del = Direct_dealing.query.all()
     for i in db_del:
         db.session.delete(i)
     db.session.commit()

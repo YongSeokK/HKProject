@@ -12,10 +12,14 @@
             </ol>
             <div class="row">
                 <div class="col-xl-3 col-md-6">
+                    <form action="/compare2/recipe" method="get">
+                        <input type="text" id="search" name="search">
+                        <button type="submit" name="submit" value="submit">검색</button>
+                    </form>
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body">Primary Card</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{url_for('dash.compare2',category='과일류',produce='사과')}}">View Details</a>
+                            <a class="small text-white stretched-link" href="{{ url_for('dash.compare2',category='과일류') }}">View Details</a>
                             <div class="small text-white">
                                 <svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
                                      data-prefix="fas" data-icon="angle-right" role="img"

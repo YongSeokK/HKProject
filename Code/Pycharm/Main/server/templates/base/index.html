@@ -1,0 +1,447 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="myCarousel" class="carousel slide pointer-event carousel-fade pt-4" data-bs-ride="carousel"  style="width: 100vw; margin:0 auto;">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"
+                aria-current="true"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                 aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#777">
+                    <img src="{{ url_for('static', filename='img/base/milk.png') }}"
+                         style="object-fit:cover"/></img>
+                </rect>
+            </svg>
+            <div class="container">
+                <div class="carousel-caption text-end">
+                    <h1>농산물 도소매 가격 예측 시스템</h1>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                 aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#777">
+                    <img src="https://cdn.011st.com/11dims/thumbnail/11src/browsing/exhibition/2022/06/09/2022060909150923827__img.png"
+                         style="object-fit:cover"/></img>
+                </rect>
+            </svg>
+
+            <div class="container">
+                <div class="carousel-caption text-end">
+                    <h1>직거래 커뮤니티</h1>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                 aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#777">
+                    <img src="https://www.farmmate.com/data/editor/d8a35f171fe2159670cf5d22972014cd1454204.jpg"
+                         style="object-fit:cover"/></img>
+                </rect>
+            </svg>
+
+            <div class="container">
+                <div class="carousel-caption text-end">
+                    <h1>카카오톡 챗봇</h1>
+                    <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 표 -->
+<section class="page-section">
+    <div class="container text-center">
+        <h2 class="section-heading text-uppercase">변동표</h2>
+        <h3 class="section-subheading text-muted">Price of Today Variation TOP 10</h3>
+        <table class="rwd-table">
+            <tbody>
+            <tr>
+                {% set date1 = date[1].split('.') %}
+                <th>TOP</th>
+                <th>품목</th>
+                <th>거래량(kg)</th>
+                <th> {{ date[0] }} </th>
+                <th> {{ date1[1] }} </th>
+                <th>변동폭</th>
+                <th>가격(\)</th>
+                <th> {{ date[0] }} </th>
+                <th> {{ date1[1] }} </th>
+                <th></th>
+                <th>변동폭</th>
+            </tr>
+            {% for i in data_table %}
+            <tr>
+                <td>
+                    {{ loop.index }}
+                </td>
+                <td>
+                    <strong>{{ i['품목명'] }}</strong>
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;└
+                </td>
+                <td>
+                    {{ i['그제_거래량'] }}
+                </td>
+                <td>
+                    {{ i['어제_거래량'] }}
+                </td>
+                <td>
+                    {{ i['거래량_변동폭'] }}
+                </td>
+                <td>
+                    &nbsp;└
+                </td>
+                <td>
+                    {{ i['그제_가격'] }}
+                </td>
+                <td>
+                    {{ i['어제_가격'] }}
+                </td>
+                {% if (i['그제_가격']-i['어제_가격'] > 0 )%}
+                <td style="color:blue">
+                    ▼
+                </td>
+                {% else %}
+                <td style="color:red">
+                    ▲
+                </td>
+                {% endif %}
+                <td>
+                    {{ i['가격_변동폭'] }}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Portfolio Grid-->
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">관련 정보</h2>
+            <h3 class="section-subheading text-muted">Today Information</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 1-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <svg class="svg-inline--fa fa-plus fa-3x" aria-hidden="true" focusable="false"
+                                     data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 448 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"></path>
+                                </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com --></div>
+                        </div>
+                        <img class="img-fluid"
+                             src="https://post-phinf.pstatic.net/MjAyMjA2MDVfMTU3/MDAxNjU0NDM3NzcwNTg3.HY6zf17z_lIvCJ87w2LVtkaQCeZbosDF6vpge2uoNqMg.vZWC_aCDOdcBrhOgGx6JLgHwXF9cyz0YjyB2lzEc9o8g.JPEG/m.jpg?type=w1200"
+                             style="height: 16vw; width: 30vw; min-width: 140px;" alt="...">
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">물가 관련 뉴스</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 2-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <svg class="svg-inline--fa fa-plus fa-3x" aria-hidden="true" focusable="false"
+                                     data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 448 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"></path>
+                                </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com --></div>
+                        </div>
+                        <div style="text-align : center;">
+                            <img class="img-fluid"
+                                 src="https://cdn-icons-png.flaticon.com/512/879/879757.png"
+                                 style="height: 16vw; width: 30vw; min-width: 140px;" alt="...">
+                        </div>
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">할인 소식</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 3-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <svg class="svg-inline--fa fa-plus fa-3x" aria-hidden="true" focusable="false"
+                                     data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 448 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"></path>
+                                </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com --></div>
+                        </div>
+                        <img class="img-fluid"
+                             src="https://mblogthumb-phinf.pstatic.net/20160404_296/rak1561_14597812504393u5Tk_JPEG/fru126854.jpg?type=w2"
+                             style="height: 16vw; width: 30vw; min-width: 140px;" alt="...">
+                        <!-- 이미지 출처 https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=rak1561&logNo=220674464665 -->
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">제철 재료</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients-->
+<div class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3 col-sm-6 my-3">
+                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="static/img/logos/microsoft.svg"
+                                  alt="..." aria-label="Microsoft Logo"></a>
+            </div>
+            <div class="col-md-3 col-sm-6 my-3">
+                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="static/img/logos/google.svg"
+                                  alt="..." aria-label="Google Logo"></a>
+            </div>
+            <div class="col-md-3 col-sm-6 my-3">
+                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="static/img/logos/facebook.svg"
+                                  alt="..." aria-label="Facebook Logo"></a>
+            </div>
+            <div class="col-md-3 col-sm-6 my-3">
+                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="static/img/logos/ibm.svg" alt="..."
+                                  aria-label="IBM Logo"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer-->
+<footer class="footer py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-lg-start">Copyright © Your Website 2022</div>
+            <div class="col-lg-4 my-3 my-lg-0">
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter">
+                    <svg class="svg-inline--fa fa-twitter" aria-hidden="true" focusable="false" data-prefix="fab"
+                         data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                         data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M459.4 151.7c.325 4.548 .325 9.097 .325 13.65 0 138.7-105.6 298.6-298.6 298.6-59.45 0-114.7-17.22-161.1-47.11 8.447 .974 16.57 1.299 25.34 1.299 49.06 0 94.21-16.57 130.3-44.83-46.13-.975-84.79-31.19-98.11-72.77 6.498 .974 12.99 1.624 19.82 1.624 9.421 0 18.84-1.3 27.61-3.573-48.08-9.747-84.14-51.98-84.14-102.1v-1.299c13.97 7.797 30.21 12.67 47.43 13.32-28.26-18.84-46.78-51.01-46.78-87.39 0-19.49 5.197-37.36 14.29-52.95 51.65 63.67 129.3 105.3 216.4 109.8-1.624-7.797-2.599-15.92-2.599-24.04 0-57.83 46.78-104.9 104.9-104.9 30.21 0 57.5 12.67 76.67 33.14 23.72-4.548 46.46-13.32 66.6-25.34-7.798 24.37-24.37 44.83-46.13 57.83 21.12-2.273 41.58-8.122 60.43-16.24-14.29 20.79-32.16 39.31-52.63 54.25z"></path>
+                    </svg><!-- <i class="fab fa-twitter"></i> Font Awesome fontawesome.com --></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook">
+                    <svg class="svg-inline--fa fa-facebook-f" aria-hidden="true" focusable="false" data-prefix="fab"
+                         data-icon="facebook-f" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+                         data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"></path>
+                    </svg><!-- <i class="fab fa-facebook-f"></i> Font Awesome fontawesome.com --></a>
+                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn">
+                    <svg class="svg-inline--fa fa-linkedin-in" aria-hidden="true" focusable="false" data-prefix="fab"
+                         data-icon="linkedin-in" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                         data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M100.3 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.6 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.3 61.9 111.3 142.3V448z"></path>
+                    </svg><!-- <i class="fab fa-linkedin-in"></i> Font Awesome fontawesome.com --></a>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Portfolio Modals-->
+<!-- Portfolio item 1 modal popup-->
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="static/img/close-icon.svg" alt="Close modal">
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project details-->
+                            <h2 class="text-uppercase">"농산물 물가" 일일 기사</h2>
+                            <p class="item-intro text-muted">네이버 뉴스 검색 결과</p>
+                            <div style="text-align:left ">
+                                <ul class="list-inline">
+                                    {% for i in article_List %}
+                                    <li style="padding:0 0 0 120px;">
+                                        {% if loop.index < 10 %}
+                                        <strong>Title &nbsp;{{ loop.index }}:&nbsp;&nbsp;</strong>
+                                        {% else %}
+                                        <strong>Title {{ loop.index }}:&nbsp;</strong>
+                                        {% endif %}
+                                        <a href=" {{ i['링크'] }} " class="text-decoration-none"> {{ i['제목'] }} </a>
+                                    </li>
+                                    <br>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                <svg class="svg-inline--fa fa-xmark me-1" aria-hidden="true" focusable="false"
+                                     data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 320 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
+                                </svg><!-- <i class="fas fa-xmark me-1"></i> Font Awesome fontawesome.com -->
+                                close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Portfolio item 2 modal popup-->
+<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="static/img/close-icon.svg" alt="Close modal">
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project details-->
+                            <h2 class="text-uppercase">대형 할인점 행사 페이지</h2>
+                            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                                <div class="feature col">
+                                    <div class="feature-icon bg-primary bg-gradient">
+                                        <svg class="bi" width="1em" height="1em">
+                                            <use xlink:href="#collection"></use>
+                                        </svg>
+                                    </div>
+                                    <br>
+                                    <h3> 롯데마트 </h3>
+                                    <br>
+                                    <img src="data:image/png;base64,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"
+                                         style="height: 10vw; width: 10vw; min-width: 140px;"/>
+                                    <br>
+                                    <h6>
+                                        <a href=https://www.lotteon.com/p/display/shop/seltDpShop/12919?callType=menu
+                                           class="text-decoration-none">
+                                            행사 상품 보러가기</a></h6>
+                                </div>
+                                <div class="feature col">
+                                    <div class="feature-icon bg-primary bg-gradient">
+                                        <svg class="bi" width="1em" height="1em">
+                                            <use xlink:href="#collection"></use>
+                                        </svg>
+                                    </div>
+                                    <br>
+                                    <h3> 이마트 </h3>
+                                    <br>
+                                    <img src="data:image/png;base64,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"
+                                         style="height: 10vw; width: 10vw; min-width: 140px;"/>
+                                    <br>
+                                    <h6>
+                                        <a href=https://store.emart.com/news/leaflet.do?division=4&seq=13641
+                                           class="text-decoration-none">
+                                            행사 상품 보러가기</a></h6>
+                                </div>
+                                <div class="feature col">
+                                    <div class="feature-icon bg-primary bg-gradient">
+                                        <svg class="bi" width="1em" height="1em">
+                                            <use xlink:href="#collection"></use>
+                                        </svg>
+                                    </div>
+                                    <br>
+                                    <h3> 홈플러스 </h3>
+                                    <br>
+                                    <img src="data:image/png;base64,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"
+                                         style="height: 10vw; width: 10vw; min-width: 140px;"/>
+                                    <br>
+                                    <h6>
+                                        <a href=https://front.homeplus.co.kr/leaflet?gnbNo=201
+                                           class="text-decoration-none">
+                                            행사 상품 보러가기</a></h6>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                <svg class="svg-inline--fa fa-xmark me-1" aria-hidden="true" focusable="false"
+                                     data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 320 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
+                                </svg><!-- <i class="fas fa-xmark me-1"></i> Font Awesome fontawesome.com -->
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Portfolio item 3 modal popup-->
+<div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="static/img/close-icon.svg" alt="Close modal">
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project details-->
+                            <div class="container px-4 py-5" id="featured-3">
+                                <h2 class="pb-2 border-bottom"> {{ monthly_food[0]['Month'] }}월 제철 농수산물</h2>
+                                <p class="item-intro text-muted">이미지 클릭하여 레시피 확인하기</p>
+                                <div class="row g-4 py-5 row-cols-1 row-cols-lg-5">
+                                    {% for i in monthly_food %}
+                                    <div class="feature col">
+                                        <div class="feature-icon bg-primary bg-gradient">
+                                            <svg class="bi" width="1em" height="1em">
+                                                <use xlink:href="#collection"></use>
+                                            </svg>
+                                        </div>
+                                        <br>
+                                        <h3> {{ i['Name'] }} </h3>
+                                        <br>
+                                        <a href="{{ url_for('main.recipe',ingredient=i['Name']) }}">
+                                            <img src="{{ url_for('static', filename='img/seasonal/'+i['Name']+'.png') }}"/></img>
+                                        </a>
+                                        <h5> {{ i['Period'] }} </h5>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                <svg class="svg-inline--fa fa-xmark me-1" aria-hidden="true" focusable="false"
+                                     data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 320 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
+                                </svg><!-- <i class="fas fa-xmark me-1"></i> Font Awesome fontawesome.com -->
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -10,7 +10,7 @@ MyProphet = MyProphet(DB_USERNAME, DB_HOST, DB_PASSWORD, DB_NAME, W_Parameter_Di
 Daily_Check = DailyDB.DailyData()
 print(Daily_Check)
 
-Daily_Wholesale = MyProphet.Wholesale()
-print(Daily_Wholesale)
-Daily_Retail = MyProphet.Retail()
-print(Daily_Retail)
+# Daily_Wholesale = MyProphet.Wholesale()
+# print(Daily_Wholesale)
+# Daily_Retail = MyProphet.Retail()
+# print(Daily_Retail)

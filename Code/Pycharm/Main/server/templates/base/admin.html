@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- 표 -->
+<section class="page-section">
+    <div class="container text-center">
+        <h2 class="section-heading text-uppercase">변동표</h2>
+        <h3 class="section-subheading text-muted">Price of Today Variation TOP 10</h3>
+        <table class="rwd-table">
+            <tbody>
+            <tr>
+                <th>id</th>
+                <th>userid</th>
+                <th>nickname</th>
+                <th>name</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>grade</th>
+                <th></th>
+                <th>start</th>
+            </tr>
+            {% for i in members %}
+            <tr>
+                <td>
+                    {{ i['id'] }}
+                </td>
+                <td>
+                    <strong>{{ i['userid'] }}</strong>
+                </td>
+                <td>
+                    {{ i['nickname'] }}
+                </td>
+                <td>
+                    {{ i['name'] }}
+                </td>
+                <td>
+                    {{ i['email'] }}
+                </td>
+                <td>
+                    {{ i['phone'] }}
+                </td>
+                <td>
+                    {{ i['grade'] }}
+                </td>
+                <td>
+                    <form id="contactForm" class="" method="post">
+                        <input type="image" src="{{ url_for('static', filename='img/base/setting.png')}}"
+                               name="profile" value="profile" alt="Submit" width="24" height="24">
+                    </form>
+                </td>
+                <td>
+                    {{ i['start'] }}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+{% endblock %}

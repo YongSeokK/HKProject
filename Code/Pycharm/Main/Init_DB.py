@@ -88,12 +88,12 @@ for num in tqdm(Data_Json.keys(), desc='만개의 레시피 DB INSERT', mininter
     Row_Dict = Data_Json[num]
 
     # DB 쿼리문
-    query = "INSERT INTO food_recipe ({}) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)".format(col_Text)
-    Result_Text = (
+    query = 'INSERT INTO food_recipe ({}) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'.format(col_Text)
+    result_text = (
         Row_Dict['일련번호'], Row_Dict['요리명'], Row_Dict['등록자'], Row_Dict['조회수'], Row_Dict['추천수'], Row_Dict['요리상황'],
         Row_Dict['요리소개'], Row_Dict['전체요리재료'], Row_Dict['요리인분'], Row_Dict['난이도'], Row_Dict['시간'], Row_Dict['URL'],
         Row_Dict['요리재료'])
-    cursor.execute(query, Result_Text)
+    cursor.execute(query, result_text)
     db.commit()
 #################### 만개의 레시피 자료 처리 ####################
 

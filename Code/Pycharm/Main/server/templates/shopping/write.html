@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href=" {{ url_for('static', filename='style.css')}} ">
+
+<!-- code -->
+<body class="text-center pt-5">
+<main class="container pt-5">
+    <form id="contactForm" method="post" class="pt-5" enctype="multipart/form-data">
+        <img class="mb-4" src="{{ url_for('static', filename='img/base/shop.png') }}" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 fw-normal">판매 상품 등록</h1>
+        <br>
+        <br>
+        <div class="form" style="width: 35%; margin: auto;">
+<!--            <button class="w-50 btn btn-primary" onclick="document.getElementById('getFile').click()">사진 선택</button>-->
+            <input type="file" id="getFile" class="form-control" placeholder="image" name="image">
+        </div>
+        <br>
+        <div class="form-floating" style="width: 50%; margin: auto;">
+            <input type="text" class="form-control" id="floatingproduct" placeholder="product" name="product">
+            <label for="floatingproduct">상품</label>
+        </div>
+        <br>
+        <div class="form-floating" style="width: 50%; margin: auto;">
+            <input type="text" class="form-control" id="floatingprice" placeholder="price" name="price">
+            <label for="floatingprice">가격</label>
+        </div>
+        <br>
+        <div class="form-floating" style="width: 50%; margin: auto;">
+            <input type="text" class="form-control" id="floatinginfoshort" placeholder="infoshort" name="infoshort">
+            <label for="floatinginfoshort">요약 설명</label>
+        </div>
+        <br>
+        <div class="form-floating" style="width: 50%; margin: auto;">
+            <input type="text" class="form-control" style="height:200px;" id="floatinginfo" placeholder="info" name="info">
+            <label for="floatinginfo">설명</label>
+        </div>
+        <br>
+        <br>
+        <button class="w-25 btn btn-lg btn-primary" type="submit" name="write" value="write">상품 등록</button>
+        <p class="mt-5 mb-3 text-muted">© 2022</p>
+    </form>
+</main>
+</body>
+
+{% endblock %}

@@ -13,33 +13,34 @@ DB_PASSWORD = 'test1234'  # MySQL Password
 DB_NAME = 'project_db'  # MySQL Name
 
 ## Path - 파이참 프로젝트 가장 상위 폴더 = Main 절대 경로
-Root_Path = r'C:\Users\sonmj\G_Project\Code\Pycharm\Main'
+Root_Path = r'C:\G_Project\Code\Pycharm\Main'
 #                                                                 #
 #                                                                 #
 #                                                                 #
 ### 로컬별 수정할 항목 End ----------------------------------------End
 
 
-## Daily DATA관련 init
+## Folder Path
+# Daily DATA관련 init
 Daily_Folder_Path = Root_Path + '\\DB_source\\Daily\\'
-
-## csv DATA관련 init
+# csv DATA관련 init
 csv_Folder_Path = Root_Path + '\\DB_source\\csv\\'
-
-## 초기 DATA관련 init
+# 초기 DATA관련 init
 Retail_Folder_Path = Root_Path + "\\DB_source\\Init\\retail_json\\"
 RecipeData_File_Path = Root_Path + "\\DB_source\\Init\\recipe.json"
 WholesaleVolume_File_Path = Root_Path + "\\DB_source\\Init\\220726_농산물거래량.json"
 WholesalePrice_File_Path = Root_Path + "\\DB_source\\Init\\220726_농산물가격.json"
-
-## YOLO
+# YOLO
 Yolo_imgFolder_Path = Root_Path + '\\server\\yolo\\img\\'
 pt_Path = Root_Path + '\\server\\yolo\\best.pt'
 Food_List = ['.', '닭볶음탕', '된장찌개', '갈치구이', '감자조림', '김밥',
              '김치전', '계란찜', '깻잎장아찌', '메추리알장조림', '떡볶이',
              '떡국', '파전', '미역국', '소불고기', '잡채']
-## 제철 음식
-Excel_Path = Root_Path + "\\DB_source\\Init\\월별_제철재료_통합.xlsx"
+# 제철 음식
+Excel_Path = Root_Path + '\\DB_source\\Init\\월별_제철재료_통합.xlsx'
+# Shop
+Shop_imgFolder_Path = Root_Path + '\\server\\static\\img\\shop\\'
+
 
 ## NAVER API KEY
 Client_id = "MiUA1cOwkgZ7FPIPBawa"

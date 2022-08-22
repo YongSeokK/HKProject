@@ -27,7 +27,7 @@ def board():
     y = request.form.get('region')
     z = request.form.get('category')
     print(y, z)
-    return render_template('dash.html')
+    return render_template('dash/dash.html')
 
 
 # Dashboard_도매
@@ -174,9 +174,12 @@ def compare2(category):
         return redirect(url_for('main.login'))
     else:
         z = request.args
+        print(z)
         print(category)
-        dt = Food_recipe.query.filter(Food_recipe.dish == category).all()
-        return render_template('dash/compare2.html', category=category)
+        temp = request.args.get('search')
+        print(temp)
+        # dt = Food_recipe.query.filter(Food_recipe.dish == category).all()
+        return render_template('dash/compare2.html')#, category=category)
 
 
 # chart

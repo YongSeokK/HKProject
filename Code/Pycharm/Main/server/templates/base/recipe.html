@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='recipe/css/style.css') }}">
+<!-- code -->
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">제철 음식 레시피</h2>
+                    <p class="lead fw-normal text-muted mb-5">"만개의 레시피"에 등록된 레시피를 볼 수 있습니다.</p>
+                </div>
+            </div>
+            <div class="container px-1 my-4">
+            <form id="contactForm" class="pt-5" action="/recipe/recipe" method="get">
+                <div class="form-floating" style="width: 30%; margin: auto; display: inline-block;  float: right;">
+                <button class="w-30 btn btn-lg btn-primary" type="submit">검색</button>
+                </div>
+                <div class="form-floating" style="width: 30%; margin: auto; display: inline-block;  float: right;">
+                <input type="text" class="form-control" id="search" name="search">
+                </div>
+
+            </form>
+                </div>
+
+        </div>
+        <div class="row gx-5">
+            {% for i in dt_dish %}
+            <div class="col-lg-4 mb-5" style=" cursor: pointer;"
+                 onclick="location.href='{{ 'https://www.10000recipe.com/recipe/' + (i['serial'])|string }}'">
+                <div class="card h-100 shadow border-0" style="overflow: hidden">
+                    <img class="card-img-top" src="{{ i['url'] }}" alt="...">
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Recipe</div>
+                        <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">
+                            {{ i['dish'] }}</h5></a>
+                        <h6><p class="card-text mb-0">내용: {{ i['intro'] }}</p></h6>
+                        <p class="card-text mb-0">재료: {{ i['ingredients'].replace('_',' ').replace('
+                            ,',',').replace(',',', ') }}</p>
+                    </div>
+                    <div class="card-footer p-4 pt-3 bg-transparent border-top-2">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="small">
+                                    <div class="fw-bold">{{ i['registrant'] }}</div>
+                                    <div class="text-muted">조회수: {{ i['views'] }}, 좋아요: {{ i['likes'] }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+{% endblock %}

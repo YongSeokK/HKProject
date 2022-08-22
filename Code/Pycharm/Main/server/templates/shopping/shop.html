@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='shop/css/style.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- code -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+        alert("{{ messages[-1] }}")
+</script>
+{% endif %}
+{% endwith %}
+<!-- Header -->
+<header class="masthead" body
+        style="background-image: url('static/img/portfolio/3.jpg'); background-size: cover; background-size: 90% 85%;">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-5 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Section -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for data in db %}
+            <div class="col-lg-4 pt-4 d-flex align-items-stretch" style="width: 20rem;">
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{{ url_for('static', filename='img/shop/'+data['image']) }}" style="height: 12rem;"
+                             class="card-img-top"
+                             alt="...">
+                        <div class="card-body" style="width: 18rem; object-fit: cover;">
+                            <div class="clearfix mb-3">
+                                <span class="float-start badge rounded-pill bg-primary"> {{ data['nickname'] }} </span>
+                            </div>
+                            <h4 class="card-title" style="text-align:center"> {{ data['product'] }} </h4>
+                            <br>
+                            <h6 class="card-title" style="text-align:center; vertical-align: middle;">
+                                {{ data['infoshort'] }}</h6>
+                            <div class="text-center my-4">
+                            </div>
+                        </div>
+                        <a href="{{ url_for('main.pay',nickname=data['nickname'],id=data['id']) }}"
+                           class="btn btn-success center; object-fit: cover;">
+                            {{ data['pricecomma'] }} 원</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="float: right;">
+            <form id="contactForm" class="pt-5" method="post">
+                <button class="w-30 btn btn-lg btn-primary" type="submit" name="write" value="write">상품 등록</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -299,7 +299,7 @@ def find_txt():
     db = pymysql.Connect(host=DB_HOST, user=DB_USERNAME, password=DB_PASSWORD, database=DB_NAME)
     with db:
         with db.cursor() as cur:
-            sql_table2 = 'SELECT * FROM projectdb.food_recipe WHERE dish LIKE "%{}%" ORDER BY views DESC LIMIT 3;'.format(
+            sql_table2 = 'SELECT * FROM project_db.food_recipe WHERE dish LIKE "%{}%" ORDER BY views DESC LIMIT 3;'.format(
                 temp)
             cur.execute(sql_table2)
             SQLFOOD_list = list(cur.fetchall())
