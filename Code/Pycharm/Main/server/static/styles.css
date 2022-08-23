@@ -41,7 +41,7 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
-  --bs-primary-rgb: 120, 255, 0;
+  --bs-primary-rgb: 109, 134, 220;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -61,7 +61,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
-  --bs-body-bg: #BACEFF;
+  --bs-body-bg: #fff;
 }
 
 *,
@@ -3031,7 +3031,7 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #fff;
-  background-color: #0BF569;
+  background-color: #6D86DC;
   border-color: #fff;
 }
 .btn-primary:hover {
@@ -3809,7 +3809,7 @@ textarea.form-control-lg {
 
 .dropdown-menu-dark {
   color: #dee2e6;
-  background-color: #343a40;
+  background-color: #5773C6;
   border-color: rgba(0, 0, 0, 0.15);
 }
 .dropdown-menu-dark .dropdown-item {
@@ -3821,7 +3821,7 @@ textarea.form-control-lg {
 }
 .dropdown-menu-dark .dropdown-item.active, .dropdown-menu-dark .dropdown-item:active {
   color: #fff;
-  background-color: #00D76E;
+  background-color: #385AA9;
 }
 .dropdown-menu-dark .dropdown-item.disabled, .dropdown-menu-dark .dropdown-item:disabled {
   color: #adb5bd;
@@ -3982,7 +3982,7 @@ textarea.form-control-lg {
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #AAFF00;
+  color: #fff;
   background-color: #fff;
   border-color: #dee2e6 #dee2e6 #fff;
 }
@@ -4514,7 +4514,7 @@ textarea.form-control-lg {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #F6F8FF;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -11362,12 +11362,12 @@ p {
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 0.95rem;
+  font-size: 1.0rem;
   color: #fff;
   letter-spacing: 0.0625em;
 }
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: #00FF80;
+  color: #75A5FF;
 }
 
 @media (min-width: 992px) {
@@ -11464,7 +11464,7 @@ header.masthead .masthead-heading {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0, 255, 130, 0.7);
+  background: rgba(146, 190, 232, 0.7);
   align-items: center;
   justify-content: center;
   opacity: 0;
@@ -11793,22 +11793,23 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 .rwd-table tr:first-child {
   border-top: none;
-  background: #5EDA99;
+  background: #34BF88;
   color: ;
 }
 
 .rwd-table tr {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  background-color: #f5f9fc;
+  background-color: #F6F8FF;
 }
 
 .rwd-table tr:nth-child(odd):not(:first-child) {
-  background-color: #ebf3f9;
+  background-color: #FFFFFE;
 }
 
 .rwd-table th {
   display: none;
+  color: #fff;
 }
 
 .rwd-table td {

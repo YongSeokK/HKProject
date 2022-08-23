@@ -42,18 +42,13 @@ def load_logged_in_user():
 def index():
     # 변동표
     date = []
-    data_table = []
+    data_tableUP = []
+    data_tableDN = []
     for dictionary in Category_List_W:
         produce_List = list(dictionary.values())  # 품목의 밸류값만 가져와 list로 변경
         translation_Dict = {v: k for k, v in dictionary.items()}  # 영어이름을 대체하기 위해 딕셔너리 키:밸류 도치
         for item in produce_List:
             produce = translation_Dict.get(item)  # item = 품목명 영어, 한글 이름 매칭
-            # 거래량
-            sql_q = 'SELECT date, ' + item + ' FROM Wholesale_quantity ORDER BY date DESC LIMIT 2;'  # 열 선택 & 열 내림차순 행 제한
-            cursor.execute(sql_q)
-            dt_quantity = cursor.fetchall()
-            before_quantity = int(dt_quantity[1][item])  # 그제
-            yesterday_quantity = int(dt_quantity[0][item])  # 어제
             # 가격
             sql_p = 'SELECT date, ' + item + ' FROM Wholesale_price ORDER BY date DESC LIMIT 2;'
             cursor.execute(sql_p)
@@ -64,20 +59,20 @@ def index():
                 pass
             else:
                 # 차이
-                quantity_dif = int(abs(before_quantity - yesterday_quantity))
-                price_dif = int(abs(before_price - yesterday_price))
-                dt_Dict = {"품목명": produce,
-                           "그제_거래량": before_quantity, "어제_거래량": yesterday_quantity,
-                           "거래량_변동폭": quantity_dif,
-                           "그제_가격": before_price, "어제_가격": yesterday_price,
-                           "가격_변동폭": price_dif}
-                data_table.append(dt_Dict)
-    for d in [dt_quantity[1]['date'], dt_quantity[0]['date']]:
-        time = datetime.strptime(str(d), "%Y%m%d")
-        day = str(time.month) + '.' + str(time.day) + '(' + Days[time.weekday()] + ')'
-        date.append(day)
+                price_dif = int(before_price - yesterday_price)
+                if price_dif > 0 :
+                    dt_DictUP = {"품목명": produce,
+                               "그제_가격": format(before_price, ','), "어제_가격": format(yesterday_price, ','),
+                               "가격_변동폭": format(abs(price_dif), ','), "비교": int(abs(price_dif))}
+                    data_tableUP.append(dt_DictUP)
+                else:
+                    dt_DictDN = {"품목명": produce,
+                               "그제_가격": format(before_price, ','), "어제_가격": format(yesterday_price, ','),
+                               "가격_변동폭": format(abs(price_dif), ','), "비교": int(abs(price_dif))}
+                    data_tableDN.append(dt_DictDN)
     # 변동폭 기준 내림차순 정렬, 상위 5개
-    data_table = sorted(data_table, key=(lambda x: x["가격_변동폭"]), reverse=True)[0:10]
+    data_tableUP = sorted(data_tableUP, key=(lambda x: int(x["비교"])), reverse=True)[0:5]
+    data_tableDN = sorted(data_tableDN, key=(lambda x: int(x["비교"])), reverse=True)[0:5]
 
     # popup 1
     pname = '농산물 물가'
@@ -92,7 +87,7 @@ def index():
     monthly_food = cursor.fetchall()
 
     return render_template('base/index.html',
-                           date=date, data_table=data_table,
+                           date=date, data_tableUP=data_tableUP, data_tableDN=data_tableDN,
                            article_List=article_List, monthly_food=monthly_food)
 
 
@@ -274,8 +269,8 @@ def write():
                 img_file = userid + '-' + time
                 img = request.files['image']
                 filename = secure_filename(img.filename)
-                # print(filename)
                 extension = '.' + filename.split('.')[-1]
+                # print(filename)
                 # print(extension)
                 img.save(Shop_imgFolder_Path + img_file + extension)
                 sql_text = 'userid, nickname, product, infoshort, info, price, image'
@@ -300,22 +295,15 @@ def pay(nickname, id):
 
 
 # 레시피
-# @bp.route('/recipe', methods=('GET', 'POST'))
-# def recipe():
-#     return render_template('base/recipe.html')
-@bp.route('/recipe/', methods=('GET', 'POST'))
+@bp.route('/recipe', methods=('GET', 'POST'))
 def recipe():
     # dt = Food_recipe.query.filter(Food_recipe.dish == keyword).all()
-    temp = request.args
-    temp1 = request.form.keys()
-    print(temp)
-    print(temp1)
-    # if temp != None:
-    #     ingredient = temp
-    sql_t = 'SELECT * FROM food_recipe WHERE dish LIKE "%{}%" ORDER BY views DESC LIMIT 9;'.format(temp)
+    food = request.args.get('search')
+    print(food)
+    sql_t = 'SELECT * FROM food_recipe WHERE dish LIKE "%{}%" ORDER BY views DESC LIMIT 9;'.format(food)
     cursor.execute(sql_t)
     dt_dish = cursor.fetchall()
-    # 여기는 db에서 딕셔너리 형식으로 불러오기 때문에 html에 jinja2로 적용할 때도 딕셔너리 형식으로 활용해야 함.
+    # pymysql.cursors.DictCursor
     return render_template('base/recipe.html', dt_dish=dt_dish)
 
 
@@ -327,6 +315,11 @@ def admin():
     members = cursor.fetchall()
     return render_template('base/admin.html', members=members)
 
+# 관리자 페이지
+@bp.route('/grade', methods=('GET', 'POST'))
+def grade():
+
+    return render_template('profile/grade.html')
 
 # del
 @bp.route('/initdel')

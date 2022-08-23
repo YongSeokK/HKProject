@@ -13,17 +13,18 @@
                     <p class="lead fw-normal text-muted mb-5">"만개의 레시피"에 등록된 레시피를 볼 수 있습니다.</p>
                 </div>
             </div>
-            <div class="container px-1 my-4">
-            <form id="contactForm" class="pt-5" action="/recipe/recipe" method="get">
-                <div class="form-floating" style="width: 30%; margin: auto; display: inline-block;  float: right;">
-                <button class="w-30 btn btn-lg btn-primary" type="submit">검색</button>
-                </div>
-                <div class="form-floating" style="width: 30%; margin: auto; display: inline-block;  float: right;">
-                <input type="text" class="form-control" id="search" name="search">
-                </div>
-
-            </form>
-                </div>
+             <div class="container px-1 my-1" style="padding: 2px 2px">
+                <form id="contactForm" method="get">
+                    <div class="row row-cols-2 row-cols-md-2 mb-3 text-center" style="float: right; margin-right: auto">
+                        <div class="col" style="width: 200px; padding: 6px 6px">
+                            <input type="text" class="form-control" id="search" name="search" style="height: auto">
+                        </div>
+                        <div class="col" style="width: auto; padding: 6px 6px; margin-right: 15px">
+                            <button class="w-30 btn btn btn-primary" type="submit" >검색</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
         </div>
         <div class="row gx-5">
@@ -54,8 +55,8 @@
 
             </div>
             {% endfor %}
-
         </div>
     </div>
 </section>
+
 {% endblock %}

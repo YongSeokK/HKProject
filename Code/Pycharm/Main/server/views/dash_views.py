@@ -8,7 +8,6 @@ from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, csv_Folder_Path, 
     Category_List_W, Category_radioList_W, Category_List_R, Category_radioList_R, Produce_Num
 from server.define.chart_data import Chartdata_W, Chartdata_R
 from server.define.dict import Retail_Dict
-from server.models import Food_recipe
 
 bp = Blueprint('dash', __name__, url_prefix='/')
 

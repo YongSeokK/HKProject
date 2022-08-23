@@ -26,13 +26,64 @@
                                                id="tool-{{ loop.index }}">
                                         <label class="for-checkbox-tools" for="tool-{{ loop.index }}">
                                             {% if 'checked' in v %}
-                                                {{ k }}</label>
-                                            {% else %}
-                                                {{ k }}</label>
-                                            {% endif %}
+                                            {{ k }}</label>
+                                        {% else %}
+                                        {{ k }}</label>
+                                        {% endif %}
                                         {% endfor %}
                                     </form>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 카드 갯수 -->
+                <div class="row row-cols-1 row-cols-4 mb-3 text-center" style="margin: auto">
+                    <!-- 전통시장 어제 가격 -->
+                    <div class="col" style="width: 16vw; margin-left:auto">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal" style="font-size: 15px">{{ date[-6] }} 시장 소매가</h4>
+                            </div>
+                            <div class="card-body" style="padding: 10px">
+                                <h1 class="card-title pricing-card-title" style="font-size: 25px;">{{ result_t_total[-6]
+                                    }}<small class="text-muted fw-light">/원(kg)</small></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 전통시장 오늘 가격 -->
+                    <div class="col" style="width: 16vw; margin-right:auto">
+                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                            <div class="card-header py-3 text-white bg-primary border-primary">
+                                <h4 class="my-0 fw-normal" style="font-size: 15px">{{ date[-5] }} <strong>시장</strong> 예상 소매가</h4>
+                            </div>
+                            <div class="card-body" style="padding: 10px">
+                                <h1 class="card-title pricing-card-title" style="font-size: 25px">{{ result_t_total[-5]
+                                    }}<small class="text-muted fw-light">/원(kg)</small></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 대형마트 소매가 -->
+                    <div class="col" style="width: 16vw; margin-left:auto">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal" style="font-size: 15px">{{ date[-6] }} 마트 소매가</h4>
+                            </div>
+                            <div class="card-body" style="padding: 10px">
+                                <h1 class="card-title pricing-card-title" style="font-size: 25px;">{{ result_m_total[-6]
+                                    }}<small class="text-muted fw-light">/원(kg)</small></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 대형마트 예상 소매가 -->
+                    <div class="col" style="width: 16vw; margin-right:auto">
+                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                            <div class="card-header py-3 text-white bg-primary border-primary">
+                                <h4 class="my-0 fw-normal" style="font-size: 15px">{{ date[-5] }} <strong>마트</strong> 예상 소매가</h4>
+                            </div>
+                            <div class="card-body" style="padding: 10px">
+                                <h1 class="card-title pricing-card-title" style="font-size: 25px;">{{ result_m_total[-5]
+                                    }}<small class="text-muted fw-light">/원(kg)</small></h1>
                             </div>
                         </div>
                     </div>

@@ -236,7 +236,13 @@ def find_img():
                         "messageText": "레시피 검색",
                         "action": "message",
                         "label": "뒤로 돌아가기"
-                    }]
+                    },
+                        {
+                            "action": "block",
+                            "blockId": "63033698191dee5f026008f1",
+                            "label": "처음으로 돌아가기",
+                        }
+                    ]
                 }
             }
             print(ret)
@@ -391,7 +397,13 @@ def find_txt():
                             "messageText": "레시피 검색",
                             "action": "message",
                             "label": "뒤로 돌아가기"
-                        }]
+                        },
+                            {
+                                "action": "block",
+                                "blockId": "63033698191dee5f026008f1",
+                                "label": "처음으로 돌아가기",
+                            }
+                        ]
                     }
                 }
                 print(ret)
@@ -517,3 +529,29 @@ def retail_price():
                                                                 "label": "다른 농수산물 검색하기"}, ]}}
 
     return jsonify(ret)
+
+
+# 모든블록으로 갈 수 있는 블록
+@bp.route('/first', methods=['POST', 'GET'])
+def first():
+    ret2 = {
+        "version": "2.0",
+        "template": {
+            "outputs": [
+                {"simpleText": {"text": "하단의 버튼을 클릭 하여 원하는 방식으로 검색하실 수 있습니다. "}}
+            ], "quickReplies": [{
+                "action": "block",
+                "blockId": "62f5a32778a1fc2ba5b242db",
+                "label": "사용법"
+            }, {
+                "action": "message",
+                "messageText": "★ 레시피 검색 ★",
+                "label": "레시피 검색"
+            }, {
+                "action": "message",
+                "messageText": "★ 농수산물 가격 정보 ★ ",
+                "label": "농수산물 가격 정보"
+            }
+            ]
+        }
+    }
