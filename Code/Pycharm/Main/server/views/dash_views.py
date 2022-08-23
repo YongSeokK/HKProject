@@ -136,8 +136,14 @@ def retail():
                                        month_price_T=chart['3']['month_price_T'],
                                        month_price_M=chart['3']['month_price_M'])
             else:
-                region = request.form.get('region')
-                category = request.form.get('category')
+                if request.form.get('selectbox'):
+                    sel = request.form.get('selectbox')
+                    sel_value = sel.split('_')
+                    region = sel_value[0]
+                    category = sel_value[1]
+                else:
+                    region = request.form.get('region')
+                    category = request.form.get('category')
                 print('소매: ' + region + '_' + category)
                 dic_set = Category_radioList_R[Category_Kor.index(category)]
                 radio_check = copy.deepcopy(dic_set)

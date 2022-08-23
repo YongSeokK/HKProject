@@ -16,6 +16,10 @@
     <link href="{{ url_for('static', filename='dash/css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="{{ url_for('static', filename='profile/styles.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Quicksand" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <!-- 차트 링크 -->
@@ -63,7 +67,8 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='img/navbar-logo.svg') }}" alt="..."></a>
+        <a class="navbar-brand" href="{{ url_for('main.index') }}"><img
+                src="{{ url_for('static', filename='img/navbar-logo.svg') }}" alt="..."></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -77,28 +82,33 @@
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 {% if g.nickname == None %}
                 {% else %}
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.profile') }}"><strong>< {{ g.nickname }}님 ></strong></a>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.profile') }}"><strong>< {{ g.nickname
+                    }}님 ></strong></a>
                 </li>
                 {% endif %}
                 <!-- <li class="nav-item"><a class="nav-link" href="#services">가격예측</a></li> -->
                 <!-- <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}#team">Team</a></li> -->
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}"><strong>Home</strong></a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:goPage1('식량작물');"><strong>도매정보</strong></a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:goPage2('서울','식량작물');"><strong>소매정보</strong></a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.shop') }}"><strong>직거래쇼핑</strong></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}"><strong>Home</strong></a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="javascript:goPage1('식량작물');"><strong>도매정보</strong></a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="javascript:goPage2('서울','식량작물');"><strong>소매정보</strong></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.shop') }}"><strong>직거래쇼핑</strong></a>
+                </li>
                 <div class="dropdown">
                     <li class="nav-item" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                         <a class="nav-link" href=""><strong>기타서비스</strong></a></li>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
                         {% if g.nickname == None %}
-                        <li><a class="dropdown-item disabled" href="{{ url_for('main.profile') }}" >내 정보</a></li>
+                        <li><a class="dropdown-item disabled" href="{{ url_for('main.profile') }}">내 정보</a></li>
                         {% else %}
-                        <li><a class="dropdown-item" href="{{ url_for('main.profile') }}" >내 정보</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('main.profile') }}">내 정보</a></li>
                         {% endif %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="">레시피</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('main.recipe') }}">레시피</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -113,9 +123,11 @@
                 </div>
 
                 {% if g.nickname == None %}
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.login') }}"><strong>Login</strong></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.login') }}"><strong>Login</strong></a>
+                </li>
                 {% else %}
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.logout') }}"><strong>Logout</strong></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.logout') }}"><strong>Logout</strong></a>
+                </li>
                 {% endif %}
             </ul>
         </div>
@@ -357,6 +369,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="{{ url_for('static', filename='profile/scripts.js')}}"></script>
+</div>
 </body>
 </html>

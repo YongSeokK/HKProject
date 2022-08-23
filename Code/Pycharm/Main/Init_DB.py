@@ -57,7 +57,8 @@ db.commit()
 #################### 관리자 등록 ####################
 bcrypt = Bcrypt(Flask(__name__))
 member = [['admin', '관리자', 'test1234', '관리자', 'sonmj2026@naver.com', '01012345678', 0, datetime.utcnow()],
-          ['manager', '매니저', 'test1234', 'manager', 'sonmj2026@naver.com', '01012345678', 2, datetime.utcnow()]]
+          ['manager', '매니저', 'test1234', 'manager', 'sonmj2026@naver.com', '01012345678', 2, datetime.utcnow()],
+          ['test1', 'test', 'test1234', '홍길동', 'sonmj2026@naver.com', '01012345678', 1, datetime.utcnow()]]
 member_columns = 'userid, nickname, userpw, name, email, phone, grade, start'
 for i in member:
     password = i[2]

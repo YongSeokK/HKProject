@@ -111,7 +111,7 @@ class Chartdata_W:
             ds_val = test_df['ds'].values.tolist()
             for i in ds_val:
                 date_f.append(str(i)[5:7] + '.' + str(i)[8:10])
-            yhat = round(test_df['yhat'], -1).values.tolist()  # 중간값 1의 자리에서 반올림
+            yhat = [int(i) for i in round(test_df['yhat'], -1).values.tolist()]  # 중간값 1의 자리에서 반올림
             yhat_l = round(test_df['yhat_lower'], -1).values.tolist()  # 최솟값
             yhat_u = round(test_df['yhat_upper'], -1).values.tolist()  # 최댓값
 

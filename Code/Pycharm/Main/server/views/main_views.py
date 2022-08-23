@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 from werkzeug.utils import redirect, secure_filename
 
 from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, Shop_imgFolder_Path, \
-    Client_id, Client_secret, Days, Category_List_W
+    Client_id, Client_secret, Days, Tier, Category_List_W
 from server import db
 from server.forms import UserCreateForm, UserPwForm
 from server.models import Members
@@ -60,15 +60,15 @@ def index():
             else:
                 # 차이
                 price_dif = int(before_price - yesterday_price)
-                if price_dif > 0 :
+                if price_dif > 0:
                     dt_DictUP = {"품목명": produce,
-                               "그제_가격": format(before_price, ','), "어제_가격": format(yesterday_price, ','),
-                               "가격_변동폭": format(abs(price_dif), ','), "비교": int(abs(price_dif))}
+                                 "그제_가격": format(before_price, ','), "어제_가격": format(yesterday_price, ','),
+                                 "가격_변동폭": format(abs(price_dif), ','), "비교": int(abs(price_dif))}
                     data_tableUP.append(dt_DictUP)
                 else:
                     dt_DictDN = {"품목명": produce,
-                               "그제_가격": format(before_price, ','), "어제_가격": format(yesterday_price, ','),
-                               "가격_변동폭": format(abs(price_dif), ','), "비교": int(abs(price_dif))}
+                                 "그제_가격": format(before_price, ','), "어제_가격": format(yesterday_price, ','),
+                                 "가격_변동폭": format(abs(price_dif), ','), "비교": int(abs(price_dif))}
                     data_tableDN.append(dt_DictDN)
     # 변동폭 기준 내림차순 정렬, 상위 5개
     data_tableUP = sorted(data_tableUP, key=(lambda x: int(x["비교"])), reverse=True)[0:5]
@@ -163,12 +163,16 @@ def profile():
     if request.method == 'POST':
         choice = list(request.form.keys())[0].split('.')[0]
         print('choice: ' + choice)
-        return render_template('profile/confirm.html', user=user, choice=choice)
-    return render_template('profile/profile.html', user=user)
+        if choice == 'upgrade':
+            flash("판매자 등록이 신청되었습니다.")
+            return redirect(url_for('main.shop'))
+        else:
+            return render_template('profile/confirm.html', user=user, choice=choice)
+    return render_template('profile/profile.html', user=user, Tier=Tier)
 
 
 # 프로필 수정
-@bp.route('/change', methods=('GET', 'POST'))
+@bp.route('/profile/change', methods=('GET', 'POST'))
 def change():
     user = Members.query.filter_by(userid=g.user).first()
     if request.method == 'POST':
@@ -184,7 +188,7 @@ def change():
 
 
 # 비밀번호 수정
-@bp.route('/changepw', methods=('GET', 'POST'))
+@bp.route('/profile/changepw', methods=('GET', 'POST'))
 def changepw():
     form = UserPwForm()
     user = Members.query.filter_by(userid=g.user).first()
@@ -201,7 +205,7 @@ def changepw():
 
 
 # 비밀 번호 확인
-@bp.route('/confirm', methods=('GET', 'POST'))
+@bp.route('/profile/confirm', methods=('GET', 'POST'))
 def confirm():
     if request.method == 'POST':
         choice = request.form.to_dict()['check']
@@ -315,11 +319,12 @@ def admin():
     members = cursor.fetchall()
     return render_template('base/admin.html', members=members)
 
-# 관리자 페이지
-@bp.route('/grade', methods=('GET', 'POST'))
-def grade():
 
+# 관리자 페이지
+@bp.route('/admin/grade', methods=('GET', 'POST'))
+def grade():
     return render_template('profile/grade.html')
+
 
 # del
 @bp.route('/initdel')

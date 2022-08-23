@@ -13,7 +13,7 @@ DB_PASSWORD = 'test1234'  # MySQL Password
 DB_NAME = 'project_db'  # MySQL Name
 
 ## Path - 파이참 프로젝트 가장 상위 폴더 = Main 절대 경로
-Root_Path = r'C:\G_Project\Code\Pycharm\Main'
+Root_Path = r'C:\Users\sonmj\G_Project\Code\Pycharm\Main'
 #                                                                 #
 #                                                                 #
 #                                                                 #
@@ -52,6 +52,7 @@ Whole_List = ['농산물가격', '농산물거래량']
 
 # 변환
 Days = ['월', '화', '수', '목', '금', '토', '일']
+Tier = ['관리자', '일반 회원', '판매자', '매니저']
 Category_Kor = ['식량작물', '특용작물', '채소류', '과일류']
 Category_Eng = ['Foodcrop', 'Specialcrop', 'Vegetable', 'Fruit']
 Region_Dict = {'서울': 'seoul', '인천': 'incheon', '대전': 'daejeon', '광주': 'gwangju',
