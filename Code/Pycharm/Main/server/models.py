@@ -13,6 +13,7 @@ class Members(db.Model):
     email = db.Column(db.String(20, 'utf8mb4_unicode_ci'), nullable=False)
     phone = db.Column(db.String(20, 'utf8mb4_unicode_ci'), nullable=False)
     grade = db.Column(db.Integer(), nullable=False)
+    sell = db.Column(db.Integer(), nullable=False)
     start = db.Column(db.DateTime, default=datetime.utcnow())
 
 

@@ -5,8 +5,8 @@
 <!-- 표 -->
 <section class="page-section">
     <div class="container text-center">
-        <h2 class="section-heading text-uppercase">변동표</h2>
-        <h3 class="section-subheading text-muted">Price of Today Variation TOP 10</h3>
+        <h2 class="section-heading text-uppercase">{{ title }}</h2>
+<!--        <h3 class="section-subheading text-muted">Price of Today Variation TOP 10</h3>-->
         <table class="rwd-table">
             <tbody>
             <tr>
@@ -20,7 +20,7 @@
                 <th></th>
                 <th>가입일시</th>
             </tr>
-            {% for i in members %}
+            {% for i in db_sell %}
             <tr>
                 <td>
                     {{ i['id'] }}
@@ -46,7 +46,7 @@
                 <td>
                     <form id="contactForm" class="" method="post">
                         <input type="image" src="{{ url_for('static', filename='img/base/setting.png')}}"
-                               name="profile" value="profile" alt="Submit" width="24" height="24">
+                               name="{{ i['userid'] }}" value="{{ i['userid'] }}" alt="Submit" width="24" height="24">
                     </form>
                 </td>
                 <td>

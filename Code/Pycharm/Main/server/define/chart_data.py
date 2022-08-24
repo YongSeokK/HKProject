@@ -92,6 +92,8 @@ class Chartdata_W:
                     else:
                         stepSize_deal = math.ceil(max_deal / 5)
 
+            cur.close()
+
             # chart1: 날짜, 가격, 거래량, 최소 가격, 최대 가격, 가격 크기, 최소 거래량, 최대 거래량, 거래량 크기
             chart1 = {'date': date, 'price': price, 'deal': deal,
                       'max_price': max_price, 'stepSize_price': stepSize_price,
@@ -228,6 +230,8 @@ class Chartdata_W:
                 stepSize_deal_quarter = round(max_deal_quarter / 5, -3)
             else:
                 stepSize_deal_quarter = round(max_deal_quarter / 5, -4)
+
+            cur.close()
 
             # chart3: 분기별 가격, 분기별 거래량, 최소 가격, 최대 가격, 가격 크기, 최소 거래량, 최대 거래량, 거래량 크기
             chart3 = {'price_quarter': price_quarter, 'deal_quarter': deal_quarter,

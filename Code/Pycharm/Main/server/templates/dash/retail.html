@@ -7,6 +7,9 @@
     <main>
         <div class="container">
             <div class="container-fluid " style="padding-top: 50px;">
+                <div class="sel2">
+                    <span style="font-size: 32px; color:#3155A4;">소매 ></span>
+                </div>
                 <div class="sel">
                     <select form="myForm" name="selectbox" id="select-profession">
                         <option value="" disabled>{{ region }} - {{ category }}</option>
@@ -18,7 +21,11 @@
                 </div>
                 <div class="sel2">
                     <form action="" method="post" id="myForm" style="">
-                        <input class="w-30 btn btn btn-primary" type="submit" value="이동">
+                        <input type="hidden" name="search">
+                    <button type="submit" style="padding: 0; border: none; background: none;">
+                        <img src="{{ url_for('static', filename='img/base/search.png') }}"
+                             style="margin:0" width="32" height="32"  alt="Submit">
+                    </button>
                     </form>
                 </div>
             </div>
@@ -40,7 +47,7 @@
                                         {% for k,v in radio_check.items() %}
                                         <input class="checkbox-tools" {{ v }} type="radio" name="myRadios"
                                                onclick="document.getElementById('choice').submit();"
-                                               value="{{ category }}_{{ k }}"
+                                               value="{{ region }}_{{ category }}_{{ k }}"
                                                id="tool-{{ loop.index }}">
                                         <label class="for-checkbox-tools" for="tool-{{ loop.index }}">
                                             {% if 'checked' in v %}
@@ -65,7 +72,7 @@
                             </div>
                             <div class="card-body" style="padding: 10px">
                                 <h1 class="card-title pricing-card-title" style="font-size: 25px;">{{ result_t_total[-6]
-                                    }}<small class="text-muted fw-light">/원(kg)</small></h1>
+                                    }}<small class="text-muted fw-light">&nbsp;(원/{{ kg }})</small></h1>
                             </div>
                         </div>
                     </div>
@@ -78,7 +85,7 @@
                             </div>
                             <div class="card-body" style="padding: 10px">
                                 <h1 class="card-title pricing-card-title" style="font-size: 25px">{{ result_t_total[-5]
-                                    }}<small class="text-muted fw-light">/원(kg)</small></h1>
+                                    }}<small class="text-muted fw-light">&nbsp;(원/{{ kg }})</small></h1>
                             </div>
                         </div>
                     </div>
@@ -90,7 +97,7 @@
                             </div>
                             <div class="card-body" style="padding: 10px">
                                 <h1 class="card-title pricing-card-title" style="font-size: 25px;">{{ result_m_total[-6]
-                                    }}<small class="text-muted fw-light">/원(kg)</small></h1>
+                                    }}<small class="text-muted fw-light">&nbsp;(원/{{ kg }})</small></h1>
                             </div>
                         </div>
                     </div>
@@ -103,7 +110,7 @@
                             </div>
                             <div class="card-body" style="padding: 10px">
                                 <h1 class="card-title pricing-card-title" style="font-size: 25px;">{{ result_m_total[-5]
-                                    }}<small class="text-muted fw-light">/원(kg)</small></h1>
+                                    }}<small class="text-muted fw-light">&nbsp;(원/{{ kg }})</small></h1>
                             </div>
                         </div>
                     </div>
@@ -219,7 +226,7 @@
             type: 'line',
             label: '{{ region }}',
             yAxisID: 'A',
-            borderColor: '#ffbaa2',
+            borderColor: '#00FF0F',
             backgroundColor: 'white',
             pointStyle: 'rectRounded',
             pointRadius: 6,
@@ -227,8 +234,8 @@
             data: {{ result_t }},
             fill: false
         }, {
-            label: '전체(평균)',
-            borderColor: 'rgba(0,255,0,0.5)',
+            label: '전체 지역(평균)',
+            borderColor: '#7800FF',
             backgroundColor: 'white',
             pointStyle: 'rectRounded',
             pointRadius: 6,
@@ -237,7 +244,7 @@
             fill: false
         }, {
             label: '예측값(최소)',
-            borderColor: 'rgba(255,0,0,0.3)',
+            borderColor: 'rgba(0, 107, 209, 0.8)',
             backgroundColor: 'white',
             pointStyle: 'rectRounded',
             pointRadius: 6,
@@ -246,7 +253,7 @@
             fill: false
         }, {
             label: '예측값(최대)',
-            borderColor: 'rgba(255,0,0,0.3)',
+            borderColor: 'rgba(255, 0, 0, 0.8)',
             backgroundColor: 'white',
             pointStyle: 'rectRounded',
             pointRadius: 6,
@@ -266,7 +273,7 @@
                     position: 'left',
                     ticks: {
                         min: 0,
-                        fontColor: '#ffbaa2',
+                        fontColor: '#6D86DC',
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
                 }]
@@ -300,7 +307,7 @@
             type: 'line',
             label: '{{ region }}',
             yAxisID: 'A',
-            borderColor: '#ffbaa2',
+            borderColor: '#00FF0F',
             backgroundColor: 'white',
             pointStyle: 'rectRounded',
             pointRadius: 6,
@@ -308,8 +315,8 @@
             data: {{ result_m }},
             fill: false
         }, {
-            label: '전체(평균)',
-            borderColor: 'rgba(0,255,0,0.5)',
+            label: '전체 지역(평균)',
+            borderColor: '#7800FF',
             backgroundColor: 'white',
             pointStyle: 'rectRounded',
             pointRadius: 6,
@@ -318,7 +325,7 @@
             fill: false
         }, {
             label: '예측값(최소)',
-            borderColor: 'rgba(255,0,0,0.3)',
+            borderColor: 'rgba(0, 107, 209, 0.8)',
             backgroundColor: 'white',
             pointStyle: 'rectRounded',
             pointRadius: 6,
@@ -327,7 +334,7 @@
             fill: false
         }, {
             label: '예측값(최대)',
-            borderColor: 'rgba(255,0,0,0.3)',
+            borderColor: 'rgba(255, 0, 0, 0.8)',
             backgroundColor: 'white',
             pointStyle: 'rectRounded',
             pointRadius: 6,
@@ -347,7 +354,7 @@
                     position: 'left',
                     ticks: {
                         min: 0,
-                        fontColor: '#ffbaa2',
+                        fontColor: '#6D86DC',
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
                 }]
@@ -361,23 +368,24 @@
     var data3 = {
         labels: [ {% for i in month_List %} '{{ i }}', {% endfor %} ],
         datasets: [{
-            label: '대형유통 가격(원)',
-            yAxisID: 'A',
-            borderColor: '#ffbaa2',
-            backgroundColor: 'white',
-            pointStyle: 'rectRounded',
-            pointRadius: 6,
-            pointHoverRadius: 8,
-            data: {{ month_price_T }},
-            fill: false
-        }, {
             label: '전통시장 가격(원)',
-            borderColor: '#91cf96',
+            borderColor: '#2EE522',
             backgroundColor: 'white',
             pointStyle: 'rectRounded',
             pointRadius: 6,
             pointHoverRadius: 8,
             data: {{ month_price_M }},
+            fill: false
+        },
+        {
+            label: '대형유통 가격(원)',
+            yAxisID: 'A',
+            borderColor: '#FF1E72',
+            backgroundColor: 'white',
+            pointStyle: 'rectRounded',
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            data: {{ month_price_T }},
             fill: false
         }]
     }
@@ -391,7 +399,7 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        fontColor: '#ffbaa2',
+                        fontColor: '#6D86DC',
                         callback: function(value, index, values) { return value + ' 원'; }
                     }
                 }]

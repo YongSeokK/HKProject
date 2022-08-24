@@ -269,7 +269,12 @@ def find_ingredients():
         else:
             quantity = ''
 
-        tmp = tmp + '\n' + ingredients + quantity + '\n'
+        if cnt + 1 < 10:
+            tmp = tmp + '\n' + str(cnt + 1) + '. ' + ingredients + quantity
+        elif (cnt + 1) % 10 == 0:
+            tmp = tmp + '\n' + str(cnt + 1) + '. ' + ingredients + quantity + '\n'
+        else:
+            tmp = tmp + '\n' + str(cnt + 1) + '. ' + ingredients + quantity
 
     rets = {
         "version": "2.0",
@@ -284,9 +289,9 @@ def find_ingredients():
                 "action": "message",
                 "label": "네이버에서 재료 구매하기"
             }, {
-                "messageText": "텍스트 검색",
                 "action": "message",
-                "label": "텍스트 다시 작성하기"
+                "messageText": "★ 레시피 검색 ★",
+                "label": "레시피 다시 검색하기"
             }, {
                 "messageText": "레시피 검색",
                 "action": "message",

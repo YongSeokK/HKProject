@@ -5,7 +5,7 @@ from flask import Blueprint, request, render_template, url_for, session, flash
 from werkzeug.utils import redirect
 
 from config import DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, csv_Folder_Path, Category_Kor, Category_Eng, Region_Dict, \
-    Category_List_W, Category_radioList_W, Category_List_R, Category_radioList_R, Produce_Num
+    Category_List_W, Category_radioList_W, Category_List_R, Category_radioList_R, Produce_Num, Weight
 from server.define.chart_data import Chartdata_W, Chartdata_R
 from server.define.dict import Retail_Dict
 
@@ -114,9 +114,11 @@ def retail():
                 region = option[0]
                 category = option[1]
                 dic_set = Category_radioList_R[Category_Kor.index(category)]
+                weight = Weight[Category_Kor.index(category)]
                 radio_check = copy.deepcopy(dic_set)
                 key_produce = option[2]
                 radio_check[key_produce] = ' checked="checked" '
+                kg = weight[key_produce]
 
                 MyChart = Chartdata_R(result_dict, csv_Folder_Path, Category_Kor, Category_Eng,
                                       Region_Dict, Category_List_R, Produce_Num,
@@ -134,7 +136,7 @@ def retail():
                                        yhat_l_M=chart['2']['yhat_l_M'], yhat_u_M=chart['2']['yhat_u_M'],
                                        month_List=chart['3']['month_List'],
                                        month_price_T=chart['3']['month_price_T'],
-                                       month_price_M=chart['3']['month_price_M'])
+                                       month_price_M=chart['3']['month_price_M'],kg=kg)
             else:
                 if request.form.get('selectbox'):
                     sel = request.form.get('selectbox')
@@ -146,10 +148,12 @@ def retail():
                     category = request.form.get('category')
                 print('소매: ' + region + '_' + category)
                 dic_set = Category_radioList_R[Category_Kor.index(category)]
+                weight = Weight[Category_Kor.index(category)]
                 radio_check = copy.deepcopy(dic_set)
                 keys_list = list(radio_check.keys())
                 key_produce = keys_list[0]
                 radio_check[key_produce] = ' checked="checked" '
+                kg = weight[key_produce]
 
                 MyChart = Chartdata_R(result_dict, csv_Folder_Path, Category_Kor, Category_Eng,
                                       Region_Dict, Category_List_R, Produce_Num,
@@ -167,7 +171,7 @@ def retail():
                                        yhat_l_M=chart['2']['yhat_l_M'], yhat_u_M=chart['2']['yhat_u_M'],
                                        month_List=chart['3']['month_List'],
                                        month_price_T=chart['3']['month_price_T'],
-                                       month_price_M=chart['3']['month_price_M'])
+                                       month_price_M=chart['3']['month_price_M'],kg=kg)
 
 
 # Dashboard_가격비교_소매
@@ -184,7 +188,7 @@ def compare2(category):
         temp = request.args.get('search')
         print(temp)
         # dt = Food_recipe.query.filter(Food_recipe.dish == category).all()
-        return render_template('dash/compare2.html')#, category=category)
+        return render_template('dash/compare2.html')  # , category=category)
 
 
 # chart

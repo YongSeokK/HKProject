@@ -15,13 +15,21 @@
             <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
                  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <rect width="100%" height="100%" fill="#777">
-                    <img src="{{ url_for('static', filename='img/base/b1.png') }}"
+                    <img src="{{ url_for('static', filename='img/base/slide1.jpg') }}"
                          style="object-fit:cover"/></img>
                 </rect>
             </svg>
             <div class="container">
-                <div class="carousel-caption text-end">
-                    <h1></h1>
+                <div class="carousel-caption text-start">
+                    <span style="font-size: 48px; color: #fff; padding-left: 120px;"><strong>주요 농산물</strong></span>
+                    <br>
+                    <span style="font-size: 48px; color: #fff; padding-left: 120px;"><strong>가격 예측 시스템</strong></span>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                 </div>
             </div>
         </div>
@@ -31,13 +39,14 @@
                  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <rect width="100%" height="100%" fill="#777">
                     <!--                <img src="https://cdn.011st.com/11dims/thumbnail/11src/browsing/exhibition/2022/06/09/2022060909150923827__img.png"-->
-                    <img src="{{ url_for('static', filename='img/base/talk.png') }}"
+                    <img src="{{ url_for('static', filename='img/base/slide2.jpg') }}"
                          style="object-fit:cover"/></img>
                 </rect>
             </svg>
             <div class="container">
                 <div class="carousel-caption text-end">
                     <h1></h1>
+<!--                    <img src="{{ url_for('static', filename='img/base/slide2.jpg') }}" width="132" height="132">-->
                     <p><a class="btn btn" style="background-color:#C3D7FF;" href="http://pf.kakao.com/_uyZhxj">
                         <strong>채널 가기</strong></a></p>
                 </div>
@@ -48,13 +57,21 @@
             <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
                  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <rect width="100%" height="100%" fill="#777">
-                    <img src="{{ url_for('static', filename='img/base/b3.png') }}"
+                    <img src="{{ url_for('static', filename='img/base/slide3.jpg') }}"
                          style="object-fit:cover"/></img>
                 </rect>
             </svg>
-            <div class="container">
-                <div class="carousel-caption text-end">
-                    <h1></h1>
+            <div class="container" style="botton: 5rem;">
+                <div class="carousel-caption botton-5rem text-center" style="">
+                    <span>추석 선물은 <span style="font-size:20px; color: #3155A4"><strong>ALL NONG 직거래 장터</strong></span></span>
+                    <h1>추석 기획상품 할인</h1>
+                    <span>감사의 마음을 전하세요</span>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <p><a class="btn btn" style="background-color:#C3D7FF;" href="{{ url_for('main.shop') }}">
+                        <strong>GO TO SHOP</strong></a></p>
                 </div>
             </div>
         </div>
@@ -64,14 +81,14 @@
 <!-- 표 -->
 <section class="page-section">
     <div class="container">
-        <h2 class="section-heading text-center">가격 변동 상위 품목</h2>
+        <h2 class="section-heading text-center">도매가 변동 상위 품목</h2>
         <p>&nbsp;</p>
         <div class="row row-cols-1 row-cols-md-2 mb-3 text-center" style="margin: auto">
             <div class="col" style="margin-right: auto">
                 <table class="rwd-table">
                     <tbody>
                     <tr>
-                        <th>TOP</th>
+                        <th>하락</th>
                         <th>품목</th>
                         <th>그제</th>
                         <th>어제</th>
@@ -107,7 +124,7 @@
                 <table class="rwd-table">
                     <tbody>
                     <tr>
-                        <th>TOP</th>
+                        <th>상승</th>
                         <th>품목</th>
                         <th>그제</th>
                         <th>어제</th>
@@ -165,7 +182,7 @@
                                 </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com --></div>
                         </div>
                         <img class="img-fluid"
-                             src="{{ url_for('static', filename='img/base/d1.png') }}"
+                             src="{{ url_for('static', filename='img/base/card1.png') }}"
                              style="height: 16vw; width: 30vw; min-width: 140px;" alt="...">
                     </a>
                 </div>
@@ -185,7 +202,7 @@
                         </div>
                         <div style="text-align : center;">
                             <img class="img-fluid"
-                                 src="{{ url_for('static', filename='img/base/d2.png') }}"
+                                 src="{{ url_for('static', filename='img/base/card2.png') }}"
                                  style="height: 16vw; width: 30vw; min-width: 140px;" alt="...">
                         </div>
                     </a>
@@ -205,7 +222,7 @@
                                 </svg><!-- <i class="fas fa-plus fa-3x"></i> Font Awesome fontawesome.com --></div>
                         </div>
                         <img class="img-fluid"
-                             src="{{ url_for('static', filename='img/base/d3.png') }}"
+                             src="{{ url_for('static', filename='img/base/card3.png') }}"
                              style="height: 16vw; width: 30vw; min-width: 140px;" alt="...">
                         <!-- 이미지 출처 https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=rak1561&logNo=220674464665 -->
                     </a>

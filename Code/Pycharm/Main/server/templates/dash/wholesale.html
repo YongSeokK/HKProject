@@ -195,7 +195,7 @@
             type: 'line',
             label: '거래 가격 (원/kg)',
             yAxisID: 'B',
-            borderColor: '#91cf96',
+            borderColor: '#FF1E72',
             backgroundColor: 'white',
             pointStyle: 'rectRot',
             pointRadius: 6,
@@ -206,7 +206,7 @@
             label: '거래 물량 (톤)',
             yAxisID: 'A',
             borderColor: 'white',
-            backgroundColor: '#ffbaa2',
+            backgroundColor: '#2EE522',
             data: {{ deal }},
             fill: false
             }]
@@ -223,7 +223,7 @@
                         min: 0,
                         max: {{ (stepSize_deal * 7)|round(1) }},
                         stepSize: {{ stepSize_deal }},
-                        fontColor: '#ffbaa2',
+                        fontColor: '#6D86DC',
                         callback: function(value, index, values) { return value + ' t'; }
                         }
                     }, {
@@ -233,7 +233,7 @@
                         min: 0,
                         max: {{ stepSize_price * 7 }},
                         stepSize: {{ stepSize_price }},
-                        fontColor: '#91cf96',
+                        fontColor: '#6D86DC',
                         callback: function(value, index, values) { return value + ' 원'; }
                         }
                     }]
@@ -249,7 +249,7 @@
         datasets: [{
             label: '예측 평균',
             yAxisID: 'A',
-            borderColor: '#ffbaa2',
+            borderColor: '#7800FF',
             backgroundColor: 'white',
             pointStyle: 'rectRot',
             pointRadius: 5,
@@ -258,7 +258,7 @@
             fill: false
             }, {
             label: '예측 최소',
-            borderColor: '#29b6f6',
+            borderColor: '#75A5FF',
             backgroundColor: 'white',
             pointStyle: 'rectRot',
             pointRadius: 5,
@@ -267,7 +267,7 @@
             fill: false
             }, {
             label: '예측 최대',
-            borderColor: '#29b6f6',
+            borderColor: 'rgba(255, 0, 0, 0.8)',
             backgroundColor: 'white',
             pointStyle: 'rectRot',
             pointRadius: 5,
@@ -286,6 +286,7 @@
                     type: 'linear',
                     position: 'left',
                     ticks: {
+                        fontColor: '#6D86DC',
                         min: 0,
                         max: {{ stepSize_yhat * 7 }},
                         stepSize: {{ stepSize_yhat * 1 }},
@@ -309,7 +310,7 @@
             label: '거래 평균 가격 (원/kg)',
             type: 'line',
             yAxisID: 'B',
-            borderColor: '#91cf96',
+            borderColor: '#E86597',
             backgroundColor: 'white',
             pointStyle: 'rectRot',
             pointRadius: 5,
@@ -320,7 +321,7 @@
             label: '거래 물량 (톤)',
             yAxisID: 'A',
             borderColor: 'white',
-            backgroundColor: '#ffbaa2',
+            backgroundColor: '#FFE143',
             data: {{ deal_quarter }},
             fill: false
             }]
@@ -338,7 +339,7 @@
                         suggestedMin: 0,
                         max: {{ stepSize_deal_quarter * 8 }},
                         stepSize: {{ stepSize_deal_quarter * 2 }},
-                        fontColor: '#ffbaa2',
+                        fontColor: '#6D86DC',
                         callback: function(value, index, values) { return value + ' t'; }
                         }
                     }, {
@@ -349,7 +350,7 @@
                         suggestedMin: 0,
                         max: {{ stepSize_price_quarter * 8 }},
                         stepSize: {{ stepSize_price_quarter }},
-                        fontColor: '#91cf96',
+                        fontColor: '#6D86DC',
                         callback: function(value, index, values) { return value + ' 원'; }
                         }
                     }]

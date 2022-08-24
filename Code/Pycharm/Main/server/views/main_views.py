@@ -108,7 +108,8 @@ def signup():
                            name=form.name.data,
                            email=form.email.data,
                            phone=form.phone.data,
-                           grade=1)
+                           grade=1,
+                           sell=0)
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('main.login'))
@@ -164,8 +165,14 @@ def profile():
         choice = list(request.form.keys())[0].split('.')[0]
         print('choice: ' + choice)
         if choice == 'upgrade':
+            text = g.user
+            sql_table = 'UPDATE members SET sell=1 WHERE userid="{}"'.format(text)
+            cursor.execute(sql_table)
+            mydb.commit()
             flash("판매자 등록이 신청되었습니다.")
             return redirect(url_for('main.shop'))
+        elif choice == 'seller':
+            return redirect(url_for('main.grade'))
         else:
             return render_template('profile/confirm.html', user=user, choice=choice)
     return render_template('profile/profile.html', user=user, Tier=Tier)
@@ -287,6 +294,7 @@ def write():
                 return render_template('shopping/write.html')
 
 
+# 결제창
 @bp.route('/shop/pay/<nickname>/<int:id>', methods=('GET', 'POST'))
 def pay(nickname, id):
     sql_table = "SELECT * FROM direct_dealing WHERE nickname='{}' AND id='{}';".format(nickname, id)
@@ -314,16 +322,29 @@ def recipe():
 # 관리자 페이지
 @bp.route('/admin', methods=('GET', 'POST'))
 def admin():
+    title = '회원 목록'
     sql_table = "SELECT * FROM members;"
     cursor.execute(sql_table)
-    members = cursor.fetchall()
-    return render_template('base/admin.html', members=members)
+    db_sell = cursor.fetchall()
+    return render_template('base/admin.html', title=title, db_sell=db_sell)
 
 
 # 관리자 페이지
 @bp.route('/admin/grade', methods=('GET', 'POST'))
 def grade():
-    return render_template('profile/grade.html')
+    if request.method == 'POST':
+        id_text = list(request.form.keys())[0].split('.')[0]
+        print('userid: ', id_text)
+        sql_table = 'UPDATE members SET sell="0", grade="2" WHERE userid="{}"'.format(id_text)
+        cursor.execute(sql_table)
+        mydb.commit()
+        return redirect(url_for('main.profile'))
+    else:
+        title = '판매자 신청 명단'
+        sql_table = "SELECT * FROM members WHERE sell='1';"
+        cursor.execute(sql_table)
+        db_sell = cursor.fetchall()
+        return render_template('base/admin.html', title=title, db_sell=db_sell)
 
 
 # del

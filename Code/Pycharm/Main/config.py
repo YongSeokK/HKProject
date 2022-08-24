@@ -13,7 +13,7 @@ DB_PASSWORD = 'test1234'  # MySQL Password
 DB_NAME = 'project_db'  # MySQL Name
 
 ## Path - 파이참 프로젝트 가장 상위 폴더 = Main 절대 경로
-Root_Path = r'C:\Users\sonmj\G_Project\Code\Pycharm\Main'
+Root_Path = r'C:\G_Project\Code\Pycharm\Main'
 #                                                                 #
 #                                                                 #
 #                                                                 #
@@ -33,14 +33,14 @@ WholesalePrice_File_Path = Root_Path + "\\DB_source\\Init\\220726_농산물가�
 # YOLO
 Yolo_imgFolder_Path = Root_Path + '\\server\\yolo\\img\\'
 pt_Path = Root_Path + '\\server\\yolo\\best.pt'
-Food_List = ['.', '닭볶음탕', '된장찌개', '갈치구이', '감자조림', '김밥',
-             '김치전', '계란찜', '깻잎장아찌', '메추리알장조림', '떡볶이',
-             '떡국', '파전', '미역국', '소불고기', '잡채']
+Food_List = ['전복죽', '닭볶음탕', '된장찌개', '갈치구이', '감자조림',
+             '김밥', '김치전', '계란찜', '깻잎장아찌', '메추리알장조림',
+             '떡볶이', '떡국', '파전', '미역국', '.',
+             '잡채', '소세지볶음', '떡갈비', '족발', '잔치국수']
 # 제철 음식
 Excel_Path = Root_Path + '\\DB_source\\Init\\월별_제철재료_통합.xlsx'
 # Shop
 Shop_imgFolder_Path = Root_Path + '\\server\\static\\img\\shop\\'
-
 
 ## NAVER API KEY
 Client_id = "MiUA1cOwkgZ7FPIPBawa"
@@ -123,3 +123,23 @@ Produce_Num = {'rice': 0, 'glutinous_rice': 1, 'bean': 2, 'red_bean': 3, 'green_
                'grapeG': 4, 'grapeM': 5, 'grapeS': 6, 'citrus': 7, 'persimmon': 8, 'banana': 9, 'kiwi': 10,
                'pineapple': 11, 'orange': 12, 'lemon': 13, 'cherry': 14, 'raisin': 15, 'dried_blueberries': 16,
                'mango': 17}
+
+#
+Foodcrop_Dict_R2 = {'감자': '100g', '고구마': '1kg', '녹두': '500g', '쌀': '20kg', '찹쌀': '1kg',
+                    '콩': '500g', '팥': '500g'}
+Specialcrop_Dict_R2 = {'느타리버섯': '100g', '땅콩': '100g', '새송이버섯': '100g', '아몬드': '100g',
+                       '애느타리버섯': '100g', '참깨': '500g', '팽이버섯': '150g', '호두': '100g'}
+Vegetable_Dict_R2 = {'갓': '1kg', '건고추(양건)': '600g', '건고추(화건)': '600g',
+                     '고추가루': '1kg', '깐마늘': '1kg', '깻잎': '100g', '꽈리고추': '100g',
+                     '당근': '1kg', '대추토마토': '1kg', '대파': '1kg', '딸기': '100g',
+                     '멜론': '1개', '무': '1개', '미나리': '100g', '방울토마토': '1kg', '배추': '1kg',
+                     '붉은고추': '100g', '상추(적)': '100g', '상추(청)': '100g', '생강': '1kg', '수박': '1개',
+                     '시금치': '1kg', '애호박': '1개', '양배추': '1포기', '양파': '1kg', '얼갈이배추': '1kg',
+                     '열무': '1kg', '오이(가시)': '10개', '오이(다다기)': '10개', '오이(취청)': '10개',
+                     '주키니': '1개', '쪽파': '1kg', '참외': '10개', '청양고추': '100g',
+                     '토마토': '1kg', '파프리카': '200g', '풋고추': '100g', '피망': '100g'}
+Fruit_Dict_R2 = {'감귤': '10개', '건블루베리': '100g', '건포도': '100g', '단감': '10개', '레몬': '10개',
+                 '망고': '1개', '바나나': '100g', '배': '10개', '복숭아': '10개', '사과': '10개', '샤인머스켓': '2kg',
+                 '오렌지': '10개', '참다래': '10개', '체리': '100g', '파인애플': '1개', '포도': '1kg', '포도(거봉)': '2kg',
+                 '포도(머루)': '1kg'}
+Weight = [Foodcrop_Dict_R2, Specialcrop_Dict_R2, Vegetable_Dict_R2, Fruit_Dict_R2]
