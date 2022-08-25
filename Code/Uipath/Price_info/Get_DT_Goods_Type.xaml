@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>852,1176</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>852,1420.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Get_DT_Goods_Type_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -39,6 +39,9 @@
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
       <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Core.Activities.SAP</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -70,88 +73,111 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get_DT_Goods_Type" sap:VirtualizedContainerService.HintSize="475.2,1111.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get_DT_Goods_Type" sap:VirtualizedContainerService.HintSize="516.8,1356" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Get_DT_Goods_Type 시작&quot;]" />
-    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  /customer/price/reta...'" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
-      <ui:Click.CursorPosition>
-        <ui:CursorPosition Position="Center">
-          <ui:CursorPosition.OffsetX>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetX>
-          <ui:CursorPosition.OffsetY>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetY>
-        </ui:CursorPosition>
-      </ui:Click.CursorPosition>
-      <ui:Click.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="935af6af-c7cf-4115-9cd7-3be06cab3ab2" InformativeScreenshot="047b1e547ca1fe91909cc9689dd72c2f" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;&lt;webctrl aaname='부류별' href='/customer/price/retail/catalogue.do' parentid='container' tag='A' /&gt;">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:Click.Target>
-    </ui:Click>
-    <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Image 'chrome.exe  농산물유통정보:::K...'" sap:VirtualizedContainerService.HintSize="433.6,156" sap2010:WorkflowViewState.IdRef="ClickImage_1" KeyModifiers="None" MouseButton="BTN_LEFT">
-      <ui:ClickImage.CursorPosition>
-        <ui:CursorPosition Position="Center">
-          <ui:CursorPosition.OffsetX>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetX>
-          <ui:CursorPosition.OffsetY>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:CursorPosition.OffsetY>
-        </ui:CursorPosition>
-      </ui:ClickImage.CursorPosition>
-      <ui:ClickImage.Image>
-        <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" InitialScalingFactor="1.25" Profile="Basic" TargetImageBase64="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" />
-      </ui:ClickImage.Image>
-      <ui:ClickImage.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9c0c247e-7f26-4043-bf9e-7334f1ea170c" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:ClickImage.Target>
-    </ui:ClickImage>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Data_Scrapping" sap:VirtualizedContainerService.HintSize="433.6,347.2" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="d235d026e04a45fc16e4161345f71bb2" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;">
-      <ui:BrowserScope.Body>
-        <ActivityAction x:TypeArguments="x:Object">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_4">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[Out_DT_Goods_Type]" DisplayName="Extract Structured Data 'TABLE  itemTable_1'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='구분' attr='text' /&gt;&lt;column name='구분' attr='text' /&gt;&lt;column name='구분' attr='text' /&gt;&lt;column name='당일 (07/12)' attr='text' /&gt;&lt;column name='1일전 (07/11)' attr='text' /&gt;&lt;column name='1주일전 (07/05)' attr='text' /&gt;&lt;column name='2주일전 (06/28)' attr='text' /&gt;&lt;column name='1개월전' attr='text' /&gt;&lt;column name='1년전' attr='text' /&gt;&lt;column name='일평년' attr='text' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="ExtractData_2" MaxNumberOfResults="150" SimulateClick="True">
-              <ui:ExtractData.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6083c962-42a1-46ae-a3d7-b67825ebb110" InformativeScreenshot="d1dc279cc906b1731ae81f1ba219966f" Selector="&lt;webctrl id='itemTable_1' tag='TABLE' /&gt;" WaitForReady="COMPLETE">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                </ui:Target>
-              </ui:ExtractData.Target>
-            </ui:ExtractData>
-          </Sequence>
-        </ActivityAction>
-      </ui:BrowserScope.Body>
-    </ui:BrowserScope>
-    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Get_DT_Goods_Type 종료&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="475.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Get_DT_Goods_Type 시작&quot;]" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="475.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  /customer/price/reta...'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="935af6af-c7cf-4115-9cd7-3be06cab3ab2" InformativeScreenshot="047b1e547ca1fe91909cc9689dd72c2f" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;&lt;webctrl aaname='부류별' href='/customer/price/retail/catalogue.do' parentid='container' tag='A' /&gt;">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <Sequence sap:VirtualizedContainerService.HintSize="475.2,904.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="CityName" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe  농산물유통정보:::K...'" sap:VirtualizedContainerService.HintSize="433.6,300" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="b0511e1e18c83bd596d38d2b7aa32380" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;">
+        <ui:BrowserScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="375.2,152.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[&quot;https://www.kamis.or.kr/customer/price/retail/catalogue.do?action=daily&amp;regday=&quot; + DateTime.now.AddDays(-1).ToString(&quot;yyyy-MM-dd&quot;) + &quot;&amp;countycode=&amp;itemcategorycode=&amp;convert_kg_yn=N&quot;]" />
+            </Sequence>
+          </ActivityAction>
+        </ui:BrowserScope.Body>
+      </ui:BrowserScope>
+      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Data_Scrapping" sap:VirtualizedContainerService.HintSize="433.6,347.2" sap2010:WorkflowViewState.IdRef="BrowserScope_4" InformativeScreenshot="d235d026e04a45fc16e4161345f71bb2" Selector="&lt;html app='chrome.exe' title='농산물유통정보:::KAMIS' /&gt;">
+        <ui:BrowserScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[Out_DT_Goods_Type]" DisplayName="Extract Structured Data 'TABLE  itemTable_1'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='구분' attr='text' /&gt;&lt;column name='구분' attr='text' /&gt;&lt;column name='구분' attr='text' /&gt;&lt;column name='당일 (07/12)' attr='text' /&gt;&lt;column name='1일전 (07/11)' attr='text' /&gt;&lt;column name='1주일전 (07/05)' attr='text' /&gt;&lt;column name='2주일전 (06/28)' attr='text' /&gt;&lt;column name='1개월전' attr='text' /&gt;&lt;column name='1년전' attr='text' /&gt;&lt;column name='일평년' attr='text' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="150" SimulateClick="True">
+                <ui:ExtractData.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6083c962-42a1-46ae-a3d7-b67825ebb110" InformativeScreenshot="d1dc279cc906b1731ae81f1ba219966f" Selector="&lt;webctrl id='itemTable_1' tag='TABLE' /&gt;" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:ExtractData.Target>
+              </ui:ExtractData>
+            </Sequence>
+          </ActivityAction>
+        </ui:BrowserScope.Body>
+      </ui:BrowserScope>
+      <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_3" />
+    </Sequence>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="475.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Get_DT_Goods_Type 종료&quot;]" />
   </Sequence>
 </Activity>

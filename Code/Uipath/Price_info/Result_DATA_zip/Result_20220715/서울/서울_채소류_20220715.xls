@@ -1,0 +1,2067 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<title>가격정보 - 친환경농산물 - 품목별 엑셀 출력</title>
+	<meta http-equiv="Content-Type" content="application/vnd.ms-excel;charset=utf-8">
+	<style type="text/css">
+		table caption	{ text-align:left; }
+		table th		{ background-color:#eff2f9; }
+		table td		{ mso-number-format:\@; text-align:general; vertical-align:middle; text-align:center; white-space:nowrap; mso-rotate:0; mso-background-source:auto; mso-pattern:auto; color:black; font-size:11.0pt; font-style:normal; text-decoration:none; font-family:"맑은 고딕", monospace; mso-font-charset:129; border:1px; mso-protection:locked visible; mso-style-name:표준; mso-style-id:0; }
+		table td.c		{ text-align:center;}
+		table td.l		{ text-align:left; }
+		table td.r		{ text-align:right; }
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<td	class="data">
+				<table id="data" border="1px">
+					
+				<caption></caption>
+				<colgroup><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col>
+				</colgroup><tbody><tr>
+				
+					<th class="first" scope="col" colspan="3" rowspan="2">구분</th>
+					
+						<th scope="col" colspan="2">당일 (07/15)</th>
+					
+					
+						<th scope="col" colspan="2">1일전 (07/14)</th>
+					
+					
+					
+						<th scope="col" colspan="2">1주일전 (07/08)</th>
+					
+					
+						<th scope="col" colspan="2">2주일전 (07/01)</th>
+					
+					
+						<th scope="col" colspan="2">1개월전</th>
+					
+					
+						<th scope="col" colspan="2">1년전</th>
+					
+					<th class="last" scope="col" colspan="2">일평년</th>
+				
+				</tr>
+				<tr>
+				
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+						<th scope="col">전통시장</th>
+						<th class="last" scope="col">대형유통</th>
+				
+				</tr>
+
+				
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">배추</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">봄(1포기)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>-</td>
+						<td>-</td>
+					
+					
+						<td>6,270</td>
+						<td>4,490</td>
+					
+					
+					
+						<td>5,495</td>
+						<td>4,157</td>
+					
+					
+						<td>5,080</td>
+						<td>4,044</td>
+					
+					
+						<td>4,965</td>
+						<td>3,774</td>
+					
+					
+						<td>3,779</td>
+						<td>2,722</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>-</td>
+						<td>-</td>
+					
+					
+						<td>5,660</td>
+						<td>-</td>
+					
+					
+					
+						<td>4,700</td>
+						<td>-</td>
+					
+					
+						<td>4,415</td>
+						<td>-</td>
+					
+					
+						<td>4,330</td>
+						<td>4,015</td>
+					
+					
+						<td>3,080</td>
+						<td>-</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">양배추</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">양배추(1포기)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>5,080</td>
+						<td>4,580</td>
+					
+					
+						<td>4,080</td>
+						<td>4,380</td>
+					
+					
+					
+						<td>4,000</td>
+						<td>-</td>
+					
+					
+						<td>4,000</td>
+						<td>-</td>
+					
+					
+						<td>3,679</td>
+						<td>2,580</td>
+					
+					
+						<td>3,080</td>
+						<td>2,828</td>
+					
+					<td>3,039</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>4,080</td>
+						<td>3,090</td>
+					
+					
+						<td>3,080</td>
+						<td>3,090</td>
+					
+					
+					
+						<td>3,000</td>
+						<td>3,486</td>
+					
+					
+						<td>3,000</td>
+						<td>3,286</td>
+					
+					
+						<td>2,878</td>
+						<td>3,255</td>
+					
+					
+						<td>2,500</td>
+						<td>3,435</td>
+					
+					<td>2,421</td>
+					<td class="last">2,818</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">시금치</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">시금치(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>11,600</td>
+						<td>16,635</td>
+					
+					
+						<td>11,600</td>
+						<td>23,277</td>
+					
+					
+					
+						<td>11,600</td>
+						<td>19,460</td>
+					
+					
+						<td>9,160</td>
+						<td>11,040</td>
+					
+					
+						<td>5,881</td>
+						<td>10,053</td>
+					
+					
+						<td>6,870</td>
+						<td>10,065</td>
+					
+					<td>6,100</td>
+					<td class="last">7,588</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="4">상추</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">적(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,910</td>
+						<td>2,650</td>
+					
+					
+						<td>2,080</td>
+						<td>2,662</td>
+					
+					
+					
+						<td>2,415</td>
+						<td>2,418</td>
+					
+					
+						<td>1,495</td>
+						<td>1,526</td>
+					
+					
+						<td>790</td>
+						<td>1,059</td>
+					
+					
+						<td>943</td>
+						<td>1,279</td>
+					
+					<td>1,004</td>
+					<td class="last">1,232</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>1,580</td>
+						<td>-</td>
+					
+					
+						<td>1,705</td>
+						<td>-</td>
+					
+					
+					
+						<td>1,915</td>
+						<td>-</td>
+					
+					
+						<td>1,165</td>
+						<td>-</td>
+					
+					
+						<td>580</td>
+						<td>-</td>
+					
+					
+						<td>719</td>
+						<td>-</td>
+					
+					<td>767</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="2">청(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,910</td>
+						<td>2,750</td>
+					
+					
+						<td>2,080</td>
+						<td>2,795</td>
+					
+					
+					
+						<td>2,415</td>
+						<td>2,555</td>
+					
+					
+						<td>1,495</td>
+						<td>1,745</td>
+					
+					
+						<td>790</td>
+						<td>1,186</td>
+					
+					
+						<td>935</td>
+						<td>1,367</td>
+					
+					<td>1,001</td>
+					<td class="last">1,306</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>1,580</td>
+						<td>-</td>
+					
+					
+						<td>1,705</td>
+						<td>-</td>
+					
+					
+					
+						<td>1,915</td>
+						<td>-</td>
+					
+					
+						<td>1,165</td>
+						<td>-</td>
+					
+					
+						<td>580</td>
+						<td>-</td>
+					
+					
+						<td>711</td>
+						<td>-</td>
+					
+					<td>764</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">얼갈이배추</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">얼갈이배추(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>3,000</td>
+						<td>5,258</td>
+					
+					
+						<td>2,915</td>
+						<td>5,280</td>
+					
+					
+					
+						<td>2,780</td>
+						<td>4,272</td>
+					
+					
+						<td>2,480</td>
+						<td>3,532</td>
+					
+					
+						<td>2,048</td>
+						<td>2,792</td>
+					
+					
+						<td>2,163</td>
+						<td>2,630</td>
+					
+					<td>2,012</td>
+					<td class="last">2,638</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">수박</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">수박(1개)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>25,800</td>
+						<td>27,800</td>
+					
+					
+						<td>25,800</td>
+						<td>27,800</td>
+					
+					
+					
+						<td>20,000</td>
+						<td>18,897</td>
+					
+					
+						<td>20,000</td>
+						<td>18,018</td>
+					
+					
+						<td>23,800</td>
+						<td>19,662</td>
+					
+					
+						<td>17,620</td>
+						<td>19,130</td>
+					
+					<td>18,183</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>-</td>
+						<td>24,895</td>
+					
+					
+						<td>-</td>
+						<td>26,800</td>
+					
+					
+					
+						<td>-</td>
+						<td>-</td>
+					
+					
+						<td>-</td>
+						<td>-</td>
+					
+					
+						<td>19,000</td>
+						<td>19,300</td>
+					
+					
+						<td>14,770</td>
+						<td>17,490</td>
+					
+					<td>16,228</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">참외</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">참외(10개)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>11,000</td>
+						<td>16,815</td>
+					
+					
+						<td>11,000</td>
+						<td>16,815</td>
+					
+					
+					
+						<td>11,000</td>
+						<td>20,813</td>
+					
+					
+						<td>13,200</td>
+						<td>17,957</td>
+					
+					
+						<td>14,350</td>
+						<td>24,564</td>
+					
+					
+						<td>12,610</td>
+						<td>15,624</td>
+					
+					<td>10,805</td>
+					<td class="last">11,865</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>9,265</td>
+						<td>-</td>
+					
+					
+						<td>9,265</td>
+						<td>-</td>
+					
+					
+					
+						<td>9,265</td>
+						<td>-</td>
+					
+					
+						<td>11,100</td>
+						<td>-</td>
+					
+					
+						<td>11,900</td>
+						<td>-</td>
+					
+					
+						<td>10,080</td>
+						<td>-</td>
+					
+					<td>8,310</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="4">오이</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">가시계통(10개)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>-</td>
+						<td>21,630</td>
+					
+					
+						<td>-</td>
+						<td>21,630</td>
+					
+					
+					
+						<td>-</td>
+						<td>21,630</td>
+					
+					
+						<td>-</td>
+						<td>14,970</td>
+					
+					
+						<td>-</td>
+						<td>11,436</td>
+					
+					
+						<td>-</td>
+						<td>8,910</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="2">다다기계통(10개)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>11,000</td>
+						<td>12,338</td>
+					
+					
+						<td>11,000</td>
+						<td>12,658</td>
+					
+					
+					
+						<td>11,550</td>
+						<td>13,084</td>
+					
+					
+						<td>6,385</td>
+						<td>8,540</td>
+					
+					
+						<td>5,886</td>
+						<td>6,746</td>
+					
+					
+						<td>6,148</td>
+						<td>7,638</td>
+					
+					<td>6,162</td>
+					<td class="last">8,669</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>9,000</td>
+						<td>-</td>
+					
+					
+						<td>9,000</td>
+						<td>-</td>
+					
+					
+					
+						<td>11,300</td>
+						<td>-</td>
+					
+					
+						<td>4,580</td>
+						<td>-</td>
+					
+					
+						<td>4,413</td>
+						<td>-</td>
+					
+					
+						<td>4,847</td>
+						<td>-</td>
+					
+					<td>4,856</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="1">취청(10개)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>15,000</td>
+						<td>18,078</td>
+					
+					
+						<td>15,000</td>
+						<td>17,478</td>
+					
+					
+					
+						<td>20,000</td>
+						<td>19,025</td>
+					
+					
+						<td>7,660</td>
+						<td>11,512</td>
+					
+					
+						<td>7,000</td>
+						<td>9,735</td>
+					
+					
+						<td>7,660</td>
+						<td>9,152</td>
+					
+					<td>7,637</td>
+					<td class="last">9,547</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="3">호박</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">애호박(1개)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,760</td>
+						<td>1,730</td>
+					
+					
+						<td>1,760</td>
+						<td>1,736</td>
+					
+					
+					
+						<td>2,415</td>
+						<td>2,506</td>
+					
+					
+						<td>1,500</td>
+						<td>1,820</td>
+					
+					
+						<td>1,275</td>
+						<td>1,307</td>
+					
+					
+						<td>915</td>
+						<td>1,081</td>
+					
+					<td>967</td>
+					<td class="last">1,211</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>1,300</td>
+						<td>-</td>
+					
+					
+						<td>1,300</td>
+						<td>-</td>
+					
+					
+					
+						<td>1,915</td>
+						<td>-</td>
+					
+					
+						<td>1,050</td>
+						<td>-</td>
+					
+					
+						<td>952</td>
+						<td>-</td>
+					
+					
+						<td>715</td>
+						<td>-</td>
+					
+					<td>753</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="1">쥬키니(1개)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,000</td>
+						<td>3,153</td>
+					
+					
+						<td>1,000</td>
+						<td>3,153</td>
+					
+					
+					
+						<td>1,000</td>
+						<td>3,653</td>
+					
+					
+						<td>1,000</td>
+						<td>2,087</td>
+					
+					
+						<td>1,000</td>
+						<td>1,313</td>
+					
+					
+						<td>-</td>
+						<td>1,208</td>
+					
+					<td>-</td>
+					<td class="last">1,261</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">토마토</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">토마토(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>2,830</td>
+						<td>4,316</td>
+					
+					
+						<td>2,830</td>
+						<td>3,918</td>
+					
+					
+					
+						<td>2,830</td>
+						<td>3,446</td>
+					
+					
+						<td>3,080</td>
+						<td>3,634</td>
+					
+					
+						<td>3,131</td>
+						<td>4,212</td>
+					
+					
+						<td>3,495</td>
+						<td>5,345</td>
+					
+					<td>2,758</td>
+					<td class="last">3,101</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">무</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">봄(1개)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>2,915</td>
+						<td>2,178</td>
+					
+					
+						<td>2,830</td>
+						<td>2,253</td>
+					
+					
+					
+						<td>2,330</td>
+						<td>2,087</td>
+					
+					
+						<td>2,330</td>
+						<td>2,087</td>
+					
+					
+						<td>-</td>
+						<td>-</td>
+					
+					
+						<td>2,000</td>
+						<td>1,572</td>
+					
+					<td>2,023</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>2,415</td>
+						<td>1,890</td>
+					
+					
+						<td>2,330</td>
+						<td>2,390</td>
+					
+					
+					
+						<td>1,830</td>
+						<td>1,935</td>
+					
+					
+						<td>1,830</td>
+						<td>1,720</td>
+					
+					
+						<td>-</td>
+						<td>-</td>
+					
+					
+						<td>1,500</td>
+						<td>-</td>
+					
+					<td>1,527</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">당근</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">무세척(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>3,160</td>
+						<td>4,296</td>
+					
+					
+						<td>3,160</td>
+						<td>4,296</td>
+					
+					
+					
+						<td>3,160</td>
+						<td>4,216</td>
+					
+					
+						<td>3,160</td>
+						<td>4,216</td>
+					
+					
+						<td>3,160</td>
+						<td>3,828</td>
+					
+					
+						<td>3,000</td>
+						<td>2,888</td>
+					
+					<td>3,248</td>
+					<td class="last">3,197</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>2,330</td>
+						<td>-</td>
+					
+					
+						<td>2,330</td>
+						<td>-</td>
+					
+					
+					
+						<td>2,330</td>
+						<td>-</td>
+					
+					
+						<td>2,330</td>
+						<td>-</td>
+					
+					
+						<td>2,330</td>
+						<td>-</td>
+					
+					
+						<td>2,500</td>
+						<td>-</td>
+					
+					<td>2,748</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">열무</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">열무(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>3,745</td>
+						<td>5,630</td>
+					
+					
+						<td>3,745</td>
+						<td>5,794</td>
+					
+					
+					
+						<td>4,300</td>
+						<td>5,018</td>
+					
+					
+						<td>3,470</td>
+						<td>3,858</td>
+					
+					
+						<td>2,176</td>
+						<td>2,957</td>
+					
+					
+						<td>2,314</td>
+						<td>2,718</td>
+					
+					<td>2,109</td>
+					<td class="last">2,438</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">건고추</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">양건(600g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>18,650</td>
+						<td>-</td>
+					
+					
+						<td>18,650</td>
+						<td>-</td>
+					
+					
+					
+						<td>18,650</td>
+						<td>-</td>
+					
+					
+						<td>18,650</td>
+						<td>-</td>
+					
+					
+						<td>18,650</td>
+						<td>-</td>
+					
+					
+						<td>23,950</td>
+						<td>-</td>
+					
+					<td>18,792</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="6">풋고추</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">풋고추(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>-</td>
+						<td>2,112</td>
+					
+					
+						<td>-</td>
+						<td>2,112</td>
+					
+					
+					
+						<td>-</td>
+						<td>1,884</td>
+					
+					
+						<td>-</td>
+						<td>1,604</td>
+					
+					
+						<td>-</td>
+						<td>1,616</td>
+					
+					
+						<td>-</td>
+						<td>1,611</td>
+					
+					<td>-</td>
+					<td class="last">1,232</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="2">꽈리고추(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,330</td>
+						<td>2,152</td>
+					
+					
+						<td>1,330</td>
+						<td>2,246</td>
+					
+					
+					
+						<td>1,290</td>
+						<td>1,870</td>
+					
+					
+						<td>1,160</td>
+						<td>1,604</td>
+					
+					
+						<td>1,056</td>
+						<td>1,569</td>
+					
+					
+						<td>1,000</td>
+						<td>1,302</td>
+					
+					<td>923</td>
+					<td class="last">1,200</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>1,040</td>
+						<td>-</td>
+					
+					
+						<td>1,040</td>
+						<td>-</td>
+					
+					
+					
+						<td>1,020</td>
+						<td>-</td>
+					
+					
+						<td>890</td>
+						<td>-</td>
+					
+					
+						<td>806</td>
+						<td>-</td>
+					
+					
+						<td>754</td>
+						<td>-</td>
+					
+					<td>724</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="2">청양고추(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,040</td>
+						<td>1,860</td>
+					
+					
+						<td>1,040</td>
+						<td>1,830</td>
+					
+					
+					
+						<td>1,040</td>
+						<td>1,910</td>
+					
+					
+						<td>910</td>
+						<td>1,420</td>
+					
+					
+						<td>822</td>
+						<td>1,357</td>
+					
+					
+						<td>910</td>
+						<td>1,428</td>
+					
+					<td>849</td>
+					<td class="last">1,189</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>855</td>
+						<td>-</td>
+					
+					
+						<td>855</td>
+						<td>-</td>
+					
+					
+					
+						<td>855</td>
+						<td>-</td>
+					
+					
+						<td>710</td>
+						<td>-</td>
+					
+					
+						<td>641</td>
+						<td>-</td>
+					
+					
+						<td>710</td>
+						<td>-</td>
+					
+					<td>647</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="1">오이맛고추(150g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,430</td>
+						<td>2,028</td>
+					
+					
+						<td>1,430</td>
+						<td>2,028</td>
+					
+					
+					
+						<td>1,320</td>
+						<td>1,844</td>
+					
+					
+						<td>1,165</td>
+						<td>1,626</td>
+					
+					
+						<td>1,076</td>
+						<td>1,508</td>
+					
+					
+						<td>-</td>
+						<td>-</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">붉은고추</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">붉은고추(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,330</td>
+						<td>1,960</td>
+					
+					
+						<td>1,330</td>
+						<td>1,960</td>
+					
+					
+					
+						<td>1,330</td>
+						<td>2,040</td>
+					
+					
+						<td>1,330</td>
+						<td>1,828</td>
+					
+					
+						<td>1,250</td>
+						<td>1,848</td>
+					
+					
+						<td>1,073</td>
+						<td>1,743</td>
+					
+					<td>1,062</td>
+					<td class="last">1,588</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>1,080</td>
+						<td>-</td>
+					
+					
+						<td>1,080</td>
+						<td>-</td>
+					
+					
+					
+						<td>1,080</td>
+						<td>-</td>
+					
+					
+						<td>1,080</td>
+						<td>-</td>
+					
+					
+						<td>1,000</td>
+						<td>-</td>
+					
+					
+						<td>860</td>
+						<td>-</td>
+					
+					<td>850</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">양파</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">양파(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>2,275</td>
+						<td>2,482</td>
+					
+					
+						<td>2,275</td>
+						<td>2,482</td>
+					
+					
+					
+						<td>2,275</td>
+						<td>2,710</td>
+					
+					
+						<td>2,175</td>
+						<td>2,450</td>
+					
+					
+						<td>1,950</td>
+						<td>2,248</td>
+					
+					
+						<td>1,915</td>
+						<td>1,935</td>
+					
+					<td>1,791</td>
+					<td class="last">1,701</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>2,000</td>
+						<td>-</td>
+					
+					
+						<td>2,000</td>
+						<td>-</td>
+					
+					
+					
+						<td>2,000</td>
+						<td>-</td>
+					
+					
+						<td>2,000</td>
+						<td>-</td>
+					
+					
+						<td>1,640</td>
+						<td>-</td>
+					
+					
+						<td>1,500</td>
+						<td>-</td>
+					
+					<td>1,447</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="4">파</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">대파(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>2,660</td>
+						<td>2,652</td>
+					
+					
+						<td>2,660</td>
+						<td>2,718</td>
+					
+					
+					
+						<td>2,660</td>
+						<td>3,430</td>
+					
+					
+						<td>2,500</td>
+						<td>3,124</td>
+					
+					
+						<td>2,483</td>
+						<td>2,914</td>
+					
+					
+						<td>2,030</td>
+						<td>2,172</td>
+					
+					<td>2,280</td>
+					<td class="last">2,613</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>2,160</td>
+						<td>-</td>
+					
+					
+						<td>2,160</td>
+						<td>-</td>
+					
+					
+					
+						<td>2,160</td>
+						<td>-</td>
+					
+					
+						<td>2,000</td>
+						<td>-</td>
+					
+					
+						<td>1,983</td>
+						<td>-</td>
+					
+					
+						<td>1,544</td>
+						<td>-</td>
+					
+					<td>1,820</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="2">쪽파(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>6,830</td>
+						<td>13,603</td>
+					
+					
+						<td>6,830</td>
+						<td>12,290</td>
+					
+					
+					
+						<td>6,965</td>
+						<td>14,003</td>
+					
+					
+						<td>9,715</td>
+						<td>13,523</td>
+					
+					
+						<td>6,822</td>
+						<td>10,678</td>
+					
+					
+						<td>4,844</td>
+						<td>6,560</td>
+					
+					<td>5,245</td>
+					<td class="last">7,113</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>5,830</td>
+						<td>-</td>
+					
+					
+						<td>5,830</td>
+						<td>-</td>
+					
+					
+					
+						<td>5,660</td>
+						<td>-</td>
+					
+					
+						<td>9,160</td>
+						<td>-</td>
+					
+					
+						<td>6,142</td>
+						<td>-</td>
+					
+					
+						<td>4,394</td>
+						<td>-</td>
+					
+					<td>4,755</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">생강</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">국산(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>6,250</td>
+						<td>9,170</td>
+					
+					
+						<td>6,250</td>
+						<td>9,170</td>
+					
+					
+					
+						<td>6,250</td>
+						<td>9,170</td>
+					
+					
+						<td>6,250</td>
+						<td>9,045</td>
+					
+					
+						<td>6,250</td>
+						<td>8,630</td>
+					
+					
+						<td>9,500</td>
+						<td>12,586</td>
+					
+					<td>10,190</td>
+					<td class="last">12,617</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>5,165</td>
+						<td>-</td>
+					
+					
+						<td>5,165</td>
+						<td>-</td>
+					
+					
+					
+						<td>5,165</td>
+						<td>-</td>
+					
+					
+						<td>5,165</td>
+						<td>-</td>
+					
+					
+						<td>5,165</td>
+						<td>-</td>
+					
+					
+						<td>8,130</td>
+						<td>-</td>
+					
+					<td>8,733</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">고춧가루</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">국산(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>33,450</td>
+						<td>29,895</td>
+					
+					
+						<td>33,450</td>
+						<td>29,895</td>
+					
+					
+					
+						<td>33,450</td>
+						<td>29,895</td>
+					
+					
+						<td>33,450</td>
+						<td>29,895</td>
+					
+					
+						<td>33,450</td>
+						<td>29,895</td>
+					
+					
+						<td>42,950</td>
+						<td>39,933</td>
+					
+					<td>33,333</td>
+					<td class="last">28,030</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="1">중국(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>11,200</td>
+						<td>12,800</td>
+					
+					
+						<td>11,200</td>
+						<td>12,800</td>
+					
+					
+					
+						<td>11,200</td>
+						<td>12,800</td>
+					
+					
+						<td>11,200</td>
+						<td>12,800</td>
+					
+					
+						<td>11,200</td>
+						<td>12,800</td>
+					
+					
+						<td>11,200</td>
+						<td>11,800</td>
+					
+					<td>10,000</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">미나리</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">미나리(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,000</td>
+						<td>-</td>
+					
+					
+						<td>1,000</td>
+						<td>-</td>
+					
+					
+					
+						<td>800</td>
+						<td>-</td>
+					
+					
+						<td>565</td>
+						<td>-</td>
+					
+					
+						<td>565</td>
+						<td>-</td>
+					
+					
+						<td>515</td>
+						<td>-</td>
+					
+					<td>401</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">깻잎</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">깻잎(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,890</td>
+						<td>2,846</td>
+					
+					
+						<td>1,890</td>
+						<td>2,846</td>
+					
+					
+					
+						<td>1,890</td>
+						<td>2,810</td>
+					
+					
+						<td>1,890</td>
+						<td>2,554</td>
+					
+					
+						<td>1,890</td>
+						<td>2,793</td>
+					
+					
+						<td>1,182</td>
+						<td>2,144</td>
+					
+					<td>1,137</td>
+					<td class="last">1,835</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">피망</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">청(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>750</td>
+						<td>1,422</td>
+					
+					
+						<td>750</td>
+						<td>1,422</td>
+					
+					
+					
+						<td>830</td>
+						<td>1,442</td>
+					
+					
+						<td>830</td>
+						<td>1,442</td>
+					
+					
+						<td>870</td>
+						<td>1,214</td>
+					
+					
+						<td>726</td>
+						<td>1,200</td>
+					
+					<td>527</td>
+					<td class="last">973</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">파프리카</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">파프리카(200g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>1,455</td>
+						<td>1,304</td>
+					
+					
+						<td>1,320</td>
+						<td>1,270</td>
+					
+					
+					
+						<td>1,270</td>
+						<td>1,230</td>
+					
+					
+						<td>1,455</td>
+						<td>1,128</td>
+					
+					
+						<td>1,455</td>
+						<td>1,184</td>
+					
+					
+						<td>1,415</td>
+						<td>1,368</td>
+					
+					<td>1,060</td>
+					<td class="last">1,034</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>1,110</td>
+						<td>-</td>
+					
+					
+						<td>1,080</td>
+						<td>-</td>
+					
+					
+					
+						<td>1,045</td>
+						<td>-</td>
+					
+					
+						<td>1,080</td>
+						<td>-</td>
+					
+					
+						<td>1,080</td>
+						<td>-</td>
+					
+					
+						<td>1,140</td>
+						<td>-</td>
+					
+					<td>860</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">멜론</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">멜론(1개)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>8,665</td>
+						<td>8,886</td>
+					
+					
+						<td>8,665</td>
+						<td>8,886</td>
+					
+					
+					
+						<td>8,665</td>
+						<td>8,186</td>
+					
+					
+						<td>8,665</td>
+						<td>8,488</td>
+					
+					
+						<td>8,330</td>
+						<td>9,906</td>
+					
+					
+						<td>8,830</td>
+						<td>8,042</td>
+					
+					<td>8,000</td>
+					<td class="last">6,801</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">깐마늘(국산)</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">깐마늘(국산)(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>10,500</td>
+						<td>14,266</td>
+					
+					
+						<td>10,500</td>
+						<td>14,266</td>
+					
+					
+					
+						<td>10,500</td>
+						<td>15,662</td>
+					
+					
+						<td>10,500</td>
+						<td>15,082</td>
+					
+					
+						<td>10,500</td>
+						<td>14,714</td>
+					
+					
+						<td>9,266</td>
+						<td>13,054</td>
+					
+					<td>8,832</td>
+					<td class="last">9,614</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>9,330</td>
+						<td>11,960</td>
+					
+					
+						<td>9,330</td>
+						<td>11,960</td>
+					
+					
+					
+						<td>9,330</td>
+						<td>11,960</td>
+					
+					
+						<td>9,330</td>
+						<td>11,960</td>
+					
+					
+						<td>9,330</td>
+						<td>-</td>
+					
+					
+						<td>8,383</td>
+						<td>-</td>
+					
+					<td>7,555</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">방울토마토</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">방울토마토(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>-</td>
+						<td>7,727</td>
+					
+					
+						<td>-</td>
+						<td>7,727</td>
+					
+					
+					
+						<td>-</td>
+						<td>6,503</td>
+					
+					
+						<td>-</td>
+						<td>7,617</td>
+					
+					
+						<td>-</td>
+						<td>7,607</td>
+					
+					
+						<td>-</td>
+						<td>8,413</td>
+					
+					<td>-</td>
+					<td class="last">5,393</td>
+				</tr>
+			
+					<tr>
+					
+					
+						<td class="cell_tit2" rowspan="1">대추방울토마토(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>6,125</td>
+						<td>6,802</td>
+					
+					
+						<td>6,125</td>
+						<td>6,802</td>
+					
+					
+					
+						<td>6,125</td>
+						<td>5,136</td>
+					
+					
+						<td>6,125</td>
+						<td>4,840</td>
+					
+					
+						<td>5,602</td>
+						<td>5,328</td>
+					
+					
+						<td>5,055</td>
+						<td>5,609</td>
+					
+					<td>-</td>
+					<td class="last">-</td>
+				</tr>
+			
+			
+			</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,384 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<title>가격정보 - 친환경농산물 - 품목별 엑셀 출력</title>
+	<meta http-equiv="Content-Type" content="application/vnd.ms-excel;charset=utf-8">
+	<style type="text/css">
+		table caption	{ text-align:left; }
+		table th		{ background-color:#eff2f9; }
+		table td		{ mso-number-format:\@; text-align:general; vertical-align:middle; text-align:center; white-space:nowrap; mso-rotate:0; mso-background-source:auto; mso-pattern:auto; color:black; font-size:11.0pt; font-style:normal; text-decoration:none; font-family:"맑은 고딕", monospace; mso-font-charset:129; border:1px; mso-protection:locked visible; mso-style-name:표준; mso-style-id:0; }
+		table td.c		{ text-align:center;}
+		table td.l		{ text-align:left; }
+		table td.r		{ text-align:right; }
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<td	class="data">
+				<table id="data" border="1px">
+					
+				<caption></caption>
+				<colgroup><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col>
+				</colgroup><tbody><tr>
+				
+					<th class="first" scope="col" colspan="3" rowspan="2">구분</th>
+					
+						<th scope="col" colspan="2">당일 (08/16)</th>
+					
+					
+					
+					
+						<th scope="col" colspan="2">1주일전 (08/09)</th>
+					
+					
+						<th scope="col" colspan="2">2주일전 (08/02)</th>
+					
+					
+						<th scope="col" colspan="2">1개월전</th>
+					
+					
+						<th scope="col" colspan="2">1년전</th>
+					
+					<th class="last" scope="col" colspan="2">일평년</th>
+				
+				</tr>
+				<tr>
+				
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+					
+						<th scope="col">전통시장</th>
+						<th scope="col">대형유통</th>
+					
+						<th scope="col">전통시장</th>
+						<th class="last" scope="col">대형유통</th>
+				
+				</tr>
+
+				
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">쌀</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">일반계(20kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>52,935</td>
+						<td>47,256</td>
+					
+					
+					
+					
+						<td>53,429</td>
+						<td>47,663</td>
+					
+					
+						<td>54,012</td>
+						<td>48,326</td>
+					
+					
+						<td>54,435</td>
+						<td>48,178</td>
+					
+					
+						<td>61,412</td>
+						<td>60,478</td>
+					
+					<td>52,529</td>
+					<td class="last">50,024</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">찹쌀</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">일반계(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>3,993</td>
+						<td>3,735</td>
+					
+					
+					
+					
+						<td>4,016</td>
+						<td>3,744</td>
+					
+					
+						<td>4,016</td>
+						<td>3,727</td>
+					
+					
+						<td>4,031</td>
+						<td>3,203</td>
+					
+					
+						<td>4,359</td>
+						<td>5,558</td>
+					
+					<td>3,961</td>
+					<td class="last">4,708</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">콩</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">흰 콩(국산)(500g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>4,152</td>
+						<td>6,469</td>
+					
+					
+					
+					
+						<td>4,161</td>
+						<td>6,469</td>
+					
+					
+						<td>4,192</td>
+						<td>6,548</td>
+					
+					
+						<td>4,211</td>
+						<td>6,862</td>
+					
+					
+						<td>4,170</td>
+						<td>6,545</td>
+					
+					<td>3,777</td>
+					<td class="last">5,456</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">팥</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">붉은 팥(국산)(500g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>6,624</td>
+						<td>8,280</td>
+					
+					
+					
+					
+						<td>6,634</td>
+						<td>8,259</td>
+					
+					
+						<td>6,629</td>
+						<td>8,139</td>
+					
+					
+						<td>6,626</td>
+						<td>8,175</td>
+					
+					
+						<td>7,396</td>
+						<td>10,005</td>
+					
+					<td>6,835</td>
+					<td class="last">8,755</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="1">녹두</td>
+					
+					
+						<td class="cell_tit2" rowspan="1">국산(500g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>10,249</td>
+						<td>17,800</td>
+					
+					
+					
+					
+						<td>10,245</td>
+						<td>17,800</td>
+					
+					
+						<td>10,220</td>
+						<td>17,800</td>
+					
+					
+						<td>10,220</td>
+						<td>17,263</td>
+					
+					
+						<td>10,155</td>
+						<td>17,440</td>
+					
+					<td>6,592</td>
+					<td class="last">9,242</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">고구마</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">밤(1kg)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>5,064</td>
+						<td>6,797</td>
+					
+					
+					
+					
+						<td>5,019</td>
+						<td>5,964</td>
+					
+					
+						<td>5,053</td>
+						<td>6,949</td>
+					
+					
+						<td>4,955</td>
+						<td>5,238</td>
+					
+					
+						<td>5,644</td>
+						<td>6,748</td>
+					
+					<td>5,619</td>
+					<td class="last">6,594</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>4,257</td>
+						<td>-</td>
+					
+					
+					
+					
+						<td>4,267</td>
+						<td>-</td>
+					
+					
+						<td>4,285</td>
+						<td>-</td>
+					
+					
+						<td>4,285</td>
+						<td>-</td>
+					
+					
+						<td>4,701</td>
+						<td>-</td>
+					
+					<td>4,591</td>
+					<td class="last">-</td>
+				</tr>
+			
+					<tr>
+					
+						<td class="first cell_tit1" rowspan="2">감자</td>
+					
+					
+						<td class="cell_tit2" rowspan="2">수미(100g)</td>
+					
+					<td class="cell_tit2">상품</td>
+					
+						<td>358</td>
+						<td>445</td>
+					
+					
+					
+					
+						<td>359</td>
+						<td>439</td>
+					
+					
+						<td>359</td>
+						<td>444</td>
+					
+					
+						<td>375</td>
+						<td>460</td>
+					
+					
+						<td>243</td>
+						<td>300</td>
+					
+					<td>259</td>
+					<td class="last">289</td>
+				</tr>
+			
+					<tr>
+					
+					
+					<td class="cell_tit2">중품</td>
+					
+						<td>293</td>
+						<td>412</td>
+					
+					
+					
+					
+						<td>288</td>
+						<td>377</td>
+					
+					
+						<td>292</td>
+						<td>359</td>
+					
+					
+						<td>312</td>
+						<td>457</td>
+					
+					
+						<td>194</td>
+						<td>231</td>
+					
+					<td>202</td>
+					<td class="last">247</td>
+				</tr>
+			
+			
+			</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -18,7 +18,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>852,1669.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>852,1794.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Merge_All_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -51,6 +51,7 @@
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
       <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -87,96 +88,106 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>Soprasteria.GitHub_Activities.Activities</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Merge_All" sap:VirtualizedContainerService.HintSize="550.4,1604.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Merge_All" sap:VirtualizedContainerService.HintSize="585.6,1729.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="508.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Merge_All 시작&quot;]" />
-    <ui:ForEachFileX sap2010:Annotation.AnnotationText="- 엑셀 파일 하나씩 추가해야 하므로" DisplayName="For Each File In Folder" Filter="*.xls" Folder="[In_Str_ProjectPath + In_Str_ResultPath]" sap:VirtualizedContainerService.HintSize="508.8,1113.6" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="CreationDateOldFirst" SkipFolderWithoutPermission="False">
-      <ui:ForEachFileX.Body>
-        <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
-          <ActivityAction.Argument1>
-            <DelegateInArgument x:TypeArguments="si:FileInfo" Name="File" />
-          </ActivityAction.Argument1>
-          <ActivityAction.Argument2>
-            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-          </ActivityAction.Argument2>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="475.2,827.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="433.6,672" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[File.ToString]">
-              <ui:ExcelApplicationScope.Body>
-                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="324.8,531.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="283.2,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[File.ToString]" />
-                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="283.2,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]" />
-                    <ui:ExcelCopySheet sap2010:Annotation.AnnotationText="- 엑셀 순서대로 시트에 추가해야 하는데 우측으로 쌓으려면 Copy Sheet 액티비티가 편함." DestinationFilePath="[In_Str_ProjectPath + In_Str_ResultPath +  &quot;Claim\&quot; + In_Str_FileName + DateTime.now.ToString(&quot;_yyyyMMdd&quot;) + &quot;.xlsx&quot;]" DestinationSheetName="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]" DisplayName="Copy Sheet" sap:VirtualizedContainerService.HintSize="283.2,140.8" sap2010:WorkflowViewState.IdRef="ExcelCopySheet_1" SheetName="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:ExcelCopySheet>
-                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="283.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-                      <ui:CommentOut.Body>
-                        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="324.8,204.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="544,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Merge_All 시작&quot;]" />
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="544,1238.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[{&quot;전체&quot;,&quot;서울&quot;,&quot;인천&quot;,&quot;부산&quot;,&quot;대전&quot;,&quot;대구&quot;,&quot;광주&quot;,&quot;울산&quot;}]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="CityName" />
+          </ActivityAction.Argument>
+          <ui:ForEachFileX sap2010:Annotation.AnnotationText="- 엑셀 파일 하나씩 추가해야 하므로" DisplayName="For Each File In Folder" Filter="*.xls" Folder="[In_Str_ProjectPath + In_Str_ResultPath + CityName.ToString.Trim()]" sap:VirtualizedContainerService.HintSize="508.8,1113.6" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="CreationDateOldFirst" SkipFolderWithoutPermission="False">
+            <ui:ForEachFileX.Body>
+              <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+                <ActivityAction.Argument1>
+                  <DelegateInArgument x:TypeArguments="si:FileInfo" Name="File" />
+                </ActivityAction.Argument1>
+                <ActivityAction.Argument2>
+                  <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                </ActivityAction.Argument2>
+                <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="475.2,827.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="433.6,672" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[File.ToString]">
+                    <ui:ExcelApplicationScope.Body>
+                      <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="324.8,531.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:ExcelCopySheet sap2010:Annotation.AnnotationText="- 엑셀 순서대로 시트에 추가해야 하는데 우측으로 쌓으려면 Copy Sheet 액티비티가 편함." DestinationFilePath="[In_Str_ProjectPath + In_Str_ResultPath + In_Str_FileName + DateTime.now.ToString(&quot;_yyyyMMdd&quot;) + &quot;.xlsx&quot;]" DestinationSheetName="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]" DisplayName="Copy Sheet" sap:VirtualizedContainerService.HintSize="283.2,140.8" sap2010:WorkflowViewState.IdRef="ExcelCopySheet_2" SheetName="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]">
+                          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="283.2,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[File.ToString]" />
+                          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="283.2,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]" />
+                          <ui:ExcelCopySheet sap2010:Annotation.AnnotationText="- 엑셀 순서대로 시트에 추가해야 하는데 우측으로 쌓으려면 Copy Sheet 액티비티가 편함." DestinationFilePath="[In_Str_ProjectPath + In_Str_ResultPath +  &quot;Claim\&quot; + In_Str_FileName + DateTime.now.ToString(&quot;_yyyyMMdd&quot;) + &quot;.xlsx&quot;]" DestinationSheetName="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]" DisplayName="Copy Sheet" sap:VirtualizedContainerService.HintSize="283.2,140.8" sap2010:WorkflowViewState.IdRef="ExcelCopySheet_1" SheetName="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:ExcelCopySheet>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="283.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="324.8,233.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:ExcelCopySheet sap2010:Annotation.AnnotationText="- 엑셀 순서대로 시트에 추가해야 하는데 우측으로 쌓으려면 Copy Sheet 액티비티가 편함." DestinationFilePath="[In_Str_ProjectPath + In_Str_ResultPath + In_Str_FileName + DateTime.now.ToString(&quot;_yyyyMMdd&quot;) + &quot;.xlsx&quot;]" DestinationSheetName="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]" DisplayName="Copy Sheet" sap:VirtualizedContainerService.HintSize="283.2,140.8" sap2010:WorkflowViewState.IdRef="ExcelCopySheet_2" SheetName="[File.Name.Replace(&quot;.xls&quot;,&quot;&quot;)]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:ExcelCopySheet>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
                         </Sequence>
-                      </ui:CommentOut.Body>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:CommentOut>
-                  </Sequence>
-                </ActivityAction>
-              </ui:ExcelApplicationScope.Body>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:ExcelApplicationScope>
-            <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-          </Sequence>
+                      </ActivityAction>
+                    </ui:ExcelApplicationScope.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ExcelApplicationScope>
+                  <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachFileX.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEachFileX>
         </ActivityAction>
-      </ui:ForEachFileX.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:ForEachFileX>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="508.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Add excel Done : &quot; + In_Str_ProjectPath + In_Str_ResultPath + In_Str_FileName + DateTime.now.ToString(&quot;_yyyyMMdd&quot;) + &quot;.xlsx&quot;]" />
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="508.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Merge_All 종료&quot;]" />
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="544,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Add excel Done : &quot; + In_Str_ProjectPath + In_Str_ResultPath + In_Str_FileName + DateTime.now.ToString(&quot;_yyyyMMdd&quot;) + &quot;.xlsx&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="544,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Merge_All 종료&quot;]" />
   </Sequence>
 </Activity>

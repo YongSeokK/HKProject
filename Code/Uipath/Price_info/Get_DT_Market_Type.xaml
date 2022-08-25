@@ -27,7 +27,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>852,2660</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>730.4,2660</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Get_DT_Market_Type_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="32">
@@ -144,7 +144,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="NavigateTo_6" Url="[&quot;https://www.kamis.or.kr/customer/price/bizcondition/catalogue.do?action=daily&amp;regday=&quot; + DateTime.Now.Tostring(&quot;yyyy-MM-dd&quot;) + &quot;&amp;countycode=&quot; + City + &quot;&amp;itemcategorycode=&quot; + Category + &quot;&amp;convert_kg_yn=N&quot;]" />
+                          <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="NavigateTo_6" Url="[&quot;https://www.kamis.or.kr/customer/price/bizcondition/catalogue.do?action=daily&amp;regday=&quot; + DateTime.Now.AddDays(-1).Tostring(&quot;yyyy-MM-dd&quot;) + &quot;&amp;countycode=&quot; + City + &quot;&amp;itemcategorycode=&quot; + Category + &quot;&amp;convert_kg_yn=N&quot;]" />
                         </Sequence>
                       </ActivityAction>
                     </ui:BrowserScope.Body>
@@ -230,7 +230,7 @@
                       </ui:Target>
                     </ui:Click.Target>
                   </ui:Click>
-                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="지역별 폴더 추가하려고 함&#xA;20220713-11:34" DisplayName="Type Into 'Edit'" sap:VirtualizedContainerService.HintSize="433.6,179.2" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[In_Str_ProjectPath + In_Str_ResultPath + CityName.Trim() + &quot;_&quot; + Sort.Trim() + DateTime.now.ToString(&quot;_yyyyMMdd&quot;) + &quot;.xls&quot;]">
+                  <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="지역별 폴더 추가하려고 함&#xA;20220713-11:34" ClickBeforeTyping="True" DisplayName="Type Into 'Edit'" EmptyField="True" sap:VirtualizedContainerService.HintSize="433.6,179.2" sap2010:WorkflowViewState.IdRef="TypeInto_3" SimulateType="True" Text="[In_Str_ProjectPath + In_Str_ResultPath + CityName.Trim() + &quot;\&quot; + CityName.Trim() + &quot;_&quot; + Sort.Trim() + DateTime.now.AddDays(-1).ToString(&quot;_yyyyMMdd&quot;) + &quot;.xls&quot;]">
                     <ui:TypeInto.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="145d5a25-2c6c-4910-a476-1e1137d90fe6" InformativeScreenshot="74dd94235ff6e48764a5a974f2b1a6c1" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='다른 이름으로 저장' /&gt;&lt;wnd aaname='탐색 창' cls='DirectUIHWND' /&gt;&lt;wnd aaname='파일 이름:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
                         <ui:Target.TimeoutMS>
@@ -443,7 +443,7 @@
     </ui:CommentOut>
     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="545.6,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
-        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="593.6,875.2" sap2010:WorkflowViewState.IdRef="Sequence_19">
+        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="593.6,907.2" sap2010:WorkflowViewState.IdRef="Sequence_19">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
