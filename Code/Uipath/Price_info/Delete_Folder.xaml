@@ -12,7 +12,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>852,1489.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>852,2456</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Delete_Folder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -75,13 +75,13 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Delete_Folder" sap:VirtualizedContainerService.HintSize="593.6,1424.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Delete_Folder" sap:VirtualizedContainerService.HintSize="593.6,2391.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="CreateFolder" sap:VirtualizedContainerService.HintSize="552,1332" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="CreateFolder" sap:VirtualizedContainerService.HintSize="552,2298.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Boolean" Name="Bln_IsFolder" />
       </Sequence.Variables>
@@ -116,6 +116,14 @@
         </If.Else>
       </If>
       <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[In_Str_ProjectPath + In_Str_ResultPath]" />
+      <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_4" Path="[In_Str_ProjectPath + In_Str_ResultPath + &quot;전체&quot;]" />
+      <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_3" Path="[In_Str_ProjectPath + In_Str_ResultPath + &quot;서울&quot;]" />
+      <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_5" Path="[In_Str_ProjectPath + In_Str_ResultPath + &quot;부산&quot;]" />
+      <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_6" Path="[In_Str_ProjectPath + In_Str_ResultPath + &quot;대구&quot;]" />
+      <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_11" Path="[In_Str_ProjectPath + In_Str_ResultPath + &quot;대전&quot;]" />
+      <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_7" Path="[In_Str_ProjectPath + In_Str_ResultPath +&quot;울산&quot;]" />
+      <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_9" Path="[In_Str_ProjectPath + In_Str_ResultPath +&quot;광주&quot;]" />
+      <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_10" Path="[In_Str_ProjectPath + In_Str_ResultPath +&quot;인천&quot;]" />
       <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510.4,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[In_Str_ProjectPath + In_Str_ResultPath + &quot;Claim&quot;]" />
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;CreateFolder 종료&quot;]" />
     </Sequence>

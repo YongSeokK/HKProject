@@ -130,7 +130,7 @@
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
     <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Result file Done : &quot; + In_Str_ProjectPath + In_Str_ResultPath + In_Str_FileName + DateTime.now.ToString(&quot;_yyyyMMdd&quot;) + &quot;.xlsx&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Result file Done : &quot; + In_Str_ProjectPath + In_Str_ResultPath + In_Str_FileName + DateTime.now.AddDays(-1).ToString(&quot;_yyyyMMdd&quot;) + &quot;.xlsx&quot;]" />
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Make_Result 종료&quot;]" />
   </Sequence>
 </Activity>
