@@ -69,7 +69,7 @@ class Naverapi:
                     article_List = []
                     for temp in response_json['items']:
                         dictdata = {}
-                        dictdata['제목'] = re.sub("<b>|</b>|&apos;|&quot;", "", temp['title'])
+                        dictdata['제목'] = re.sub("<b>|</b>|&apos;|&quot;|&lt;|&gt;", "", temp['title'])
                         dictdata['링크'] = temp['originallink']
                         article_List.append(dictdata)
                     # print(response_body.decode('utf-8'))

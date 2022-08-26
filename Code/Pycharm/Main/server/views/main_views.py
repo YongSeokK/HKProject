@@ -183,10 +183,11 @@ def profile():
 def change():
     user = Members.query.filter_by(userid=g.user).first()
     if request.method == 'POST':
-        sql_table = 'UPDATE members SET nickname="' + request.form.get('nickname') + '"' + \
-                    ', name="' + request.form.get('name') + '"' + \
-                    ', email="' + request.form.get('email') + '"' + \
-                    ', phone="' + request.form.get('phone') + '" WHERE ' + 'userid="' + g.user + '"'
+        sql_table = 'UPDATE members SET nickname="' + \
+                    request.form.get('nickname') + '", name="' + \
+                    request.form.get('name') + '", email="' + \
+                    request.form.get('email') + '", phone="' + \
+                    request.form.get('phone') + '" WHERE userid="' + g.user + '"'
         cursor.execute(sql_table)
         mydb.commit()
         session['user_nickname'] = request.form.get('nickname')

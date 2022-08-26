@@ -287,7 +287,7 @@ def find_ingredients():
             "quickReplies": [{
                 "messageText": "네이버 쇼핑",
                 "action": "message",
-                "label": "네이버에서 재료 구매하기"
+                "label": "재료 구매하기"
             }, {
                 "action": "message",
                 "messageText": "★ 레시피 검색 ★",
@@ -423,7 +423,58 @@ def naver_shop():
     Naver = Naverapi(pname, Client_id, Client_secret)
     dataList = Naver.Navershop()
 
-    if len(dataList) == 0:
+    mydb = pymysql.Connect(host=DB_HOST, user=DB_USERNAME,
+                           password=DB_PASSWORD, database=DB_NAME)
+    cursor = mydb.cursor(pymysql.cursors.DictCursor)
+    text = pname
+    sql_t = 'SELECT * FROM direct_dealing WHERE product LIKE "%{}%"'.format(text)
+    cursor.execute(sql_t)
+    dt_dish = cursor.fetchall()
+    print(dt_dish, '디티디쉬')
+    print(text)
+    if len(dt_dish) != 0:
+        Result_Lsit = []
+        for data in dt_dish:
+            encText = urllib.parse.quote(dt_dish[0]['nickname'])
+            encImage = urllib.parse.quote(dt_dish[0]['image'])
+            data_dict = {
+                "title": dt_dish[0]['product'],
+                "description": str(dt_dish[0]['price']) + "원",
+                "imageUrl": 'https://ecee-112-221-224-124.ngrok.io/static/img/shop/' + encImage,
+                "link": {
+                    "web": 'https://ecee-112-221-224-124.ngrok.io/shop/pay/' + encText + '/' + str(dt_dish[0]['id'])}
+            }
+            Result_Lsit.append(data_dict)
+            print(data_dict, 'ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ데이타딕트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+        ret = {
+            "version": "2.0",
+            "template": {
+                "outputs": [{
+                    "listCard": {
+                        "header": {
+                            "title": "All NONG" + pname + "검색결과"
+                        },
+                        "items": Result_Lsit,
+                        "buttons": [{
+                            "label": "직거래 상품 더 보기",
+                            "action": "webLink",
+                            "webLinkUrl": "https://ecee-112-221-224-124.ngrok.io/shop"
+                        }]
+                    }
+                }],
+                "quickReplies": [{
+                    "messageText": "네이버 쇼핑",
+                    "action": "message",
+                    "label": "다른 재료 검색하기"
+                }, {
+                    "messageText": "레시피 검색",
+                    "action": "message",
+                    "label": "뒤로 돌아가기"
+                }]
+            }
+        }
+
+    elif len(dataList) == 0:
         ret = {
             "version": "2.0",
             "template": {
@@ -560,3 +611,4 @@ def first():
             ]
         }
     }
+    return jsonify(ret2)
