@@ -9,11 +9,11 @@ SECRET_KEY = 'dev'
 #                                                                 #
 #                                                                 #
 #                                                                 #
-DB_PASSWORD = 'test1234'  # MySQL Password
-DB_NAME = 'project_db'  # MySQL Name
+DB_PASSWORD = 'ghtjddl!4akfl'  # MySQL Password
+DB_NAME = 'projectdb'  # MySQL Name
 
 ## Path - 파이참 프로젝트 가장 상위 폴더 = Main 절대 경로
-Root_Path = r'C:\G_Project\Code\Pycharm\Main'
+Root_Path = r'C:\Users\hong\Desktop\최종프로젝트\플라스크_서버_1\Code\Pycharm\Main'
 #                                                                 #
 #                                                                 #
 #                                                                 #
